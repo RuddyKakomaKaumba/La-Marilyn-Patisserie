@@ -36,4 +36,27 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     src: "/images/galerie/gateau-manchester-city.webp",
     alt: "Gâteau aux couleurs de Manchester City, écharpe bleu ciel et ballons en pâte à sucre",
   },
+  // 6e emplacement (bandeau horizontal) : photo paysage en premier affichage.
+  {
+    src: "/images/galerie/buffet-bouchees.jpg",
+    alt: "Buffet de bouchées : brochettes tomate-fromage, mini-burgers, canapés au saumon et tartelettes",
+  },
+  {
+    src: "/images/galerie/gateau-emmenagement.webp",
+    alt: "Gâteau rectangulaire « Bon emménagement Maman » bordé de rosaces violettes et blanches, devant sa boîte La Marilyn",
+    position: "50% 70%",
+  },
+  {
+    src: "/images/galerie/gateau-soleil.webp",
+    alt: "Gâteau de baptême jaune et blanc surmonté d’un soleil souriant, « You are my sunshine »",
+  },
+  {
+    src: "/images/galerie/renverse-ananas.webp",
+    alt: "Gâteau renversé à l’ananas caramélisé sur un présentoir, une part servie",
+  },
+  {
+    src: "/images/galerie/gateau-chorale-marie-reine.webp",
+    alt: "Gâteau à trois étages bleu et argent pour les 25 ans de la chorale Marie Reine",
+    position: "50% 35%",
+  },
 ];
