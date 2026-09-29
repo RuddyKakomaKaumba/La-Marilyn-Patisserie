@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { btnArrow, btnGold } from "./buttons";
+import Parallax from "./Parallax";
 import { ArrowRight } from "./icons";
 
 export default function Occasions() {
@@ -13,16 +14,18 @@ export default function Occasions() {
       <div className="relative mx-auto max-w-[1280px] px-6 pb-12 pt-10 sm:px-10 md:pb-20 md:pt-16 lg:grid lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-20 lg:px-12 lg:py-28">
         {/* Photographie : en retrait à droite sur mobile, colonne dédiée sur desktop */}
         <div
-          data-reveal
-          className="absolute right-0 top-10 -z-10 h-[23rem] w-[62%] sm:top-8 sm:h-[28rem] sm:w-[56%] lg:relative lg:inset-auto lg:order-2 lg:z-auto lg:aspect-[4/5] lg:h-auto lg:w-full lg:overflow-hidden lg:rounded-[4px]"
+          data-reveal="image"
+          className="absolute right-0 top-10 -z-10 h-[23rem] w-[62%] overflow-hidden sm:top-8 sm:h-[28rem] sm:w-[56%] lg:relative lg:inset-auto lg:order-2 lg:z-auto lg:aspect-[4/5] lg:h-auto lg:w-full lg:rounded-[4px]"
         >
-          <Image
-            src="/images/occasions-tarte-framboise.webp"
-            alt="Tarte aux framboises fraîches sur pâte sablée, crème vanille, éclats de pistache et feuille d’or"
-            fill
-            sizes="(min-width: 1280px) 620px, (min-width: 1024px) 50vw, 62vw"
-            className="object-cover object-[62%_55%] lg:object-[55%_50%]"
-          />
+          <Parallax amplitude={28}>
+            <Image
+              src="/images/occasions-tarte-framboise.webp"
+              alt="Tarte aux framboises fraîches sur pâte sablée, crème vanille, éclats de pistache et feuille d’or"
+              fill
+              sizes="(min-width: 1280px) 620px, (min-width: 1024px) 50vw, 62vw"
+              className="object-cover object-[62%_55%] lg:object-[55%_50%]"
+            />
+          </Parallax>
           <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-cream)_0%,rgb(246_239_229/0.55)_22%,rgb(246_239_229/0)_48%),linear-gradient(to_bottom,var(--color-cream)_0%,rgb(246_239_229/0)_14%,rgb(246_239_229/0)_80%,var(--color-cream)_100%)] lg:hidden" />
         </div>
 

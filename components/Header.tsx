@@ -24,7 +24,10 @@ export default function Header() {
 
   return (
     <header className="absolute inset-x-0 top-0 z-30">
-      <div className="mx-auto flex h-[60px] max-w-[1440px] items-center justify-between px-4 sm:px-8 md:h-[72px] lg:h-[88px] lg:px-12">
+      <div
+        data-enter={pathname === "/" ? "" : undefined}
+        className="mx-auto flex h-[60px] max-w-[1440px] items-center justify-between px-4 sm:px-8 md:h-[72px] lg:h-[88px] lg:px-12"
+      >
         <Link
           href="/"
           aria-label="La Marilyn — accueil"
@@ -48,7 +51,7 @@ export default function Header() {
                 <Link
                   href={item.href}
                   aria-current={pathname === item.href ? "page" : undefined}
-                  className="font-sans text-[0.8125rem] tracking-[0.04em] text-ivory/80 transition-colors duration-300 hover:text-gold-light aria-[current=page]:text-gold-light"
+                  className="relative font-sans text-[0.8125rem] tracking-[0.04em] text-ivory/80 transition-colors duration-300 after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-gold-light/80 after:transition-transform after:duration-500 after:ease-soft hover:text-gold-light hover:after:scale-x-100 aria-[current=page]:text-gold-light"
                 >
                   {item.label}
                 </Link>
@@ -97,12 +100,13 @@ export default function Header() {
 
       <div
         id="menu-mobile"
-        hidden={!open}
-        className="border-t border-gold/15 bg-ink/95 px-5 pb-8 pt-4 backdrop-blur-sm lg:hidden"
+        data-open={open ? "" : undefined}
+        inert={!open}
+        className="mobile-menu border-t border-gold/15 bg-ink/95 px-5 pb-8 pt-4 backdrop-blur-sm lg:hidden"
       >
         <ul className="flex flex-col">
           {NAV.map((item) => (
-            <li key={item.href}>
+            <li key={item.href} className="mobile-menu__item">
               <Link
                 href={item.href}
                 onClick={() => setOpen(false)}
@@ -113,7 +117,7 @@ export default function Header() {
               </Link>
             </li>
           ))}
-          <li>
+          <li className="mobile-menu__item">
             <a
               href={WHATSAPP_URL}
               target="_blank"

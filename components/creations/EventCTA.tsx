@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ctaUrl, WHATSAPP_CTAS } from "@/lib/site";
 import { btnArrow, btnGold } from "../buttons";
+import Parallax from "../Parallax";
 import { ArrowRight } from "../icons";
 
 export default function EventCTA() {
@@ -9,14 +10,16 @@ export default function EventCTA() {
       aria-labelledby="evenement-title"
       className="relative isolate mt-12 overflow-hidden bg-ink text-ivory md:mt-20 lg:mt-28"
     >
-      <div className="absolute inset-0 -z-10">
-        <Image
-          src="/images/evenements-buffet.webp"
-          alt="Table de réception dressée de mignardises, choux et tartelettes sur présentoirs, avec bouquets de fleurs"
-          fill
-          sizes="100vw"
-          className="object-cover object-[50%_62%] lg:object-[50%_58%]"
-        />
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <Parallax amplitude={40}>
+          <Image
+            src="/images/evenements-buffet.webp"
+            alt="Table de réception dressée de mignardises, choux et tartelettes sur présentoirs, avec bouquets de fleurs"
+            fill
+            sizes="100vw"
+            className="object-cover object-[50%_62%] lg:object-[50%_58%]"
+          />
+        </Parallax>
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,var(--color-ink)_0%,rgb(18_12_9/0.78)_22%,rgb(18_12_9/0.2)_52%,rgb(18_12_9/0.25)_78%,var(--color-ink)_100%)]" />
       </div>
 

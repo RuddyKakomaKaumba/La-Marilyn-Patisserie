@@ -101,7 +101,7 @@ export default function GourmetUniverses() {
                       alt={u.image.alt}
                       fill
                       sizes="(min-width: 1280px) 300px, (min-width: 1024px) 24vw, 48vw"
-                      className="object-cover transition-transform duration-[600ms] ease-soft group-hover:scale-[1.02]"
+                      className="object-cover transition-transform duration-[650ms] ease-soft group-hover:scale-[1.03]"
                       style={{ objectPosition: u.image.position }}
                     />
                   </div>
@@ -133,7 +133,7 @@ export default function GourmetUniverses() {
 }
 
 const CARD_CLASS =
-  "group flex h-full flex-col overflow-hidden rounded-[10px] bg-ivory";
+  "group flex h-full flex-col overflow-hidden rounded-[10px] bg-ivory transition-[translate] duration-500 ease-soft hover:-translate-y-0.5";
 
 function CardLink({
   universe,

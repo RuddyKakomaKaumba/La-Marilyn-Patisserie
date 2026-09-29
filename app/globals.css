@@ -59,14 +59,27 @@ body {
   text-transform: uppercase;
 }
 
-/* Apparition discrète au scroll (activée uniquement si JS disponible) */
+/*
+ * Apparition au scroll (une seule fois par page, activée uniquement si JS
+ * disponible) : paragraphes 12 px, titres 20 px, boutons 10 px.
+ */
 .reveal-ready [data-reveal] {
   opacity: 0;
-  transform: translate3d(0, 14px, 0);
+  transform: translate3d(0, 12px, 0);
   transition:
-    opacity 700ms var(--ease-soft),
-    transform 700ms var(--ease-soft);
+    opacity 650ms var(--ease-soft),
+    transform 650ms var(--ease-soft);
   transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-ready :is(h1, h2)[data-reveal],
+.reveal-ready header[data-reveal] {
+  transform: translate3d(0, 20px, 0);
+}
+
+.reveal-ready [data-reveal]:has(> a:only-child),
+.reveal-ready [data-reveal]:has(> .rounded-full:first-child) {
+  transform: translate3d(0, 10px, 0);
 }
 
 .reveal-ready [data-reveal].is-visible {
@@ -105,9 +118,23 @@ body {
   clip-path: inset(0);
 }
 
+/* La photo se pose doucement pendant que son cadre se dévoile. */
+.reveal-ready [data-reveal="image"] img {
+  transform: scale(1.03);
+  transition: transform 1400ms var(--ease-soft);
+}
+
+.reveal-ready [data-reveal="image"].is-visible img {
+  transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal-ready [data-reveal="image"] {
     clip-path: none;
+  }
+
+  .reveal-ready [data-reveal="image"] img {
+    transform: none;
   }
 }
 
@@ -254,5 +281,179 @@ body {
   .mosaic-drift-in,
   .mosaic-drift-out {
     animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Arrivée sur l'accueil : photo qui se pose, puis contenus en cascade. */
+
+.hero-media img {
+  animation: hero-settle 1800ms var(--ease-soft) both;
+}
+
+[data-enter] {
+  animation: enter-up 700ms var(--ease-soft) both;
+  animation-delay: var(--enter-delay, 0ms);
+}
+
+@keyframes hero-settle {
+  from {
+    transform: scale(1.04);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes enter-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Badges des cartes : glissent de quelques pixels quand la rangée apparaît. */
+.reveal-ready [data-reveal] [data-badge] {
+  opacity: 0;
+  transform: translate3d(-6px, 0, 0);
+  transition:
+    opacity 350ms var(--ease-soft) 250ms,
+    transform 350ms var(--ease-soft) 250ms;
+}
+
+.reveal-ready [data-reveal] [data-badge="right"] {
+  transform: translate3d(6px, 0, 0);
+}
+
+.reveal-ready [data-reveal].is-visible [data-badge] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Bouton WhatsApp : apparition douce, puis une seule pulsation du contour. */
+.wa-float {
+  animation: wa-in 700ms var(--ease-soft) 900ms both;
+}
+
+.wa-float::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px solid var(--color-gold-light);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.wa-float--pulse::after {
+  animation: wa-pulse 1600ms var(--ease-soft) 1;
+}
+
+@keyframes wa-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes wa-pulse {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  35% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* Menu mobile : fondu + léger glissement, liens en cascade. */
+.mobile-menu {
+  opacity: 0;
+  transform: translate3d(0, -8px, 0);
+  visibility: hidden;
+  transition:
+    opacity 220ms var(--ease-soft),
+    transform 220ms var(--ease-soft),
+    visibility 0s linear 220ms;
+}
+
+.mobile-menu[data-open] {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  transition:
+    opacity 320ms var(--ease-soft),
+    transform 320ms var(--ease-soft);
+}
+
+.mobile-menu__item {
+  opacity: 0;
+  transform: translate3d(0, 6px, 0);
+  transition:
+    opacity 180ms var(--ease-soft),
+    transform 180ms var(--ease-soft);
+}
+
+.mobile-menu[data-open] .mobile-menu__item {
+  opacity: 1;
+  transform: none;
+  transition-duration: 320ms;
+}
+
+.mobile-menu[data-open] .mobile-menu__item:nth-child(2) {
+  transition-delay: 40ms;
+}
+
+.mobile-menu[data-open] .mobile-menu__item:nth-child(3) {
+  transition-delay: 80ms;
+}
+
+.mobile-menu[data-open] .mobile-menu__item:nth-child(4) {
+  transition-delay: 120ms;
+}
+
+/* Transition entre pages (navigation interne uniquement). */
+.page-enter {
+  animation: page-in 280ms var(--ease-soft) both;
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-media img,
+  [data-enter],
+  .wa-float,
+  .wa-float--pulse::after,
+  .page-enter {
+    animation: none;
+  }
+
+  .reveal-ready [data-reveal] [data-badge] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .mobile-menu,
+  .mobile-menu__item {
+    transform: none;
+    transition-duration: 0.01ms;
   }
 }

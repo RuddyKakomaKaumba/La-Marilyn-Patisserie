@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { btnArrow, btnOutlineLight } from "./buttons";
+import Parallax from "./Parallax";
 import { ArrowRight } from "./icons";
 
 const CRAFT_IMAGE = {
@@ -15,14 +16,19 @@ export default function Craftsmanship() {
       aria-labelledby="savoir-faire-title"
       className="relative isolate overflow-hidden bg-ink text-ivory lg:flex lg:min-h-[760px] lg:items-end"
     >
-      <div className="relative h-[29rem] overflow-hidden sm:h-[42rem] lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[64%]">
-        <Image
-          src={CRAFT_IMAGE.src}
-          alt={CRAFT_IMAGE.alt}
-          fill
-          sizes="(min-width: 1024px) 64vw, 100vw"
-          className="object-cover object-[50%_20%] lg:object-[50%_14%]"
-        />
+      <div
+        data-reveal="image"
+        className="relative h-[29rem] overflow-hidden sm:h-[42rem] lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[64%]"
+      >
+        <Parallax amplitude={36}>
+          <Image
+            src={CRAFT_IMAGE.src}
+            alt={CRAFT_IMAGE.alt}
+            fill
+            sizes="(min-width: 1024px) 64vw, 100vw"
+            className="object-cover object-[50%_20%] lg:object-[50%_14%]"
+          />
+        </Parallax>
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgb(18_12_9/0.25)_0%,rgb(18_12_9/0)_22%,rgb(18_12_9/0)_52%,var(--color-ink)_100%)] lg:bg-[linear-gradient(to_right,var(--color-ink)_0%,rgb(18_12_9/0.55)_24%,rgb(18_12_9/0)_55%),linear-gradient(to_top,rgb(18_12_9/0.6)_0%,rgb(18_12_9/0)_35%)]" />
       </div>
 

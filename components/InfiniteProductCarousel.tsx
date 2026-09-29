@@ -86,7 +86,7 @@ const CARD_SIZES: Record<CardVariant, string> = {
 };
 
 /** Délai avant la reprise de l'autoplay après une interaction (ms). */
-const RESUME_DELAY = 2600;
+const RESUME_DELAY = 1800;
 /** Durée de la remise en vitesse progressive (s). */
 const RAMP_UP = 1.4;
 
@@ -179,7 +179,7 @@ export default function InfiniteProductCarousel({
         const active = !reduced && !hovering && !focused && t >= resumeAt;
         factor = active
           ? Math.min(1, factor + dt / RAMP_UP)
-          : Math.max(0, factor - dt / 0.35);
+          : Math.max(0, factor - dt / 0.6);
         // Accélération en douceur (ease-in-out) plutôt que linéaire.
         const eased = factor * factor * (3 - 2 * factor);
         offset += sign * speed * eased * dt;
@@ -384,7 +384,7 @@ function ProductCard({
   const showcase = variant === "showcase";
   return (
     <article
-      className={`flex h-full flex-col overflow-hidden rounded-[10px] bg-ivory ${
+      className={`group/card flex h-full flex-col overflow-hidden rounded-[10px] bg-ivory ${
         showcase
           ? "shadow-[0_1px_2px_rgb(58_42_32/0.04),0_10px_24px_-14px_rgb(58_42_32/0.18)]"
           : ""
@@ -401,12 +401,13 @@ function ProductCard({
             fill
             draggable={false}
             sizes={CARD_SIZES[variant]}
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-[650ms] ease-soft group-hover/card:scale-[1.03]"
             style={{ objectPosition: product.image.position ?? "50% 50%" }}
           />
         )}
         {product.badge && (
           <span
+            data-badge={product.badge === "sur-commande" ? "right" : "left"}
             className={`absolute top-2 z-10 inline-flex items-center gap-[0.3em] px-[7px] py-1 font-sans text-[9px] font-semibold uppercase leading-none tracking-[0.08em] text-white md:text-[10px] ${BADGES[product.badge].className}`}
             style={{ backgroundColor: BADGES[product.badge].color }}
           >
@@ -448,9 +449,9 @@ function ProductCard({
               rel="noopener noreferrer"
               draggable={false}
               aria-label={`${WHATSAPP_CTAS[product.cta?.key ?? "general"].label} — ${product.name} (WhatsApp)`}
-              className="flex h-7 w-7 items-center justify-center rounded-full border border-gold/60 text-gold-deep transition-colors duration-300 hover:border-gold-deep hover:bg-gold/10"
+              className="group/plus flex h-7 w-7 items-center justify-center rounded-full border border-gold/60 text-gold-deep transition-colors duration-300 ease-soft hover:border-gold hover:bg-gold hover:text-ink active:bg-gold active:text-ink"
             >
-              <PlusIcon className="h-3.5 w-3.5" />
+              <PlusIcon className="h-3.5 w-3.5 transition-transform duration-300 ease-soft group-hover/plus:rotate-45" />
             </a>
           </div>
         )}
