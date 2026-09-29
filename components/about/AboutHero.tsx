@@ -38,8 +38,15 @@ export default function AboutHero() {
           </p>
         </div>
 
-        {/* Portrait / atelier La Marilyn — image à ajouter */}
-        <StoryImagePlaceholder className="mt-8 md:mt-10 lg:mt-0" />
+        {/* Portrait / atelier La Marilyn */}
+        <StoryImagePlaceholder
+          className="mt-8 md:mt-10 lg:mt-0"
+          image={{
+            src: "/images/atelier-la-marilyn.jpg",
+            alt: "La pâtissière de La Marilyn, en tablier brodé du logo, dresse une crème au chocolat à la poche à douille sur un gâteau",
+            position: "50% 55%",
+          }}
+        />
       </div>
       <CurveDivider />
     </section>
