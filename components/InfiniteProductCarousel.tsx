@@ -21,12 +21,26 @@ export type Product = {
 
 export type ProductBadge = "best-seller" | "sur-commande";
 
+/**
+ * Micro-étiquettes posées au bord de la photo : « Best seller » collé au
+ * bord gauche, « Sur commande » au bord droit (arrondi côté intérieur).
+ */
 const BADGES: Record<
   ProductBadge,
-  { symbol: string; label: string; color: string }
+  { symbol: string; label: string; color: string; className: string }
 > = {
-  "best-seller": { symbol: "★", label: "Best seller", color: "#A63D32" },
-  "sur-commande": { symbol: "✦", label: "Sur commande", color: "#355C7D" },
+  "best-seller": {
+    symbol: "★",
+    label: "Best seller",
+    color: "#E53935",
+    className: "left-0 rounded-r-[6px]",
+  },
+  "sur-commande": {
+    symbol: "✦",
+    label: "Sur commande",
+    color: "#1677FF",
+    className: "right-0 rounded-l-[6px]",
+  },
 };
 
 type Props = {
@@ -370,13 +384,13 @@ function ProductCard({
             fill
             draggable={false}
             sizes={CARD_SIZES[variant]}
-            className="object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
             style={{ objectPosition: product.image.position ?? "50% 50%" }}
           />
         )}
         {product.badge && (
           <span
-            className="absolute left-2.5 top-2.5 inline-flex items-center gap-1 rounded-full px-2 py-[0.1875rem] font-sans text-[0.5625rem] font-semibold uppercase leading-none tracking-[0.12em] text-white md:left-3 md:top-3 md:px-2.5 md:py-1 md:text-[0.625rem]"
+            className={`absolute top-2 z-10 inline-flex items-center gap-[0.3em] px-[7px] py-1 font-sans text-[9px] font-semibold uppercase leading-none tracking-[0.08em] text-white md:text-[10px] ${BADGES[product.badge].className}`}
             style={{ backgroundColor: BADGES[product.badge].color }}
           >
             <span aria-hidden="true">{BADGES[product.badge].symbol}</span>
