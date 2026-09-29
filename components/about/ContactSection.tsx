@@ -1,4 +1,4 @@
-import { SOCIAL_LINKS, whatsappUrl } from "@/lib/site";
+import { SOCIAL_LINKS, WHATSAPP_CTAS, WHATSAPP_URL } from "@/lib/site";
 import { btnArrow, btnGold, btnOutlineLight } from "../buttons";
 import {
   ArrowRight,
@@ -6,9 +6,6 @@ import {
   InstagramIcon,
   WhatsAppIcon,
 } from "../icons";
-
-const CONTACT_MESSAGE =
-  "Bonjour La Marilyn, je vous contacte depuis votre site et j’aimerais avoir des informations concernant une commande.";
 
 export default function ContactSection() {
   return (
@@ -48,13 +45,13 @@ export default function ContactSection() {
           className="mt-9 flex flex-col items-start gap-6 lg:mt-0 lg:items-end"
         >
           <a
-            href={whatsappUrl(CONTACT_MESSAGE)}
+            href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className={btnGold}
           >
             <WhatsAppIcon className="h-[18px] w-[18px]" />
-            Écrire à La Marilyn sur WhatsApp
+            {WHATSAPP_CTAS.general.label}
             <ArrowRight className={btnArrow} />
           </a>
           <p className="text-[0.8125rem] text-ivory/60 lg:text-right">

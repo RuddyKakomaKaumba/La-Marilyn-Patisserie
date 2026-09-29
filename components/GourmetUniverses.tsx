@@ -1,21 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ctaUrl, WHATSAPP_CTAS, type WhatsAppCta } from "@/lib/site";
 import { ArrowRight } from "./icons";
 
 type Universe = {
   title: string;
   /** Titre affiché sur deux lignes sur mobile, si besoin. */
   lines?: [string, string];
-  cta: string;
-  href: string;
+  /** Lien de navigation (page Nos créations)… */
+  nav?: { label: string; href: string };
+  /** …ou demande WhatsApp, pour les univers sans page dédiée. */
+  whatsapp?: WhatsAppCta;
   image: { src: string; alt: string; position: string };
 };
 
 const UNIVERSES: Universe[] = [
   {
     title: "Pâtisseries",
-    cta: "Voir les créations",
-    href: "/nos-creations#patisseries",
+    nav: { label: "Voir les créations", href: "/nos-creations#patisseries" },
     image: {
       src: "/images/univers/patisseries.webp",
       alt: "Tartelette aux fraises fraîches, éclats de pistache et feuille d’or",
@@ -24,8 +26,7 @@ const UNIVERSES: Universe[] = [
   },
   {
     title: "Gâteaux",
-    cta: "Voir les gâteaux",
-    href: "#",
+    whatsapp: "surMesure",
     image: {
       src: "/images/univers/gateaux.webp",
       alt: "Tarte au chocolat et noisettes caramélisées, décors de chocolat et feuille d’or",
@@ -34,8 +35,10 @@ const UNIVERSES: Universe[] = [
   },
   {
     title: "Mignardises",
-    cta: "Voir les mignardises",
-    href: "/nos-creations#mignardises",
+    nav: {
+      label: "Voir les mignardises",
+      href: "/nos-creations#mignardises",
+    },
     image: {
       src: "/images/univers/mignardises.webp",
       alt: "Assortiment de mignardises : dômes chocolat, entremets, tartelettes aux fruits",
@@ -45,8 +48,7 @@ const UNIVERSES: Universe[] = [
   {
     title: "Location de présentoirs",
     lines: ["Location", "de présentoirs"],
-    cta: "Voir les options",
-    href: "#",
+    whatsapp: "presentoirs",
     image: {
       src: "/images/univers/location-presentoirs.webp",
       alt: "Présentoir doré à trois étages sur un plan de marbre",
@@ -80,48 +82,81 @@ export default function GourmetUniverses() {
         </header>
 
         <ul className="mt-8 grid grid-cols-2 gap-2.5 md:mt-12 md:gap-4 lg:mt-14 lg:grid-cols-4 lg:gap-5">
-          {UNIVERSES.map((u, i) => (
-            <li
-              key={u.title}
-              data-reveal
-              style={{ "--reveal-delay": `${i * 70}ms` } as React.CSSProperties}
-            >
-              <Link
-                href={u.href}
-                className="group flex h-full flex-col overflow-hidden rounded-[10px] bg-ivory"
+          {UNIVERSES.map((u, i) => {
+            const label = u.whatsapp
+              ? WHATSAPP_CTAS[u.whatsapp].label
+              : (u.nav?.label ?? "");
+            return (
+              <li
+                key={u.title}
+                data-reveal
+                style={
+                  { "--reveal-delay": `${i * 70}ms` } as React.CSSProperties
+                }
               >
-                <div className="relative aspect-[4/4.4] overflow-hidden bg-sand lg:aspect-[4/4.8]">
-                  <Image
-                    src={u.image.src}
-                    alt={u.image.alt}
-                    fill
-                    sizes="(min-width: 1280px) 300px, (min-width: 1024px) 24vw, 48vw"
-                    className="object-cover transition-transform duration-[600ms] ease-soft group-hover:scale-[1.02]"
-                    style={{ objectPosition: u.image.position }}
-                  />
-                </div>
-                <div className="flex flex-1 flex-col justify-between px-3 pb-4 pt-3.5 md:px-4 md:pb-5 md:pt-4">
-                  <h3 className="font-sans text-[0.75rem] font-semibold uppercase leading-[1.45] tracking-[0.1em] text-ink md:text-[0.8125rem]">
-                    {u.lines ? (
-                      <>
-                        {u.lines[0]}
-                        <br />
-                        {u.lines[1]}
-                      </>
-                    ) : (
-                      u.title
-                    )}
-                  </h3>
-                  <span className="mt-2 inline-flex items-center gap-1.5 text-[0.6875rem] text-muted transition-colors duration-300 group-hover:text-gold-deep md:text-[0.75rem]">
-                    {u.cta}
-                    <ArrowRight className="h-3 w-3 text-gold-deep transition-transform duration-300 ease-soft group-hover:translate-x-0.5" />
-                  </span>
-                </div>
-              </Link>
-            </li>
-          ))}
+                <CardLink universe={u}>
+                  <div className="relative aspect-[4/4.4] overflow-hidden bg-sand lg:aspect-[4/4.8]">
+                    <Image
+                      src={u.image.src}
+                      alt={u.image.alt}
+                      fill
+                      sizes="(min-width: 1280px) 300px, (min-width: 1024px) 24vw, 48vw"
+                      className="object-cover transition-transform duration-[600ms] ease-soft group-hover:scale-[1.02]"
+                      style={{ objectPosition: u.image.position }}
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col justify-between px-3 pb-4 pt-3.5 md:px-4 md:pb-5 md:pt-4">
+                    <h3 className="font-sans text-[0.75rem] font-semibold uppercase leading-[1.45] tracking-[0.1em] text-ink md:text-[0.8125rem]">
+                      {u.lines ? (
+                        <>
+                          {u.lines[0]}
+                          <br />
+                          {u.lines[1]}
+                        </>
+                      ) : (
+                        u.title
+                      )}
+                    </h3>
+                    <span className="mt-2 inline-flex items-center gap-1.5 text-[0.6875rem] text-muted transition-colors duration-300 group-hover:text-gold-deep md:text-[0.75rem]">
+                      {label}
+                      <ArrowRight className="h-3 w-3 text-gold-deep transition-transform duration-300 ease-soft group-hover:translate-x-0.5" />
+                    </span>
+                  </div>
+                </CardLink>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </section>
+  );
+}
+
+const CARD_CLASS =
+  "group flex h-full flex-col overflow-hidden rounded-[10px] bg-ivory";
+
+function CardLink({
+  universe,
+  children,
+}: {
+  universe: Universe;
+  children: React.ReactNode;
+}) {
+  if (universe.whatsapp) {
+    return (
+      <a
+        href={ctaUrl(universe.whatsapp)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={CARD_CLASS}
+      >
+        {children}
+      </a>
+    );
+  }
+  return (
+    <Link href={universe.nav?.href ?? "/nos-creations"} className={CARD_CLASS}>
+      {children}
+    </Link>
   );
 }

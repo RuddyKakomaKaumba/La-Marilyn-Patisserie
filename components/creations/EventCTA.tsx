@@ -1,10 +1,7 @@
 import Image from "next/image";
-import { whatsappUrl } from "@/lib/site";
+import { ctaUrl, WHATSAPP_CTAS } from "@/lib/site";
 import { btnArrow, btnGold } from "../buttons";
 import { ArrowRight } from "../icons";
-
-const EVENT_MESSAGE =
-  "Bonjour La Marilyn, je souhaiterais commander une création pour un événement.";
 
 export default function EventCTA() {
   return (
@@ -47,12 +44,12 @@ export default function EventCTA() {
 
         <a
           data-reveal
-          href={whatsappUrl(EVENT_MESSAGE)}
+          href={ctaUrl("evenement")}
           target="_blank"
           rel="noopener noreferrer"
           className={`${btnGold} mt-10`}
         >
-          Commander sur WhatsApp
+          {WHATSAPP_CTAS.evenement.label}
           <ArrowRight className={btnArrow} />
         </a>
       </div>

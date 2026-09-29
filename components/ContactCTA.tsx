@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { WHATSAPP_URL } from "@/lib/site";
+import { WHATSAPP_CTAS, WHATSAPP_URL } from "@/lib/site";
 import { btnArrow, btnGold, btnOutlineLight } from "./buttons";
 import { ArrowRight, WhatsAppIcon } from "./icons";
 
@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function ContactCTA({
-  primaryLabel = "Nous contacter",
+  primaryLabel = WHATSAPP_CTAS.general.label,
   showCreationsLink = true,
 }: Props) {
   return (

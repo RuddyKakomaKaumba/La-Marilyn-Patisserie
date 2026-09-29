@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { whatsappUrl } from "@/lib/site";
+import { ctaUrl, WHATSAPP_CTAS, type WhatsAppCta } from "@/lib/site";
 import { PlusIcon } from "./icons";
 
 export type Product = {
@@ -17,6 +17,11 @@ export type Product = {
   image?: { src: string; alt: string; position?: string };
   /** Pastille discrète affichée en haut à gauche de la photo. */
   badge?: ProductBadge;
+  /**
+   * Demande WhatsApp du bouton « + » : type de CTA et, si utile, précision
+   * ajoutée au message (ex. le nom du gâteau).
+   */
+  cta?: { key: WhatsAppCta; detail?: string };
 };
 
 export type ProductBadge = "best-seller" | "sur-commande";
@@ -438,13 +443,11 @@ function ProductCard({
         {showAction && (
           <div className={`mt-auto ${showcase ? "pt-4" : "pt-3"}`}>
             <a
-              href={whatsappUrl(
-                `Bonjour La Marilyn, je souhaiterais avoir plus d'informations sur : ${product.name}.`,
-              )}
+              href={ctaUrl(product.cta?.key ?? "general", product.cta?.detail)}
               target="_blank"
               rel="noopener noreferrer"
               draggable={false}
-              aria-label={`Demander des informations sur « ${product.name} » via WhatsApp`}
+              aria-label={`${WHATSAPP_CTAS[product.cta?.key ?? "general"].label} — ${product.name} (WhatsApp)`}
               className="flex h-7 w-7 items-center justify-center rounded-full border border-gold/60 text-gold-deep transition-colors duration-300 hover:border-gold-deep hover:bg-gold/10"
             >
               <PlusIcon className="h-3.5 w-3.5" />

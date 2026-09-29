@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { WHATSAPP_URL } from "@/lib/site";
+import { WHATSAPP_CTAS, WHATSAPP_URL } from "@/lib/site";
 import { btnArrow, btnGold, btnOutlineLight } from "./buttons";
 import CurveDivider from "./CurveDivider";
 import { ArrowRight, PlusIcon } from "./icons";
@@ -29,10 +29,7 @@ export default function Hero() {
 
       <div className="relative mx-auto w-full max-w-[1440px] px-6 pb-[27.5rem] pt-[7rem] sm:px-10 sm:pb-[33rem] md:pt-[9rem] lg:px-12 lg:pb-0 lg:pt-10">
         <div className="max-w-[20.5rem] sm:max-w-[30rem] lg:max-w-[34rem]">
-          <p
-            data-reveal
-            className="eyebrow leading-[1.9] text-gold-light/90"
-          >
+          <p data-reveal className="eyebrow leading-[1.9] text-gold-light/90">
             Pâtisseries · Mignardises
             <br />
             Buffets · Location
@@ -58,8 +55,8 @@ export default function Hero() {
             style={{ "--reveal-delay": "160ms" } as React.CSSProperties}
             className="mt-5 max-w-[19rem] text-[0.9375rem] leading-relaxed text-ivory/75 sm:max-w-[24rem] lg:mt-7 lg:text-base"
           >
-            Pâtisseries, gâteaux et mignardises façonnés avec soin pour
-            sublimer vos célébrations comme vos plaisirs du quotidien.
+            Pâtisseries, gâteaux et mignardises façonnés avec soin pour sublimer
+            vos célébrations comme vos plaisirs du quotidien.
           </p>
 
           <div
@@ -77,7 +74,8 @@ export default function Hero() {
               rel="noopener noreferrer"
               className={btnOutlineLight}
             >
-              Nous contacter
+              {WHATSAPP_CTAS.general.label}
+              <ArrowRight className={btnArrow} />
             </a>
           </div>
         </div>

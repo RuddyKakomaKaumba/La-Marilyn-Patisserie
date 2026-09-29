@@ -15,6 +15,7 @@ const TONES = {
 export const PATISSERIES: Product[] = [
   {
     name: "Cake yaourt & citron",
+    cta: { key: "patisserie", detail: "Cake yaourt & citron" },
     description:
       "Moelleux au yaourt, parfumé au citron et nappé d’un glaçage léger.",
     tone: TONES.cream,
@@ -26,6 +27,7 @@ export const PATISSERIES: Product[] = [
   },
   {
     name: "Cake nature",
+    cta: { key: "patisserie", detail: "Cake nature" },
     description:
       "Le grand classique, doré et fondant, tout simplement gourmand.",
     tone: TONES.linen,
@@ -37,6 +39,7 @@ export const PATISSERIES: Product[] = [
   },
   {
     name: "Moelleux au chocolat",
+    cta: { key: "patisserie", detail: "Moelleux au chocolat" },
     description:
       "Cœur fondant et chocolat intense : notre création la plus demandée.",
     tone: TONES.sand,
@@ -49,6 +52,7 @@ export const PATISSERIES: Product[] = [
   },
   {
     name: "Cake noix de coco",
+    cta: { key: "patisserie", detail: "Cake noix de coco" },
     description:
       "Un cake moelleux, généreusement recouvert de noix de coco toastée.",
     tone: TONES.beige,
@@ -60,6 +64,7 @@ export const PATISSERIES: Product[] = [
   },
   {
     name: "Cake à l’orange",
+    cta: { key: "patisserie", detail: "Cake à l’orange" },
     description: "Parfumé à l’orange et garni de zestes confits.",
     tone: TONES.cream,
     image: {
@@ -70,6 +75,7 @@ export const PATISSERIES: Product[] = [
   },
   {
     name: "Renversé à l’ananas",
+    cta: { key: "patisserie", detail: "Renversé à l’ananas" },
     description: "Ananas caramélisé sur un gâteau moelleux et doré.",
     tone: TONES.sand,
     badge: "best-seller",
@@ -81,6 +87,7 @@ export const PATISSERIES: Product[] = [
   },
   {
     name: "Gâteau d’anniversaire",
+    cta: { key: "surMesure", detail: "Gâteau d’anniversaire" },
     description:
       "Des créations personnalisées pour célébrer petits et grands moments.",
     tone: TONES.linen,
@@ -93,6 +100,7 @@ export const PATISSERIES: Product[] = [
   },
   {
     name: "Gâteau de mariage",
+    cta: { key: "surMesure", detail: "Gâteau de mariage" },
     description:
       "Des créations élégantes et sur mesure pour accompagner votre grand jour.",
     tone: TONES.cream,
@@ -156,12 +164,12 @@ export const MIGNARDISES: Product[] = [
 ];
 
 /**
- * Buffet gourmand — photos dans /public/images/buffet/. « Pièces cocktail »
- * garde son aplat de couleur en attendant sa photo (ajouter `image`).
+ * Buffet gourmand — photos dans /public/images/buffet/.
  */
 export const TRAITEUR: Product[] = [
   {
     name: "Événements professionnels",
+    cta: { key: "evenementPro" },
     description: "Des créations adaptées à vos événements professionnels.",
     tone: TONES.sand,
     image: {
@@ -172,6 +180,7 @@ export const TRAITEUR: Product[] = [
   },
   {
     name: "Buffets",
+    cta: { key: "buffet" },
     description: "Des formules gourmandes adaptées à vos événements.",
     tone: TONES.linen,
     image: {
@@ -182,6 +191,7 @@ export const TRAITEUR: Product[] = [
   },
   {
     name: "Location de présentoirs",
+    cta: { key: "presentoirs" },
     description:
       "Des présentoirs élégants pour mettre vos créations en valeur.",
     tone: TONES.cream,
@@ -193,7 +203,13 @@ export const TRAITEUR: Product[] = [
   },
   {
     name: "Pièces cocktail",
+    cta: { key: "buffet", detail: "Pièces cocktail" },
     description: "Des bouchées gourmandes et élégantes pour vos réceptions.",
     tone: TONES.beige,
+    image: {
+      src: "/images/buffet/pieces-cocktail.jpg",
+      alt: "Pièces cocktail : bouchées de mousse fromagère et crevette sur base noire, servies sur miroir",
+      position: "50% 55%",
+    },
   },
 ];

@@ -4,7 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { LOGO, NAV_LINKS as NAV, WHATSAPP_URL } from "@/lib/site";
+import {
+  LOGO,
+  NAV_LINKS as NAV,
+  WHATSAPP_CTAS,
+  WHATSAPP_URL,
+} from "@/lib/site";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -56,7 +61,7 @@ export default function Header() {
                 rel="noopener noreferrer"
                 className="inline-flex h-10 items-center rounded-full border border-gold/60 px-5 font-sans text-[0.8125rem] text-ivory transition-colors duration-300 hover:border-gold-light hover:bg-gold/10"
               >
-                Nous contacter
+                {WHATSAPP_CTAS.general.label}
               </a>
             </li>
           </ul>
@@ -116,7 +121,7 @@ export default function Header() {
               onClick={() => setOpen(false)}
               className="display block py-3 text-[1.625rem] text-gold-light"
             >
-              Nous contacter
+              {WHATSAPP_CTAS.general.label}
             </a>
           </li>
         </ul>

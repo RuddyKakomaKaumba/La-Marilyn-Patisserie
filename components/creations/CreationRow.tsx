@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ctaUrl, WHATSAPP_CTAS, type WhatsAppCta } from "@/lib/site";
 import InfiniteProductCarousel, {
   type Product,
 } from "../InfiniteProductCarousel";
@@ -13,7 +14,8 @@ type Props = {
   products: Product[];
   direction: "left" | "right";
   speed?: number;
-  cta: { label: string; href: string };
+  /** CTA sous le carrousel : demande WhatsApp propre à la rangée. */
+  cta: WhatsAppCta;
   /** Format des cartes (voir InfiniteProductCarousel). */
   variant?: CarouselVariant;
   /** Bouton « + » sur les cartes (voir InfiniteProductCarousel). */
@@ -68,13 +70,15 @@ export default function CreationRow({
       </div>
 
       <div className="mt-7 flex justify-center px-4 md:mt-9">
-        <Link
-          href={cta.href}
+        <a
+          href={ctaUrl(cta)}
+          target="_blank"
+          rel="noopener noreferrer"
           className={`${btnOutlineDark} w-full max-w-[21rem] sm:w-auto`}
         >
-          {cta.label}
+          {WHATSAPP_CTAS[cta].label}
           <ArrowRight className={btnArrow} />
-        </Link>
+        </a>
       </div>
     </section>
   );

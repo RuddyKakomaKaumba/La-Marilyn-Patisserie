@@ -1,13 +1,10 @@
 import ContactServiceCard, { type ContactService } from "./ContactServiceCard";
 
 const SERVICES: ContactService[] = [
-  { label: "Gâteau sur mesure", subject: "un gâteau sur mesure" },
-  { label: "Mignardises", subject: "des mignardises" },
-  { label: "Buffet / événement", subject: "un buffet pour un événement" },
-  {
-    label: "Location de présentoirs",
-    subject: "la location de présentoirs",
-  },
+  { label: "Gâteau sur mesure", cta: "surMesure" },
+  { label: "Mignardises", cta: "mignardises" },
+  { label: "Buffet / événement", cta: "buffet" },
+  { label: "Location de présentoirs", cta: "presentoirs" },
 ];
 
 export default function QuickContact() {

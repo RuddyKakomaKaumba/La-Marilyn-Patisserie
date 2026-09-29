@@ -1,15 +1,81 @@
 export const SITE_NAME = "La Marilyn";
 
 const WHATSAPP_NUMBER = "23794768972";
-const WHATSAPP_MESSAGE =
-  "Bonjour La Marilyn, je souhaiterais avoir plus d'informations sur vos créations.";
-
-/** Lien WhatsApp vers La Marilyn, avec un message prérempli. */
-export function whatsappUrl(message: string = WHATSAPP_MESSAGE) {
+/** Lien WhatsApp (wa.me) vers La Marilyn, avec un message prérempli. */
+export function whatsappUrl(message: string) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
-export const WHATSAPP_URL = whatsappUrl();
+/**
+ * CTA commerciaux : le site est une vitrine, chaque demande part sur
+ * WhatsApp avec un intitulé et un message propres à la section d'origine.
+ */
+export type WhatsAppCta =
+  | "general"
+  | "patisserie"
+  | "mignardises"
+  | "buffet"
+  | "evenementPro"
+  | "presentoirs"
+  | "surMesure"
+  | "evenement";
+
+export const WHATSAPP_CTAS: Record<
+  WhatsAppCta,
+  { label: string; intent: string }
+> = {
+  general: {
+    label: "Écrire à La Marilyn",
+    intent: "j’aimerais avoir des informations sur vos créations",
+  },
+  patisserie: {
+    label: "Commander une pâtisserie",
+    intent: "j’aimerais commander une pâtisserie",
+  },
+  mignardises: {
+    label: "Commander des mignardises",
+    intent: "j’aimerais commander des mignardises",
+  },
+  buffet: {
+    label: "Demander une formule",
+    intent:
+      "j’aimerais avoir des informations sur vos formules Buffet gourmand",
+  },
+  evenementPro: {
+    label: "Parler de mon événement",
+    intent:
+      "j’aimerais discuter d’une prestation pour un événement professionnel",
+  },
+  presentoirs: {
+    label: "Demander les disponibilités",
+    intent:
+      "j’aimerais connaître les disponibilités pour la location de présentoirs",
+  },
+  surMesure: {
+    label: "Demander un gâteau sur mesure",
+    intent: "j’aimerais faire réaliser un gâteau sur mesure",
+  },
+  evenement: {
+    label: "Parler de mon événement",
+    intent: "j’aimerais parler d’une création pour mon événement",
+  },
+};
+
+/**
+ * Lien WhatsApp d'un CTA. `detail` précise le produit concerné, ex. :
+ * « … j’aimerais commander une pâtisserie : Cake nature. »
+ */
+export function ctaUrl(cta: WhatsAppCta, detail?: string) {
+  const { intent } = WHATSAPP_CTAS[cta];
+  return whatsappUrl(
+    `Bonjour La Marilyn 👋 Je viens de votre site et ${intent}${
+      detail ? ` : ${detail}` : ""
+    }.`,
+  );
+}
+
+/** Contact général (bouton flottant, header, fin de page). */
+export const WHATSAPP_URL = ctaUrl("general");
 
 export const LOGO = {
   src: "/images/logo-la-marilyn.png",

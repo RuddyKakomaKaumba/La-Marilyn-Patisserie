@@ -39,10 +39,7 @@ export default function APropos() {
         <InstagramGallery />
         <ContactSection />
         <QuickContact />
-        <ContactCTA
-          primaryLabel="Nous contacter sur WhatsApp"
-          showCreationsLink={false}
-        />
+        <ContactCTA showCreationsLink={false} />
       </main>
       <SiteFooter />
       <WhatsAppFloat />

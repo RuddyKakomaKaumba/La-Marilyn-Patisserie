@@ -32,7 +32,7 @@ export default function NosCreations() {
           products={PATISSERIES}
           direction="right"
           speed={24}
-          cta={{ label: "Voir toutes les pâtisseries", href: "#" }}
+          cta="patisserie"
         />
         <CreationRow
           id="mignardises"
@@ -41,7 +41,7 @@ export default function NosCreations() {
           direction="left"
           speed={22}
           variant="showcase"
-          cta={{ label: "Découvrir toutes les mignardises", href: "#" }}
+          cta="mignardises"
         />
         <CreationRow
           id="traiteur"
@@ -51,7 +51,7 @@ export default function NosCreations() {
           speed={24}
           variant="showcase"
           showAction
-          cta={{ label: "Découvrir nos formules", href: "#" }}
+          cta="buffet"
         />
         <EventCTA />
       </main>
