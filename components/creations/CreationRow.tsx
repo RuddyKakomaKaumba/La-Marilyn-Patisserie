@@ -16,6 +16,8 @@ type Props = {
   cta: { label: string; href: string };
   /** Format des cartes (voir InfiniteProductCarousel). */
   variant?: CarouselVariant;
+  /** Bouton « + » sur les cartes (voir InfiniteProductCarousel). */
+  showAction?: boolean;
 };
 
 /** Une rangée de la vitrine : titre, carrousel animé et bouton. */
@@ -27,6 +29,7 @@ export default function CreationRow({
   speed,
   cta,
   variant,
+  showAction,
 }: Props) {
   return (
     <section
@@ -60,6 +63,7 @@ export default function CreationRow({
           speed={speed}
           label={title}
           variant={variant}
+          showAction={showAction}
         />
       </div>
 

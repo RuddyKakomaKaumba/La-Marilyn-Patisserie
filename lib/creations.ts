@@ -155,25 +155,45 @@ export const MIGNARDISES: Product[] = [
   },
 ];
 
+/**
+ * Buffet gourmand — photos dans /public/images/buffet/. « Pièces cocktail »
+ * garde son aplat de couleur en attendant sa photo (ajouter `image`).
+ */
 export const TRAITEUR: Product[] = [
   {
-    name: "Buffet salé-sucré",
-    description: "Des formules adaptées à vos événements.",
+    name: "Événements professionnels",
+    description: "Des créations adaptées à vos événements professionnels.",
+    tone: TONES.sand,
+    image: {
+      src: "/images/buffet/evenements-professionnels.webp",
+      alt: "Buffet de verrines, mini-burgers et tartelettes lors d’une réception professionnelle en soirée",
+      position: "50% 50%",
+    },
+  },
+  {
+    name: "Buffets",
+    description: "Des formules gourmandes adaptées à vos événements.",
     tone: TONES.linen,
+    image: {
+      src: "/images/buffet/buffets.jpg",
+      alt: "Buffet de bouchées : brochettes tomate-fromage, mini-burgers, canapés au saumon et tartelettes",
+      position: "30% 50%",
+    },
+  },
+  {
+    name: "Location de présentoirs",
+    description:
+      "Des présentoirs élégants pour mettre vos créations en valeur.",
+    tone: TONES.cream,
+    image: {
+      src: "/images/buffet/location-presentoirs.jpg",
+      alt: "Présentoirs à gâteaux dorés, argentés et en marbre, cloche en verre et photophores dorés",
+      position: "50% 75%",
+    },
   },
   {
     name: "Pièces cocktail",
-    description: "Bouchées gourmandes et élégantes.",
+    description: "Des bouchées gourmandes et élégantes pour vos réceptions.",
     tone: TONES.beige,
-  },
-  {
-    name: "Réceptions",
-    description: "Une sélection pensée pour recevoir.",
-    tone: TONES.cream,
-  },
-  {
-    name: "Événements professionnels",
-    description: "Des créations adaptées à vos besoins.",
-    tone: TONES.sand,
   },
 ];

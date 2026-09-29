@@ -54,9 +54,14 @@ type Props = {
   /**
    * "compact" : cartes étroites avec bouton « + ».
    * "showcase" : cartes plus larges (≈ 1,6 carte visible sur mobile),
-   * ombre très légère, sans bouton.
+   * ombre très légère.
    */
   variant?: CardVariant;
+  /**
+   * Affiche le bouton « + » (demande WhatsApp). Par défaut : oui pour
+   * "compact", non pour "showcase".
+   */
+  showAction?: boolean;
 };
 
 type CardVariant = "compact" | "showcase";
@@ -89,6 +94,7 @@ export default function InfiniteProductCarousel({
   speed = 26,
   label,
   variant = "compact",
+  showAction = variant === "compact",
 }: Props) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -347,7 +353,11 @@ export default function InfiniteProductCarousel({
           >
             {products.map((p) => (
               <li key={p.name} className={`shrink-0 ${CARD_WIDTH[variant]}`}>
-                <ProductCard product={p} variant={variant} />
+                <ProductCard
+                  product={p}
+                  variant={variant}
+                  showAction={showAction}
+                />
               </li>
             ))}
           </ul>
@@ -360,9 +370,11 @@ export default function InfiniteProductCarousel({
 function ProductCard({
   product,
   variant,
+  showAction,
 }: {
   product: Product;
   variant: CardVariant;
+  showAction: boolean;
 }) {
   const showcase = variant === "showcase";
   return (
@@ -423,8 +435,8 @@ function ProductCard({
         >
           {product.description}
         </p>
-        {!showcase && (
-          <div className="mt-auto pt-3">
+        {showAction && (
+          <div className={`mt-auto ${showcase ? "pt-4" : "pt-3"}`}>
             <a
               href={whatsappUrl(
                 `Bonjour La Marilyn, je souhaiterais avoir plus d'informations sur : ${product.name}.`,

@@ -45,10 +45,12 @@ export default function NosCreations() {
         />
         <CreationRow
           id="traiteur"
-          title="Traiteur & buffets"
+          title="Buffet gourmand"
           products={TRAITEUR}
           direction="right"
           speed={24}
+          variant="showcase"
+          showAction
           cta={{ label: "Découvrir nos formules", href: "#" }}
         />
         <EventCTA />
