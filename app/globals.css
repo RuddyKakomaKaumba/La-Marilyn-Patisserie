@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #120c09;
+  --color-ink-soft: #1c140f;
+  --color-cream: #f6efe5;
+  --color-ivory: #fbf7f1;
+  --color-sand: #eadfcf;
+  --color-cocoa: #3a2a20;
+  --color-muted: #6f5d4f;
+  --color-gold: #caa56c;
+  --color-gold-light: #e2c796;
+  --color-gold-deep: #a8834b;
+
+  --font-serif: var(--font-newsreader), "Times New Roman", serif;
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-cocoa);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-gold-light);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 1.5px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+/* Titres éditoriaux */
+.display {
+  font-family: var(--font-serif);
+  font-weight: 350;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  font-optical-sizing: auto;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Apparition discrète au scroll (activée uniquement si JS disponible) */
+.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+  transition:
+    opacity 700ms var(--ease-soft),
+    transform 700ms var(--ease-soft);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-ready [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal-ready [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
