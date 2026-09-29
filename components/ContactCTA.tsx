@@ -36,8 +36,8 @@ export default function ContactCTA({
           style={{ "--reveal-delay": "80ms" } as React.CSSProperties}
           className="mx-auto mt-4 max-w-[19rem] text-[0.875rem] leading-relaxed text-ivory/70 md:max-w-[24rem] md:text-[0.9375rem]"
         >
-          Commandez, demandez un devis ou contactez-nous pour discuter de votre
-          événement.
+          Une envie de cake, un anniversaire à fêter ou des invités à
+          recevoir&nbsp;? Écrivez-nous, on en parle ensemble.
         </p>
         <div
           data-reveal

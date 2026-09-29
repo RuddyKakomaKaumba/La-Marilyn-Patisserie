@@ -26,7 +26,7 @@ export const WHATSAPP_CTAS: Record<
 > = {
   general: {
     label: "Écrire à La Marilyn",
-    intent: "j’aimerais avoir des informations sur vos créations",
+    intent: "j’aimerais en savoir plus sur vos gourmandises",
   },
   patisserie: {
     label: "Commander une pâtisserie",
@@ -37,14 +37,13 @@ export const WHATSAPP_CTAS: Record<
     intent: "j’aimerais commander des mignardises",
   },
   buffet: {
-    label: "Demander une formule",
-    intent:
-      "j’aimerais avoir des informations sur vos formules Buffet gourmand",
+    label: "Préparer mon buffet",
+    intent: "j’aimerais préparer un buffet gourmand pour recevoir mes invités",
   },
   evenementPro: {
-    label: "Parler de mon événement",
+    label: "Préparer mon événement",
     intent:
-      "j’aimerais discuter d’une prestation pour un événement professionnel",
+      "j’aimerais préparer des gourmandises pour un événement professionnel",
   },
   presentoirs: {
     label: "Demander les disponibilités",
@@ -52,12 +51,12 @@ export const WHATSAPP_CTAS: Record<
       "j’aimerais connaître les disponibilités pour la location de présentoirs",
   },
   surMesure: {
-    label: "Demander un gâteau sur mesure",
-    intent: "j’aimerais faire réaliser un gâteau sur mesure",
+    label: "Imaginer mon gâteau",
+    intent: "j’aimerais imaginer avec vous un gâteau sur mesure",
   },
   evenement: {
-    label: "Parler de mon événement",
-    intent: "j’aimerais parler d’une création pour mon événement",
+    label: "Préparer mon événement",
+    intent: "j’aimerais préparer quelque chose de gourmand pour mon événement",
   },
 };
 

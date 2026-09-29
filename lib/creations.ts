@@ -41,7 +41,7 @@ export const PATISSERIES: Product[] = [
     name: "Moelleux au chocolat",
     cta: { key: "patisserie", detail: "Moelleux au chocolat" },
     description:
-      "Cœur fondant et chocolat intense : notre création la plus demandée.",
+      "Cœur fondant et chocolat intense : la gourmandise la plus demandée de la maison.",
     tone: TONES.sand,
     badge: "best-seller",
     image: {
@@ -89,7 +89,7 @@ export const PATISSERIES: Product[] = [
     name: "Gâteau d’anniversaire",
     cta: { key: "surMesure", detail: "Gâteau d’anniversaire" },
     description:
-      "Des créations personnalisées pour célébrer petits et grands moments.",
+      "Un gâteau imaginé pour la personne fêtée, à partager avec petits et grands.",
     tone: TONES.linen,
     badge: "sur-commande",
     image: {
@@ -101,8 +101,7 @@ export const PATISSERIES: Product[] = [
   {
     name: "Gâteau de mariage",
     cta: { key: "surMesure", detail: "Gâteau de mariage" },
-    description:
-      "Des créations élégantes et sur mesure pour accompagner votre grand jour.",
+    description: "Un gâteau élégant, imaginé avec vous pour votre grand jour.",
     tone: TONES.cream,
     badge: "sur-commande",
     image: {
@@ -132,7 +131,7 @@ export const MIGNARDISES: Product[] = [
   {
     name: "Nems",
     description:
-      "Des bouchées croustillantes et gourmandes, idéales pour accompagner vos événements.",
+      "Des bouchées croustillantes et gourmandes, parfaites à partager entre invités.",
     tone: TONES.beige,
     image: {
       src: "/images/mignardises/nems.webp",
@@ -143,7 +142,7 @@ export const MIGNARDISES: Product[] = [
   {
     name: "Pénés",
     description:
-      "De savoureuses portions individuelles de pâtes, pensées pour les buffets et réceptions.",
+      "De savoureuses portions individuelles de pâtes, faciles à servir sur un buffet.",
     tone: TONES.linen,
     image: {
       src: "/images/mignardises/penes.webp",
@@ -170,7 +169,8 @@ export const TRAITEUR: Product[] = [
   {
     name: "Événements professionnels",
     cta: { key: "evenementPro" },
-    description: "Des créations adaptées à vos événements professionnels.",
+    description:
+      "Des gourmandises pour vos réceptions d’entreprise et vos moments entre collègues.",
     tone: TONES.sand,
     image: {
       src: "/images/buffet/evenements-professionnels.webp",
@@ -181,7 +181,7 @@ export const TRAITEUR: Product[] = [
   {
     name: "Buffets",
     cta: { key: "buffet" },
-    description: "Des formules gourmandes adaptées à vos événements.",
+    description: "De jolies tables gourmandes à partager avec vos invités.",
     tone: TONES.linen,
     image: {
       src: "/images/buffet/buffets.jpg",
@@ -192,8 +192,7 @@ export const TRAITEUR: Product[] = [
   {
     name: "Location de présentoirs",
     cta: { key: "presentoirs" },
-    description:
-      "Des présentoirs élégants pour mettre vos créations en valeur.",
+    description: "De jolis présentoirs pour dresser une table qui donne envie.",
     tone: TONES.cream,
     image: {
       src: "/images/buffet/location-presentoirs.jpg",
@@ -204,7 +203,8 @@ export const TRAITEUR: Product[] = [
   {
     name: "Pièces cocktail",
     cta: { key: "buffet", detail: "Pièces cocktail" },
-    description: "Des bouchées gourmandes et élégantes pour vos réceptions.",
+    description:
+      "De petites bouchées élégantes, à picorer entre deux conversations.",
     tone: TONES.beige,
     image: {
       src: "/images/buffet/pieces-cocktail.jpg",

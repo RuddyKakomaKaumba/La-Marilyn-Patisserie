@@ -1,8 +1,8 @@
 import { HeartIcon, PipingBagIcon, ToqueIcon } from "../icons";
 
 const VALUES = [
-  { label: "Fait avec passion", Icon: HeartIcon },
-  { label: "Savoir-faire artisanal", Icon: ToqueIcon },
+  { label: "Préparé avec soin", Icon: HeartIcon },
+  { label: "Artisanal & généreux", Icon: ToqueIcon },
   { label: "Créations sur mesure", Icon: PipingBagIcon },
 ];
 

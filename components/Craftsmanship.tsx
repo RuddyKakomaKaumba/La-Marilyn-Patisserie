@@ -48,9 +48,9 @@ export default function Craftsmanship() {
             style={{ "--reveal-delay": "160ms" } as React.CSSProperties}
             className="mt-6 max-w-[21rem] text-[0.875rem] leading-relaxed text-ivory/75 sm:max-w-[25rem] lg:text-[0.9375rem]"
           >
-            Des ingrédients de qualité, des gestes précis et une attention
-            portée à chaque finition : chacune de nos créations est façonnée à
-            la main, avec exigence et passion.
+            De bons ingrédients, des gestes précis et un soin particulier
+            apporté à chaque finition&nbsp;: chaque création est préparée à la
+            main, comme pour nos propres invités.
           </p>
           <div
             data-reveal

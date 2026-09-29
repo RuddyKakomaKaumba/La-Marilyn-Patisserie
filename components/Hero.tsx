@@ -55,8 +55,9 @@ export default function Hero() {
             style={{ "--reveal-delay": "160ms" } as React.CSSProperties}
             className="mt-5 max-w-[19rem] text-[0.9375rem] leading-relaxed text-ivory/75 sm:max-w-[24rem] lg:mt-7 lg:text-base"
           >
-            Pâtisseries, gâteaux et mignardises façonnés avec soin pour sublimer
-            vos célébrations comme vos plaisirs du quotidien.
+            Des pâtisseries, des gâteaux et des mignardises préparés avec soin,
+            pour vos grandes occasions comme pour les petits plaisirs du
+            quotidien.
           </p>
 
           <div

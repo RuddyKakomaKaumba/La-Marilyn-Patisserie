@@ -32,8 +32,9 @@ export default function AboutHero() {
             style={{ "--reveal-delay": "160ms" } as React.CSSProperties}
             className="mt-5 max-w-[21rem] text-[0.9375rem] leading-relaxed text-ivory/75 sm:max-w-[27rem] lg:mt-7 lg:text-base"
           >
-            La Marilyn – L’art du gâteau est née d’une passion pour la création
-            et du plaisir de faire de chaque occasion un moment gourmand.
+            La Marilyn – L’art du gâteau est née d’une envie simple&nbsp;: faire
+            de chaque occasion un moment gourmand, à partager avec ceux qu’on
+            aime.
           </p>
         </div>
 

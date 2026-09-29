@@ -76,8 +76,8 @@ export default function GourmetUniverses() {
             gourmands
           </h2>
           <p className="mx-auto mt-4 max-w-[20.5rem] text-[0.875rem] leading-relaxed text-muted md:max-w-[28rem] md:text-[0.9375rem]">
-            Découvrez nos pâtisseries, gâteaux et mignardises, ainsi que notre
-            service de location de présentoirs pour sublimer vos événements.
+            Pâtisseries, gâteaux, mignardises et jolis présentoirs&nbsp;: tout
+            ce qu’il faut pour régaler vos invités et dresser une belle table.
           </p>
         </header>
 

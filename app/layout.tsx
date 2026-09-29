@@ -18,7 +18,7 @@ const dmSans = DM_Sans({
 
 const title = "La Marilyn | Pâtisserie & Créations Gourmandes";
 const description =
-  "Découvrez l’univers de La Marilyn : pâtisseries, gâteaux, mignardises, buffets et créations gourmandes pour vos événements.";
+  "Pâtisseries, gâteaux, mignardises et buffets gourmands préparés avec soin par La Marilyn, pour célébrer vos plus beaux moments et régaler vos invités.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(

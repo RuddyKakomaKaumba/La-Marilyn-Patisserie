@@ -25,17 +25,18 @@ export default function ContactSection() {
             style={{ "--reveal-delay": "80ms" } as React.CSSProperties}
             className="display mt-5 text-[2.625rem] text-ivory sm:text-[3.25rem] lg:text-[4.25rem]"
           >
-            Parlons de
+            Une douceur pour
             <br />
-            votre projet.
+            chaque occasion.
           </h2>
           <p
             data-reveal
             style={{ "--reveal-delay": "160ms" } as React.CSSProperties}
             className="mt-5 max-w-[21rem] text-[0.9375rem] leading-relaxed text-ivory/75 sm:max-w-[27rem]"
           >
-            Gâteau personnalisé, mignardises, buffet ou location de
-            présentoirs&nbsp;: échangeons autour de votre besoin.
+            Un anniversaire, un mariage, une réception ou simplement une envie
+            de faire plaisir&nbsp;? La Marilyn imagine avec vous quelque chose
+            de gourmand.
           </p>
         </div>
 

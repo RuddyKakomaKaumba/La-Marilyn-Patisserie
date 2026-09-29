@@ -10,7 +10,7 @@ import { MIGNARDISES, PATISSERIES, TRAITEUR } from "@/lib/creations";
 
 const title = "Nos créations | La Marilyn";
 const description =
-  "Pâtisseries, mignardises, traiteur et buffets : découvrez les créations gourmandes de La Marilyn pour vos envies et vos événements.";
+  "Cakes, gâteaux sur mesure, mignardises et buffets gourmands : découvrez les créations de La Marilyn, pour une envie du moment comme pour recevoir vos invités.";
 
 export const metadata: Metadata = {
   title,

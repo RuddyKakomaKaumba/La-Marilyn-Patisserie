@@ -19,7 +19,7 @@ export const revalidate = 1800;
 
 const title = "À propos & contact | La Marilyn";
 const description =
-  "Découvrez l’histoire de La Marilyn – L’art du gâteau et contactez-nous sur WhatsApp pour vos gâteaux sur mesure, mignardises, buffets et locations de présentoirs.";
+  "L’histoire de La Marilyn – L’art du gâteau, une petite maison de pâtisserie. Écrivez-nous sur WhatsApp pour un gâteau sur mesure, des mignardises, un buffet ou des présentoirs.";
 
 export const metadata: Metadata = {
   title,

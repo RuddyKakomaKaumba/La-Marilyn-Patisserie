@@ -31,8 +31,8 @@ export default function CreationsIntro() {
             style={{ "--reveal-delay": "160ms" } as React.CSSProperties}
             className="mt-5 max-w-[20rem] text-[0.9375rem] leading-relaxed text-ivory/75 sm:max-w-[26rem] lg:mt-6 lg:text-base"
           >
-            Pâtisseries, mignardises et créations pour vos événements. Découvrez
-            l’univers gourmand de La Marilyn.
+            Des pâtisseries, des mignardises et de jolies tables à partager.
+            Bienvenue dans l’univers gourmand de La Marilyn.
           </p>
         </div>
       </div>

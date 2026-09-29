@@ -15,12 +15,12 @@ export default function QuickContact() {
     >
       <div className="mx-auto max-w-[1280px]">
         <div data-reveal className="px-2 text-center">
-          <p className="eyebrow text-gold-deep">Contact rapide</p>
+          <p className="eyebrow text-gold-deep">En un message</p>
           <h2
             id="demande-title"
             className="display mt-4 text-[1.75rem] text-ink md:text-[2.25rem]"
           >
-            Votre demande concerne…
+            Quelle est votre envie&nbsp;?
           </h2>
         </div>
         <ul className="mt-7 grid grid-cols-2 gap-2.5 md:mt-10 md:gap-4 lg:grid-cols-4 lg:gap-5">

@@ -37,8 +37,8 @@ export default function EventCTA() {
             style={{ "--reveal-delay": "80ms" } as React.CSSProperties}
             className="mx-auto mt-4 max-w-[20rem] text-[0.875rem] leading-relaxed text-ivory/80 md:max-w-[27rem] md:text-[0.9375rem]"
           >
-            Anniversaire, réception, mariage ou événement professionnel&nbsp;:
-            imaginons ensemble une création qui vous ressemble.
+            Un anniversaire, un mariage, une réception entre amis ou entre
+            collègues&nbsp;? Imaginons ensemble une création qui vous ressemble.
           </p>
         </div>
 
