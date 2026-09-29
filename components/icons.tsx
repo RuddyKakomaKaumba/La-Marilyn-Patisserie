@@ -50,3 +50,93 @@ export function PlusIcon({ className }: IconProps) {
     </svg>
   );
 }
+
+export function InstagramIcon({ className }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      aria-hidden="true"
+      className={className}
+    >
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+export function FacebookIcon({ className }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+    >
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+      <path d="M14.8 8.2h-1.3c-1.2 0-1.9.7-1.9 1.9v10.4M9.6 12.6h5" />
+    </svg>
+  );
+}
+
+export function HeartIcon({ className }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.2"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M12 19.5s-7.5-4.4-7.5-9.7A4.1 4.1 0 0 1 12 7.6a4.1 4.1 0 0 1 7.5 2.2c0 5.3-7.5 9.7-7.5 9.7Z" />
+    </svg>
+  );
+}
+
+/** Toque de pâtissier. */
+export function ToqueIcon({ className }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M7.5 14.5a3.6 3.6 0 0 1-.9-7 4.3 4.3 0 0 1 8.3-1.4 3.6 3.6 0 0 1 1.6 6.9V19.5h-9Z" />
+      <path d="M7.5 16.8h9" />
+    </svg>
+  );
+}
+
+/** Poche à douille. */
+export function PipingBagIcon({ className }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M6 4.5h12l-4.6 11.2h-2.8Z" />
+      <path d="M10.6 15.7 11.3 18h1.4l.7-2.3M12 20.2v.3" />
+      <path d="M8 4.5c.5 1.4 1.8 2.2 4 2.2s3.5-.8 4-2.2" />
+    </svg>
+  );
+}

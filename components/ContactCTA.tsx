@@ -3,7 +3,17 @@ import { WHATSAPP_URL } from "@/lib/site";
 import { btnArrow, btnGold, btnOutlineLight } from "./buttons";
 import { ArrowRight, WhatsAppIcon } from "./icons";
 
-export default function ContactCTA() {
+type Props = {
+  /** Libellé du bouton WhatsApp. */
+  primaryLabel?: string;
+  /** Affiche le bouton secondaire « Découvrir nos créations ». */
+  showCreationsLink?: boolean;
+};
+
+export default function ContactCTA({
+  primaryLabel = "Nous contacter",
+  showCreationsLink = true,
+}: Props) {
   return (
     <section
       id="contact"
@@ -41,12 +51,14 @@ export default function ContactCTA() {
             className={btnGold}
           >
             <WhatsAppIcon className="h-[18px] w-[18px]" />
-            Nous contacter
+            {primaryLabel}
             <ArrowRight className={btnArrow} />
           </a>
-          <Link href="/nos-creations" className={btnOutlineLight}>
-            Découvrir nos créations
-          </Link>
+          {showCreationsLink && (
+            <Link href="/nos-creations" className={btnOutlineLight}>
+              Découvrir nos créations
+            </Link>
+          )}
         </div>
       </div>
     </section>

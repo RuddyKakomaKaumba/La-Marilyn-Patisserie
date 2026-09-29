@@ -91,3 +91,64 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Révélation douce des visuels (placeholders puis photographies) */
+.reveal-ready [data-reveal="image"] {
+  transform: none;
+  clip-path: inset(0 0 10% 0);
+  transition:
+    opacity 900ms var(--ease-soft),
+    clip-path 1100ms var(--ease-soft);
+}
+
+.reveal-ready [data-reveal="image"].is-visible {
+  clip-path: inset(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready [data-reveal="image"] {
+    clip-path: none;
+  }
+}
+
+/*
+ * Mosaïque « Quelques créations » : grille à cellules carrées (2 lignes = 1
+ * carré), calculée d'après la largeur du conteneur pour que chaque visuel
+ * garde un ratio fixe : a 4:3 · b, d 2:3 · c, f 1:1 · e 2:1.
+ */
+.creation-gallery {
+  container-type: inline-size;
+}
+
+.creation-gallery__grid {
+  --g: 0.625rem;
+  display: grid;
+  gap: var(--g);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: calc((100cqw - var(--g)) / 4 - var(--g) / 2);
+  grid-template-areas:
+    "a a"
+    "a a"
+    "a a"
+    "b c"
+    "b c"
+    "b d"
+    "f d"
+    "f d"
+    "e e"
+    "e e";
+}
+
+@media (min-width: 1024px) {
+  .creation-gallery__grid {
+    --g: 1rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: calc((100cqw - 3 * var(--g)) / 8 - var(--g) / 2);
+    grid-template-areas:
+      "a a b c"
+      "a a b c"
+      "a a b d"
+      "e e f d"
+      "e e f d";
+  }
+}

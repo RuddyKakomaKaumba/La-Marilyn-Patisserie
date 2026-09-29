@@ -4,13 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { LOGO, WHATSAPP_URL } from "@/lib/site";
-
-const NAV = [
-  { href: "/nos-creations", label: "Nos créations" },
-  { href: "/#savoir-faire", label: "Savoir-faire" },
-  { href: "/#occasions", label: "Occasions" },
-];
+import { LOGO, NAV_LINKS as NAV, WHATSAPP_URL } from "@/lib/site";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -26,7 +20,11 @@ export default function Header() {
   return (
     <header className="absolute inset-x-0 top-0 z-30">
       <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:h-[88px] lg:px-12">
-        <Link href="/" aria-label="La Marilyn — accueil" className="block shrink-0">
+        <Link
+          href="/"
+          aria-label="La Marilyn — accueil"
+          className="block shrink-0"
+        >
           <Image
             src={LOGO.src}
             width={LOGO.width}

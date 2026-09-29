@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { btnArrow, btnOutlineLight } from "./buttons";
 import { ArrowRight } from "./icons";
 
@@ -56,10 +57,10 @@ export default function Craftsmanship() {
             style={{ "--reveal-delay": "240ms" } as React.CSSProperties}
             className="mt-8"
           >
-            <a href="#" className={btnOutlineLight}>
+            <Link href="/a-propos" className={btnOutlineLight}>
               Notre histoire
               <ArrowRight className={btnArrow} />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
