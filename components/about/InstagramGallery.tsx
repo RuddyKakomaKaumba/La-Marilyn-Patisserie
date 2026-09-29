@@ -1,19 +1,54 @@
+import { getInstagramPosts, type InstagramPost } from "@/lib/instagram";
 import { SOCIAL_LINKS } from "@/lib/site";
+import { SOCIAL_FALLBACK } from "@/lib/socialFallback";
 import { btnArrow, btnOutlineDark } from "../buttons";
 import { ArrowRight, InstagramIcon } from "../icons";
-import CreationGalleryItem, { type GalleryItem } from "./CreationGalleryItem";
+import CreationGalleryItem, {
+  type GalleryArea,
+  type GalleryItem,
+} from "./CreationGalleryItem";
 
-/** Nuances : crème, beige, caramel, chocolat clair, chocolat noir. */
-const GALLERY: GalleryItem[] = [
-  { area: "a", tone: "#c99a67" }, // mise en avant (4:3)
-  { area: "b", tone: "#3d2a1f" }, // portrait (2:3)
-  { area: "c", tone: "#e6d7c2" }, // carré
-  { area: "d", tone: "#8a5f43" }, // portrait (2:3)
-  { area: "f", tone: "#efe5d7" }, // carré
-  { area: "e", tone: "#dcc6a8" }, // paysage (2:1)
-];
+/** Ordre de lecture de la mosaïque : a (mise en avant 4:3), b, c, d, f, e. */
+const AREAS: GalleryArea[] = ["a", "b", "c", "d", "f", "e"];
 
-export default function InstagramGallery() {
+/** Texte alternatif tiré de la légende, sans hashtags ni retours à la ligne. */
+function altFromCaption(caption: string | null) {
+  const text = (caption ?? "")
+    .replace(/#[\p{L}\p{N}_]+/gu, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!text) return "Création La Marilyn publiée sur Instagram";
+  return text.length > 120 ? `${text.slice(0, 117).trimEnd()}…` : text;
+}
+
+function toGalleryItem(post: InstagramPost, area: GalleryArea, tone: string) {
+  const alt = altFromCaption(post.caption);
+  return {
+    area,
+    tone,
+    href: post.permalink,
+    label: `${alt} — voir la publication sur Instagram`,
+    image: { src: post.imageUrl, alt },
+  } satisfies GalleryItem;
+}
+
+export default async function InstagramGallery() {
+  const posts = await getInstagramPosts(AREAS.length);
+
+  // Publications Instagram en priorité, complétées par la galerie locale.
+  const items: GalleryItem[] = AREAS.map((area, i) => {
+    const fallback = SOCIAL_FALLBACK[i % SOCIAL_FALLBACK.length];
+    const post = posts[i];
+    if (post) return toGalleryItem(post, area, fallback.tone);
+    return {
+      area,
+      tone: fallback.tone,
+      image: fallback.image,
+      href: fallback.href,
+      label: "Voir les créations de La Marilyn sur Instagram",
+    };
+  });
+
   return (
     <section
       aria-labelledby="galerie-title"
@@ -38,7 +73,7 @@ export default function InstagramGallery() {
 
         <div className="creation-gallery mt-8 md:mt-12 lg:mt-14">
           <ul className="creation-gallery__grid">
-            {GALLERY.map((item, i) => (
+            {items.map((item, i) => (
               <CreationGalleryItem key={item.area} item={item} index={i} />
             ))}
           </ul>

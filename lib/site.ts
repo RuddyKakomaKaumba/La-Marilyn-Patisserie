@@ -25,10 +25,10 @@ export const NAV_LINKS = [
 ];
 
 /**
- * Réseaux sociaux — À CONFIGURER : remplacer "#" par les URL des comptes
- * La Marilyn (ex. "https://www.instagram.com/<compte>").
+ * Comptes officiels La Marilyn. Pour ajouter un réseau (ou un flux Facebook
+ * plus tard), compléter cet objet : header, footer et galerie s'y réfèrent.
  */
 export const SOCIAL_LINKS = {
-  instagram: "#",
-  facebook: "#",
-};
+  instagram: "https://www.instagram.com/lamarilyn2",
+  facebook: "https://www.facebook.com/lamarilyn2",
+} as const;

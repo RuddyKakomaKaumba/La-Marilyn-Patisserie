@@ -10,6 +10,13 @@ import Reveal from "@/components/Reveal";
 import SiteFooter from "@/components/SiteFooter";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 
+/**
+ * Régénération de la page toutes les 30 min (ISR), pour intégrer les
+ * nouvelles publications Instagram sans appeler l'API à chaque visite.
+ * Valeur littérale exigée par Next.js ; identique à INSTAGRAM_REVALIDATE_SECONDS.
+ */
+export const revalidate = 1800;
+
 const title = "À propos & contact | La Marilyn";
 const description =
   "Découvrez l’histoire de La Marilyn – L’art du gâteau et contactez-nous sur WhatsApp pour vos gâteaux sur mesure, mignardises, buffets et locations de présentoirs.";
