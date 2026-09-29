@@ -15,8 +15,18 @@ export type Product = {
    * (ratio 4/5, object-fit: cover) reste identique.
    */
   image?: { src: string; alt: string; position?: string };
-  /** Mention courte affichée sur la photo (ex. « Best-seller »). */
-  badge?: string;
+  /** Pastille discrète affichée en haut à gauche de la photo. */
+  badge?: ProductBadge;
+};
+
+export type ProductBadge = "best-seller" | "sur-commande";
+
+const BADGES: Record<
+  ProductBadge,
+  { symbol: string; label: string; color: string }
+> = {
+  "best-seller": { symbol: "★", label: "Best seller", color: "#A63D32" },
+  "sur-commande": { symbol: "✦", label: "Sur commande", color: "#355C7D" },
 };
 
 type Props = {
@@ -365,8 +375,12 @@ function ProductCard({
           />
         )}
         {product.badge && (
-          <span className="absolute left-2.5 top-2.5 rounded-full bg-ivory/90 px-2.5 py-1 font-sans text-[0.5625rem] font-semibold uppercase tracking-[0.14em] text-ink md:left-3 md:top-3 md:text-[0.625rem]">
-            {product.badge}
+          <span
+            className="absolute left-2.5 top-2.5 inline-flex items-center gap-1 rounded-full px-2 py-[0.1875rem] font-sans text-[0.5625rem] font-semibold uppercase leading-none tracking-[0.12em] text-white md:left-3 md:top-3 md:px-2.5 md:py-1 md:text-[0.625rem]"
+            style={{ backgroundColor: BADGES[product.badge].color }}
+          >
+            <span aria-hidden="true">{BADGES[product.badge].symbol}</span>
+            {BADGES[product.badge].label}
           </span>
         )}
       </div>

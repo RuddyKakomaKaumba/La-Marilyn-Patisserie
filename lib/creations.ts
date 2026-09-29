@@ -21,7 +21,7 @@ export const PATISSERIES: Product[] = [
     image: {
       src: "/images/patisseries/cake-yaourt-citron.webp",
       alt: "Cake au yaourt et au citron tranché, nappé de glaçage et de zestes de citron",
-      position: "58% 50%",
+      position: "60% 50%",
     },
   },
   {
@@ -32,7 +32,7 @@ export const PATISSERIES: Product[] = [
     image: {
       src: "/images/patisseries/cake-nature.webp",
       alt: "Cake nature doré coupé en tranches sur une planche",
-      position: "55% 50%",
+      position: "60% 50%",
     },
   },
   {
@@ -40,11 +40,11 @@ export const PATISSERIES: Product[] = [
     description:
       "Cœur fondant et chocolat intense : notre création la plus demandée.",
     tone: TONES.sand,
-    badge: "Best-seller",
+    badge: "best-seller",
     image: {
       src: "/images/patisseries/moelleux-chocolat.webp",
       alt: "Moelleux au chocolat au cœur coulant, décorés de fraises, framboises et pistaches",
-      position: "50% 50%",
+      position: "45% 50%",
     },
   },
   {
@@ -55,7 +55,7 @@ export const PATISSERIES: Product[] = [
     image: {
       src: "/images/patisseries/cake-noix-de-coco.webp",
       alt: "Cake à la noix de coco toastée tranché sur une planche en bois",
-      position: "55% 50%",
+      position: "65% 50%",
     },
   },
   {
@@ -65,7 +65,42 @@ export const PATISSERIES: Product[] = [
     image: {
       src: "/images/patisseries/cake-orange.webp",
       alt: "Cake à l’orange tranché, nappé de glaçage et de zestes d’orange confits",
-      position: "58% 50%",
+      position: "60% 50%",
+    },
+  },
+  {
+    name: "Renversé à l’ananas",
+    description: "Ananas caramélisé sur un gâteau moelleux et doré.",
+    tone: TONES.sand,
+    badge: "best-seller",
+    image: {
+      src: "/images/patisseries/renverse-ananas.webp",
+      alt: "Gâteau renversé à l’ananas caramélisé, une part servie sur un présentoir",
+      position: "70% 50%",
+    },
+  },
+  {
+    name: "Gâteau d’anniversaire",
+    description:
+      "Des créations personnalisées pour célébrer petits et grands moments.",
+    tone: TONES.linen,
+    badge: "sur-commande",
+    image: {
+      src: "/images/patisseries/gateau-anniversaire.webp",
+      alt: "Gâteau d’anniversaire à étages décoré de vermicelles colorés et de bougies",
+      position: "60% 50%",
+    },
+  },
+  {
+    name: "Gâteau de mariage",
+    description:
+      "Des créations élégantes et sur mesure pour accompagner votre grand jour.",
+    tone: TONES.cream,
+    badge: "sur-commande",
+    image: {
+      src: "/images/patisseries/gateau-mariage.webp",
+      alt: "Pièce montée de mariage à quatre étages ornée de roses blanches et de feuille d’or",
+      position: "50% 25%",
     },
   },
 ];
