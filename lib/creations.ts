@@ -41,23 +41,43 @@ export const MIGNARDISES: Product[] = [
     description:
       "Des bouchées généreuses, pensées pour vos cocktails, anniversaires, veillées et réceptions.",
     tone: TONES.sand,
+    image: {
+      src: "/images/mignardises/mini-burgers.webp",
+      alt: "Mini burgers au cheddar, tomate et salade, piqués d’une brochette dorée sur un plateau de marbre",
+      position: "50% 60%",
+    },
   },
   {
     name: "Nems",
     description:
       "Des bouchées croustillantes et gourmandes, idéales pour accompagner vos événements.",
     tone: TONES.beige,
+    image: {
+      src: "/images/mignardises/nems.webp",
+      alt: "Nems croustillants garnis de légumes, servis avec une sauce pimentée",
+      position: "50% 55%",
+    },
   },
   {
     name: "Pénés",
     description:
       "De savoureuses portions individuelles de pâtes, pensées pour les buffets et réceptions.",
     tone: TONES.linen,
+    image: {
+      src: "/images/mignardises/penes.webp",
+      alt: "Portions individuelles de penne à la bolognaise et au parmesan en verrines",
+      position: "50% 55%",
+    },
   },
   {
     name: "Mini moelleux",
     description: "De petites douceurs au chocolat, fondantes et gourmandes.",
     tone: TONES.cream,
+    image: {
+      src: "/images/mignardises/mini-moelleux.webp",
+      alt: "Mini moelleux au chocolat au cœur coulant, entourés de moelleux aux pistaches et aux fruits rouges",
+      position: "50% 55%",
+    },
   },
 ];
 
