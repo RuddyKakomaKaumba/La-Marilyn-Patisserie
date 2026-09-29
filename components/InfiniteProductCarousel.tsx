@@ -15,6 +15,8 @@ export type Product = {
    * (ratio 4/5, object-fit: cover) reste identique.
    */
   image?: { src: string; alt: string; position?: string };
+  /** Mention courte affichée sur la photo (ex. « Best-seller »). */
+  badge?: string;
 };
 
 type Props = {
@@ -361,6 +363,11 @@ function ProductCard({
             className="object-cover"
             style={{ objectPosition: product.image.position ?? "50% 50%" }}
           />
+        )}
+        {product.badge && (
+          <span className="absolute left-2.5 top-2.5 rounded-full bg-ivory/90 px-2.5 py-1 font-sans text-[0.5625rem] font-semibold uppercase tracking-[0.14em] text-ink md:left-3 md:top-3 md:text-[0.625rem]">
+            {product.badge}
+          </span>
         )}
       </div>
       <div

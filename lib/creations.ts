@@ -8,26 +8,65 @@ const TONES = {
   linen: "#e9ddcb",
 };
 
+/**
+ * Pâtisseries — photos dans /public/images/patisseries/. Pour en changer,
+ * remplacer le fichier ou `image.src` ; `tone` reste le fond de chargement.
+ */
 export const PATISSERIES: Product[] = [
   {
-    name: "Tarte framboise",
-    description: "Pâte sablée, crème légère et framboises fraîches.",
+    name: "Cake yaourt & citron",
+    description:
+      "Moelleux au yaourt, parfumé au citron et nappé d’un glaçage léger.",
     tone: TONES.cream,
+    image: {
+      src: "/images/patisseries/cake-yaourt-citron.webp",
+      alt: "Cake au yaourt et au citron tranché, nappé de glaçage et de zestes de citron",
+      position: "58% 50%",
+    },
   },
   {
-    name: "Entremet chocolat",
-    description: "Mousse chocolat noir et cœur praliné.",
-    tone: TONES.sand,
-  },
-  {
-    name: "Gâteau vanille",
-    description: "Une création douce et délicate.",
+    name: "Cake nature",
+    description:
+      "Le grand classique, doré et fondant, tout simplement gourmand.",
     tone: TONES.linen,
+    image: {
+      src: "/images/patisseries/cake-nature.webp",
+      alt: "Cake nature doré coupé en tranches sur une planche",
+      position: "55% 50%",
+    },
   },
   {
-    name: "Création sur mesure",
-    description: "Imaginée spécialement pour votre occasion.",
+    name: "Moelleux au chocolat",
+    description:
+      "Cœur fondant et chocolat intense : notre création la plus demandée.",
+    tone: TONES.sand,
+    badge: "Best-seller",
+    image: {
+      src: "/images/patisseries/moelleux-chocolat.webp",
+      alt: "Moelleux au chocolat au cœur coulant, décorés de fraises, framboises et pistaches",
+      position: "50% 50%",
+    },
+  },
+  {
+    name: "Cake noix de coco",
+    description:
+      "Un cake moelleux, généreusement recouvert de noix de coco toastée.",
     tone: TONES.beige,
+    image: {
+      src: "/images/patisseries/cake-noix-de-coco.webp",
+      alt: "Cake à la noix de coco toastée tranché sur une planche en bois",
+      position: "55% 50%",
+    },
+  },
+  {
+    name: "Cake à l’orange",
+    description: "Parfumé à l’orange et garni de zestes confits.",
+    tone: TONES.cream,
+    image: {
+      src: "/images/patisseries/cake-orange.webp",
+      alt: "Cake à l’orange tranché, nappé de glaçage et de zestes d’orange confits",
+      position: "58% 50%",
+    },
   },
 ];
 
