@@ -7,12 +7,7 @@ type Universe = {
   lines?: [string, string];
   cta: string;
   href: string;
-  /**
-   * Photographie de la carte. Il suffit de renseigner `src` + `alt`
-   * (fichier placé dans /public/images/univers/) : le cadre est fixe,
-   * la mise en page ne bouge pas.
-   */
-  image?: { src: string; alt: string; position?: string };
+  image: { src: string; alt: string; position: string };
 };
 
 const UNIVERSES: Universe[] = [
@@ -20,35 +15,44 @@ const UNIVERSES: Universe[] = [
     title: "Pâtisseries",
     cta: "Voir les créations",
     href: "#",
+    image: {
+      src: "/images/univers/patisseries.webp",
+      alt: "Tartelette aux fraises fraîches, éclats de pistache et feuille d’or",
+      position: "50% 56%",
+    },
   },
   {
     title: "Gâteaux",
     cta: "Voir les gâteaux",
     href: "#",
+    image: {
+      src: "/images/univers/gateaux.webp",
+      alt: "Tarte au chocolat et noisettes caramélisées, décors de chocolat et feuille d’or",
+      position: "50% 60%",
+    },
   },
   {
     title: "Mignardises",
     cta: "Voir les mignardises",
     href: "#",
+    image: {
+      src: "/images/univers/mignardises.webp",
+      alt: "Assortiment de mignardises : dômes chocolat, entremets, tartelettes aux fruits",
+      position: "50% 52%",
+    },
   },
   {
     title: "Location de présentoirs",
     lines: ["Location", "de présentoirs"],
     cta: "Voir les options",
     href: "#",
+    image: {
+      src: "/images/univers/location-presentoirs.webp",
+      alt: "Présentoir doré à trois étages sur un plan de marbre",
+      position: "50% 50%",
+    },
   },
 ];
-
-function Placeholder() {
-  return (
-    <div
-      aria-hidden="true"
-      className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(120%_90%_at_50%_35%,#efe4d4_0%,#e4d5c1_55%,#d9c7b0_100%)]"
-    >
-      <span className="block h-12 w-12 rounded-full border border-gold-deep/35" />
-    </div>
-  );
-}
 
 export default function GourmetUniverses() {
   return (
@@ -86,18 +90,14 @@ export default function GourmetUniverses() {
                 className="group flex h-full flex-col overflow-hidden rounded-[10px] bg-ivory"
               >
                 <div className="relative aspect-[4/4.4] overflow-hidden bg-sand lg:aspect-[4/4.8]">
-                  {u.image ? (
-                    <Image
-                      src={u.image.src}
-                      alt={u.image.alt}
-                      fill
-                      sizes="(min-width: 1280px) 300px, (min-width: 1024px) 24vw, 48vw"
-                      className="object-cover transition-transform duration-[600ms] ease-soft group-hover:scale-[1.02]"
-                      style={{ objectPosition: u.image.position ?? "50% 50%" }}
-                    />
-                  ) : (
-                    <Placeholder />
-                  )}
+                  <Image
+                    src={u.image.src}
+                    alt={u.image.alt}
+                    fill
+                    sizes="(min-width: 1280px) 300px, (min-width: 1024px) 24vw, 48vw"
+                    className="object-cover transition-transform duration-[600ms] ease-soft group-hover:scale-[1.02]"
+                    style={{ objectPosition: u.image.position }}
+                  />
                 </div>
                 <div className="flex flex-1 flex-col justify-between px-3 pb-4 pt-3.5 md:px-4 md:pb-5 md:pt-4">
                   <h3 className="font-sans text-[0.75rem] font-semibold uppercase leading-[1.45] tracking-[0.1em] text-ink md:text-[0.8125rem]">

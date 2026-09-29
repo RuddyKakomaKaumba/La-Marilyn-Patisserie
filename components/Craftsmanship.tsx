@@ -2,19 +2,9 @@ import Image from "next/image";
 import { btnArrow, btnOutlineLight } from "./buttons";
 import { ArrowRight } from "./icons";
 
-/**
- * Photographie de la section « Le détail fait toute la différence ».
- * TEMPORAIRE : le visuel dédié (poche à douille sur tarte framboise) n'a pas
- * encore été reçu. On recadre en attendant sur le geste de la pâtissière
- * dans la photo du Hero. Pour intégrer le visuel définitif : déposer le
- * fichier dans /public/images/, mettre à jour `src`/`alt` et remplacer
- * `frame` par un simple `object-position` (ex. "object-[50%_30%]").
- */
 const CRAFT_IMAGE = {
-  src: "/images/hero-entremets-chocolat.webp",
-  alt: "Pâtissière dressant une crème à la poche à douille",
-  frame:
-    "object-cover object-[50%_0%] origin-[80%_31%] scale-[2.05] lg:origin-[78%_26%] lg:scale-[1.55]",
+  src: "/images/savoir-faire-poche-a-douille.webp",
+  alt: "Crème vanille dressée à la poche à douille sur une tartelette aux framboises",
 };
 
 export default function Craftsmanship() {
@@ -30,7 +20,7 @@ export default function Craftsmanship() {
           alt={CRAFT_IMAGE.alt}
           fill
           sizes="(min-width: 1024px) 64vw, 100vw"
-          className={CRAFT_IMAGE.frame}
+          className="object-cover object-[50%_20%] lg:object-[50%_14%]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgb(18_12_9/0.25)_0%,rgb(18_12_9/0)_22%,rgb(18_12_9/0)_52%,var(--color-ink)_100%)] lg:bg-[linear-gradient(to_right,var(--color-ink)_0%,rgb(18_12_9/0.55)_24%,rgb(18_12_9/0)_55%),linear-gradient(to_top,rgb(18_12_9/0.6)_0%,rgb(18_12_9/0)_35%)]" />
       </div>
