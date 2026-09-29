@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "./icons";
 
 type Universe = {
@@ -14,7 +15,7 @@ const UNIVERSES: Universe[] = [
   {
     title: "Pâtisseries",
     cta: "Voir les créations",
-    href: "#",
+    href: "/nos-creations#patisseries",
     image: {
       src: "/images/univers/patisseries.webp",
       alt: "Tartelette aux fraises fraîches, éclats de pistache et feuille d’or",
@@ -34,7 +35,7 @@ const UNIVERSES: Universe[] = [
   {
     title: "Mignardises",
     cta: "Voir les mignardises",
-    href: "#",
+    href: "/nos-creations#mignardises",
     image: {
       src: "/images/univers/mignardises.webp",
       alt: "Assortiment de mignardises : dômes chocolat, entremets, tartelettes aux fruits",
@@ -85,7 +86,7 @@ export default function GourmetUniverses() {
               data-reveal
               style={{ "--reveal-delay": `${i * 70}ms` } as React.CSSProperties}
             >
-              <a
+              <Link
                 href={u.href}
                 className="group flex h-full flex-col overflow-hidden rounded-[10px] bg-ivory"
               >
@@ -116,7 +117,7 @@ export default function GourmetUniverses() {
                     <ArrowRight className="h-3 w-3 text-gold-deep transition-transform duration-300 ease-soft group-hover:translate-x-0.5" />
                   </span>
                 </div>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

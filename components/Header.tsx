@@ -1,17 +1,20 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LOGO, WHATSAPP_URL } from "@/lib/site";
 
 const NAV = [
-  { href: "#univers", label: "Nos univers" },
-  { href: "#savoir-faire", label: "Savoir-faire" },
-  { href: "#occasions", label: "Occasions" },
+  { href: "/nos-creations", label: "Nos créations" },
+  { href: "/#savoir-faire", label: "Savoir-faire" },
+  { href: "/#occasions", label: "Occasions" },
 ];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     if (!open) return;
@@ -23,7 +26,7 @@ export default function Header() {
   return (
     <header className="absolute inset-x-0 top-0 z-30">
       <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:h-[88px] lg:px-12">
-        <a href="#" aria-label="La Marilyn — accueil" className="block shrink-0">
+        <Link href="/" aria-label="La Marilyn — accueil" className="block shrink-0">
           <Image
             src={LOGO.src}
             width={LOGO.width}
@@ -33,18 +36,19 @@ export default function Header() {
             sizes="64px"
             className="h-[54px] w-auto lg:h-[60px]"
           />
-        </a>
+        </Link>
 
         <nav aria-label="Navigation principale" className="hidden lg:block">
           <ul className="flex items-center gap-10">
             {NAV.map((item) => (
               <li key={item.href}>
-                <a
+                <Link
                   href={item.href}
-                  className="font-sans text-[0.8125rem] tracking-[0.04em] text-ivory/80 transition-colors duration-300 hover:text-gold-light"
+                  aria-current={pathname === item.href ? "page" : undefined}
+                  className="font-sans text-[0.8125rem] tracking-[0.04em] text-ivory/80 transition-colors duration-300 hover:text-gold-light aria-[current=page]:text-gold-light"
                 >
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
             <li>
@@ -96,13 +100,14 @@ export default function Header() {
         <ul className="flex flex-col">
           {NAV.map((item) => (
             <li key={item.href}>
-              <a
+              <Link
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="display block py-3 text-[1.625rem] text-ivory"
+                aria-current={pathname === item.href ? "page" : undefined}
+                className="display block py-3 text-[1.625rem] text-ivory aria-[current=page]:text-gold-light"
               >
                 {item.label}
-              </a>
+              </Link>
             </li>
           ))}
           <li>

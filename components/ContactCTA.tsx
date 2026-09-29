@@ -1,22 +1,16 @@
-import Image from "next/image";
-import { LOGO, WHATSAPP_URL } from "@/lib/site";
+import Link from "next/link";
+import { WHATSAPP_URL } from "@/lib/site";
 import { btnArrow, btnGold, btnOutlineLight } from "./buttons";
 import { ArrowRight, WhatsAppIcon } from "./icons";
 
-const FOOTER_LINKS = [
-  { href: "#", label: "Pâtisseries" },
-  { href: "#", label: "Gâteaux" },
-  { href: "#", label: "Mignardises" },
-  { href: "#", label: "Location" },
-];
-
 export default function ContactCTA() {
   return (
-    <footer
+    <section
       id="contact"
-      className="bg-ink px-6 pb-24 pt-16 text-center text-ivory sm:px-10 md:pt-24 lg:pb-14"
+      aria-labelledby="contact-title"
+      className="bg-ink px-6 pt-16 text-center text-ivory sm:px-10 md:pt-24"
     >
-      <section aria-labelledby="contact-title" className="mx-auto max-w-[34rem]">
+      <div className="mx-auto max-w-[34rem]">
         <span aria-hidden="true" className="mx-auto block h-px w-8 bg-gold" />
         <h2
           id="contact-title"
@@ -50,39 +44,11 @@ export default function ContactCTA() {
             Nous contacter
             <ArrowRight className={btnArrow} />
           </a>
-          <a href="#univers" className={btnOutlineLight}>
+          <Link href="/nos-creations" className={btnOutlineLight}>
             Découvrir nos créations
-          </a>
+          </Link>
         </div>
-      </section>
-
-      <div className="mx-auto mt-16 max-w-[34rem] md:mt-20">
-        <Image
-          src={LOGO.src}
-          width={LOGO.width}
-          height={LOGO.height}
-          alt="La Marilyn"
-          sizes="112px"
-          className="mx-auto h-auto w-[104px] md:w-[112px]"
-        />
-        <nav aria-label="Liens de pied de page" className="mt-8">
-          <ul className="flex flex-wrap justify-center gap-x-7 gap-y-3 text-[0.8125rem] text-ivory/80">
-            {FOOTER_LINKS.map((l) => (
-              <li key={l.label}>
-                <a
-                  href={l.href}
-                  className="transition-colors duration-300 hover:text-gold-light"
-                >
-                  {l.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <p className="mt-10 text-[0.6875rem] tracking-[0.04em] text-ivory/45">
-          © {new Date().getFullYear()} La Marilyn · Tous droits réservés
-        </p>
       </div>
-    </footer>
+    </section>
   );
 }

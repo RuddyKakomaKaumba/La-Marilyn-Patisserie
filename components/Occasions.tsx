@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { btnArrow, btnGold } from "./buttons";
 import { ArrowRight } from "./icons";
 
@@ -57,10 +58,10 @@ export default function Occasions() {
             style={{ "--reveal-delay": "160ms" } as React.CSSProperties}
             className="mt-8 lg:mt-10"
           >
-            <a href="#univers" className={btnGold}>
+            <Link href="/nos-creations" className={btnGold}>
               Découvrir nos créations
               <ArrowRight className={btnArrow} />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

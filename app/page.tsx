@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Occasions from "@/components/Occasions";
 import Reveal from "@/components/Reveal";
+import SiteFooter from "@/components/SiteFooter";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 
 export default function Home() {
@@ -16,8 +17,9 @@ export default function Home() {
         <GourmetUniverses />
         <Craftsmanship />
         <Occasions />
+        <ContactCTA />
       </main>
-      <ContactCTA />
+      <SiteFooter />
       <WhatsAppFloat />
       <Reveal />
     </>

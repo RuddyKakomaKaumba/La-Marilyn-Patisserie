@@ -1,6 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 import { WHATSAPP_URL } from "@/lib/site";
 import { btnArrow, btnGold, btnOutlineLight } from "./buttons";
+import CurveDivider from "./CurveDivider";
 import { ArrowRight, PlusIcon } from "./icons";
 
 export default function Hero() {
@@ -65,10 +67,10 @@ export default function Hero() {
             style={{ "--reveal-delay": "240ms" } as React.CSSProperties}
             className="mt-8 flex flex-col items-start gap-3.5 sm:flex-row sm:items-center lg:mt-10"
           >
-            <a href="#univers" className={btnGold}>
+            <Link href="/nos-creations" className={btnGold}>
               Découvrir nos créations
               <ArrowRight className={btnArrow} />
-            </a>
+            </Link>
             <a
               href={WHATSAPP_URL}
               target="_blank"
@@ -91,14 +93,7 @@ export default function Hero() {
       </a>
 
       {/* Courbe de transition vers la section claire */}
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 390 40"
-        preserveAspectRatio="none"
-        className="absolute inset-x-0 -bottom-px z-0 h-7 w-full text-cream md:h-10 lg:hidden"
-      >
-        <path d="M0 14C92 34 238 36 390 4V40H0Z" fill="currentColor" />
-      </svg>
+      <CurveDivider className="lg:hidden" />
     </section>
   );
 }
