@@ -25,6 +25,28 @@ type Props = {
   speed?: number;
   /** Nom accessible du carrousel. */
   label: string;
+  /**
+   * "compact" : cartes étroites avec bouton « + ».
+   * "showcase" : cartes plus larges (≈ 1,6 carte visible sur mobile),
+   * ombre très légère, sans bouton.
+   */
+  variant?: CardVariant;
+};
+
+type CardVariant = "compact" | "showcase";
+
+const CARD_WIDTH: Record<CardVariant, string> = {
+  compact:
+    "w-[10.5rem] sm:w-[12.5rem] md:w-[13.5rem] lg:w-[15rem] xl:w-[16rem]",
+  showcase:
+    "w-[14.5rem] sm:w-[16rem] md:w-[17rem] lg:w-[17.5rem] xl:w-[18.5rem]",
+};
+
+const CARD_SIZES: Record<CardVariant, string> = {
+  compact:
+    "(min-width: 1280px) 256px, (min-width: 1024px) 240px, (min-width: 640px) 216px, 168px",
+  showcase:
+    "(min-width: 1280px) 296px, (min-width: 1024px) 280px, (min-width: 640px) 272px, 232px",
 };
 
 /** Délai avant la reprise de l'autoplay après une interaction (ms). */
@@ -40,6 +62,7 @@ export default function InfiniteProductCarousel({
   direction = "left",
   speed = 26,
   label,
+  variant = "compact",
 }: Props) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -282,7 +305,10 @@ export default function InfiniteProductCarousel({
       role="region"
       aria-roledescription="carrousel"
       aria-label={label}
-      className="relative cursor-grab touch-pan-y select-none overflow-hidden active:cursor-grabbing lg:[mask-image:linear-gradient(to_right,transparent,#000_5%,#000_95%,transparent)]"
+      className={`relative cursor-grab touch-pan-y select-none overflow-hidden active:cursor-grabbing ${
+        // Marge intérieure pour que l'ombre des cartes ne soit pas rognée.
+        variant === "showcase" ? "-my-4 py-4" : ""
+      } lg:[mask-image:linear-gradient(to_right,transparent,#000_5%,#000_95%,transparent)]`}
     >
       <div ref={trackRef} className="flex w-max will-change-transform">
         {Array.from({ length: copies }, (_, copy) => (
@@ -294,11 +320,8 @@ export default function InfiniteProductCarousel({
             className="flex shrink-0 gap-3 pr-3 md:gap-4 md:pr-4 lg:gap-5 lg:pr-5"
           >
             {products.map((p) => (
-              <li
-                key={p.name}
-                className="w-[10.5rem] shrink-0 sm:w-[12.5rem] md:w-[13.5rem] lg:w-[15rem] xl:w-[16rem]"
-              >
-                <ProductCard product={p} />
+              <li key={p.name} className={`shrink-0 ${CARD_WIDTH[variant]}`}>
+                <ProductCard product={p} variant={variant} />
               </li>
             ))}
           </ul>
@@ -308,9 +331,22 @@ export default function InfiniteProductCarousel({
   );
 }
 
-function ProductCard({ product }: { product: Product }) {
+function ProductCard({
+  product,
+  variant,
+}: {
+  product: Product;
+  variant: CardVariant;
+}) {
+  const showcase = variant === "showcase";
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-[10px] bg-ivory">
+    <article
+      className={`flex h-full flex-col overflow-hidden rounded-[10px] bg-ivory ${
+        showcase
+          ? "shadow-[0_1px_2px_rgb(58_42_32/0.04),0_10px_24px_-14px_rgb(58_42_32/0.18)]"
+          : ""
+      }`}
+    >
       <div
         className="relative aspect-[4/5] overflow-hidden"
         style={{ backgroundColor: product.tone }}
@@ -321,33 +357,53 @@ function ProductCard({ product }: { product: Product }) {
             alt={product.image.alt}
             fill
             draggable={false}
-            sizes="(min-width: 1280px) 256px, (min-width: 1024px) 240px, (min-width: 640px) 216px, 168px"
+            sizes={CARD_SIZES[variant]}
             className="object-cover"
             style={{ objectPosition: product.image.position ?? "50% 50%" }}
           />
         )}
       </div>
-      <div className="flex flex-1 flex-col px-3 pb-3.5 pt-3 md:px-4 md:pb-4 md:pt-3.5">
-        <h3 className="font-sans text-[0.8125rem] font-semibold leading-snug text-ink md:text-[0.875rem]">
+      <div
+        className={
+          showcase
+            ? "flex flex-1 flex-col px-4 pb-5 pt-4 md:px-5 md:pb-6"
+            : "flex flex-1 flex-col px-3 pb-3.5 pt-3 md:px-4 md:pb-4 md:pt-3.5"
+        }
+      >
+        <h3
+          className={`font-sans font-semibold leading-snug text-ink ${
+            showcase
+              ? "text-[0.9375rem] md:text-base"
+              : "text-[0.8125rem] md:text-[0.875rem]"
+          }`}
+        >
           {product.name}
         </h3>
-        <p className="mt-1 text-[0.6875rem] leading-relaxed text-muted md:text-[0.75rem]">
+        <p
+          className={`leading-relaxed text-muted ${
+            showcase
+              ? "mt-1.5 text-[0.8125rem] md:text-[0.84375rem]"
+              : "mt-1 text-[0.6875rem] md:text-[0.75rem]"
+          }`}
+        >
           {product.description}
         </p>
-        <div className="mt-auto pt-3">
-          <a
-            href={whatsappUrl(
-              `Bonjour La Marilyn, je souhaiterais avoir plus d'informations sur : ${product.name}.`,
-            )}
-            target="_blank"
-            rel="noopener noreferrer"
-            draggable={false}
-            aria-label={`Demander des informations sur « ${product.name} » via WhatsApp`}
-            className="flex h-7 w-7 items-center justify-center rounded-full border border-gold/60 text-gold-deep transition-colors duration-300 hover:border-gold-deep hover:bg-gold/10"
-          >
-            <PlusIcon className="h-3.5 w-3.5" />
-          </a>
-        </div>
+        {!showcase && (
+          <div className="mt-auto pt-3">
+            <a
+              href={whatsappUrl(
+                `Bonjour La Marilyn, je souhaiterais avoir plus d'informations sur : ${product.name}.`,
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              draggable={false}
+              aria-label={`Demander des informations sur « ${product.name} » via WhatsApp`}
+              className="flex h-7 w-7 items-center justify-center rounded-full border border-gold/60 text-gold-deep transition-colors duration-300 hover:border-gold-deep hover:bg-gold/10"
+            >
+              <PlusIcon className="h-3.5 w-3.5" />
+            </a>
+          </div>
+        )}
       </div>
     </article>
   );

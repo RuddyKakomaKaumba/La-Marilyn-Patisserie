@@ -31,26 +31,33 @@ export const PATISSERIES: Product[] = [
   },
 ];
 
+/**
+ * Mignardises — pour ajouter la photo d'un produit, renseigner
+ * `image: { src: "/images/mignardises/<fichier>.webp", alt: "…" }`.
+ */
 export const MIGNARDISES: Product[] = [
   {
-    name: "Assortiment sucré",
-    description: "Macarons, tartelettes, choux, entremets…",
-    tone: TONES.beige,
-  },
-  {
-    name: "Mignardises chocolat",
-    description: "Bouchées raffinées au chocolat.",
+    name: "Mini burgers",
+    description:
+      "Des bouchées généreuses, pensées pour vos cocktails, anniversaires, veillées et réceptions.",
     tone: TONES.sand,
   },
   {
-    name: "Mini créations",
-    description: "Des petites bouchées pour toutes les occasions.",
-    tone: TONES.cream,
+    name: "Nems",
+    description:
+      "Des bouchées croustillantes et gourmandes, idéales pour accompagner vos événements.",
+    tone: TONES.beige,
   },
   {
-    name: "Assortiment événement",
-    description: "Une sélection adaptée à votre réception.",
+    name: "Pénés",
+    description:
+      "De savoureuses portions individuelles de pâtes, pensées pour les buffets et réceptions.",
     tone: TONES.linen,
+  },
+  {
+    name: "Mini moelleux",
+    description: "De petites douceurs au chocolat, fondantes et gourmandes.",
+    tone: TONES.cream,
   },
 ];
 

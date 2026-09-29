@@ -2,6 +2,8 @@ import Link from "next/link";
 import InfiniteProductCarousel, {
   type Product,
 } from "../InfiniteProductCarousel";
+
+type CarouselVariant = "compact" | "showcase";
 import { btnArrow, btnOutlineDark } from "../buttons";
 import { ArrowRight } from "../icons";
 
@@ -12,6 +14,8 @@ type Props = {
   direction: "left" | "right";
   speed?: number;
   cta: { label: string; href: string };
+  /** Format des cartes (voir InfiniteProductCarousel). */
+  variant?: CarouselVariant;
 };
 
 /** Une rangée de la vitrine : titre, carrousel animé et bouton. */
@@ -22,6 +26,7 @@ export default function CreationRow({
   direction,
   speed,
   cta,
+  variant,
 }: Props) {
   return (
     <section
@@ -54,6 +59,7 @@ export default function CreationRow({
           direction={direction}
           speed={speed}
           label={title}
+          variant={variant}
         />
       </div>
 

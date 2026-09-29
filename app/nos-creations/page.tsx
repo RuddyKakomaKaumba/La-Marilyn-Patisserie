@@ -40,7 +40,8 @@ export default function NosCreations() {
           products={MIGNARDISES}
           direction="left"
           speed={22}
-          cta={{ label: "Voir toutes les mignardises", href: "#" }}
+          variant="showcase"
+          cta={{ label: "Découvrir toutes les mignardises", href: "#" }}
         />
         <CreationRow
           id="traiteur"
