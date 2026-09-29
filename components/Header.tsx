@@ -24,7 +24,7 @@ export default function Header() {
 
   return (
     <header className="absolute inset-x-0 top-0 z-30">
-      <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:h-[88px] lg:px-12">
+      <div className="mx-auto flex h-[60px] max-w-[1440px] items-center justify-between px-4 sm:px-8 md:h-[72px] lg:h-[88px] lg:px-12">
         <Link
           href="/"
           aria-label="La Marilyn — accueil"
@@ -37,7 +37,7 @@ export default function Header() {
             alt="La Marilyn"
             priority
             sizes="64px"
-            className="h-[54px] w-auto lg:h-[60px]"
+            className="h-[44px] w-auto md:h-[52px] lg:h-[60px]"
           />
         </Link>
 

@@ -15,7 +15,7 @@ export default function Craftsmanship() {
       aria-labelledby="savoir-faire-title"
       className="relative isolate overflow-hidden bg-ink text-ivory lg:flex lg:min-h-[760px] lg:items-end"
     >
-      <div className="relative h-[34rem] overflow-hidden sm:h-[42rem] lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[64%]">
+      <div className="relative h-[29rem] overflow-hidden sm:h-[42rem] lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[64%]">
         <Image
           src={CRAFT_IMAGE.src}
           alt={CRAFT_IMAGE.alt}
@@ -26,7 +26,7 @@ export default function Craftsmanship() {
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgb(18_12_9/0.25)_0%,rgb(18_12_9/0)_22%,rgb(18_12_9/0)_52%,var(--color-ink)_100%)] lg:bg-[linear-gradient(to_right,var(--color-ink)_0%,rgb(18_12_9/0.55)_24%,rgb(18_12_9/0)_55%),linear-gradient(to_top,rgb(18_12_9/0.6)_0%,rgb(18_12_9/0)_35%)]" />
       </div>
 
-      <div className="relative -mt-44 px-6 pb-16 sm:-mt-52 sm:px-10 sm:pb-20 lg:mx-auto lg:mt-0 lg:w-full lg:max-w-[1440px] lg:px-12 lg:pb-28">
+      <div className="relative -mt-36 px-6 pb-12 sm:-mt-52 sm:px-10 sm:pb-20 lg:mx-auto lg:mt-0 lg:w-full lg:max-w-[1440px] lg:px-12 lg:pb-28">
         <div className="max-w-[21rem] sm:max-w-[28rem] lg:max-w-[30rem]">
           <p data-reveal className="eyebrow text-ivory/85">
             Notre savoir-faire
@@ -35,7 +35,7 @@ export default function Craftsmanship() {
             id="savoir-faire-title"
             data-reveal
             style={{ "--reveal-delay": "80ms" } as React.CSSProperties}
-            className="display mt-5 text-[2.875rem] text-ivory sm:text-[3.5rem] lg:text-[4.5rem]"
+            className="display mt-4 text-[2.25rem] text-ivory sm:mt-5 sm:text-[3.5rem] lg:text-[4.5rem]"
           >
             Le détail
             <br />
@@ -46,7 +46,7 @@ export default function Craftsmanship() {
           <p
             data-reveal
             style={{ "--reveal-delay": "160ms" } as React.CSSProperties}
-            className="mt-6 max-w-[21rem] text-[0.875rem] leading-relaxed text-ivory/75 sm:max-w-[25rem] lg:text-[0.9375rem]"
+            className="mt-4 max-w-[21rem] text-[0.9375rem] leading-[1.55] text-ivory/75 sm:mt-6 sm:max-w-[25rem] sm:leading-relaxed"
           >
             De bons ingrédients, des gestes précis et un soin particulier
             apporté à chaque finition&nbsp;: chaque création est préparée à la
@@ -55,7 +55,7 @@ export default function Craftsmanship() {
           <div
             data-reveal
             style={{ "--reveal-delay": "240ms" } as React.CSSProperties}
-            className="mt-8"
+            className="mt-6 sm:mt-8"
           >
             <Link href="/a-propos" className={btnOutlineLight}>
               Notre histoire

@@ -4,7 +4,7 @@ export default function CreationsIntro() {
   return (
     <section
       aria-labelledby="creations-title"
-      className="relative isolate overflow-hidden bg-ink px-6 pb-16 pt-[7.5rem] text-ivory sm:px-10 md:pb-20 md:pt-[9rem] lg:px-12 lg:pb-24 lg:pt-[10.5rem]"
+      className="relative isolate overflow-hidden bg-ink px-6 pb-12 pt-[5.25rem] text-ivory sm:px-10 md:pb-20 md:pt-[9rem] lg:px-12 lg:pb-24 lg:pt-[10.5rem]"
     >
       <div className="mx-auto max-w-[1280px]">
         <div className="max-w-[21rem] sm:max-w-[30rem] lg:max-w-[40rem]">
@@ -14,13 +14,13 @@ export default function CreationsIntro() {
           <span
             aria-hidden="true"
             data-reveal
-            className="mt-5 block h-px w-8 bg-gold"
+            className="mt-3 block h-px w-8 bg-gold md:mt-5"
           />
           <h1
             id="creations-title"
             data-reveal
             style={{ "--reveal-delay": "80ms" } as React.CSSProperties}
-            className="display mt-5 text-[2.625rem] text-ivory sm:text-[3.5rem] lg:text-[4.5rem]"
+            className="display mt-4 text-[2.5rem] leading-[0.98] text-ivory sm:text-[3.5rem] md:mt-5 md:leading-[1.02] lg:text-[4.5rem]"
           >
             Des créations
             <br />
@@ -29,7 +29,7 @@ export default function CreationsIntro() {
           <p
             data-reveal
             style={{ "--reveal-delay": "160ms" } as React.CSSProperties}
-            className="mt-5 max-w-[20rem] text-[0.9375rem] leading-relaxed text-ivory/75 sm:max-w-[26rem] lg:mt-6 lg:text-base"
+            className="mt-3 max-w-[20rem] text-[0.9375rem] leading-[1.5] text-ivory/75 sm:max-w-[26rem] md:mt-5 md:leading-relaxed lg:mt-6 lg:text-base"
           >
             Des pâtisseries, des mignardises et de jolies tables à partager.
             Bienvenue dans l’univers gourmand de La Marilyn.

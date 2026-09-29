@@ -435,7 +435,7 @@ function ProductCard({
           className={`leading-relaxed text-muted ${
             showcase
               ? "mt-1.5 text-[0.8125rem] md:text-[0.84375rem]"
-              : "mt-1 text-[0.6875rem] md:text-[0.75rem]"
+              : "mt-1 text-[0.75rem] leading-[1.5]"
           }`}
         >
           {product.description}

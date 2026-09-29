@@ -10,7 +10,7 @@ export default function Occasions() {
       aria-labelledby="occasions-title"
       className="relative isolate overflow-hidden bg-cream"
     >
-      <div className="relative mx-auto max-w-[1280px] px-6 pb-16 pt-12 sm:px-10 md:pb-20 md:pt-16 lg:grid lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-20 lg:px-12 lg:py-28">
+      <div className="relative mx-auto max-w-[1280px] px-6 pb-12 pt-10 sm:px-10 md:pb-20 md:pt-16 lg:grid lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-20 lg:px-12 lg:py-28">
         {/* Photographie : en retrait à droite sur mobile, colonne dédiée sur desktop */}
         <div
           data-reveal
@@ -37,7 +37,7 @@ export default function Occasions() {
           <h2
             id="occasions-title"
             data-reveal
-            className="display mt-6 text-[2.25rem] text-ink sm:text-[2.75rem] lg:text-[3.75rem]"
+            className="display mt-5 text-[2rem] text-ink sm:mt-6 sm:text-[2.75rem] lg:text-[3.75rem]"
           >
             Des saveurs
             <br />
@@ -48,7 +48,7 @@ export default function Occasions() {
           <p
             data-reveal
             style={{ "--reveal-delay": "80ms" } as React.CSSProperties}
-            className="mt-5 max-w-[12.25rem] text-[0.875rem] leading-relaxed text-muted sm:max-w-[17rem] lg:max-w-[26rem] lg:text-[0.9375rem]"
+            className="mt-4 max-w-[12.5rem] text-[0.9375rem] leading-[1.55] text-muted sm:mt-5 sm:max-w-[17rem] sm:leading-relaxed lg:max-w-[26rem]"
           >
             Anniversaires, mariages, réceptions ou simplement pour se faire
             plaisir.
@@ -56,7 +56,7 @@ export default function Occasions() {
           <div
             data-reveal
             style={{ "--reveal-delay": "160ms" } as React.CSSProperties}
-            className="mt-8 lg:mt-10"
+            className="mt-6 sm:mt-8 lg:mt-10"
           >
             <Link href="/nos-creations" className={btnGold}>
               Découvrir nos créations

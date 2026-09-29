@@ -152,3 +152,20 @@ body {
       "e e f d";
   }
 }
+
+/*
+ * Hero d'accueil sur mobile : la photo commence sous le haut de page pour
+ * que le gâteau apparaisse juste sous les boutons. Sous 400 px de large,
+ * le texte occupe proportionnellement plus de hauteur : décalage accru.
+ * Le hero fait 100svh, ou un peu plus sur les écrans très courts.
+ */
+@media (max-width: 767px) {
+  .hero-mobile {
+    --hero-media-top: calc(36vw + max(0px, (400px - 100vw) * 0.8));
+    min-height: max(100svh, calc(var(--hero-media-top) + 136vw));
+  }
+
+  .hero-mobile__media {
+    top: var(--hero-media-top);
+  }
+}

@@ -12,7 +12,7 @@ export default function ContactSection() {
     <section
       id="projet"
       aria-labelledby="projet-title"
-      className="scroll-mt-4 bg-ink px-6 py-16 text-ivory sm:px-10 md:py-20 lg:px-12 lg:py-28"
+      className="scroll-mt-4 bg-ink px-6 py-12 text-ivory sm:px-10 md:py-20 lg:px-12 lg:py-28"
     >
       <div className="mx-auto max-w-[1280px] lg:grid lg:grid-cols-[1.1fr_1fr] lg:items-end lg:gap-20">
         <div>
@@ -23,7 +23,7 @@ export default function ContactSection() {
             id="projet-title"
             data-reveal
             style={{ "--reveal-delay": "80ms" } as React.CSSProperties}
-            className="display mt-5 text-[2.625rem] text-ivory sm:text-[3.25rem] lg:text-[4.25rem]"
+            className="display mt-4 text-[2.25rem] text-ivory sm:mt-5 sm:text-[3.25rem] lg:text-[4.25rem]"
           >
             Une douceur pour
             <br />
@@ -32,7 +32,7 @@ export default function ContactSection() {
           <p
             data-reveal
             style={{ "--reveal-delay": "160ms" } as React.CSSProperties}
-            className="mt-5 max-w-[21rem] text-[0.9375rem] leading-relaxed text-ivory/75 sm:max-w-[27rem]"
+            className="mt-3 max-w-[21rem] text-[0.9375rem] leading-[1.55] text-ivory/75 sm:mt-5 sm:max-w-[27rem] sm:leading-relaxed"
           >
             Un anniversaire, un mariage, une réception ou simplement une envie
             de faire plaisir&nbsp;? La Marilyn imagine avec vous quelque chose
@@ -43,7 +43,7 @@ export default function ContactSection() {
         <div
           data-reveal
           style={{ "--reveal-delay": "240ms" } as React.CSSProperties}
-          className="mt-9 flex flex-col items-start gap-6 lg:mt-0 lg:items-end"
+          className="mt-6 flex flex-col items-start gap-4 md:mt-9 md:gap-6 lg:mt-0 lg:items-end"
         >
           <a
             href={WHATSAPP_URL}
@@ -59,7 +59,7 @@ export default function ContactSection() {
             WhatsApp&nbsp;:{" "}
             <span className="select-all text-ivory/85">+237 94768972</span>
           </p>
-          <ul className="flex gap-3">
+          <ul className="flex flex-wrap gap-3">
             <li>
               <a
                 href={SOCIAL_LINKS.instagram}

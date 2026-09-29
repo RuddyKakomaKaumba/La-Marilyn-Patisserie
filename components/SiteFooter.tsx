@@ -5,7 +5,7 @@ import { FacebookIcon, InstagramIcon } from "./icons";
 
 export default function SiteFooter() {
   return (
-    <footer className="bg-ink px-6 pb-24 pt-16 text-center text-ivory sm:px-10 md:pt-20 lg:pb-14">
+    <footer className="bg-ink px-6 pb-20 pt-12 text-center text-ivory sm:px-10 md:pb-24 md:pt-20 lg:pb-14">
       <div className="mx-auto max-w-[34rem]">
         <Link
           href="/"
@@ -18,10 +18,10 @@ export default function SiteFooter() {
             height={LOGO.height}
             alt="La Marilyn"
             sizes="112px"
-            className="mx-auto h-auto w-[104px] md:w-[112px]"
+            className="mx-auto h-auto w-[88px] md:w-[112px]"
           />
         </Link>
-        <nav aria-label="Liens de pied de page" className="mt-8">
+        <nav aria-label="Liens de pied de page" className="mt-6 md:mt-8">
           <ul className="flex flex-wrap justify-center gap-x-7 gap-y-3 text-[0.8125rem] text-ivory/80">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
@@ -35,7 +35,7 @@ export default function SiteFooter() {
             ))}
           </ul>
         </nav>
-        <ul className="mt-8 flex justify-center gap-4">
+        <ul className="mt-6 flex justify-center gap-4 md:mt-8">
           <li>
             <a
               href={SOCIAL_LINKS.instagram}
@@ -59,7 +59,7 @@ export default function SiteFooter() {
             </a>
           </li>
         </ul>
-        <p className="mt-10 text-[0.6875rem] tracking-[0.04em] text-ivory/45">
+        <p className="mt-8 text-[0.75rem] tracking-[0.04em] text-ivory/50 md:mt-10 md:text-[0.6875rem] md:text-ivory/45">
           © La Marilyn — Tous droits réservés
         </p>
       </div>

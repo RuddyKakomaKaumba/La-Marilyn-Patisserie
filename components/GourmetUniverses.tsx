@@ -62,26 +62,26 @@ export default function GourmetUniverses() {
     <section
       id="univers"
       aria-labelledby="univers-title"
-      className="scroll-mt-4 bg-cream px-4 pb-14 pt-10 sm:px-8 md:pb-20 md:pt-16 lg:px-12 lg:pb-28 lg:pt-24"
+      className="scroll-mt-4 bg-cream px-4 pb-12 pt-9 sm:px-8 md:pb-20 md:pt-16 lg:px-12 lg:pb-28 lg:pt-24"
     >
       <div className="mx-auto max-w-[1280px]">
         <header data-reveal className="mx-auto max-w-[36rem] text-center">
           <span aria-hidden="true" className="mx-auto block h-px w-8 bg-gold" />
           <h2
             id="univers-title"
-            className="display mt-6 text-[2.25rem] text-ink md:text-[2.75rem] lg:text-[3.25rem]"
+            className="display mt-5 text-[2rem] text-ink md:mt-6 md:text-[2.75rem] lg:text-[3.25rem]"
           >
             Nos univers
             <br />
             gourmands
           </h2>
-          <p className="mx-auto mt-4 max-w-[20.5rem] text-[0.875rem] leading-relaxed text-muted md:max-w-[28rem] md:text-[0.9375rem]">
+          <p className="mx-auto mt-3 max-w-[20.5rem] text-[0.9375rem] leading-[1.55] text-muted md:mt-4 md:max-w-[28rem] md:leading-relaxed">
             Pâtisseries, gâteaux, mignardises et jolis présentoirs&nbsp;: tout
             ce qu’il faut pour régaler vos invités et dresser une belle table.
           </p>
         </header>
 
-        <ul className="mt-8 grid grid-cols-2 gap-2.5 md:mt-12 md:gap-4 lg:mt-14 lg:grid-cols-4 lg:gap-5">
+        <ul className="mt-7 grid grid-cols-2 gap-2.5 md:mt-12 md:gap-4 lg:mt-14 lg:grid-cols-4 lg:gap-5">
           {UNIVERSES.map((u, i) => {
             const label = u.whatsapp
               ? WHATSAPP_CTAS[u.whatsapp].label
@@ -105,7 +105,7 @@ export default function GourmetUniverses() {
                       style={{ objectPosition: u.image.position }}
                     />
                   </div>
-                  <div className="flex flex-1 flex-col justify-between px-3 pb-4 pt-3.5 md:px-4 md:pb-5 md:pt-4">
+                  <div className="flex flex-1 flex-col justify-between px-3 pb-3.5 pt-3 md:px-4 md:pb-5 md:pt-4">
                     <h3 className="font-sans text-[0.75rem] font-semibold uppercase leading-[1.45] tracking-[0.1em] text-ink md:text-[0.8125rem]">
                       {u.lines ? (
                         <>
@@ -117,7 +117,7 @@ export default function GourmetUniverses() {
                         u.title
                       )}
                     </h3>
-                    <span className="mt-2 inline-flex items-center gap-1.5 text-[0.6875rem] text-muted transition-colors duration-300 group-hover:text-gold-deep md:text-[0.75rem]">
+                    <span className="mt-2 inline-flex items-center gap-1.5 text-[0.75rem] text-muted transition-colors duration-300 group-hover:text-gold-deep">
                       {label}
                       <ArrowRight className="h-3 w-3 text-gold-deep transition-transform duration-300 ease-soft group-hover:translate-x-0.5" />
                     </span>

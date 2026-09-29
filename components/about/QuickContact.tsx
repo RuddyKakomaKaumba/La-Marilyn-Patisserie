@@ -11,7 +11,7 @@ export default function QuickContact() {
   return (
     <section
       aria-labelledby="demande-title"
-      className="bg-cream px-4 py-14 sm:px-8 md:py-20 lg:px-12 lg:py-24"
+      className="bg-cream px-4 py-11 sm:px-8 md:py-20 lg:px-12 lg:py-24"
     >
       <div className="mx-auto max-w-[1280px]">
         <div data-reveal className="px-2 text-center">
@@ -23,7 +23,7 @@ export default function QuickContact() {
             Quelle est votre envie&nbsp;?
           </h2>
         </div>
-        <ul className="mt-7 grid grid-cols-2 gap-2.5 md:mt-10 md:gap-4 lg:grid-cols-4 lg:gap-5">
+        <ul className="mt-6 grid grid-cols-2 gap-2.5 md:mt-10 md:gap-4 lg:grid-cols-4 lg:gap-5">
           {SERVICES.map((s, i) => (
             <li
               key={s.label}

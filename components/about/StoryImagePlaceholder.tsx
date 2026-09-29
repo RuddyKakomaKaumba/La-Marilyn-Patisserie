@@ -20,7 +20,7 @@ export default function StoryImagePlaceholder({
       data-placeholder={
         image ? undefined : "Portrait / atelier La Marilyn — image à ajouter"
       }
-      className={`relative aspect-[4/5] overflow-hidden rounded-[10px] bg-[#3b2a1f] ${className}`}
+      className={`relative aspect-[5/4] overflow-hidden rounded-[10px] md:aspect-[4/5] bg-[#3b2a1f] ${className}`}
     >
       {image ? (
         <Image

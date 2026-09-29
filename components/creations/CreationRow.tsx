@@ -37,7 +37,7 @@ export default function CreationRow({
     <section
       id={id}
       aria-labelledby={`${id}-title`}
-      className="scroll-mt-4 pt-12 md:pt-16 lg:pt-20"
+      className="scroll-mt-4 pt-10 md:pt-16 lg:pt-20"
     >
       <div
         data-reveal
@@ -58,7 +58,7 @@ export default function CreationRow({
         </Link>
       </div>
 
-      <div data-reveal className="mt-5 md:mt-7 lg:mt-8">
+      <div data-reveal className="mt-4 md:mt-7 lg:mt-8">
         <InfiniteProductCarousel
           products={products}
           direction={direction}
@@ -69,7 +69,7 @@ export default function CreationRow({
         />
       </div>
 
-      <div className="mt-7 flex justify-center px-4 md:mt-9">
+      <div className="mt-6 flex justify-center px-4 md:mt-9">
         <a
           href={ctaUrl(cta)}
           target="_blank"
