@@ -169,3 +169,90 @@ body {
     top: var(--hero-media-top);
   }
 }
+
+/*
+ * Mosaïque « Quelques créations » : fondu doux lors du remplacement d'une
+ * photo, et très lent mouvement de zoom pendant son affichage.
+ */
+.mosaic-in {
+  animation: mosaic-in 850ms var(--ease-soft) both;
+}
+
+.mosaic-out {
+  animation: mosaic-out 850ms var(--ease-soft) both;
+}
+
+.mosaic-drift-in {
+  animation: mosaic-drift-in 16s linear both;
+}
+
+.mosaic-drift-out {
+  animation: mosaic-drift-out 16s linear both;
+}
+
+@keyframes mosaic-in {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes mosaic-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+@keyframes mosaic-drift-in {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.025);
+  }
+}
+
+@keyframes mosaic-drift-out {
+  from {
+    transform: scale(1.025);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes mosaic-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes mosaic-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mosaic-in {
+    animation: mosaic-fade-in 700ms ease both;
+  }
+
+  .mosaic-out {
+    animation: mosaic-fade-out 700ms ease both;
+  }
+
+  .mosaic-drift-in,
+  .mosaic-drift-out {
+    animation: none;
+  }
+}

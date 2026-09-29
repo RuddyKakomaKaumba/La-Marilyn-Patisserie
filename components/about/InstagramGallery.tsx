@@ -1,15 +1,9 @@
 import { getInstagramPosts, type InstagramPost } from "@/lib/instagram";
+import { GALLERY_PHOTOS } from "@/lib/galleryPhotos";
 import { SOCIAL_LINKS } from "@/lib/site";
-import { SOCIAL_FALLBACK } from "@/lib/socialFallback";
 import { btnArrow, btnOutlineDark } from "../buttons";
 import { ArrowRight, InstagramIcon } from "../icons";
-import CreationGalleryItem, {
-  type GalleryArea,
-  type GalleryItem,
-} from "./CreationGalleryItem";
-
-/** Ordre de lecture de la mosaïque : a (mise en avant 4:3), b, c, d, f, e. */
-const AREAS: GalleryArea[] = ["a", "b", "c", "d", "f", "e"];
+import CreationMosaic, { type MosaicItem } from "./CreationMosaic";
 
 /** Texte alternatif tiré de la légende, sans hashtags ni retours à la ligne. */
 function altFromCaption(caption: string | null) {
@@ -21,33 +15,28 @@ function altFromCaption(caption: string | null) {
   return text.length > 120 ? `${text.slice(0, 117).trimEnd()}…` : text;
 }
 
-function toGalleryItem(post: InstagramPost, area: GalleryArea, tone: string) {
-  const alt = altFromCaption(post.caption);
+/** Domaines d'images Instagram optimisés par next/image (voir next.config.ts). */
+const OPTIMIZED_HOSTS = [/\.cdninstagram\.com$/, /\.fbcdn\.net$/];
+
+function fromPost(post: InstagramPost): MosaicItem {
+  let unoptimized = true;
+  try {
+    const { hostname } = new URL(post.imageUrl);
+    unoptimized = !OPTIMIZED_HOSTS.some((re) => re.test(hostname));
+  } catch {}
   return {
-    area,
-    tone,
+    src: post.imageUrl,
+    alt: altFromCaption(post.caption),
     href: post.permalink,
-    label: `${alt} — voir la publication sur Instagram`,
-    image: { src: post.imageUrl, alt },
-  } satisfies GalleryItem;
+    unoptimized,
+  };
 }
 
 export default async function InstagramGallery() {
-  const posts = await getInstagramPosts(AREAS.length);
-
-  // Publications Instagram en priorité, complétées par la galerie locale.
-  const items: GalleryItem[] = AREAS.map((area, i) => {
-    const fallback = SOCIAL_FALLBACK[i % SOCIAL_FALLBACK.length];
-    const post = posts[i];
-    if (post) return toGalleryItem(post, area, fallback.tone);
-    return {
-      area,
-      tone: fallback.tone,
-      image: fallback.image,
-      href: fallback.href,
-      label: "Voir les créations de La Marilyn sur Instagram",
-    };
-  });
+  // Dernières publications Instagram (si l'API est configurée), puis photos
+  // locales : toutes entrent dans la rotation de la mosaïque.
+  const posts = await getInstagramPosts(12);
+  const items: MosaicItem[] = [...posts.map(fromPost), ...GALLERY_PHOTOS];
 
   return (
     <section
@@ -72,11 +61,7 @@ export default async function InstagramGallery() {
         </header>
 
         <div className="creation-gallery mt-7 md:mt-12 lg:mt-14">
-          <ul className="creation-gallery__grid">
-            {items.map((item, i) => (
-              <CreationGalleryItem key={item.area} item={item} index={i} />
-            ))}
-          </ul>
+          <CreationMosaic items={items} />
         </div>
 
         <div data-reveal className="mt-6 flex justify-center md:mt-10">

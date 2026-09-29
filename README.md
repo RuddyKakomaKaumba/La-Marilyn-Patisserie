@@ -16,7 +16,7 @@ npm run build
 - `components/` — sections des pages (`about/`, `creations/`) et composants partagés
 - `lib/site.ts` — WhatsApp, navigation, liens des réseaux sociaux
 - `lib/instagram.ts` — récupération serveur des publications Instagram
-- `lib/socialFallback.ts` — galerie de secours
+- `lib/galleryPhotos.ts` — photos de la mosaïque « Quelques créations »
 - `public/images/` — photographies et logo
 
 ## Galerie Instagram (« Quelques créations signées La Marilyn »)
@@ -38,9 +38,8 @@ visuel ouvre la publication d'origine dans un nouvel onglet.
 ### Si l'API Meta est indisponible
 
 Ordre de priorité : publications fraîches → dernières publications en cache →
-galerie de secours (`lib/socialFallback.ts`). Si Meta renvoie moins de 6
-publications, les emplacements restants sont complétés par la galerie de
-secours. Aucune erreur n'est montrée aux visiteurs ; les erreurs sont
+photos locales (`lib/galleryPhotos.ts`). Publications et photos locales
+forment ensemble la rotation de la mosaïque. Aucune erreur n'est montrée aux visiteurs ; les erreurs sont
 journalisées côté serveur avec le préfixe `[instagram]` (sans le jeton).
 
 ### Variables d'environnement
