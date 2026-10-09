@@ -1,9 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
+import { priceSummary } from "@/lib/pricing";
 import { ctaUrl, WHATSAPP_CTAS, type WhatsAppCta } from "@/lib/site";
+import type { RequestType } from "@/lib/requests";
+import ProductDetails from "./creations/ProductDetails";
 import { PlusIcon } from "./icons";
+import Sheet, { SheetClose } from "./ui/Sheet";
 
 export type Product = {
   name: string;
@@ -22,7 +26,41 @@ export type Product = {
    * ajoutée au message (ex. le nom du gâteau).
    */
   cta?: { key: WhatsAppCta; detail?: string };
+
+  /* ---- Informations commerciales (toutes optionnelles) ---------------- */
+  /** Tarif confirmé par La Marilyn. Sans tarif : rien sur la carte. */
+  pricing?: Pricing;
+  /** Description détaillée, affichée dans la fiche (paragraphes). */
+  details?: string[];
+  /** Composition confirmée. */
+  composition?: string;
+  /** Choix proposés (parfums, crèmes, garnitures…). */
+  options?: string[];
+  /** Quantité minimale de commande, ex. « 10 pièces ». */
+  minQuantity?: string;
+  /** Délai minimum, ex. « 48 h ». */
+  leadTime?: string;
+  /** Délai minimum en jours (utilisé par le formulaire de demande). */
+  leadDays?: number;
+  /** Mentions importantes (inclus / non inclus, conditions…). */
+  notes?: string[];
+  /** Lien complémentaire dans la fiche, ex. vers l'offre détaillée. */
+  link?: { label: string; href: string };
+  /** Type de demande proposé par la fiche (formulaire « Préparer ma demande »). */
+  request?: RequestType;
 };
+
+/**
+ * Tarifs : prix fixe, prix de départ, déclinaisons (ex. 10 / 20 pièces),
+ * ou devis. `unit` précise l'unité de vente (« unité », « le set »…).
+ */
+export type Pricing =
+  | { kind: "fixed"; amount: number; unit?: string }
+  | { kind: "from"; amount: number; unit?: string }
+  | { kind: "variants"; items: { label: string; amount: number }[] }
+  | { kind: "quote" }
+  /** Produit proposé, tarif pas encore communiqué. */
+  | { kind: "confirm" };
 
 export type ProductBadge = "best-seller" | "sur-commande";
 
@@ -105,6 +143,11 @@ export default function InfiniteProductCarousel({
   const trackRef = useRef<HTMLDivElement>(null);
   const setRef = useRef<HTMLUListElement>(null);
   const [copies, setCopies] = useState(2);
+  // Fiche produit ouverte (le carrousel reste en pause tant qu'elle l'est).
+  const [selected, setSelected] = useState<Product | null>(null);
+  const sheetOpen = useRef(false);
+  sheetOpen.current = selected !== null;
+  const titleId = useId();
 
   // Mesure : largeur d'un jeu de cartes et nombre de copies nécessaires
   // pour que la piste couvre toujours l'écran, sans espace vide.
@@ -176,7 +219,12 @@ export default function InfiniteProductCarousel({
           inertia *= Math.pow(0.04, dt); // décroissance douce de l'élan
           if (Math.abs(inertia) < 8) inertia = 0;
         }
-        const active = !reduced && !hovering && !focused && t >= resumeAt;
+        const active =
+          !reduced &&
+          !hovering &&
+          !focused &&
+          !sheetOpen.current &&
+          t >= resumeAt;
         factor = active
           ? Math.min(1, factor + dt / RAMP_UP)
           : Math.max(0, factor - dt / 0.6);
@@ -291,7 +339,13 @@ export default function InfiniteProductCarousel({
     // Clavier : un élément focalisé est ramené dans le cadre.
     const onFocusIn = (e: FocusEvent) => {
       focused = true;
+      // Le navigateur peut faire défiler le cadre (overflow hidden) vers
+      // l'élément focalisé : la position reste pilotée par `offset`.
+      viewport.scrollLeft = 0;
       const target = e.target as HTMLElement;
+      // Au clic souris ou tactile, la carte ne doit pas bouger sous le
+      // pointeur : recadrage réservé à la navigation au clavier.
+      if (!target.matches(":focus-visible")) return;
       const card = target.closest("li");
       if (!card) return;
       const v = viewport.getBoundingClientRect();
@@ -337,38 +391,57 @@ export default function InfiniteProductCarousel({
   }, [direction, speed]);
 
   return (
-    <div
-      ref={viewportRef}
-      role="region"
-      aria-roledescription="carrousel"
-      aria-label={label}
-      className={`relative cursor-grab touch-pan-y select-none overflow-hidden active:cursor-grabbing ${
-        // Marge intérieure pour que l'ombre des cartes ne soit pas rognée.
-        variant === "showcase" ? "-my-4 py-4" : ""
-      } lg:[mask-image:linear-gradient(to_right,transparent,#000_5%,#000_95%,transparent)]`}
-    >
-      <div ref={trackRef} className="flex w-max will-change-transform">
-        {Array.from({ length: copies }, (_, copy) => (
-          <ul
-            key={copy}
-            ref={copy === 0 ? setRef : undefined}
-            aria-hidden={copy > 0 || undefined}
-            inert={copy > 0}
-            className="flex shrink-0 gap-3 pr-3 md:gap-4 md:pr-4 lg:gap-5 lg:pr-5"
-          >
-            {products.map((p) => (
-              <li key={p.name} className={`shrink-0 ${CARD_WIDTH[variant]}`}>
-                <ProductCard
-                  product={p}
-                  variant={variant}
-                  showAction={showAction}
-                />
-              </li>
-            ))}
-          </ul>
-        ))}
+    <>
+      <div
+        ref={viewportRef}
+        role="region"
+        aria-roledescription="carrousel"
+        aria-label={label}
+        className={`relative cursor-grab touch-pan-y select-none overflow-hidden active:cursor-grabbing ${
+          // Marge intérieure pour que l'ombre des cartes ne soit pas rognée.
+          variant === "showcase" ? "-my-4 py-4" : ""
+        } lg:[mask-image:linear-gradient(to_right,transparent,#000_5%,#000_95%,transparent)]`}
+      >
+        <div ref={trackRef} className="flex w-max will-change-transform">
+          {Array.from({ length: copies }, (_, copy) => (
+            <ul
+              key={copy}
+              ref={copy === 0 ? setRef : undefined}
+              aria-hidden={copy > 0 || undefined}
+              className="flex shrink-0 gap-3 pr-3 md:gap-4 md:pr-4 lg:gap-5 lg:pr-5"
+            >
+              {products.map((p) => (
+                <li key={p.name} className={`shrink-0 ${CARD_WIDTH[variant]}`}>
+                  <ProductCard
+                    product={p}
+                    variant={variant}
+                    showAction={showAction}
+                    onOpen={() => setSelected(p)}
+                    clone={copy > 0}
+                  />
+                </li>
+              ))}
+            </ul>
+          ))}
+        </div>
       </div>
-    </div>
+      <Sheet
+        open={selected !== null}
+        onClose={() => setSelected(null)}
+        labelledBy={titleId}
+      >
+        {selected && (
+          <>
+            <SheetClose onClose={() => setSelected(null)} />
+            <ProductDetails
+              product={selected}
+              titleId={titleId}
+              onNavigate={() => setSelected(null)}
+            />
+          </>
+        )}
+      </Sheet>
+    </>
   );
 }
 
@@ -376,15 +449,25 @@ function ProductCard({
   product,
   variant,
   showAction,
+  onOpen,
+  clone,
 }: {
   product: Product;
   variant: CardVariant;
   showAction: boolean;
+  onOpen: () => void;
+  /**
+   * Copie décorative (masquée aux lecteurs d'écran) : cliquable à la
+   * souris ou au doigt, mais hors de l'ordre de tabulation.
+   */
+  clone: boolean;
 }) {
+  const tabIndex = clone ? -1 : undefined;
   const showcase = variant === "showcase";
+  const price = priceSummary(product.pricing);
   return (
     <article
-      className={`group/card flex h-full flex-col overflow-hidden rounded-[10px] bg-ivory ${
+      className={`group/card relative flex h-full flex-col overflow-hidden rounded-[10px] bg-ivory ${
         showcase
           ? "shadow-[0_1px_2px_rgb(58_42_32/0.04),0_10px_24px_-14px_rgb(58_42_32/0.18)]"
           : ""
@@ -404,6 +487,14 @@ function ProductCard({
             className="absolute inset-0 h-full w-full object-cover transition-transform duration-[650ms] ease-soft group-hover/card:scale-[1.03]"
             style={{ objectPosition: product.image.position ?? "50% 50%" }}
           />
+        )}
+        {!product.image && (
+          <span
+            aria-hidden="true"
+            className="absolute inset-x-0 bottom-3 text-center text-[9px] uppercase tracking-[0.16em] text-muted/60 md:text-[10px]"
+          >
+            Photo à venir
+          </span>
         )}
         {product.badge && (
           <span
@@ -430,7 +521,18 @@ function ProductCard({
               : "text-[0.8125rem] md:text-[0.875rem]"
           }`}
         >
-          {product.name}
+          {/* Toute la carte ouvre la fiche (le « + » reste au-dessus). */}
+          <button
+            type="button"
+            onClick={onOpen}
+            tabIndex={tabIndex}
+            draggable={false}
+            aria-haspopup="dialog"
+            className="text-left after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:rounded-[10px] focus-visible:after:outline focus-visible:after:outline-[1.5px] focus-visible:after:-outline-offset-2 focus-visible:after:outline-gold"
+          >
+            {product.name}
+            <span className="sr-only"> — voir le détail</span>
+          </button>
         </h3>
         <p
           className={`leading-relaxed text-muted ${
@@ -441,13 +543,27 @@ function ProductCard({
         >
           {product.description}
         </p>
+        {price && (
+          <p
+            className={`font-sans font-semibold text-gold-deep ${
+              showcase
+                ? "mt-2.5 text-[0.8125rem] md:text-[0.875rem]"
+                : "mt-2 text-[0.75rem] md:text-[0.8125rem]"
+            }`}
+          >
+            {price}
+          </p>
+        )}
         {showAction && (
-          <div className={`mt-auto ${showcase ? "pt-4" : "pt-3"}`}>
+          <div
+            className={`relative z-[1] mt-auto ${showcase ? "pt-4" : "pt-3"}`}
+          >
             <a
               href={ctaUrl(product.cta?.key ?? "general", product.cta?.detail)}
               target="_blank"
               rel="noopener noreferrer"
               draggable={false}
+              tabIndex={tabIndex}
               aria-label={`${WHATSAPP_CTAS[product.cta?.key ?? "general"].label} — ${product.name} (WhatsApp)`}
               className="group/plus flex h-7 w-7 items-center justify-center rounded-full border border-gold/60 text-gold-deep transition-colors duration-300 ease-soft hover:border-gold hover:bg-gold hover:text-ink active:bg-gold active:text-ink"
             >

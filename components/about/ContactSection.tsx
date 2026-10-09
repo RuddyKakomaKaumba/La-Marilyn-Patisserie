@@ -1,4 +1,9 @@
-import { SOCIAL_LINKS, WHATSAPP_CTAS, WHATSAPP_URL } from "@/lib/site";
+import {
+  SOCIAL_LINKS,
+  WHATSAPP_CTAS,
+  WHATSAPP_DISPLAY,
+  WHATSAPP_URL,
+} from "@/lib/site";
 import { btnArrow, btnGold, btnOutlineLight } from "../buttons";
 import {
   ArrowRight,
@@ -57,7 +62,7 @@ export default function ContactSection() {
           </a>
           <p className="text-[0.8125rem] text-ivory/60 lg:text-right">
             WhatsApp&nbsp;:{" "}
-            <span className="select-all text-ivory/85">+237 94768972</span>
+            <span className="select-all text-ivory/85">{WHATSAPP_DISPLAY}</span>
           </p>
           <ul className="flex flex-wrap gap-3">
             <li>

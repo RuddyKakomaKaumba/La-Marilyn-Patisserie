@@ -1,4 +1,16 @@
+import Link from "next/link";
 import CurveDivider from "../CurveDivider";
+
+/** Accès rapide aux univers de la page. */
+const SECTIONS = [
+  { href: "#patisseries", label: "Gâteaux gourmands" },
+  { href: "#cake-design", label: "Cake Design" },
+  { href: "#mignardises", label: "Mignardises" },
+  { href: "#crepes", label: "Crêpes" },
+  { href: "#ecrin", label: "L’Écrin gourmand" },
+  { href: "#traiteur", label: "Buffets" },
+  { href: "#presentoirs", label: "Présentoirs" },
+];
 
 export default function CreationsIntro() {
   return (
@@ -35,6 +47,31 @@ export default function CreationsIntro() {
             Bienvenue dans l’univers gourmand de La Marilyn.
           </p>
         </div>
+        <nav
+          aria-label="Sections de la page"
+          data-reveal
+          style={{ "--reveal-delay": "240ms" } as React.CSSProperties}
+          className="mt-6 md:mt-9"
+        >
+          <ul className="flex flex-wrap gap-2">
+            {SECTIONS.map((s) => (
+              <li key={s.href}>
+                <a
+                  href={s.href}
+                  className="inline-flex h-9 items-center rounded-full border border-ivory/20 px-3.5 text-[0.75rem] text-ivory/85 transition-colors duration-300 hover:border-gold-light hover:text-ivory md:text-[0.8125rem]"
+                >
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <Link
+            href="/a-propos#conditions"
+            className="mt-4 inline-block text-[0.8125rem] text-gold-light underline decoration-gold/50 underline-offset-4 hover:text-ivory"
+          >
+            Comment commander, délais et conditions
+          </Link>
+        </nav>
       </div>
       <CurveDivider />
     </section>

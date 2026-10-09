@@ -1,6 +1,10 @@
 export const SITE_NAME = "La Marilyn";
 
-const WHATSAPP_NUMBER = "23794768972";
+/** Numéro WhatsApp de La Marilyn : +237 694 76 89 72 (format international, sans « + »). */
+const WHATSAPP_NUMBER = "237694768972";
+
+/** Numéro affiché aux visiteurs. */
+export const WHATSAPP_DISPLAY = "+237 694 76 89 72";
 /** Lien WhatsApp (wa.me) vers La Marilyn, avec un message prérempli. */
 export function whatsappUrl(message: string) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -18,7 +22,9 @@ export type WhatsAppCta =
   | "evenementPro"
   | "presentoirs"
   | "surMesure"
-  | "evenement";
+  | "evenement"
+  | "crepes"
+  | "ecrin";
 
 export const WHATSAPP_CTAS: Record<
   WhatsAppCta,
@@ -57,6 +63,14 @@ export const WHATSAPP_CTAS: Record<
   evenement: {
     label: "Préparer mon événement",
     intent: "j’aimerais préparer quelque chose de gourmand pour mon événement",
+  },
+  crepes: {
+    label: "Commander des crêpes",
+    intent: "j’aimerais commander des crêpes",
+  },
+  ecrin: {
+    label: "Composer mon écrin",
+    intent: "j’aimerais imaginer un Écrin gourmand",
   },
 };
 

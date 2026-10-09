@@ -26,7 +26,10 @@ const UNIVERSES: Universe[] = [
   },
   {
     title: "Gâteaux",
-    whatsapp: "surMesure",
+    nav: {
+      label: "Découvrir le Cake Design",
+      href: "/nos-creations#cake-design",
+    },
     image: {
       src: "/images/univers/gateaux.webp",
       alt: "Tarte au chocolat et noisettes caramélisées, décors de chocolat et feuille d’or",
@@ -48,7 +51,7 @@ const UNIVERSES: Universe[] = [
   {
     title: "Location de présentoirs",
     lines: ["Location", "de présentoirs"],
-    whatsapp: "presentoirs",
+    nav: { label: "Voir l’offre", href: "/nos-creations#presentoirs" },
     image: {
       src: "/images/univers/location-presentoirs.webp",
       alt: "Présentoir doré à trois étages sur un plan de marbre",
@@ -127,6 +130,18 @@ export default function GourmetUniverses() {
             );
           })}
         </ul>
+
+        <Link
+          href="/nos-creations#ecrin"
+          data-reveal
+          className="group mx-auto mt-6 flex max-w-[18rem] justify-center sm:max-w-[34rem] rounded-full px-4 py-2 text-center text-[0.8125rem] text-muted transition-colors duration-300 hover:text-ink md:mt-10"
+        >
+          <span>
+            <span className="font-semibold text-gold-deep">Nouveau</span>
+            {" · "}L’Écrin gourmand by La Marilyn, le cadeau que vous composez
+            <ArrowRight className="ml-1.5 inline h-3.5 w-3.5 align-[-0.15em] text-gold-deep transition-transform duration-300 ease-soft group-hover:translate-x-0.5" />
+          </span>
+        </Link>
       </div>
     </section>
   );

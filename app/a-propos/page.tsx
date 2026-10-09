@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import AboutHero from "@/components/about/AboutHero";
 import BrandStory from "@/components/about/BrandStory";
 import ContactSection from "@/components/about/ContactSection";
+import Faq from "@/components/about/Faq";
+import HowToOrder from "@/components/about/HowToOrder";
 import InstagramGallery from "@/components/about/InstagramGallery";
 import QuickContact from "@/components/about/QuickContact";
+import RequestForm from "@/components/about/RequestForm";
 import ContactCTA from "@/components/ContactCTA";
 import Header from "@/components/Header";
 import Reveal from "@/components/Reveal";
@@ -39,6 +42,9 @@ export default function APropos() {
         <InstagramGallery />
         <ContactSection />
         <QuickContact />
+        <HowToOrder />
+        <RequestForm />
+        <Faq />
         <ContactCTA showCreationsLink={false} />
       </main>
       <SiteFooter />
