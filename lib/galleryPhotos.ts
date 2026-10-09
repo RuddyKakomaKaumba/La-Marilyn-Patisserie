@@ -16,24 +16,20 @@ export type GalleryPhoto = {
 
 export const GALLERY_PHOTOS: GalleryPhoto[] = [
   {
-    src: "/images/galerie/gateau-fleurs-macarons.webp",
+    src: "/images/creations/gateau-floral-roses-macarons.webp",
     alt: "Gâteau d’anniversaire blanc orné de roses en sucre, de macarons et d’un topper « Happy Birthday » doré",
+    position: "50% 40%",
   },
   {
     src: "/images/galerie/piece-montee-bleu-argent.jpg",
     alt: "Pièce montée de mariage à quatre étages, bleu capitonné et blanc, rubans argentés et topper « Mr & Mrs »",
   },
   {
-    src: "/images/galerie/gateau-manchester-united.jpg",
-    alt: "Gâteau d’anniversaire rouge aux couleurs de Manchester United, ballon, écharpe et crampon doré",
-    position: "50% 60%",
-  },
-  {
     src: "/images/galerie/gateau-minnie.webp",
     alt: "Gâteau de premier anniversaire rose décoré de Minnie, de boutons et de perles en sucre",
   },
   {
-    src: "/images/galerie/gateau-manchester-city.webp",
+    src: "/images/creations/gateau-manchester-city.webp",
     alt: "Gâteau aux couleurs de Manchester City, écharpe bleu ciel et ballons en pâte à sucre",
   },
   // 6e emplacement (bandeau horizontal) : photo paysage en premier affichage.
@@ -55,8 +51,64 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     alt: "Gâteau renversé à l’ananas caramélisé sur un présentoir, une part servie",
   },
   {
-    src: "/images/galerie/gateau-chorale-marie-reine.webp",
-    alt: "Gâteau à trois étages bleu et argent pour les 25 ans de la chorale Marie Reine",
-    position: "50% 35%",
+    src: "/images/creations/gateau-trois-etages-turquoise-argent.webp",
+    alt: "Gâteau à trois étages blanc et turquoise, roses en sucre et inscriptions argentées pour les 25 ans de la chorale Marie Reine",
+    position: "50% 40%",
+  },
+];
+
+/**
+ * Réalisations Cake Design (page Nos créations) : une seule vue par
+ * création. La légende indique uniquement la catégorie.
+ */
+export type CakeDesignPhoto = GalleryPhoto & {
+  category:
+    | "Anniversaire élégant"
+    | "Anniversaire enfant"
+    | "Anniversaire thématique";
+};
+
+export const CAKE_DESIGN_PHOTOS: CakeDesignPhoto[] = [
+  {
+    src: "/images/creations/gateau-trois-etages-turquoise-argent.webp",
+    alt: "Gâteau à trois étages blanc et turquoise, roses en sucre et chiffres « 25 » argentés",
+    category: "Anniversaire élégant",
+    position: "50% 40%",
+  },
+  {
+    src: "/images/creations/gateau-blanc-or-31.webp",
+    alt: "Gâteau blanc et or surmonté d’un « 31 » doré, perles dorées et cœurs blancs",
+    category: "Anniversaire élégant",
+  },
+  {
+    src: "/images/creations/gateau-reine-des-neiges-deux-etages.webp",
+    alt: "Gâteau à deux étages violet et bleu sur le thème de la Reine des neiges, pour un 5e anniversaire",
+    category: "Anniversaire enfant",
+  },
+  {
+    src: "/images/creations/gateau-licorne-rose-deux-etages.webp",
+    alt: "Gâteau à deux étages rose et blanc, licornes, perles en sucre et prénom doré",
+    category: "Anniversaire enfant",
+  },
+  {
+    src: "/images/creations/gateau-spiderman-deux-etages.webp",
+    alt: "Gâteau à deux étages rouge et bleu sur le thème de Spider-Man, pour un 5e anniversaire",
+    category: "Anniversaire enfant",
+  },
+  {
+    src: "/images/galerie/gateau-minnie.webp",
+    alt: "Gâteau de premier anniversaire rose décoré de Minnie, de boutons et de perles en sucre",
+    category: "Anniversaire enfant",
+  },
+  {
+    src: "/images/creations/gateau-manchester-city.webp",
+    alt: "Gâteau aux couleurs de Manchester City, écharpe bleu ciel et ballons en pâte à sucre",
+    category: "Anniversaire thématique",
+  },
+  {
+    src: "/images/galerie/gateau-manchester-united.jpg",
+    alt: "Gâteau d’anniversaire rouge aux couleurs de Manchester United, ballon, écharpe et crampon doré",
+    category: "Anniversaire thématique",
+    position: "50% 60%",
   },
 ];

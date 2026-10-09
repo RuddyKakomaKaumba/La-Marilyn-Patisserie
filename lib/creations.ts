@@ -153,9 +153,9 @@ export const CAKE_DESIGNS: Product[] = [
     tone: TONES.linen,
     ...CAKE_DESIGN,
     image: {
-      src: "/images/patisseries/gateau-anniversaire.webp",
-      alt: "Gâteau d’anniversaire à étages décoré de vermicelles colorés et de bougies",
-      position: "60% 50%",
+      src: "/images/creations/gateau-floral-roses-macarons.webp",
+      alt: "Gâteau d’anniversaire blanc couronné de roses en sucre violettes, roses et vertes, de macarons et d’un « Happy Birthday » doré",
+      position: "50% 45%",
     },
   },
   {
@@ -165,9 +165,9 @@ export const CAKE_DESIGNS: Product[] = [
     tone: TONES.cream,
     ...CAKE_DESIGN,
     image: {
-      src: "/images/patisseries/gateau-mariage.webp",
-      alt: "Pièce montée de mariage à quatre étages ornée de roses blanches et de feuille d’or",
-      position: "50% 25%",
+      src: "/images/galerie/piece-montee-bleu-argent.jpg",
+      alt: "Pièce montée de mariage à quatre étages, bleu capitonné et blanc, rubans argentés et topper « Mr & Mrs »",
+      position: "50% 40%",
     },
   },
 ];

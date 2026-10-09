@@ -31,9 +31,9 @@ const UNIVERSES: Universe[] = [
       href: "/nos-creations#cake-design",
     },
     image: {
-      src: "/images/univers/gateaux.webp",
-      alt: "Tarte au chocolat et noisettes caramélisées, décors de chocolat et feuille d’or",
-      position: "50% 60%",
+      src: "/images/creations/gateau-trois-etages-turquoise-argent.webp",
+      alt: "Gâteau à trois étages blanc et turquoise, roses en sucre et inscriptions argentées pour les 25 ans d’une chorale",
+      position: "50% 18%",
     },
   },
   {

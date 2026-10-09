@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CAKE_DESIGN_TERMS } from "@/lib/commerce";
 import { CAKE_DESIGNS } from "@/lib/creations";
+import { CAKE_DESIGN_PHOTOS } from "@/lib/galleryPhotos";
 import { requestHref } from "@/lib/requests";
 import { ctaUrl, WHATSAPP_CTAS } from "@/lib/site";
 import { btnArrow, btnGold, btnOutlineDark } from "../buttons";
@@ -118,6 +119,40 @@ export default function CakeDesign() {
             {CAKE_DESIGN_TERMS.final}
           </p>
         </div>
+      </div>
+
+      {/* Réalisations : défilement horizontal sur mobile, grille dès md. */}
+      <div className="mx-auto mt-8 max-w-[1280px] md:mt-12">
+        <h3 data-reveal className="eyebrow text-gold-deep">
+          Quelques réalisations
+        </h3>
+        <ul
+          data-reveal="image"
+          className="-mx-4 mt-4 flex snap-x snap-mandatory scroll-px-4 sm:scroll-px-8 gap-2.5 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:-mx-8 sm:px-8 md:mx-0 md:grid md:grid-cols-4 md:gap-4 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden"
+        >
+          {CAKE_DESIGN_PHOTOS.map((photo) => (
+            <li
+              key={photo.src}
+              className="w-[42vw] max-w-[13rem] shrink-0 snap-start md:w-auto md:max-w-none"
+            >
+              <figure>
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[10px] bg-sand">
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    fill
+                    sizes="(min-width: 1280px) 300px, (min-width: 768px) 23vw, 42vw"
+                    className="object-cover"
+                    style={{ objectPosition: photo.position ?? "50% 50%" }}
+                  />
+                </div>
+                <figcaption className="mt-2 text-[0.6875rem] uppercase tracking-[0.12em] text-muted">
+                  {photo.category}
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
