@@ -109,5 +109,6 @@ export const NAV_LINKS = [
  */
 export const SOCIAL_LINKS = {
   instagram: "https://www.instagram.com/lamarilyn2",
-  facebook: "https://www.facebook.com/lamarilyn2",
+  // Page qui publie le lien partagé par La Marilyn (share/p/18JWPUVYir).
+  facebook: "https://www.facebook.com/profile.php?id=100063597662817",
 } as const;
