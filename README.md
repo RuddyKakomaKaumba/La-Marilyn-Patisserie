@@ -62,8 +62,8 @@ journalisées côté serveur avec le préfixe `[instagram]` (sans le jeton).
 ### Configuration Meta (une fois)
 
 Prérequis : le compte Instagram @lamarilyn2 doit être un **compte
-professionnel** (Entreprise ou Créateur) relié à la Page Facebook
-[lamarilyn2](https://www.facebook.com/lamarilyn2).
+professionnel** (Entreprise ou Créateur) relié à la
+[Page Facebook La Marilyn](https://www.facebook.com/profile.php?id=100063597662817).
 
 Méthode recommandée (jeton sans expiration) :
 
