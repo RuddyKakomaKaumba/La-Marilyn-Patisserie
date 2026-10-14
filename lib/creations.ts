@@ -441,9 +441,9 @@ export const TRAITEUR: Product[] = [
     request: "presentoirs",
     link: { label: "Voir l’offre de location", href: "#presentoirs" },
     image: {
-      src: "/images/presentoirs/presentoirs-cubes-blancs.webp",
-      alt: "Cubes présentoirs blancs de différentes tailles posés sur une table",
-      position: "45% 50%",
+      src: "/images/presentoirs/cubes-blancs-table-marbre.webp",
+      alt: "Cubes présentoirs blancs de différentes tailles posés sur une table en marbre",
+      position: "48% 62%",
     },
   },
   {

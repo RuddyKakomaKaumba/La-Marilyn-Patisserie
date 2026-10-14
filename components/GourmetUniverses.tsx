@@ -53,9 +53,9 @@ const UNIVERSES: Universe[] = [
     lines: ["Location", "de présentoirs"],
     nav: { label: "Voir l’offre", href: "/nos-creations#presentoirs" },
     image: {
-      src: "/images/presentoirs/presentoirs-cubes-blancs.webp",
-      alt: "Cubes présentoirs blancs de différentes tailles posés sur une table",
-      position: "38% 40%",
+      src: "/images/presentoirs/cubes-blancs-table-marbre.webp",
+      alt: "Cubes présentoirs blancs de différentes tailles posés sur une table en marbre",
+      position: "60% 62%",
     },
   },
 ];

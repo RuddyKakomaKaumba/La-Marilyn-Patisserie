@@ -85,12 +85,12 @@ export default function Presentoirs() {
             className="relative mb-5 aspect-[3/2] overflow-hidden rounded-[10px] bg-sand"
           >
             <Image
-              src="/images/presentoirs/presentoirs-cubes-blancs.webp"
-              alt="Cubes présentoirs blancs de différentes tailles posés sur une table"
+              src="/images/presentoirs/cubes-blancs-table-marbre.webp"
+              alt="Cubes présentoirs blancs de différentes tailles posés sur une table en marbre"
               fill
               sizes="(min-width: 1280px) 600px, (min-width: 1024px) 48vw, 92vw"
               className="object-cover"
-              style={{ objectPosition: "50% 40%" }}
+              style={{ objectPosition: "50% 60%" }}
             />
           </div>
           <ul className="grid gap-3 sm:grid-cols-2">
