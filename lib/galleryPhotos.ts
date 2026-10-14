@@ -76,14 +76,14 @@ export const CAKE_DESIGN_PHOTOS: CakeDesignPhoto[] = [
     position: "50% 40%",
   },
   {
+    src: "/images/creations/gateau-baby-boss.webp",
+    alt: "Gâteau blanc et bleu marine sur le thème Baby Boss, biberon et billets en sucre",
+    category: "Anniversaire enfant",
+  },
+  {
     src: "/images/creations/gateau-blanc-or-31.webp",
     alt: "Gâteau blanc et or surmonté d’un « 31 » doré, perles dorées et cœurs blancs",
     category: "Anniversaire élégant",
-  },
-  {
-    src: "/images/creations/gateau-reine-des-neiges-deux-etages.webp",
-    alt: "Gâteau à deux étages violet et bleu sur le thème de la Reine des neiges, pour un 5e anniversaire",
-    category: "Anniversaire enfant",
   },
   {
     src: "/images/creations/gateau-licorne-rose-deux-etages.webp",
@@ -91,19 +91,41 @@ export const CAKE_DESIGN_PHOTOS: CakeDesignPhoto[] = [
     category: "Anniversaire enfant",
   },
   {
+    src: "/images/creations/gateau-noir-or-fleurs-roses.webp",
+    alt: "Gâteau noir à coulures dorées, rosaces, perles dorées et couronne de roses « Happy Birthday »",
+    category: "Anniversaire élégant",
+    position: "50% 40%",
+  },
+  {
     src: "/images/creations/gateau-spiderman-deux-etages.webp",
     alt: "Gâteau à deux étages rouge et bleu sur le thème de Spider-Man, pour un 5e anniversaire",
     category: "Anniversaire enfant",
   },
   {
-    src: "/images/galerie/gateau-minnie.webp",
-    alt: "Gâteau de premier anniversaire rose décoré de Minnie, de boutons et de perles en sucre",
+    src: "/images/creations/gateau-blanc-fleurs-rhodi.webp",
+    alt: "Gâteau blanc orné de fleurs en relief nacrées et d’un prénom en lettres dorées",
+    category: "Anniversaire élégant",
+    position: "50% 55%",
+  },
+  {
+    src: "/images/creations/gateau-ourson-arc-en-ciel.webp",
+    alt: "Gâteau vert et beige surmonté d’un ourson, d’un arc-en-ciel et d’une lune, pour un premier anniversaire",
     category: "Anniversaire enfant",
   },
   {
     src: "/images/creations/gateau-manchester-city.webp",
     alt: "Gâteau aux couleurs de Manchester City, écharpe bleu ciel et ballons en pâte à sucre",
     category: "Anniversaire thématique",
+  },
+  {
+    src: "/images/creations/gateau-jungle-palmier.webp",
+    alt: "Gâteau jungle vu de dessus : palmier, rivière, fleurs et lianes en pâte à sucre",
+    category: "Anniversaire enfant",
+  },
+  {
+    src: "/images/galerie/gateau-minnie.webp",
+    alt: "Gâteau de premier anniversaire rose décoré de Minnie, de boutons et de perles en sucre",
+    category: "Anniversaire enfant",
   },
   {
     src: "/images/galerie/gateau-manchester-united.jpg",
