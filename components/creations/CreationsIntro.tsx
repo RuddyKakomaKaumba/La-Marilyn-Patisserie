@@ -65,12 +65,20 @@ export default function CreationsIntro() {
               </li>
             ))}
           </ul>
-          <Link
-            href="/a-propos#conditions"
-            className="mt-3 inline-block py-1 text-[0.8125rem] text-gold-light underline decoration-gold/50 underline-offset-4 hover:text-ivory"
-          >
-            Comment commander, délais et conditions
-          </Link>
+          <p className="mt-3 flex flex-wrap gap-x-5 gap-y-1">
+            <Link
+              href="/a-propos#demande"
+              className="inline-block py-1 text-[0.8125rem] text-gold-light underline decoration-gold/50 underline-offset-4 hover:text-ivory"
+            >
+              Préparer ma demande
+            </Link>
+            <Link
+              href="/a-propos#conditions"
+              className="inline-block py-1 text-[0.8125rem] text-gold-light underline decoration-gold/50 underline-offset-4 hover:text-ivory"
+            >
+              Comment commander, délais et conditions
+            </Link>
+          </p>
         </nav>
       </div>
       <CurveDivider />

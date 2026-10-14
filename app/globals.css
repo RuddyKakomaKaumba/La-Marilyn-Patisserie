@@ -10,7 +10,7 @@
   --color-muted: #6f5d4f;
   --color-gold: #caa56c;
   --color-gold-light: #e2c796;
-  --color-gold-deep: #a8834b;
+  --color-gold-deep: #86642f; /* texte or sur fonds clairs : contraste AA (≥ 4,5:1) */
 
   --font-serif: var(--font-newsreader), "Times New Roman", serif;
   --font-sans: var(--font-dm-sans), system-ui, sans-serif;

@@ -67,6 +67,13 @@ export const DELIVERY = {
     "Le retrait sur place reste exceptionnel et uniquement après accord préalable.",
 };
 
+/** Frais de livraison indicatifs affichés dans les fiches (mêmes montants). */
+export const DELIVERY_SHORT = {
+  standard: "À partir de 1 000 FCFA, à la charge du client",
+  cakeDesign: "À partir de 5 000 FCFA, à la charge du client",
+  events: "Selon le volume, la destination et le transport",
+};
+
 export const PACKAGING = "Emballage standard inclus.";
 
 /* ---- Par univers ------------------------------------------------------ */

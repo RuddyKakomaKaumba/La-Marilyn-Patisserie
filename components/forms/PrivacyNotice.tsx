@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 /**
  * Mention de confidentialité affichée avant l'envoi d'une demande.
  * Seule la partie « ce site n'enregistre pas » est vérifiée techniquement ;
@@ -13,7 +15,13 @@ export default function PrivacyNotice() {
       placées dans le message WhatsApp que vous choisissez d’envoyer. La Marilyn
       ne vend pas vos données et ne les divulgue pas à des tiers à des fins
       commerciales. Les messages envoyés via WhatsApp sont également traités par
-      ce service, conformément à sa propre politique de confidentialité.
+      ce service, conformément à sa propre politique de confidentialité.{" "}
+      <Link
+        href="/confidentialite"
+        className="text-gold-deep underline underline-offset-2 hover:text-ink"
+      >
+        En savoir plus
+      </Link>
     </p>
   );
 }

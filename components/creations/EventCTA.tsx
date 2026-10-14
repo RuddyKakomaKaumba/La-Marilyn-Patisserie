@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ctaUrl, WHATSAPP_CTAS } from "@/lib/site";
 import { btnArrow, btnGold } from "../buttons";
 import Parallax from "../Parallax";
@@ -45,16 +46,23 @@ export default function EventCTA() {
           </p>
         </div>
 
-        <a
-          data-reveal
-          href={ctaUrl("evenement")}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`${btnGold} mt-10`}
-        >
-          {WHATSAPP_CTAS.evenement.label}
-          <ArrowRight className={btnArrow} />
-        </a>
+        <div data-reveal className="mt-10 flex flex-col items-center">
+          <a
+            href={ctaUrl("evenement")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={btnGold}
+          >
+            {WHATSAPP_CTAS.evenement.label}
+            <ArrowRight className={btnArrow} />
+          </a>
+          <Link
+            href="/a-propos#demande"
+            className="mt-4 inline-block py-1 text-[0.8125rem] text-gold-light underline decoration-gold/50 underline-offset-4 transition-colors hover:text-ivory"
+          >
+            Ou préparez votre demande en quelques lignes
+          </Link>
+        </div>
       </div>
     </section>
   );

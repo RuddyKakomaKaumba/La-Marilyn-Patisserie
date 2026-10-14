@@ -1,6 +1,7 @@
 import type { Product } from "@/components/InfiniteProductCarousel";
 import {
   CAKE_DESIGN_TERMS,
+  DELIVERY_SHORT,
   GATEAUX_TERMS,
   MIGNARDISES_TERMS,
   PRESENTOIRS,
@@ -15,7 +16,11 @@ const TONES = {
 };
 
 /** Mentions communes à tous les gâteaux gourmands. */
-const GATEAU: Pick<Product, "notes" | "leadTime" | "leadDays" | "request"> = {
+const GATEAU: Pick<
+  Product,
+  "notes" | "leadTime" | "leadDays" | "request" | "delivery"
+> = {
+  delivery: DELIVERY_SHORT.standard,
   notes: GATEAUX_TERMS.notes,
   leadTime: GATEAUX_TERMS.leadTime,
   leadDays: 1,
@@ -206,92 +211,94 @@ const MIGNARDISE: Pick<Product, "request"> & { notes: string[] } = {
  * Mignardises — pour ajouter la photo d'un produit, renseigner
  * `image: { src: "/images/mignardises/<fichier>.webp", alt: "…" }`.
  */
-export const MIGNARDISES: Product[] = [
-  {
-    name: "Mini burgers",
-    cta: { key: "mignardises", detail: "Mini burgers" },
-    description:
-      "Des bouchées généreuses, pensées pour vos cocktails, anniversaires, veillées et réceptions.",
-    tone: TONES.sand,
-    pricing: { kind: "fixed", amount: 650, unit: "unité" },
-    composition: "Salade, oignons, tomate, viande et sauce mini-burger.",
-    minQuantity: "10 pièces",
-    leadTime: "48 h",
-    leadDays: 2,
-    ...MIGNARDISE,
-    image: {
-      src: "/images/mignardises/mini-burgers.webp",
-      alt: "Mini burgers au cheddar, tomate et salade, piqués d’une brochette dorée sur un plateau de marbre",
-      position: "50% 60%",
+export const MIGNARDISES: Product[] = (
+  [
+    {
+      name: "Mini burgers",
+      cta: { key: "mignardises", detail: "Mini burgers" },
+      description:
+        "Des bouchées généreuses, pensées pour vos cocktails, anniversaires, veillées et réceptions.",
+      tone: TONES.sand,
+      pricing: { kind: "fixed", amount: 650, unit: "unité" },
+      composition: "Salade, oignons, tomate, viande et sauce mini-burger.",
+      minQuantity: "10 pièces",
+      leadTime: "48 h",
+      leadDays: 2,
+      ...MIGNARDISE,
+      image: {
+        src: "/images/mignardises/mini-burgers.webp",
+        alt: "Mini burgers au cheddar, tomate et salade, piqués d’une brochette dorée sur un plateau de marbre",
+        position: "50% 60%",
+      },
     },
-  },
-  {
-    name: "Nems",
-    cta: { key: "mignardises", detail: "Nems" },
-    description:
-      "Des bouchées croustillantes et gourmandes, parfaites à partager entre invités.",
-    tone: TONES.beige,
-    pricing: { kind: "fixed", amount: 200, unit: "unité" },
-    options: ["Viande", "Poisson"],
-    minQuantity: "25 pièces",
-    leadTime: "48 h",
-    leadDays: 2,
-    ...MIGNARDISE,
-    image: {
-      src: "/images/mignardises/nems.webp",
-      alt: "Nems croustillants garnis de légumes, servis avec une sauce pimentée",
-      position: "50% 55%",
+    {
+      name: "Nems",
+      cta: { key: "mignardises", detail: "Nems" },
+      description:
+        "Des bouchées croustillantes et gourmandes, parfaites à partager entre invités.",
+      tone: TONES.beige,
+      pricing: { kind: "fixed", amount: 200, unit: "unité" },
+      options: ["Viande", "Poisson"],
+      minQuantity: "25 pièces",
+      leadTime: "48 h",
+      leadDays: 2,
+      ...MIGNARDISE,
+      image: {
+        src: "/images/mignardises/nems.webp",
+        alt: "Nems croustillants garnis de légumes, servis avec une sauce pimentée",
+        position: "50% 55%",
+      },
     },
-  },
-  {
-    name: "Mini-cupcakes",
-    cta: { key: "mignardises", detail: "Mini-cupcakes" },
-    description: "De mini-cupcakes surmontés d’une jolie crème.",
-    tone: TONES.linen,
-    image: {
-      src: "/images/mignardises/mini-cupcakes.webp",
-      alt: "Assortiment de mini-cupcakes surmontés de crème, de fruits rouges et d’éclats de fruits secs, sur un présentoir en marbre",
-      position: "50% 55%",
+    {
+      name: "Mini-cupcakes",
+      cta: { key: "mignardises", detail: "Mini-cupcakes" },
+      description: "De mini-cupcakes surmontés d’une jolie crème.",
+      tone: TONES.linen,
+      image: {
+        src: "/images/mignardises/mini-cupcakes.webp",
+        alt: "Assortiment de mini-cupcakes surmontés de crème, de fruits rouges et d’éclats de fruits secs, sur un présentoir en marbre",
+        position: "50% 55%",
+      },
+      pricing: { kind: "from", amount: 10_000, unit: "les 9 pièces" },
+      options: ["Crème au beurre", "Chantilly"],
+      minQuantity: "9 pièces",
+      leadTime: "24 h",
+      leadDays: 1,
+      ...MIGNARDISE,
+      notes: [
+        "Le prix varie selon la décoration et la personnalisation.",
+        ...MIGNARDISE.notes,
+      ],
     },
-    pricing: { kind: "from", amount: 10_000, unit: "les 9 pièces" },
-    options: ["Crème au beurre", "Chantilly"],
-    minQuantity: "9 pièces",
-    leadTime: "24 h",
-    leadDays: 1,
-    ...MIGNARDISE,
-    notes: [
-      "Le prix varie selon la décoration et la personnalisation.",
-      ...MIGNARDISE.notes,
-    ],
-  },
-  {
-    name: "Pénés",
-    cta: { key: "mignardises", detail: "Pénés" },
-    description:
-      "De savoureuses portions individuelles de pâtes, faciles à servir sur un buffet.",
-    tone: TONES.linen,
-    pricing: { kind: "confirm" },
-    ...MIGNARDISE,
-    image: {
-      src: "/images/mignardises/penes.webp",
-      alt: "Portions individuelles de penne à la bolognaise et au parmesan en verrines",
-      position: "50% 55%",
+    {
+      name: "Pénés",
+      cta: { key: "mignardises", detail: "Pénés" },
+      description:
+        "De savoureuses portions individuelles de pâtes, faciles à servir sur un buffet.",
+      tone: TONES.linen,
+      pricing: { kind: "confirm" },
+      ...MIGNARDISE,
+      image: {
+        src: "/images/mignardises/penes.webp",
+        alt: "Portions individuelles de penne à la bolognaise et au parmesan en verrines",
+        position: "50% 55%",
+      },
     },
-  },
-  {
-    name: "Mini moelleux",
-    cta: { key: "mignardises", detail: "Mini moelleux" },
-    description: "De petites douceurs au chocolat, fondantes et gourmandes.",
-    tone: TONES.cream,
-    pricing: { kind: "confirm" },
-    ...MIGNARDISE,
-    image: {
-      src: "/images/mignardises/mini-moelleux.webp",
-      alt: "Mini moelleux au chocolat au cœur coulant, entourés de moelleux aux pistaches et aux fruits rouges",
-      position: "50% 55%",
+    {
+      name: "Mini moelleux",
+      cta: { key: "mignardises", detail: "Mini moelleux" },
+      description: "De petites douceurs au chocolat, fondantes et gourmandes.",
+      tone: TONES.cream,
+      pricing: { kind: "confirm" },
+      ...MIGNARDISE,
+      image: {
+        src: "/images/mignardises/mini-moelleux.webp",
+        alt: "Mini moelleux au chocolat au cœur coulant, entourés de moelleux aux pistaches et aux fruits rouges",
+        position: "50% 55%",
+      },
     },
-  },
-];
+  ] as Product[]
+).map((p) => ({ ...p, delivery: DELIVERY_SHORT.standard }));
 
 /**
  * Crêpes sucrées et salées. Les « crêpes sucrées » et « crêpes au
@@ -403,61 +410,69 @@ export const CREPES: Product[] = [
 /**
  * Buffet gourmand — photos dans /public/images/buffet/.
  */
-export const TRAITEUR: Product[] = [
-  {
-    name: "Événements professionnels",
-    cta: { key: "evenementPro" },
-    description:
-      "Des gourmandises pour vos réceptions d’entreprise et vos moments entre collègues.",
-    tone: TONES.sand,
-    pricing: { kind: "quote" },
-    request: "buffet",
-    image: {
-      src: "/images/buffet/evenements-professionnels.webp",
-      alt: "Buffet de verrines, mini-burgers et tartelettes lors d’une réception professionnelle en soirée",
-      position: "50% 50%",
+export const TRAITEUR: Product[] = (
+  [
+    {
+      name: "Événements professionnels",
+      cta: { key: "evenementPro" },
+      description:
+        "Des gourmandises pour vos réceptions d’entreprise et vos moments entre collègues.",
+      tone: TONES.sand,
+      pricing: { kind: "quote" },
+      request: "buffet",
+      image: {
+        src: "/images/buffet/evenements-professionnels.webp",
+        alt: "Buffet de verrines, mini-burgers et tartelettes lors d’une réception professionnelle en soirée",
+        position: "50% 50%",
+      },
     },
-  },
-  {
-    name: "Buffets",
-    cta: { key: "buffet" },
-    description: "De jolies tables gourmandes à partager avec vos invités.",
-    tone: TONES.linen,
-    pricing: { kind: "quote" },
-    request: "buffet",
-    image: {
-      src: "/images/buffet/buffets.jpg",
-      alt: "Buffet de bouchées : brochettes tomate-fromage, mini-burgers, canapés au saumon et tartelettes",
-      position: "30% 50%",
+    {
+      name: "Buffets",
+      cta: { key: "buffet" },
+      description: "De jolies tables gourmandes à partager avec vos invités.",
+      tone: TONES.linen,
+      pricing: { kind: "quote" },
+      request: "buffet",
+      image: {
+        src: "/images/buffet/buffets.jpg",
+        alt: "Buffet de bouchées : brochettes tomate-fromage, mini-burgers, canapés au saumon et tartelettes",
+        position: "30% 50%",
+      },
     },
-  },
-  {
-    name: "Location de présentoirs",
-    cta: { key: "presentoirs" },
-    description:
-      "Un set de cubes blancs pour mettre vos gourmandises en valeur.",
-    tone: TONES.cream,
-    pricing: { kind: "fixed", amount: PRESENTOIRS.price, unit: "le set" },
-    request: "presentoirs",
-    link: { label: "Voir l’offre de location", href: "#presentoirs" },
-    image: {
-      src: "/images/presentoirs/cubes-blancs-table-marbre.webp",
-      alt: "Cubes présentoirs blancs de différentes tailles posés sur une table en marbre",
-      position: "48% 62%",
+    {
+      name: "Location de présentoirs",
+      cta: { key: "presentoirs" },
+      description:
+        "Un set de cubes blancs pour mettre vos gourmandises en valeur.",
+      tone: TONES.cream,
+      pricing: { kind: "fixed", amount: PRESENTOIRS.price, unit: "le set" },
+      request: "presentoirs",
+      link: { label: "Voir l’offre de location", href: "#presentoirs" },
+      image: {
+        src: "/images/presentoirs/cubes-blancs-table-marbre.webp",
+        alt: "Cubes présentoirs blancs de différentes tailles posés sur une table en marbre",
+        position: "48% 62%",
+      },
     },
-  },
-  {
-    name: "Pièces cocktail",
-    cta: { key: "buffet", detail: "Pièces cocktail" },
-    description:
-      "De petites bouchées élégantes, à picorer entre deux conversations.",
-    tone: TONES.beige,
-    pricing: { kind: "quote" },
-    request: "buffet",
-    image: {
-      src: "/images/buffet/pieces-cocktail.jpg",
-      alt: "Pièces cocktail : bouchées de mousse fromagère et crevette sur base noire, servies sur miroir",
-      position: "50% 55%",
+    {
+      name: "Pièces cocktail",
+      cta: { key: "buffet", detail: "Pièces cocktail" },
+      description:
+        "De petites bouchées élégantes, à picorer entre deux conversations.",
+      tone: TONES.beige,
+      pricing: { kind: "quote" },
+      request: "buffet",
+      image: {
+        src: "/images/buffet/pieces-cocktail.jpg",
+        alt: "Pièces cocktail : bouchées de mousse fromagère et crevette sur base noire, servies sur miroir",
+        position: "50% 55%",
+      },
     },
-  },
-];
+  ] as Product[]
+).map((p) => ({
+  ...p,
+  delivery:
+    p.request === "presentoirs"
+      ? PRESENTOIRS.transport.replace(/\.$/, "")
+      : DELIVERY_SHORT.events,
+}));

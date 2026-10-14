@@ -61,6 +61,13 @@ export default function SiteFooter() {
         </ul>
         <p className="mt-8 text-[0.75rem] tracking-[0.04em] text-ivory/60 md:mt-10 md:text-[0.6875rem]">
           © La Marilyn — Tous droits réservés
+          <span aria-hidden="true"> · </span>
+          <Link
+            href="/confidentialite"
+            className="inline-block py-1 underline decoration-ivory/30 underline-offset-4 transition-colors hover:text-gold-light"
+          >
+            Confidentialité
+          </Link>
         </p>
       </div>
     </footer>

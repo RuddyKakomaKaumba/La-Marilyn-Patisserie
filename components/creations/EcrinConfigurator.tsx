@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ECRIN_TERMS } from "@/lib/commerce";
+import { ECRIN_TERMS, PAYMENT } from "@/lib/commerce";
 import { ECRIN_GOURMANDISES, ECRIN_OCCASIONS } from "@/lib/ecrin";
 import {
   budgetText,
@@ -403,6 +403,10 @@ export default function EcrinConfigurator() {
         </button>
         <p className="text-[0.75rem] leading-relaxed text-muted">
           {ECRIN_TERMS.priceDetail} {ECRIN_TERMS.cake}
+        </p>
+        <p className="text-[0.75rem] leading-relaxed text-ink">
+          Une fois la composition et le prix validés&nbsp;:{" "}
+          {PAYMENT.summary.charAt(0).toLowerCase() + PAYMENT.summary.slice(1)}
         </p>
         {sentUrl && (
           <p role="status" className="text-[0.8125rem] text-ink">

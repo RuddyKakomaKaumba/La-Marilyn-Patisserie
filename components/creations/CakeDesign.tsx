@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CAKE_DESIGN_TERMS } from "@/lib/commerce";
+import { CAKE_DESIGN_TERMS, DELIVERY_SHORT } from "@/lib/commerce";
 import { CAKE_DESIGNS } from "@/lib/creations";
 import { CAKE_DESIGN_PHOTOS } from "@/lib/galleryPhotos";
 import { requestHref } from "@/lib/requests";
@@ -95,6 +95,10 @@ export default function CakeDesign() {
             <div className="flex gap-3">
               <dt className="w-[5rem] shrink-0 text-muted">Urgence</dt>
               <dd className="text-ink">{CAKE_DESIGN_TERMS.urgent}</dd>
+            </div>
+            <div className="flex gap-3">
+              <dt className="w-[5rem] shrink-0 text-muted">Livraison</dt>
+              <dd className="text-ink">{DELIVERY_SHORT.cakeDesign}</dd>
             </div>
           </dl>
 

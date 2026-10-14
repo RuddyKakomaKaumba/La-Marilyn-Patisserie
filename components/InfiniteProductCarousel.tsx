@@ -40,6 +40,8 @@ export type Product = {
   minQuantity?: string;
   /** Délai minimum, ex. « 48 h ». */
   leadTime?: string;
+  /** Frais de livraison indicatifs (repris des conditions validées). */
+  delivery?: string;
   /** Délai minimum en jours (utilisé par le formulaire de demande). */
   leadDays?: number;
   /** Mentions importantes (inclus / non inclus, conditions…). */
@@ -75,13 +77,13 @@ const BADGES: Record<
   "best-seller": {
     symbol: "★",
     label: "Best seller",
-    color: "#E53935",
+    color: "#C62828",
     className: "left-0 rounded-r-[6px]",
   },
   "sur-commande": {
     symbol: "✦",
     label: "Sur commande",
-    color: "#1677FF",
+    color: "#0F62D6",
     className: "right-0 rounded-l-[6px]",
   },
 };

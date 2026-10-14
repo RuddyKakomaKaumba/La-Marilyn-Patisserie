@@ -43,6 +43,7 @@ export default function ProductDetails({
     facts.push(["Au choix", product.options.join(" ou ")]);
   if (product.minQuantity) facts.push(["Minimum", product.minQuantity]);
   if (product.leadTime) facts.push(["Délai", product.leadTime]);
+  if (product.delivery) facts.push(["Livraison", product.delivery]);
 
   return (
     <article>

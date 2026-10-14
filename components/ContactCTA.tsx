@@ -60,6 +60,13 @@ export default function ContactCTA({
             </Link>
           )}
         </div>
+        <Link
+          href="/a-propos#demande"
+          data-reveal
+          className="mt-4 inline-block py-1 text-[0.8125rem] text-gold-light underline decoration-gold/50 underline-offset-4 transition-colors hover:text-ivory md:mt-5"
+        >
+          Ou préparez votre demande en quelques lignes
+        </Link>
       </div>
     </section>
   );
