@@ -1,12 +1,25 @@
+import Image from "next/image";
 import { ECRIN_TERMS } from "@/lib/commerce";
 import { PRECOMPOSED_ECRINS } from "@/lib/ecrin";
 import EcrinOptions from "./EcrinOptions";
 
+/** Le coffret réel : fermé (le concept) et ouvert (à composer). */
+const ECRIN_PHOTOS = [
+  {
+    src: "/images/ecrin/ecrin-gourmand-ferme.webp",
+    alt: "Coffret L’Écrin gourmand fermé, blanc au logo doré La Marilyn, noué d’un ruban violet",
+    position: "50% 62%",
+  },
+  {
+    src: "/images/ecrin/ecrin-gourmand-ouvert.webp",
+    alt: "Coffret L’Écrin gourmand ouvert et vide, un point d’interrogation violet à l’intérieur",
+    position: "50% 50%",
+  },
+];
+
 /**
  * L'Écrin gourmand by La Marilyn : coffret cadeau entièrement composé par
  * le visiteur (option 1) ou, plus tard, écrins pré-composés (option 2).
- * Emplacement photo : ajouter une image dans cette section dès réception
- * des photos de l'écrin.
  */
 export default function EcrinGourmand() {
   return (
@@ -41,6 +54,26 @@ export default function EcrinGourmand() {
             >
               {ECRIN_TERMS.signature}
             </p>
+            <div
+              data-reveal="image"
+              className="mt-7 grid grid-cols-2 gap-2.5 md:mt-9 md:gap-4"
+            >
+              {ECRIN_PHOTOS.map((photo) => (
+                <div
+                  key={photo.src}
+                  className="relative aspect-[4/5] overflow-hidden rounded-[10px] bg-ink-soft"
+                >
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    fill
+                    sizes="(min-width: 1280px) 320px, (min-width: 1024px) 26vw, 48vw"
+                    className="object-cover"
+                    style={{ objectPosition: photo.position }}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
 
           <div

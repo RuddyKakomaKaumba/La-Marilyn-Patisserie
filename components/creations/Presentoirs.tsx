@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { PRESENTOIRS } from "@/lib/commerce";
 import { formatFcfa } from "@/lib/pricing";
@@ -10,9 +11,8 @@ import { ArrowRight } from "../icons";
 const MAX_H = Math.max(...PRESENTOIRS.cubes.map((c) => c.h));
 
 /**
- * Location de présentoirs : set de 10 cubes blancs. En attendant les
- * photos des cubes, un schéma à l'échelle illustre les dimensions.
- * Emplacement photo : ajouter une image ici dès réception.
+ * Location de présentoirs : set de 10 cubes blancs. Photo des cubes et
+ * schéma à l'échelle des dimensions.
  */
 export default function Presentoirs() {
   const total = PRESENTOIRS.cubes.reduce((n, c) => n + c.count, 0);
@@ -74,13 +74,25 @@ export default function Presentoirs() {
               )}
             </div>
             <figcaption className="mt-2 text-[0.6875rem] text-muted">
-              Schéma indicatif à l’échelle (largeur × hauteur). Photos des cubes
-              à venir.
+              Schéma indicatif à l’échelle (largeur × hauteur).
             </figcaption>
           </figure>
         </div>
 
         <div className="lg:pt-10">
+          <div
+            data-reveal="image"
+            className="relative mb-5 aspect-[3/2] overflow-hidden rounded-[10px] bg-sand"
+          >
+            <Image
+              src="/images/presentoirs/presentoirs-cubes-blancs.webp"
+              alt="Cubes présentoirs blancs de différentes tailles posés sur une table"
+              fill
+              sizes="(min-width: 1280px) 600px, (min-width: 1024px) 48vw, 92vw"
+              className="object-cover"
+              style={{ objectPosition: "50% 40%" }}
+            />
+          </div>
           <ul className="grid gap-3 sm:grid-cols-2">
             <li
               data-reveal

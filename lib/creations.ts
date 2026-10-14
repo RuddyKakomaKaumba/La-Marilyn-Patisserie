@@ -381,9 +381,9 @@ export const TRAITEUR: Product[] = [
     request: "presentoirs",
     link: { label: "Voir l’offre de location", href: "#presentoirs" },
     image: {
-      src: "/images/buffet/location-presentoirs.jpg",
-      alt: "Présentoirs à gâteaux dorés, argentés et en marbre, cloche en verre et photophores dorés",
-      position: "50% 75%",
+      src: "/images/presentoirs/presentoirs-cubes-blancs.webp",
+      alt: "Cubes présentoirs blancs de différentes tailles posés sur une table",
+      position: "45% 50%",
     },
   },
   {
