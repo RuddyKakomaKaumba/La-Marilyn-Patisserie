@@ -248,6 +248,11 @@ export const MIGNARDISES: Product[] = [
     cta: { key: "mignardises", detail: "Mini-cupcakes" },
     description: "De mini-cupcakes surmontés d’une jolie crème.",
     tone: TONES.linen,
+    image: {
+      src: "/images/mignardises/mini-cupcakes.webp",
+      alt: "Assortiment de mini-cupcakes surmontés de crème, de fruits rouges et d’éclats de fruits secs, sur un présentoir en marbre",
+      position: "50% 55%",
+    },
     pricing: { kind: "from", amount: 10_000, unit: "les 9 pièces" },
     options: ["Crème au beurre", "Chantilly"],
     minQuantity: "9 pièces",
