@@ -128,6 +128,8 @@ export default function CakeDesign() {
         </h3>
         <ul
           data-reveal="image"
+          tabIndex={0}
+          aria-label="Quelques réalisations Cake Design"
           className="-mx-4 mt-4 flex snap-x snap-mandatory scroll-px-4 sm:scroll-px-8 gap-2.5 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:-mx-8 sm:px-8 md:mx-0 md:grid md:grid-cols-4 md:gap-4 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden"
         >
           {CAKE_DESIGN_PHOTOS.map((photo) => (

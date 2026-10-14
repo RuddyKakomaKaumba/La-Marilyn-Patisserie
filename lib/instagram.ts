@@ -89,9 +89,19 @@ function pickImage(m: RawMedia): string | null {
   return m.media_url ?? null;
 }
 
+/** Lien de publication sûr : uniquement https://www.instagram.com/… */
+function isInstagramUrl(url: string) {
+  try {
+    const u = new URL(url);
+    return u.protocol === "https:" && /(^|\.)instagram\.com$/.test(u.hostname);
+  } catch {
+    return false;
+  }
+}
+
 function normalize(m: RawMedia): InstagramPost | null {
   const imageUrl = pickImage(m);
-  if (!imageUrl || !m.permalink) return null;
+  if (!imageUrl || !m.permalink || !isInstagramUrl(m.permalink)) return null;
   const mediaType = (
     ["IMAGE", "VIDEO", "CAROUSEL_ALBUM"].includes(m.media_type ?? "")
       ? m.media_type

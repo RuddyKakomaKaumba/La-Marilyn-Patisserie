@@ -24,6 +24,8 @@ type Props = {
   variant?: CarouselVariant;
   /** Bouton « + » sur les cartes (voir InfiniteProductCarousel). */
   showAction?: boolean;
+  /** Images chargées en priorité (première rangée de la page). */
+  priorityCount?: number;
   /** Fond de la rangée (par défaut : celui de la page). */
   className?: string;
 };
@@ -40,6 +42,7 @@ export default function CreationRow({
   notes,
   variant,
   showAction,
+  priorityCount,
   className = "",
 }: Props) {
   return (
@@ -73,6 +76,7 @@ export default function CreationRow({
           label={title}
           variant={variant}
           showAction={showAction}
+          priorityCount={priorityCount}
         />
       </div>
 

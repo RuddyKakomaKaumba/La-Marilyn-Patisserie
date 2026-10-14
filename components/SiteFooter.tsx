@@ -59,7 +59,7 @@ export default function SiteFooter() {
             </a>
           </li>
         </ul>
-        <p className="mt-8 text-[0.75rem] tracking-[0.04em] text-ivory/50 md:mt-10 md:text-[0.6875rem] md:text-ivory/45">
+        <p className="mt-8 text-[0.75rem] tracking-[0.04em] text-ivory/60 md:mt-10 md:text-[0.6875rem]">
           © La Marilyn — Tous droits réservés
         </p>
       </div>

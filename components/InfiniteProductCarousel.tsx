@@ -105,6 +105,11 @@ type Props = {
    * "compact", non pour "showcase".
    */
   showAction?: boolean;
+  /**
+   * Nombre de premières images chargées en priorité (rangée visible dès
+   * l'arrivée sur la page : améliore le LCP).
+   */
+  priorityCount?: number;
 };
 
 type CardVariant = "compact" | "showcase";
@@ -138,6 +143,7 @@ export default function InfiniteProductCarousel({
   label,
   variant = "compact",
   showAction = variant === "compact",
+  priorityCount = 0,
 }: Props) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -396,7 +402,7 @@ export default function InfiniteProductCarousel({
         ref={viewportRef}
         role="region"
         aria-roledescription="carrousel"
-        aria-label={label}
+        aria-label={`Carrousel : ${label}`}
         className={`relative cursor-grab touch-pan-y select-none overflow-hidden active:cursor-grabbing ${
           // Marge intérieure pour que l'ombre des cartes ne soit pas rognée.
           variant === "showcase" ? "-my-4 py-4" : ""
@@ -410,7 +416,7 @@ export default function InfiniteProductCarousel({
               aria-hidden={copy > 0 || undefined}
               className="flex shrink-0 gap-3 pr-3 md:gap-4 md:pr-4 lg:gap-5 lg:pr-5"
             >
-              {products.map((p) => (
+              {products.map((p, i) => (
                 <li key={p.name} className={`shrink-0 ${CARD_WIDTH[variant]}`}>
                   <ProductCard
                     product={p}
@@ -418,6 +424,7 @@ export default function InfiniteProductCarousel({
                     showAction={showAction}
                     onOpen={() => setSelected(p)}
                     clone={copy > 0}
+                    priority={copy === 0 && i < priorityCount}
                   />
                 </li>
               ))}
@@ -451,6 +458,7 @@ function ProductCard({
   showAction,
   onOpen,
   clone,
+  priority,
 }: {
   product: Product;
   variant: CardVariant;
@@ -461,7 +469,10 @@ function ProductCard({
    * souris ou au doigt, mais hors de l'ordre de tabulation.
    */
   clone: boolean;
+  priority: boolean;
 }) {
+  // Titres des copies décoratives : pas de doublon dans le plan de la page.
+  const Title = clone ? "p" : "h3";
   const tabIndex = clone ? -1 : undefined;
   const showcase = variant === "showcase";
   const price = priceSummary(product.pricing);
@@ -484,6 +495,7 @@ function ProductCard({
             fill
             draggable={false}
             sizes={CARD_SIZES[variant]}
+            priority={priority}
             className="absolute inset-0 h-full w-full object-cover transition-transform duration-[650ms] ease-soft group-hover/card:scale-[1.03]"
             style={{ objectPosition: product.image.position ?? "50% 50%" }}
           />
@@ -514,7 +526,7 @@ function ProductCard({
             : "flex flex-1 flex-col px-3 pb-3.5 pt-3 md:px-4 md:pb-4 md:pt-3.5"
         }
       >
-        <h3
+        <Title
           className={`font-sans font-semibold leading-snug text-ink ${
             showcase
               ? "text-[0.9375rem] md:text-base"
@@ -533,7 +545,7 @@ function ProductCard({
             {product.name}
             <span className="sr-only"> — voir le détail</span>
           </button>
-        </h3>
+        </Title>
         <p
           className={`leading-relaxed text-muted ${
             showcase

@@ -29,6 +29,7 @@ import {
   labelClass,
   openWhatsApp,
 } from "../forms/fields";
+import PrivacyNotice from "../forms/PrivacyNotice";
 import { ArrowRight, WhatsAppIcon } from "../icons";
 
 /** Types proposés dans ce formulaire (l'écrin a son propre configurateur). */
@@ -270,6 +271,7 @@ export default function RequestForm() {
     <textarea
       {...aria(id, hint, errors[id])}
       rows={3}
+      maxLength={1000}
       value={v[id] ?? ""}
       onChange={(e) => set(id)(e.target.value)}
       className={inputClass}
@@ -717,6 +719,7 @@ export default function RequestForm() {
                 {textarea("rq-details")}
               </Field>
 
+              <PrivacyNotice />
               <div className="flex flex-col items-start gap-3 pt-2">
                 <button type="submit" className={btnGold}>
                   <WhatsAppIcon className="h-[18px] w-[18px]" />

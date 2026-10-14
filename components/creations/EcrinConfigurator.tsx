@@ -22,6 +22,7 @@ import {
   labelClass,
   openWhatsApp,
 } from "../forms/fields";
+import PrivacyNotice from "../forms/PrivacyNotice";
 import { ArrowRight, WhatsAppIcon } from "../icons";
 
 const TYPE = REQUEST_TYPES.ecrin;
@@ -381,6 +382,7 @@ export default function EcrinConfigurator() {
           hint="Une photo d’inspiration ? Vous pourrez l’envoyer dans la conversation WhatsApp."
         >
           <textarea
+            maxLength={1000}
             {...aria("ecrin-details", "hint")}
             value={details}
             rows={3}
@@ -390,7 +392,10 @@ export default function EcrinConfigurator() {
         </Field>
       </div>
 
-      <div className="mt-7 flex flex-col items-start gap-3">
+      <div className="mt-7">
+        <PrivacyNotice />
+      </div>
+      <div className="mt-4 flex flex-col items-start gap-3">
         <button type="submit" className={btnGold}>
           <WhatsAppIcon className="h-[18px] w-[18px]" />
           Envoyer ma composition

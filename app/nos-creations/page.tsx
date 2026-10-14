@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { OG_IMAGE } from "@/lib/seo";
 import CakeDesign from "@/components/creations/CakeDesign";
 import CreationRow from "@/components/creations/CreationRow";
 import CreationsIntro from "@/components/creations/CreationsIntro";
@@ -14,13 +15,13 @@ import { CREPES, MIGNARDISES, PATISSERIES, TRAITEUR } from "@/lib/creations";
 
 const title = "Nos créations | La Marilyn";
 const description =
-  "Cakes, gâteaux sur mesure, mignardises et buffets gourmands : découvrez les créations de La Marilyn, pour une envie du moment comme pour recevoir vos invités.";
+  "Gâteaux gourmands, Cake Design, mignardises, crêpes, L’Écrin gourmand, buffets et location de présentoirs à Douala : tarifs, délais et demande sur WhatsApp.";
 
 export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: "/nos-creations" },
-  openGraph: { title, description, url: "/nos-creations" },
+  openGraph: { title, description, url: "/nos-creations", images: [OG_IMAGE] },
   twitter: { title, description },
 };
 
@@ -38,6 +39,7 @@ export default function NosCreations() {
           direction="right"
           speed={24}
           cta="patisserie"
+          priorityCount={2}
           notes={[GATEAUX_TERMS.notes[1], GATEAUX_TERMS.notes[2]]}
         />
         <CakeDesign />

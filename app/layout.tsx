@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Sans, Newsreader } from "next/font/google";
 import "./globals.css";
+import { bakeryJsonLd, OG_IMAGE, SITE_URL } from "@/lib/seo";
 
 const newsreader = Newsreader({
   variable: "--font-newsreader",
@@ -16,30 +17,22 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-const title = "La Marilyn | Pâtisserie & Créations Gourmandes";
+const title = "La Marilyn | Pâtisserie & Créations Gourmandes à Douala";
 const description =
-  "Pâtisseries, gâteaux, mignardises et buffets gourmands préparés avec soin par La Marilyn, pour célébrer vos plus beaux moments et régaler vos invités.";
+  "Pâtisserie à Douala (Cameroun) : gâteaux gourmands, Cake Design, mignardises, crêpes et buffets préparés avec soin par La Marilyn. Commande sur WhatsApp.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  ),
+  metadataBase: new URL(SITE_URL),
   title,
   description,
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "fr_FR",
     siteName: "La Marilyn",
     title,
     description,
-    images: [
-      {
-        url: "/images/hero-entremets-chocolat.webp",
-        width: 941,
-        height: 1672,
-        alt: "Entremets au chocolat La Marilyn orné du médaillon signature",
-      },
-    ],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
@@ -60,7 +53,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={`${newsreader.variable} ${dmSans.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <script
+          type="application/ld+json"
+          // Contenu statique (constantes du site), sérialisé côté serveur.
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(bakeryJsonLd()).replace(/</g, "\\u003c"),
+          }}
+        />
+      </body>
     </html>
   );
 }

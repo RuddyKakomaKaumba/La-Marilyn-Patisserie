@@ -67,7 +67,7 @@ export default function CreationsIntro() {
           </ul>
           <Link
             href="/a-propos#conditions"
-            className="mt-4 inline-block text-[0.8125rem] text-gold-light underline decoration-gold/50 underline-offset-4 hover:text-ivory"
+            className="mt-3 inline-block py-1 text-[0.8125rem] text-gold-light underline decoration-gold/50 underline-offset-4 hover:text-ivory"
           >
             Comment commander, délais et conditions
           </Link>
