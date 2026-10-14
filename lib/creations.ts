@@ -303,6 +303,11 @@ export const CREPES: Product[] = [
     cta: { key: "crepes", detail: "Mini-crêpes sucrées nature" },
     description: "De petites crêpes sucrées, à picorer sans compter.",
     tone: TONES.cream,
+    image: {
+      src: "/images/crepes/mini-crepes-nature.webp",
+      alt: "Mini-crêpes roulées saupoudrées de sucre glace, sur un présentoir en marbre",
+      position: "58% 55%",
+    },
     pricing: {
       kind: "variants",
       items: [
@@ -319,6 +324,11 @@ export const CREPES: Product[] = [
     cta: { key: "crepes", detail: "Mini-crêpes au chocolat" },
     description: "Les mini-crêpes, version chocolat.",
     tone: TONES.sand,
+    image: {
+      src: "/images/crepes/mini-crepes-chocolat.webp",
+      alt: "Crêpes pliées garnies de chocolat, nappées de chocolat et parsemées de noisettes",
+      position: "55% 50%",
+    },
     pricing: {
       kind: "variants",
       items: [
@@ -335,6 +345,11 @@ export const CREPES: Product[] = [
     cta: { key: "crepes", detail: "Crêpes à la viande hachée" },
     description: "Des crêpes salées garnies de viande hachée.",
     tone: TONES.beige,
+    image: {
+      src: "/images/crepes/crepes-viande-hachee.webp",
+      alt: "Crêpes pliées garnies de viande hachée, servies sur un plat",
+      position: "52% 55%",
+    },
     pricing: { kind: "fixed", amount: 500, unit: "unité" },
     minQuantity: "10 pièces",
     leadTime: "48 h",
@@ -346,6 +361,11 @@ export const CREPES: Product[] = [
     cta: { key: "crepes", detail: "Crêpes jambon-fromage" },
     description: "Le duo jambon et fromage, roulé dans une crêpe.",
     tone: TONES.linen,
+    image: {
+      src: "/images/crepes/crepes-jambon-fromage.webp",
+      alt: "Crêpes pliées garnies de jambon et de fromage fondu, sur une planche en bois",
+      position: "52% 55%",
+    },
     pricing: { kind: "fixed", amount: 1_000, unit: "unité" },
     minQuantity: "10 pièces",
     leadTime: "48 h",
@@ -357,6 +377,11 @@ export const CREPES: Product[] = [
     cta: { key: "crepes", detail: "Crêpes au fromage" },
     description: "Des crêpes salées au fromage fondant.",
     tone: TONES.cream,
+    image: {
+      src: "/images/crepes/crepes-fromage.webp",
+      alt: "Crêpes pliées au fromage fondant, une part soulevée en filant",
+      position: "58% 55%",
+    },
     pricing: { kind: "confirm" },
     ...MIGNARDISE,
   },
@@ -365,6 +390,11 @@ export const CREPES: Product[] = [
     cta: { key: "crepes", detail: "Crêpes Suzette à l’orange" },
     description: "Le classique des crêpes à l’orange.",
     tone: TONES.sand,
+    image: {
+      src: "/images/crepes/crepes-suzette-orange.webp",
+      alt: "Crêpes Suzette nappées de sauce à l’orange et de rondelles d’orange",
+      position: "56% 60%",
+    },
     pricing: { kind: "confirm" },
     ...MIGNARDISE,
   },
