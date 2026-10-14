@@ -55,6 +55,11 @@ export const PATISSERIES: Product[] = [
   gateau("Gâteau au yaourt", 4_000, {
     description: "Le moelleux tout simple au yaourt, doux et réconfortant.",
     tone: TONES.linen,
+    image: {
+      src: "/images/patisseries/gateau-yaourt.webp",
+      alt: "Gâteau au yaourt doré saupoudré de sucre glace, une part découpée",
+      position: "58% 50%",
+    },
   }),
   gateau("Cake yaourt & citron", 4_500, {
     description: "Moelleux au yaourt, délicatement parfumé au citron.",
@@ -68,6 +73,11 @@ export const PATISSERIES: Product[] = [
   gateau("Cake marbré", 4_500, {
     description: "Le grand classique marbré, à partager au goûter.",
     tone: TONES.beige,
+    image: {
+      src: "/images/patisseries/cake-marbre.webp",
+      alt: "Cake marbré vanille-chocolat tranché sur une planche en bois",
+      position: "50% 50%",
+    },
   }),
   gateau("Cake noix de coco", 4_500, {
     description:
@@ -82,6 +92,11 @@ export const PATISSERIES: Product[] = [
   gateau("Cake banane", 4_500, {
     description: "Un cake moelleux à la banane, tendre et parfumé.",
     tone: TONES.cream,
+    image: {
+      src: "/images/patisseries/cake-banane.webp",
+      alt: "Cake à la banane et aux noix, tranché sur une planche en bois",
+      position: "52% 50%",
+    },
   }),
   gateau("Cake à l’orange", 4_500, {
     description: "Un cake moelleux, parfumé à l’orange.",
@@ -95,6 +110,11 @@ export const PATISSERIES: Product[] = [
   gateau("Cake praliné chocolat", 7_500, {
     description: "Chocolat et praliné réunis dans un cake gourmand.",
     tone: TONES.sand,
+    image: {
+      src: "/images/patisseries/cake-praline-chocolat.webp",
+      alt: "Cake au chocolat et praliné nappé de chocolat et de noisettes, tranché",
+      position: "52% 50%",
+    },
   }),
   gateau("Renversé à l’ananas", 4_500, {
     description: "Ananas caramélisé sur un gâteau moelleux et doré.",
@@ -109,6 +129,11 @@ export const PATISSERIES: Product[] = [
   gateau("Cake velvet", 6_000, {
     description: "Un cake velvet à la mie tendre et colorée.",
     tone: TONES.linen,
+    image: {
+      src: "/images/patisseries/cake-velvet.webp",
+      alt: "Cake velvet rouge nappé de crème blanche, tranché sur un plateau de marbre",
+      position: "62% 50%",
+    },
   }),
   // Absent de la grille tarifaire transmise : prix à confirmer.
   gateau("Cake nature", null, {
