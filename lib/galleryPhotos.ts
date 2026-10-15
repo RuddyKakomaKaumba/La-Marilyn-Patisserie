@@ -65,10 +65,27 @@ export type CakeDesignPhoto = GalleryPhoto & {
   category:
     | "Anniversaire élégant"
     | "Anniversaire enfant"
-    | "Anniversaire thématique";
+    | "Anniversaire thématique"
+    | "Célébration";
+  /** Mise en avant en tête de la galerie (format agrandi). */
+  featured?: boolean;
 };
 
 export const CAKE_DESIGN_PHOTOS: CakeDesignPhoto[] = [
+  {
+    src: "/images/creations/gateau-jasmine-turquoise-violet.webp",
+    alt: "Gâteau d’anniversaire turquoise sur le thème de Jasmine, cascade de roses violettes et blanches, perles dorées et papillons irisés",
+    category: "Anniversaire enfant",
+    position: "50% 40%",
+    featured: true,
+  },
+  {
+    src: "/images/creations/gateau-bon-emmenagement-maman.webp",
+    alt: "Gâteau rectangulaire blanc « Bon Emménagement Maman » en lettres dorées, bordé de rosaces violettes, mauves et blanches",
+    category: "Célébration",
+    position: "50% 50%",
+    featured: true,
+  },
   {
     src: "/images/creations/gateau-trois-etages-turquoise-argent.webp",
     alt: "Gâteau à trois étages blanc et turquoise, roses en sucre et chiffres « 25 » argentés",

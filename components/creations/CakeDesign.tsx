@@ -139,7 +139,11 @@ export default function CakeDesign() {
           {CAKE_DESIGN_PHOTOS.map((photo) => (
             <li
               key={photo.src}
-              className="w-[42vw] max-w-[13rem] shrink-0 snap-start md:w-auto md:max-w-none"
+              className={
+                photo.featured
+                  ? "w-[64vw] max-w-[18rem] shrink-0 snap-start md:col-span-2 md:row-span-2 md:w-auto md:max-w-none"
+                  : "w-[42vw] max-w-[13rem] shrink-0 snap-start md:w-auto md:max-w-none"
+              }
             >
               <figure>
                 <div className="relative aspect-[4/5] overflow-hidden rounded-[10px] bg-sand">
@@ -147,7 +151,11 @@ export default function CakeDesign() {
                     src={photo.src}
                     alt={photo.alt}
                     fill
-                    sizes="(min-width: 1280px) 300px, (min-width: 768px) 23vw, 42vw"
+                    sizes={
+                      photo.featured
+                        ? "(min-width: 1280px) 620px, (min-width: 768px) 47vw, 64vw"
+                        : "(min-width: 1280px) 300px, (min-width: 768px) 23vw, 42vw"
+                    }
                     className="object-cover"
                     style={{ objectPosition: photo.position ?? "50% 50%" }}
                   />
