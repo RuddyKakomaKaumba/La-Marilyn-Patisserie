@@ -15,6 +15,16 @@ const ECRIN_PHOTOS = [
     alt: "Coffret L’Écrin gourmand ouvert et vide, un point d’interrogation violet à l’intérieur",
     position: "50% 50%",
   },
+  {
+    src: "/images/ecrin/ecrin-gourmand-garni.webp",
+    alt: "Coffret L’Écrin gourmand ouvert et garni : mini-burgers, cupcakes violets et blancs, nems et crêpes",
+    position: "50% 70%",
+  },
+  {
+    src: "/images/ecrin/ecrin-gourmand-gateau-emmenagement.webp",
+    alt: "Coffret L’Écrin gourmand fermé au ruban violet, à côté d’un gâteau rectangulaire « Bon Emménagement Maman »",
+    position: "50% 50%",
+  },
 ];
 
 /**
@@ -74,6 +84,9 @@ export default function EcrinGourmand() {
                 </div>
               ))}
             </div>
+            <p className="mt-3 text-[0.75rem] text-ivory/70">
+              Exemples de coffrets réalisés sur demande.
+            </p>
           </div>
 
           <div
