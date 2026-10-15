@@ -42,9 +42,10 @@ export default function AboutHero() {
         <StoryImagePlaceholder
           className="mt-8 md:mt-10 lg:mt-0"
           image={{
-            src: "/images/atelier-la-marilyn.jpg",
-            alt: "La pâtissière de La Marilyn, en tablier brodé du logo, dresse une crème au chocolat à la poche à douille sur un gâteau",
-            position: "50% 55%",
+            src: "/images/atelier-la-marilyn-patissiere.webp",
+            alt: "La pâtissière de La Marilyn, en tablier brodé du logo, décore à la poche à douille un gâteau au chocolat garni de fraises",
+            // Ancré en haut : le visage n'est jamais rogné.
+            position: "50% 0%",
           }}
         />
       </div>
