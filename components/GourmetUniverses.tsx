@@ -120,9 +120,10 @@ export default function GourmetUniverses() {
                         u.title
                       )}
                     </h3>
-                    <span className="mt-2 inline-flex items-center gap-1.5 text-[0.75rem] text-muted transition-colors duration-300 group-hover:text-gold-deep">
-                      {label}
-                      <ArrowRight className="h-3 w-3 text-gold-deep transition-transform duration-300 ease-soft group-hover:translate-x-0.5" />
+                    {/* Aspect de bouton : la carte entière reste le lien. */}
+                    <span className={CARD_CTA_CLASS}>
+                      <span>{label}</span>
+                      <ArrowRight className="h-3.5 w-3.5 shrink-0 text-gold-deep transition-[color,translate] duration-300 ease-soft group-hover:translate-x-0.5 group-hover:text-gold-light group-focus-visible:translate-x-0.5 group-focus-visible:text-gold-light" />
                     </span>
                   </div>
                 </CardLink>
@@ -131,21 +132,34 @@ export default function GourmetUniverses() {
           })}
         </ul>
 
-        <Link
-          href="/nos-creations#ecrin"
-          data-reveal
-          className="group mx-auto mt-6 flex max-w-[18rem] justify-center sm:max-w-[34rem] rounded-full px-4 py-2 text-center text-[0.8125rem] text-muted transition-colors duration-300 hover:text-ink md:mt-10"
-        >
-          <span>
-            <span className="font-semibold text-gold-deep">Nouveau</span>
-            {" · "}L’Écrin gourmand by La Marilyn, le cadeau que vous composez
-            <ArrowRight className="ml-1.5 inline h-3.5 w-3.5 align-[-0.15em] text-gold-deep transition-transform duration-300 ease-soft group-hover:translate-x-0.5" />
-          </span>
-        </Link>
+        <div data-reveal className="mt-9 flex justify-center md:mt-12">
+          <Link
+            href="/nos-creations#ecrin"
+            className="group relative inline-flex min-h-12 max-w-full items-center gap-3 rounded-[18px] border border-gold/60 bg-ink px-6 pb-3 pt-4 text-left text-ivory shadow-[0_10px_28px_-16px_rgba(18,12,9,0.55)] transition-[background-color,border-color,translate] duration-300 ease-soft hover:-translate-y-0.5 hover:border-gold-light hover:bg-cocoa active:translate-y-0 sm:rounded-full sm:py-3.5 sm:pl-8 sm:pr-7 md:min-h-14"
+          >
+            {/* Pastille « Nouveau » : violet du ruban de l’Écrin. */}
+            <span className="absolute -top-2.5 left-5 rounded-full bg-[#5e2f6a] px-2.5 py-[3px] font-sans text-[0.625rem] font-semibold uppercase leading-none tracking-[0.16em] text-ivory shadow-[0_2px_8px_-2px_rgba(18,12,9,0.45)] ring-2 ring-cream sm:left-7">
+              Nouveau
+            </span>
+            <span className="font-sans text-[0.875rem] leading-snug md:text-[0.9375rem]">
+              <span className="block sm:inline">
+                L’Écrin gourmand by La Marilyn
+              </span>
+              <span className="hidden sm:inline"> — </span>
+              <span className="block text-gold-light sm:inline">
+                Composez votre cadeau
+              </span>
+            </span>
+            <ArrowRight className="h-4 w-4 shrink-0 text-gold-light transition-transform duration-300 ease-soft group-hover:translate-x-1" />
+          </Link>
+        </div>
       </div>
     </section>
   );
 }
+
+const CARD_CTA_CLASS =
+  "mt-3 flex min-h-12 w-full items-center justify-between gap-2 rounded-full border border-gold-deep px-3.5 py-1.5 text-[0.75rem] font-medium leading-[1.2] text-ink transition-[background-color,border-color,color] duration-300 ease-soft group-hover:border-ink group-hover:bg-ink group-hover:text-ivory group-focus-visible:border-ink group-focus-visible:bg-ink group-focus-visible:text-ivory md:mt-4 md:px-4 md:text-[0.8125rem] lg:text-[0.75rem] xl:text-[0.8125rem]";
 
 const CARD_CLASS =
   "group flex h-full flex-col overflow-hidden rounded-[10px] bg-ivory transition-[translate] duration-500 ease-soft hover:-translate-y-0.5";
