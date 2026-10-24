@@ -3,14 +3,11 @@
 import { useEffect } from "react";
 
 /**
- * Active les apparitions discrètes des éléments marqués `data-reveal`.
- * Sans JavaScript, le contenu reste simplement visible.
+ * Active les apparitions au scroll sans mesurer la position de chaque élément.
+ * Sans JavaScript ou avec les animations réduites, le contenu reste visible.
  */
 export default function Reveal() {
   useEffect(() => {
-    const root = document.documentElement;
-    const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
-
     if (
       !("IntersectionObserver" in window) ||
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -18,6 +15,8 @@ export default function Reveal() {
       return;
     }
 
+    const root = document.documentElement;
+    const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -30,17 +29,15 @@ export default function Reveal() {
       { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
     );
 
-    // Les éléments déjà à l'écran restent visibles sans animation.
-    elements.forEach((el) => {
-      if (el.getBoundingClientRect().top < window.innerHeight * 0.92) {
-        el.classList.add("is-visible");
-      } else {
-        observer.observe(el);
-      }
-    });
+    // IntersectionObserver signale aussi les éléments visibles dès le premier
+    // calcul du navigateur, sans lecture synchrone de leur géométrie.
+    elements.forEach((element) => observer.observe(element));
     root.classList.add("reveal-ready");
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      root.classList.remove("reveal-ready");
+    };
   }, []);
 
   return null;

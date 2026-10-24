@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import type { PrecomposedEcrin } from "@/lib/ecrin";
 import { formatFcfa } from "@/lib/pricing";
@@ -8,7 +9,9 @@ import { buildRequestMessage, REQUEST_TYPES } from "@/lib/requests";
 import { whatsappUrl } from "@/lib/site";
 import { btnArrow, btnGold, btnOutlineLight } from "../buttons";
 import { ArrowRight } from "../icons";
-import EcrinConfigurator from "./EcrinConfigurator";
+const EcrinConfigurator = dynamic(() => import("./EcrinConfigurator"), {
+  ssr: false,
+});
 
 /**
  * Les deux façons de demander un écrin : le composer (configurateur
