@@ -1,11 +1,11 @@
 import { SITE_NAME, SOCIAL_LINKS, WHATSAPP_DISPLAY } from "./site";
 
 /**
- * URL publique du site (NEXT_PUBLIC_SITE_URL). Obligatoire en production :
+ * URL publique du site (NEXT_PUBLIC_SITE_URL), avec le domaine Vercel officiel en secours :
  * canonical, Open Graph, sitemap et données structurées en dépendent.
  */
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  process.env.NEXT_PUBLIC_SITE_URL || "https://la-marilyn-patisserie.vercel.app"
 ).replace(/\/+$/, "");
 
 /** Image de partage par défaut (réutilisée par chaque page). */
