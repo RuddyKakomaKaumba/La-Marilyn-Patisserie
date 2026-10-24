@@ -8,6 +8,7 @@ const newsreader = Newsreader({
   subsets: ["latin"],
   style: ["normal", "italic"],
   axes: ["opsz"],
+  preload: false, // Évite de précharger toutes les variantes, dont l’italique.
   display: "swap",
 });
 
