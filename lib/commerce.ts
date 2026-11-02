@@ -119,7 +119,7 @@ export const CAKE_DESIGN_TERMS = {
 };
 
 export const ECRIN_TERMS = {
-  signature: "À offrir, à savourer, à retenir.",
+  signature: "Un cadeau gourmand, à votre image.",
   price: "À partir de 30 000 FCFA.",
   priceDetail:
     "Le prix final dépend de la composition, des quantités, des gourmandises et des personnalisations choisies.",

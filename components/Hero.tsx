@@ -70,8 +70,8 @@ export default function Hero() {
             style={{ "--enter-delay": "450ms" } as React.CSSProperties}
             className="mt-3 max-w-[18.5rem] text-[0.9375rem] leading-[1.45] text-ivory/80 sm:max-w-[24rem] md:mt-5 lg:mt-7 lg:text-base lg:leading-relaxed"
           >
-            Pâtisseries et mignardises préparées avec soin pour vos petits et
-            grands moments.
+            Des gâteaux et des mignardises préparés à Douala, pour vos fêtes
+            comme pour le plaisir du quotidien.
           </p>
 
           <div className="mt-5 flex flex-col items-start gap-2.5 sm:flex-row sm:items-center sm:gap-3.5 md:mt-8 lg:mt-10">

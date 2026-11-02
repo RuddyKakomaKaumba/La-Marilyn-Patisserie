@@ -18,7 +18,7 @@ export default function ContactServiceCard({
       href={ctaUrl(service.cta)}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={`${service.label} — ${label} sur WhatsApp`}
+      aria-label={`${service.label} : ${label} sur WhatsApp`}
       className="group flex h-full min-h-[7rem] flex-col justify-between rounded-[10px] bg-ivory p-4 transition-[background-color,translate] duration-500 ease-soft hover:-translate-y-0.5 hover:bg-[#fffdf9] md:min-h-[8.5rem] md:p-5"
     >
       <span className="font-sans text-[0.75rem] font-semibold uppercase leading-[1.45] tracking-[0.1em] text-ink md:text-[0.8125rem]">

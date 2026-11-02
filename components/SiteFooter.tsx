@@ -9,7 +9,7 @@ export default function SiteFooter() {
       <div className="mx-auto max-w-[34rem]">
         <Link
           href="/"
-          aria-label="La Marilyn — accueil"
+          aria-label="La Marilyn, retour à l’accueil"
           className="mx-auto block w-fit"
         >
           <Image
@@ -60,7 +60,7 @@ export default function SiteFooter() {
           </li>
         </ul>
         <p className="mt-8 text-[0.75rem] tracking-[0.04em] text-ivory/60 md:mt-10 md:text-[0.6875rem]">
-          © La Marilyn — Tous droits réservés
+          © La Marilyn. Tous droits réservés.
           <span aria-hidden="true"> · </span>
           <Link
             href="/confidentialite"

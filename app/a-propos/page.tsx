@@ -23,7 +23,7 @@ export const revalidate = 1800;
 
 const title = "À propos & contact | La Marilyn";
 const description =
-  "La Marilyn – L’art du gâteau, pâtisserie à Douala (Cameroun) : notre histoire, comment commander, conditions, questions fréquentes et demande sur WhatsApp.";
+  "La Marilyn, L’art du gâteau : pâtisserie à Douala (Cameroun). Notre histoire, comment commander, nos conditions, les questions fréquentes et la demande sur WhatsApp.";
 
 export const metadata: Metadata = {
   title,

@@ -53,8 +53,8 @@ export default function Occasions() {
             style={{ "--reveal-delay": "80ms" } as React.CSSProperties}
             className="mt-4 max-w-[12.5rem] text-[0.9375rem] leading-[1.55] text-muted sm:mt-5 sm:max-w-[17rem] sm:leading-relaxed lg:max-w-[26rem]"
           >
-            Anniversaires, mariages, réceptions ou simplement pour se faire
-            plaisir.
+            Un anniversaire, un mariage, une réception, ou simplement l’envie de
+            se faire plaisir.
           </p>
           <div
             data-reveal

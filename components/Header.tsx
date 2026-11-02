@@ -30,7 +30,7 @@ export default function Header() {
       >
         <Link
           href="/"
-          aria-label="La Marilyn — accueil"
+          aria-label="La Marilyn, retour à l’accueil"
           className="block shrink-0"
         >
           <Image

@@ -141,9 +141,9 @@ export default function EcrinConfigurator() {
         Composer mon écrin
       </h3>
       <p className="mt-2 max-w-[34rem] text-[0.875rem] leading-relaxed text-muted">
-        Décrivez l’écrin dont vous rêvez : votre demande s’ouvre ensuite dans
-        WhatsApp, prête à être envoyée. La Marilyn revient vers vous pour
-        valider la composition et vous confirmer le prix.
+        Décrivez l’écrin que vous aimeriez offrir : votre demande s’ouvre
+        ensuite dans WhatsApp, prête à être envoyée. La Marilyn revient vers
+        vous pour valider la composition et vous confirmer le prix.
       </p>
 
       <div className="mt-6 space-y-5">
@@ -247,7 +247,7 @@ export default function EcrinConfigurator() {
                             min={1}
                             step={1}
                             value={picks[item]}
-                            aria-label={`Quantité — ${item}`}
+                            aria-label={`Quantité pour ${item}`}
                             onChange={(e) => {
                               clear("ecrin-gourmandises");
                               setPicks((p) => ({

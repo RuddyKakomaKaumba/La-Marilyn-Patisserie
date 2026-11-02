@@ -50,7 +50,7 @@ export default function SeeAll({
         className="group inline-flex shrink-0 items-center gap-1.5 py-2 text-[0.75rem] text-gold-deep transition-colors duration-300 hover:text-ink md:text-[0.8125rem]"
       >
         Voir tout
-        <span className="sr-only"> — {title}</span>
+        <span className="sr-only"> ({title})</span>
         <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 ease-soft group-hover:translate-x-0.5" />
       </button>
 

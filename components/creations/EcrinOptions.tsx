@@ -123,7 +123,7 @@ function PrecomposedCard({ ecrin }: { ecrin: PrecomposedEcrin }) {
         </p>
         <ul className="mt-3 space-y-1 text-[0.8125rem] text-ivory/80">
           {ecrin.contents.map((c) => (
-            <li key={c}>— {c}</li>
+            <li key={c}>• {c}</li>
           ))}
         </ul>
         {ecrin.price && (

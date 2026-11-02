@@ -412,7 +412,7 @@ export default function RequestForm() {
                       <option value="">Choisir…</option>
                       {PATISSERIES.map((p) => (
                         <option key={p.name} value={p.name}>
-                          {p.name} — {priceSummary(p.pricing)}
+                          {p.name} ({priceSummary(p.pricing)})
                         </option>
                       ))}
                     </select>
@@ -501,7 +501,7 @@ export default function RequestForm() {
                                 min={minOf(p) || 1}
                                 step={1}
                                 value={picks[p.name]}
-                                aria-label={`Quantité — ${p.name}`}
+                                aria-label={`Quantité pour ${p.name}`}
                                 onChange={(e) => {
                                   clear("rq-snacks");
                                   setPicks((prev) => ({
@@ -515,7 +515,7 @@ export default function RequestForm() {
                           </div>
                           {checked && p.options && (
                             <select
-                              aria-label={`Choix — ${p.name}`}
+                              aria-label={`Choix pour ${p.name}`}
                               value={v[`rq-opt-${p.name}`] ?? ""}
                               onChange={(e) =>
                                 set(`rq-opt-${p.name}`)(e.target.value)

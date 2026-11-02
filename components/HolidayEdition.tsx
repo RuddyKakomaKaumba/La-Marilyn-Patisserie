@@ -31,18 +31,16 @@ export default function HolidayEdition() {
             data-reveal
             className="display mt-4 text-[2.5rem] text-[#fbf5e9] sm:text-[3.25rem] lg:text-[4rem]"
           >
-            <span className="season-hat">Les</span> fêtes ont une
-            <br />
-            <em className="season-shine font-[330] italic">
-              saveur particulière.
-            </em>
+            <span className="season-hat">Préparons</span> vos fêtes <br />{" "}
+            <em className="season-shine font-[330] italic">ensemble.</em>
           </h2>
           <p
             data-reveal
             className="mt-4 max-w-xl text-[0.9375rem] leading-relaxed text-[#f5ead8]/85 sm:text-base"
           >
-            Gâteaux sur mesure, mignardises et attentions gourmandes à imaginer
-            pour vos moments de fête.
+            Pour Noël et le Nouvel An, La Marilyn vous accompagne pour vos
+            tables de fête et vos cadeaux gourmands&nbsp;: gâteaux sur mesure,
+            mignardises, crêpes ou Écrin gourmand.
           </p>
           <div data-reveal className="mt-6">
             <Countdown />

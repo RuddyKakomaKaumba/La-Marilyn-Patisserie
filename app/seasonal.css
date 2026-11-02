@@ -178,11 +178,11 @@ html[data-season="fetes"] header.absolute {
 }
 
 /* Bonnet de Père Noël posé sur le logo (haut de page et pied de page). */
-html[data-season="fetes"] a[aria-label="La Marilyn — accueil"] {
+html[data-season="fetes"] a[aria-label="La Marilyn, retour à l’accueil"] {
   position: relative;
 }
 
-html[data-season="fetes"] a[aria-label="La Marilyn — accueil"]::after,
+html[data-season="fetes"] a[aria-label="La Marilyn, retour à l’accueil"]::after,
 .season-hat::before,
 html[data-season="fetes"] #ecrin-title::before {
   content: "";
@@ -192,7 +192,9 @@ html[data-season="fetes"] #ecrin-title::before {
   filter: drop-shadow(0 3px 4px rgb(0 0 0 / 0.35));
 }
 
-html[data-season="fetes"] header a[aria-label="La Marilyn — accueil"]::after {
+html[data-season="fetes"]
+  header
+  a[aria-label="La Marilyn, retour à l’accueil"]::after {
   top: -9px;
   left: -7px;
   width: 34px;
@@ -203,7 +205,9 @@ html[data-season="fetes"] header a[aria-label="La Marilyn — accueil"]::after {
 }
 
 @media (min-width: 1024px) {
-  html[data-season="fetes"] header a[aria-label="La Marilyn — accueil"]::after {
+  html[data-season="fetes"]
+    header
+    a[aria-label="La Marilyn, retour à l’accueil"]::after {
     top: -11px;
     left: -9px;
     width: 44px;
@@ -211,7 +215,9 @@ html[data-season="fetes"] header a[aria-label="La Marilyn — accueil"]::after {
   }
 }
 
-html[data-season="fetes"] footer a[aria-label="La Marilyn — accueil"]::after {
+html[data-season="fetes"]
+  footer
+  a[aria-label="La Marilyn, retour à l’accueil"]::after {
   top: -16px;
   left: -10px;
   width: 54px;

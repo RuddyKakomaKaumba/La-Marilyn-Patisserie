@@ -23,33 +23,33 @@ export const REQUEST_TYPES: Record<
 > = {
   "cake-design": {
     label: "Cake Design",
-    subject: "Demande de devis — Cake Design",
+    subject: "J’aimerais un devis pour un gâteau Cake Design.",
     leadDays: 5,
     leadLabel: "5 jours",
   },
   gateaux: {
     label: "Gâteaux gourmands",
-    subject: "Demande de commande — Gâteaux gourmands",
+    subject: "J’aimerais commander des gâteaux gourmands.",
     leadDays: 1,
     leadLabel: "24 h",
   },
   mignardises: {
     label: "Mignardises et crêpes",
-    subject: "Demande de commande — Mignardises et crêpes",
+    subject: "J’aimerais commander des mignardises ou des crêpes.",
     leadDays: 1,
     leadLabel: "24 h",
   },
   buffet: {
     label: "Buffet / événement",
-    subject: "Demande de devis — Buffet / événement",
+    subject: "J’aimerais un devis pour un buffet ou un événement.",
   },
   presentoirs: {
     label: "Location de présentoirs",
-    subject: "Demande de location — Présentoirs",
+    subject: "J’aimerais louer vos présentoirs.",
   },
   ecrin: {
     label: "L’Écrin gourmand",
-    subject: "Demande de composition — L’Écrin gourmand by La Marilyn",
+    subject: "J’aimerais composer un Écrin gourmand.",
     leadDays: 7,
     leadLabel: "7 jours",
   },
@@ -132,7 +132,7 @@ export function buildRequestMessage(
 ) {
   const lines = [
     "Bonjour La Marilyn 👋",
-    "Je viens de votre site.",
+    "Je vous écris depuis votre site.",
     `${subject}`,
     "",
   ];
@@ -140,7 +140,7 @@ export function buildRequestMessage(
     if (Array.isArray(value)) {
       const items = value.filter(Boolean);
       if (!items.length) continue;
-      lines.push(`• ${label} :`, ...items.map((i) => `   – ${i}`));
+      lines.push(`• ${label} :`, ...items.map((i) => `   ◦ ${i}`));
     } else if (value && value.trim()) {
       lines.push(`• ${label} : ${value.trim()}`);
     }

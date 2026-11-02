@@ -67,7 +67,7 @@ export default function NosCreations() {
         <CreationRow
           id="traiteur"
           title="Buffet gourmand"
-          intro={`${BUFFET_TERMS.price} Mignardises sucrées et salées, pièces cocktail, gâteaux et présentation : une table pensée pour votre événement.`}
+          intro={`${BUFFET_TERMS.price} Mignardises sucrées et salées, pièces cocktail, gâteaux et présentation : nous composons le buffet avec vous, selon votre événement.`}
           products={TRAITEUR}
           direction="right"
           speed={24}
