@@ -34,8 +34,9 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
   },
   // 6e emplacement (bandeau horizontal) : photo paysage en premier affichage.
   {
-    src: "/images/galerie/buffet-bouchees.jpg",
-    alt: "Buffet de bouchées : brochettes tomate-fromage, mini-burgers, canapés au saumon et tartelettes",
+    src: "/images/galerie/fournee-cupcakes.webp",
+    alt: "Fournée de cupcakes dorés dans leurs caissettes blanches, à la sortie du four",
+    position: "50% 60%",
   },
   {
     src: "/images/galerie/gateau-emmenagement.webp",
@@ -47,8 +48,9 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     alt: "Gâteau de baptême jaune et blanc surmonté d’un soleil souriant, « You are my sunshine »",
   },
   {
-    src: "/images/galerie/renverse-ananas.webp",
-    alt: "Gâteau renversé à l’ananas caramélisé sur un présentoir, une part servie",
+    src: "/images/galerie/gateau-licorne-ketty.webp",
+    alt: "Gâteau d’anniversaire licorne à deux étages, rose et blanc, prénom « Ketty » doré et topper « Happy Birthday »",
+    position: "50% 35%",
   },
   {
     src: "/images/creations/gateau-trois-etages-turquoise-argent.webp",
