@@ -52,9 +52,9 @@ export const PATISSERIES: Product[] = [
     tone: TONES.sand,
     badge: "best-seller",
     image: {
-      src: "/images/patisseries/moelleux-chocolat.webp",
-      alt: "Moelleux au chocolat au cœur coulant, décorés de fraises, framboises et pistaches",
-      position: "45% 50%",
+      src: "/images/patisseries/moelleux-au-chocolat-la-marilyn.webp",
+      alt: "Moelleux au chocolat tranché sur une planche en bambou, mie dense et fondante",
+      position: "50% 55%",
     },
   }),
   gateau("Gâteau au yaourt", 4_000, {
@@ -70,18 +70,18 @@ export const PATISSERIES: Product[] = [
     description: "Moelleux au yaourt, délicatement parfumé au citron.",
     tone: TONES.cream,
     image: {
-      src: "/images/patisseries/cake-yaourt-citron.webp",
-      alt: "Cake au yaourt et au citron tranché, nappé de glaçage et de zestes de citron",
-      position: "60% 50%",
+      src: "/images/patisseries/cake-yaourt-citron-la-marilyn.webp",
+      alt: "Cake yaourt-citron doré, coupé en tranches au couteau, à côté d’un demi-citron",
+      position: "50% 45%",
     },
   }),
   gateau("Cake marbré", 4_500, {
     description: "Le grand classique marbré, à partager au goûter.",
     tone: TONES.beige,
     image: {
-      src: "/images/patisseries/cake-marbre.webp",
-      alt: "Cake marbré vanille-chocolat tranché sur une planche en bois",
-      position: "50% 50%",
+      src: "/images/patisseries/cake-marbre-chocolat-la-marilyn.webp",
+      alt: "Tranches de cake marbré vanille-chocolat disposées sur un plat blanc",
+      position: "40% 50%",
     },
   }),
   gateau("Cake noix de coco", 4_500, {
@@ -89,36 +89,36 @@ export const PATISSERIES: Product[] = [
       "Un cake moelleux, généreusement recouvert de noix de coco toastée.",
     tone: TONES.beige,
     image: {
-      src: "/images/patisseries/cake-noix-de-coco.webp",
-      alt: "Cake à la noix de coco toastée tranché sur une planche en bois",
-      position: "65% 50%",
+      src: "/images/patisseries/cake-noix-de-coco-la-marilyn.webp",
+      alt: "Cake à la noix de coco entamé, le dessus recouvert de noix de coco râpée",
+      position: "50% 60%",
     },
   }),
   gateau("Cake banane", 4_500, {
     description: "Un cake moelleux à la banane, tendre et parfumé.",
     tone: TONES.cream,
     image: {
-      src: "/images/patisseries/cake-banane.webp",
-      alt: "Cake à la banane et aux noix, tranché sur une planche en bois",
-      position: "52% 50%",
+      src: "/images/patisseries/cake-a-la-banane-la-marilyn.webp",
+      alt: "Cake à la banane entamé, mie moelleuse et croûte dorée",
+      position: "50% 50%",
     },
   }),
   gateau("Cake à l’orange", 4_500, {
     description: "Un cake moelleux, parfumé à l’orange.",
     tone: TONES.cream,
     image: {
-      src: "/images/patisseries/cake-orange.webp",
-      alt: "Cake à l’orange tranché, nappé de glaçage et de zestes d’orange confits",
-      position: "60% 50%",
+      src: "/images/patisseries/cake-a-l-orange-la-marilyn.webp",
+      alt: "Cake à l’orange tranché sur un plat blanc, à côté de rondelles d’orange",
+      position: "45% 50%",
     },
   }),
   gateau("Cake praliné chocolat", 7_500, {
     description: "Chocolat et praliné réunis dans un cake gourmand.",
     tone: TONES.sand,
     image: {
-      src: "/images/patisseries/cake-praline-chocolat.webp",
-      alt: "Cake au chocolat et praliné nappé de chocolat et de noisettes, tranché",
-      position: "52% 50%",
+      src: "/images/patisseries/cake-praline-chocolat-la-marilyn.webp",
+      alt: "Cake praliné chocolat nappé de glaçage au chocolat, deux tranches coupées sur une planche en marbre",
+      position: "42% 50%",
     },
   }),
   gateau("Renversé à l’ananas", 4_500, {
@@ -135,9 +135,9 @@ export const PATISSERIES: Product[] = [
     description: "Un cake velvet à la mie tendre et colorée.",
     tone: TONES.linen,
     image: {
-      src: "/images/patisseries/cake-velvet.webp",
-      alt: "Cake velvet rouge nappé de crème blanche, tranché sur un plateau de marbre",
-      position: "62% 50%",
+      src: "/images/patisseries/velvet-cake-la-marilyn.webp",
+      alt: "Velvet cake rouge coupé en tranches sur un plat blanc",
+      position: "45% 55%",
     },
   }),
   // Absent de la grille tarifaire transmise : prix à confirmer.
@@ -226,9 +226,9 @@ export const MIGNARDISES: Product[] = (
       leadDays: 2,
       ...MIGNARDISE,
       image: {
-        src: "/images/mignardises/mini-burgers.webp",
-        alt: "Mini burgers au cheddar, tomate et salade, piqués d’une brochette dorée sur un plateau de marbre",
-        position: "50% 60%",
+        src: "/images/mignardises/mini-burgers-la-marilyn.webp",
+        alt: "Mini-burgers au sésame garnis de salade, piqués d’un cure-dent, dans une boîte de livraison",
+        position: "50% 50%",
       },
     },
     {
@@ -244,9 +244,9 @@ export const MIGNARDISES: Product[] = (
       leadDays: 2,
       ...MIGNARDISE,
       image: {
-        src: "/images/mignardises/nems.webp",
-        alt: "Nems croustillants garnis de légumes, servis avec une sauce pimentée",
-        position: "50% 55%",
+        src: "/images/mignardises/nems-la-marilyn.webp",
+        alt: "Nems dorés et croustillants posés sur du papier absorbant",
+        position: "50% 50%",
       },
     },
     {
@@ -255,9 +255,9 @@ export const MIGNARDISES: Product[] = (
       description: "De mini-cupcakes surmontés d’une jolie crème.",
       tone: TONES.linen,
       image: {
-        src: "/images/mignardises/mini-cupcakes.webp",
-        alt: "Assortiment de mini-cupcakes surmontés de crème, de fruits rouges et d’éclats de fruits secs, sur un présentoir en marbre",
-        position: "50% 55%",
+        src: "/images/mignardises/mini-cupcakes-la-marilyn.webp",
+        alt: "Mini-cupcakes surmontés d’une rosace de crème rose ou blanche",
+        position: "60% 60%",
       },
       pricing: { kind: "from", amount: 10_000, unit: "les 9 pièces" },
       options: ["Crème au beurre", "Chantilly"],
@@ -292,9 +292,9 @@ export const MIGNARDISES: Product[] = (
       pricing: { kind: "confirm" },
       ...MIGNARDISE,
       image: {
-        src: "/images/mignardises/mini-moelleux.webp",
-        alt: "Mini moelleux au chocolat au cœur coulant, entourés de moelleux aux pistaches et aux fruits rouges",
-        position: "50% 55%",
+        src: "/images/mignardises/mini-moelleux-au-chocolat-la-marilyn.webp",
+        alt: "Mini moelleux au chocolat sur une assiette, l’un coupé en deux, d’autres sur une grille",
+        position: "50% 60%",
       },
     },
   ] as Product[]
@@ -311,9 +311,9 @@ export const CREPES: Product[] = [
     description: "De petites crêpes sucrées, à picorer sans compter.",
     tone: TONES.cream,
     image: {
-      src: "/images/crepes/mini-crepes-nature.webp",
-      alt: "Mini-crêpes roulées saupoudrées de sucre glace, sur un présentoir en marbre",
-      position: "58% 55%",
+      src: "/images/crepes/crepes-nature-la-marilyn.webp",
+      alt: "Pile de crêpes nature dorées, pliées en carrés",
+      position: "50% 50%",
     },
     pricing: {
       kind: "variants",
@@ -332,9 +332,9 @@ export const CREPES: Product[] = [
     description: "Les mini-crêpes, version chocolat.",
     tone: TONES.sand,
     image: {
-      src: "/images/crepes/mini-crepes-chocolat.webp",
-      alt: "Crêpes pliées garnies de chocolat, nappées de chocolat et parsemées de noisettes",
-      position: "55% 50%",
+      src: "/images/crepes/crepes-au-chocolat-la-marilyn-vue-dessus.webp",
+      alt: "Crêpes pliées en éventail sur une assiette, vue de dessus, avec un pot de pâte à tartiner au chocolat",
+      position: "50% 50%",
     },
     pricing: {
       kind: "variants",
@@ -369,9 +369,9 @@ export const CREPES: Product[] = [
     description: "Le duo jambon et fromage, roulé dans une crêpe.",
     tone: TONES.linen,
     image: {
-      src: "/images/crepes/crepes-jambon-fromage.webp",
-      alt: "Crêpes pliées garnies de jambon et de fromage fondu, sur une planche en bois",
-      position: "52% 55%",
+      src: "/images/crepes/crepes-jambon-fromage-la-marilyn.webp",
+      alt: "Crêpes dorées garnies de dés de jambon et de fromage fondu",
+      position: "38% 50%",
     },
     pricing: { kind: "fixed", amount: 1_000, unit: "unité" },
     minQuantity: "10 pièces",
@@ -398,9 +398,9 @@ export const CREPES: Product[] = [
     description: "Le classique des crêpes à l’orange.",
     tone: TONES.sand,
     image: {
-      src: "/images/crepes/crepes-suzette-orange.webp",
-      alt: "Crêpes Suzette nappées de sauce à l’orange et de rondelles d’orange",
-      position: "56% 60%",
+      src: "/images/crepes/crepes-suzette-la-marilyn.webp",
+      alt: "Crêpes Suzette nappées de sauce à l’orange, quartiers d’orange, zestes et cheveux de caramel",
+      position: "50% 50%",
     },
     pricing: { kind: "confirm" },
     ...MIGNARDISE,

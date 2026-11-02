@@ -43,9 +43,9 @@ const UNIVERSES: Universe[] = [
       href: "/nos-creations#mignardises",
     },
     image: {
-      src: "/images/univers/mignardises.webp",
-      alt: "Assortiment de mignardises : dômes chocolat, entremets, tartelettes aux fruits",
-      position: "50% 52%",
+      src: "/images/univers/interface-mignardises-la-marilyn.webp",
+      alt: "Boîte de mignardises salées : chaussons, nems, crevettes panées, feuilletés et mini-friands au sésame",
+      position: "50% 50%",
     },
   },
   {
