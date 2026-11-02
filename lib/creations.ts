@@ -125,11 +125,6 @@ export const PATISSERIES: Product[] = [
     description: "Ananas caramélisé sur un gâteau moelleux et doré.",
     tone: TONES.sand,
     badge: "best-seller",
-    image: {
-      src: "/images/patisseries/renverse-ananas.webp",
-      alt: "Gâteau renversé à l’ananas caramélisé, une part servie sur un présentoir",
-      position: "70% 50%",
-    },
   }),
   gateau("Cake velvet", 6_000, {
     description: "Un cake velvet à la mie tendre et colorée.",
@@ -433,11 +428,6 @@ export const TRAITEUR: Product[] = (
       tone: TONES.linen,
       pricing: { kind: "quote" },
       request: "buffet",
-      image: {
-        src: "/images/buffet/buffets.jpg",
-        alt: "Buffet de bouchées : brochettes tomate-fromage, mini-burgers, canapés au saumon et tartelettes",
-        position: "30% 50%",
-      },
     },
     {
       name: "Location de présentoirs",
