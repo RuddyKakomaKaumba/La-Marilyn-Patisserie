@@ -3,7 +3,8 @@ import { DM_Sans, Newsreader } from "next/font/google";
 import "./globals.css";
 import "./seasonal.css";
 import SeasonalBanner from "@/components/seasonal/SeasonalBanner";
-import { SEASON_ATTR } from "@/lib/seasonal";
+import Snowfall from "@/components/seasonal/Snowfall";
+import { FESTIVE, SEASON_ATTR } from "@/lib/seasonal";
 import { bakeryJsonLd, OG_IMAGE, SITE_URL } from "@/lib/seo";
 
 const newsreader = Newsreader({
@@ -63,6 +64,7 @@ export default function RootLayout({
       <body>
         <SeasonalBanner />
         {children}
+        {FESTIVE && <Snowfall />}
         <script
           type="application/ld+json"
           // Contenu statique (constantes du site), sérialisé côté serveur.
