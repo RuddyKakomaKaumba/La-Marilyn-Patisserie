@@ -1,6 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Sans, Newsreader } from "next/font/google";
 import "./globals.css";
+import "./seasonal.css";
+import SeasonalBanner from "@/components/seasonal/SeasonalBanner";
+import { SEASON_ATTR } from "@/lib/seasonal";
 import { bakeryJsonLd, OG_IMAGE, SITE_URL } from "@/lib/seo";
 
 const newsreader = Newsreader({
@@ -52,8 +55,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${newsreader.variable} ${dmSans.variable}`}>
+    <html
+      lang="fr"
+      data-season={SEASON_ATTR}
+      className={`${newsreader.variable} ${dmSans.variable}`}
+    >
       <body>
+        <SeasonalBanner />
         {children}
         <script
           type="application/ld+json"

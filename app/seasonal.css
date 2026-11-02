@@ -1,0 +1,293 @@
+/*
+ * Thème saisonnier « Noël & Nouvel An 2026 ».
+ *
+ * Toutes les règles dépendent de html[data-season="fetes"], posé par
+ * app/layout.tsx quand le thème est actif (lib/seasonal.ts). Thème
+ * désactivé : aucune de ces règles ne s'applique, le site retrouve son
+ * apparence habituelle sans résidu.
+ *
+ * Palette : vert sapin, bordeaux, champagne et l'or du site.
+ */
+
+html[data-season="fetes"] {
+  --season-fir: #173a2f;
+  --season-fir-deep: #0f2a22;
+  --season-bordeaux: #6e1d2a;
+  --season-champagne: #ead7ae;
+  --season-banner-h: 36px;
+  /* Étoiles à quatre branches, dorées (motif décoratif). */
+  --season-stars: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='160' viewBox='0 0 240 160'%3E%3Cg fill='%23e2c796'%3E%3Cpath d='M30 20l2 7 7 2-7 2-2 7-2-7-7-2 7-2z'/%3E%3Cpath d='M120 12l1.4 4.6 4.6 1.4-4.6 1.4-1.4 4.6-1.4-4.6-4.6-1.4 4.6-1.4z' opacity='.7'/%3E%3Cpath d='M200 46l2.4 7.6 7.6 2.4-7.6 2.4-2.4 7.6-2.4-7.6-7.6-2.4 7.6-2.4z'/%3E%3Cpath d='M78 84l1.2 3.8 3.8 1.2-3.8 1.2-1.2 3.8-1.2-3.8-3.8-1.2 3.8-1.2z' opacity='.6'/%3E%3Cpath d='M160 120l1.6 5.4 5.4 1.6-5.4 1.6-1.6 5.4-1.6-5.4-5.4-1.6 5.4-1.6z' opacity='.8'/%3E%3Ccircle cx='60' cy='130' r='1.4' opacity='.7'/%3E%3Ccircle cx='226' cy='110' r='1.2' opacity='.6'/%3E%3Ccircle cx='150' cy='60' r='1' opacity='.5'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+@media (min-width: 640px) {
+  html[data-season="fetes"] {
+    --season-banner-h: 40px;
+  }
+}
+
+/* ---------- Bandeau saisonnier ---------- */
+
+.season-banner {
+  position: relative;
+  z-index: 40;
+  display: flex;
+  height: var(--season-banner-h, 36px);
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  background: linear-gradient(
+    90deg,
+    var(--season-fir-deep, #0f2a22),
+    var(--season-fir, #173a2f) 50%,
+    var(--season-fir-deep, #0f2a22)
+  );
+  border-bottom: 1px solid rgb(202 165 108 / 0.45);
+  color: var(--season-champagne, #ead7ae);
+}
+
+.season-banner__text {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.season-banner__star {
+  color: var(--color-gold-light);
+}
+
+.season-banner__dot {
+  opacity: 0.6;
+}
+
+.season-banner__link {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #fbf5e9;
+  text-decoration: underline;
+  text-decoration-color: rgb(226 199 150 / 0.55);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 300ms var(--ease-soft);
+}
+
+.season-banner__link:hover {
+  text-decoration-color: var(--color-gold-light);
+}
+
+@media (min-width: 640px) {
+  .season-banner__text {
+    font-size: 0.8125rem;
+  }
+}
+
+/* Le header (en absolu sur le hero) se place sous le bandeau. */
+html[data-season="fetes"] header.absolute {
+  top: var(--season-banner-h);
+}
+
+/* ---------- Hero : poussière d'étoiles autour du texte ---------- */
+
+html[data-season="fetes"] section[aria-labelledby="hero-title"]::after {
+  content: "";
+  position: absolute;
+  top: 64px;
+  right: 3%;
+  z-index: 0;
+  width: min(34vw, 180px);
+  height: min(23vw, 120px);
+  background: var(--season-stars) no-repeat center / contain;
+  opacity: 0.55;
+  pointer-events: none;
+  animation: season-twinkle 5.5s ease-in-out infinite alternate;
+}
+
+@media (min-width: 1024px) {
+  html[data-season="fetes"] section[aria-labelledby="hero-title"]::after {
+    top: 120px;
+    right: auto;
+    left: max(260px, calc((100vw - 1440px) / 2 + 270px));
+    width: 240px;
+    height: 140px;
+  }
+}
+
+/* Halo chaleureux, très léger, derrière le titre. */
+html[data-season="fetes"] section[aria-labelledby="hero-title"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    60% 45% at 18% 30%,
+    rgb(110 29 42 / 0.22),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+@keyframes season-twinkle {
+  from {
+    opacity: 0.35;
+  }
+  to {
+    opacity: 0.65;
+  }
+}
+
+/* ---------- Nos univers : micro-détails ---------- */
+
+html[data-season="fetes"] #univers h3::before {
+  content: "✦";
+  margin-right: 0.45em;
+  color: var(--color-gold-deep);
+}
+
+/* Pastille de l'Écrin : bordeaux et champagne. */
+html[data-season="fetes"] [data-season-badge] {
+  background-image: none;
+  background-color: var(--season-bordeaux);
+  color: #fbf0d8;
+}
+
+/* ---------- Section « Édition de saison » (accueil) ---------- */
+
+.holiday-edition {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 3.25rem 1.5rem;
+  background:
+    radial-gradient(
+      70% 120% at 100% 0%,
+      rgb(110 29 42 / 0.35),
+      transparent 60%
+    ),
+    linear-gradient(160deg, #173a2f, #0f2a22);
+  border-block: 1px solid rgb(202 165 108 / 0.35);
+  color: #fbf5e9;
+}
+
+@media (min-width: 640px) {
+  .holiday-edition {
+    padding: 4.5rem 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .holiday-edition {
+    padding: 5.5rem 3rem;
+  }
+}
+
+.holiday-edition__ornament {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    var(--season-stars) no-repeat right 6% top 18% / 280px auto,
+    var(--season-stars) no-repeat left -40px bottom -30px / 220px auto;
+  opacity: 0.32;
+}
+
+@media (min-width: 768px) {
+  .holiday-edition__ornament {
+    opacity: 0.45;
+  }
+}
+
+.holiday-edition__btn {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border-radius: 9999px;
+  border: 1px solid #e3c692;
+  background: #f6efe5;
+  padding: 0 1.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #173129;
+  white-space: nowrap;
+  transition:
+    background-color 300ms var(--ease-soft),
+    color 300ms var(--ease-soft);
+}
+
+.holiday-edition__btn:hover {
+  background: #fff;
+}
+
+.holiday-edition__btn--ghost {
+  background: transparent;
+  color: #fbf5e9;
+}
+
+.holiday-edition__btn--ghost:hover {
+  background: rgb(234 215 174 / 0.12);
+}
+
+.holiday-edition__btn:focus-visible {
+  outline: 1.5px solid #e3c692;
+  outline-offset: 3px;
+}
+
+/* ---------- L'Écrin gourmand (Nos créations) ---------- */
+
+.season-ecrin-note {
+  margin-top: 0.9rem;
+  display: inline-block;
+  border: 1px solid rgb(226 199 150 / 0.4);
+  border-radius: 9999px;
+  padding: 0.35rem 0.9rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--season-champagne, #ead7ae);
+  background: rgb(23 58 47 / 0.55);
+}
+
+/* ---------- Pied de page : finition festive légère ---------- */
+
+html[data-season="fetes"] footer {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(
+    to bottom,
+    var(--season-fir-deep),
+    var(--color-ink) 38%
+  );
+  border-top: 1px solid rgb(202 165 108 / 0.35);
+}
+
+html[data-season="fetes"] footer::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: -1;
+  height: 150px;
+  background: var(--season-stars) repeat-x left 30px top 10px / 420px auto;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+html[data-season="fetes"] footer::before {
+  content: "Belles fêtes de fin d’année";
+  display: block;
+  margin: 2.25rem auto 1.75rem;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--season-champagne);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-season="fetes"] section[aria-labelledby="hero-title"]::after {
+    animation: none;
+  }
+}
