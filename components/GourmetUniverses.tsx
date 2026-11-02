@@ -145,7 +145,7 @@ export default function GourmetUniverses() {
               <span className="block sm:inline">
                 L’Écrin gourmand by La Marilyn
               </span>
-              <span className="hidden sm:inline"> — </span>
+              <span className="hidden sm:inline"> · </span>
               <span className="block text-gold-light sm:inline">
                 Composez votre cadeau
               </span>

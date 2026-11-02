@@ -43,20 +43,16 @@ export default function Craftsmanship() {
             style={{ "--reveal-delay": "80ms" } as React.CSSProperties}
             className="display mt-4 text-[2.25rem] text-ivory sm:mt-5 sm:text-[3.5rem] lg:text-[4.5rem]"
           >
-            Le détail
-            <br />
-            fait toute la
-            <br />
-            différence.
+            Préparé <br /> à la main, <br /> avec soin.
           </h2>
           <p
             data-reveal
             style={{ "--reveal-delay": "160ms" } as React.CSSProperties}
             className="mt-4 max-w-[21rem] text-[0.9375rem] leading-[1.55] text-ivory/75 sm:mt-6 sm:max-w-[25rem] sm:leading-relaxed"
           >
-            De bons ingrédients, des gestes précis et un soin particulier
-            apporté à chaque finition&nbsp;: chaque création est préparée à la
-            main, comme pour nos propres invités.
+            Nous choisissons de bons ingrédients et prenons le temps qu’il faut
+            pour chaque finition, comme si nous préparions la table de nos
+            propres invités.
           </p>
           <div
             data-reveal

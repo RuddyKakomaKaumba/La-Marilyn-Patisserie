@@ -30,18 +30,16 @@ export default function ContactSection() {
             style={{ "--reveal-delay": "80ms" } as React.CSSProperties}
             className="display mt-4 text-[2.25rem] text-ivory sm:mt-5 sm:text-[3.25rem] lg:text-[4.25rem]"
           >
-            Une douceur pour
-            <br />
-            chaque occasion.
+            Parlons de <br /> votre projet.
           </h2>
           <p
             data-reveal
             style={{ "--reveal-delay": "160ms" } as React.CSSProperties}
             className="mt-3 max-w-[21rem] text-[0.9375rem] leading-[1.55] text-ivory/75 sm:mt-5 sm:max-w-[27rem] sm:leading-relaxed"
           >
-            Un anniversaire, un mariage, une réception ou simplement une envie
-            de faire plaisir&nbsp;? La Marilyn imagine avec vous quelque chose
-            de gourmand.
+            Un anniversaire, un mariage, une réception ou juste l’envie de faire
+            plaisir&nbsp;? Dites-nous ce que vous avez en tête, et nous
+            regardons ensemble ce qui est possible.
           </p>
         </div>
 

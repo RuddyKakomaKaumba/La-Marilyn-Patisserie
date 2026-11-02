@@ -343,7 +343,7 @@ function Layer({
           href={item.href}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={`${item.alt} — voir la publication sur Instagram`}
+          aria-label={`${item.alt}. Voir la publication sur Instagram`}
           className="absolute inset-0 block"
         >
           {img}

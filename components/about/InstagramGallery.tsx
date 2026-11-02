@@ -55,8 +55,8 @@ export default async function InstagramGallery() {
             signées La Marilyn.
           </h2>
           <p className="mx-auto mt-3 max-w-[20rem] text-[0.9375rem] leading-[1.55] text-muted md:mt-4 md:max-w-[26rem] md:leading-relaxed">
-            Un aperçu de notre univers, de nos gâteaux aux petites attentions
-            gourmandes.
+            Quelques gâteaux et douceurs que nous avons préparés pour nos
+            clients.
           </p>
         </header>
 

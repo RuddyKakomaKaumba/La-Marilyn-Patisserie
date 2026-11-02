@@ -72,7 +72,7 @@ export default function Confidentialite() {
           <div className="mt-8 space-y-8">
             <Section title="Qui est responsable de vos données ?">
               <p>
-                La Marilyn – L’Art du Gâteau, pâtisserie basée à Douala
+                La Marilyn (L’Art du Gâteau), pâtisserie basée à Douala
                 (Cameroun).
               </p>
               <ul className="list-disc space-y-1.5 pl-5">

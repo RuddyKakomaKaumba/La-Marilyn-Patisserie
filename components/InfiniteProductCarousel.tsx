@@ -545,7 +545,7 @@ function ProductCard({
             className="text-left after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:rounded-[10px] focus-visible:after:outline focus-visible:after:outline-[1.5px] focus-visible:after:-outline-offset-2 focus-visible:after:outline-gold"
           >
             {product.name}
-            <span className="sr-only"> — voir le détail</span>
+            <span className="sr-only">, voir le détail</span>
           </button>
         </Title>
         <p
@@ -578,7 +578,7 @@ function ProductCard({
               rel="noopener noreferrer"
               draggable={false}
               tabIndex={tabIndex}
-              aria-label={`${WHATSAPP_CTAS[product.cta?.key ?? "general"].label} — ${product.name} (WhatsApp)`}
+              aria-label={`${WHATSAPP_CTAS[product.cta?.key ?? "general"].label} : ${product.name} (WhatsApp)`}
               className="group/plus flex h-7 w-7 items-center justify-center rounded-full border border-gold/60 text-gold-deep transition-colors duration-300 ease-soft hover:border-gold hover:bg-gold hover:text-ink active:bg-gold active:text-ink"
             >
               <PlusIcon className="h-3.5 w-3.5 transition-transform duration-300 ease-soft group-hover/plus:rotate-45" />

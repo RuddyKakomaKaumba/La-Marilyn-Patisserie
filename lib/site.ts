@@ -81,7 +81,7 @@ export const WHATSAPP_CTAS: Record<
 export function ctaUrl(cta: WhatsAppCta, detail?: string) {
   const { intent } = WHATSAPP_CTAS[cta];
   return whatsappUrl(
-    `Bonjour La Marilyn 👋 Je viens de votre site et ${intent}${
+    `Bonjour La Marilyn 👋 Je vous écris depuis votre site. ${intent.charAt(0).toUpperCase()}${intent.slice(1)}${
       detail ? ` : ${detail}` : ""
     }.`,
   );

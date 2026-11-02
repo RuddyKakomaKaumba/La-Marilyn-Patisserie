@@ -43,8 +43,8 @@ export default function CreationsIntro() {
             style={{ "--reveal-delay": "160ms" } as React.CSSProperties}
             className="mt-3 max-w-[20rem] text-[0.9375rem] leading-[1.5] text-ivory/75 sm:max-w-[26rem] md:mt-5 md:leading-relaxed lg:mt-6 lg:text-base"
           >
-            Des pâtisseries, des mignardises et de jolies tables à partager.
-            Bienvenue dans l’univers gourmand de La Marilyn.
+            Gâteaux, mignardises, crêpes et buffets&nbsp;: retrouvez ici tout ce
+            que nous préparons, avec les tarifs et les délais pour commander.
           </p>
         </div>
         <nav

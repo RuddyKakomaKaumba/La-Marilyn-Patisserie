@@ -94,16 +94,16 @@ export default function EcrinGourmand() {
             className="space-y-4 text-[0.9375rem] leading-relaxed text-ivory/75 lg:pt-10"
           >
             <p className="text-ivory">
-              Et si, cette fois, c’était vous qui imaginiez le cadeau&nbsp;?
+              Avec L’Écrin gourmand, c’est vous qui composez le cadeau.
             </p>
             <p>
-              L’Écrin gourmand n’est pas un coffret tout fait&nbsp;: c’est le
-              vôtre. Vous choisissez les couleurs, les gourmandises, l’ambiance,
-              et même le petit mot que la personne découvrira à l’ouverture.
+              Vous choisissez les gourmandises, les couleurs et l’ambiance, et
+              vous pouvez y glisser un petit mot que la personne découvrira en
+              l’ouvrant.
             </p>
             <p>
-              Chaque détail est pensé pour créer une attention qui raconte
-              quelque chose, et dont on se souvient longtemps.
+              La Marilyn vous conseille sur la composition, puis prépare le
+              coffret pour qu’il fasse vraiment plaisir.
             </p>
             <dl className="!mt-6 grid gap-x-6 gap-y-3 border-t border-ivory/15 pt-5 text-[0.8125rem] sm:grid-cols-2">
               <div>

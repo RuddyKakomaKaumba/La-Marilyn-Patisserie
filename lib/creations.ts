@@ -48,7 +48,7 @@ const gateau = (
 export const PATISSERIES: Product[] = [
   gateau("Moelleux au chocolat", 5_000, {
     description:
-      "Cœur fondant et chocolat intense : la gourmandise la plus demandée de la maison.",
+      "Fondant et bien chocolaté, c’est le gâteau que nos clients commandent le plus.",
     tone: TONES.sand,
     badge: "best-seller",
     image: {
@@ -85,8 +85,7 @@ export const PATISSERIES: Product[] = [
     },
   }),
   gateau("Cake noix de coco", 4_500, {
-    description:
-      "Un cake moelleux, généreusement recouvert de noix de coco toastée.",
+    description: "Un cake moelleux, généreusement recouvert de noix de coco.",
     tone: TONES.beige,
     image: {
       src: "/images/patisseries/cake-noix-de-coco-la-marilyn.webp",
@@ -138,7 +137,7 @@ export const PATISSERIES: Product[] = [
   // Absent de la grille tarifaire transmise : prix à confirmer.
   gateau("Cake nature", null, {
     description:
-      "Le grand classique, doré et fondant, tout simplement gourmand.",
+      "Le cake nature tout simple, doré et moelleux, parfait pour le goûter.",
     tone: TONES.linen,
     image: {
       src: "/images/patisseries/cake-nature.webp",
@@ -174,7 +173,7 @@ export const CAKE_DESIGNS: Product[] = [
     name: "Gâteau d’anniversaire",
     cta: { key: "surMesure", detail: "Gâteau d’anniversaire" },
     description:
-      "Un gâteau imaginé pour la personne fêtée, à partager avec petits et grands.",
+      "Un gâteau pensé pour la personne que vous fêtez, à partager en famille ou entre amis.",
     tone: TONES.linen,
     ...CAKE_DESIGN,
     image: {
@@ -269,7 +268,7 @@ export const MIGNARDISES: Product[] = (
       name: "Pénés",
       cta: { key: "mignardises", detail: "Pénés" },
       description:
-        "De savoureuses portions individuelles de pâtes, faciles à servir sur un buffet.",
+        "Des portions individuelles de pâtes, faciles à servir sur un buffet.",
       tone: TONES.linen,
       pricing: { kind: "confirm" },
       ...MIGNARDISE,
@@ -282,7 +281,8 @@ export const MIGNARDISES: Product[] = (
     {
       name: "Mini moelleux",
       cta: { key: "mignardises", detail: "Mini moelleux" },
-      description: "De petites douceurs au chocolat, fondantes et gourmandes.",
+      description:
+        "De petits moelleux au chocolat, à servir en dessert ou sur un buffet.",
       tone: TONES.cream,
       pricing: { kind: "confirm" },
       ...MIGNARDISE,
@@ -447,8 +447,7 @@ export const TRAITEUR: Product[] = (
     {
       name: "Pièces cocktail",
       cta: { key: "buffet", detail: "Pièces cocktail" },
-      description:
-        "De petites bouchées élégantes, à picorer entre deux conversations.",
+      description: "De petites bouchées faciles à servir pendant un cocktail.",
       tone: TONES.beige,
       pricing: { kind: "quote" },
       request: "buffet",

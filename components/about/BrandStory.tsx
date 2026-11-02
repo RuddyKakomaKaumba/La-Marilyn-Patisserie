@@ -19,11 +19,7 @@ export default function BrandStory() {
             data-reveal
             className="display text-[2rem] text-ink md:text-[2.75rem] lg:text-[3.5rem]"
           >
-            Créer du beau,
-            <br />
-            du bon et
-            <br />
-            du mémorable.
+            Ce qui nous <br /> tient à cœur.
           </h2>
           <div
             data-reveal
@@ -31,13 +27,13 @@ export default function BrandStory() {
             className="mt-4 max-w-[34rem] space-y-3 text-[0.9375rem] leading-[1.55] text-muted md:mt-6 md:space-y-4 md:leading-relaxed lg:mt-2 lg:text-base"
           >
             <p>
-              Au fil du temps, l’univers La Marilyn s’est élargi&nbsp;: des
-              gâteaux sur mesure aux mignardises, en passant par les buffets et
-              la location de présentoirs.
+              Aujourd’hui, La Marilyn prépare des gâteaux sur mesure, des
+              mignardises et des buffets, et loue aussi des présentoirs pour
+              mettre vos tables en valeur.
             </p>
             <p>
-              Une même envie demeure&nbsp;: imaginer des créations généreuses,
-              élégantes et pensées pour accompagner les moments qui comptent.
+              Ce qui ne change pas, c’est l’envie de faire des gâteaux généreux
+              et soignés, qui font plaisir à ceux qui les reçoivent.
             </p>
           </div>
         </div>

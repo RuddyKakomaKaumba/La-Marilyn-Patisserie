@@ -34,7 +34,9 @@ export default function Presentoirs() {
           >
             Un set de {total} cubes blancs
             <br />
-            <em className="font-[330] italic">pour sublimer votre table.</em>
+            <em className="font-[330] italic">
+              pour mettre en valeur votre table.
+            </em>
           </h2>
 
           <ul

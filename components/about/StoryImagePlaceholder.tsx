@@ -18,7 +18,7 @@ export default function StoryImagePlaceholder({
     <div
       data-reveal="image"
       data-placeholder={
-        image ? undefined : "Portrait / atelier La Marilyn — image à ajouter"
+        image ? undefined : "Portrait ou atelier La Marilyn : image à ajouter"
       }
       className={`relative overflow-hidden rounded-[10px] ${image ? "aspect-[4/5]" : "aspect-[5/4] md:aspect-[4/5]"} bg-[#3b2a1f] ${className}`}
     >
