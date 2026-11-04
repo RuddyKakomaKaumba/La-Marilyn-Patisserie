@@ -124,6 +124,11 @@ export const PATISSERIES: Product[] = [
     description: "Ananas caramélisé sur un gâteau moelleux et doré.",
     tone: TONES.sand,
     badge: "best-seller",
+    image: {
+      src: "/images/patisseries/renverse-ananas-la-marilyn.webp",
+      alt: "Gâteau renversé à l’ananas rectangulaire, trois tranches d’ananas caramélisées, vu de dessus sur un plan de marbre",
+      position: "50% 50%",
+    },
   }),
   gateau("Cake velvet", 6_000, {
     description: "Un cake velvet à la mie tendre et colorée.",
@@ -265,17 +270,17 @@ export const MIGNARDISES: Product[] = (
       ],
     },
     {
-      name: "Pénés",
-      cta: { key: "mignardises", detail: "Pénés" },
+      name: "Pilis-pilis",
+      cta: { key: "mignardises", detail: "Pilis-pilis" },
       description:
-        "Des portions individuelles de pâtes, faciles à servir sur un buffet.",
+        "Des chaussons dorés et croustillants, faciles à servir à l’apéritif ou sur un buffet.",
       tone: TONES.linen,
       pricing: { kind: "confirm" },
       ...MIGNARDISE,
       image: {
-        src: "/images/mignardises/penes.webp",
-        alt: "Portions individuelles de penne à la bolognaise et au parmesan en verrines",
-        position: "50% 55%",
+        src: "/images/mignardises/pilis-pilis-la-marilyn.webp",
+        alt: "Pilis-pilis dorés disposés sur un lit de salade, avec des quartiers de citron",
+        position: "50% 50%",
       },
     },
     {
@@ -428,6 +433,11 @@ export const TRAITEUR: Product[] = (
       tone: TONES.linen,
       pricing: { kind: "quote" },
       request: "buffet",
+      image: {
+        src: "/images/buffet/buffet-gourmand-la-marilyn.webp",
+        alt: "Buffet gourmand La Marilyn : mini-burgers au sésame, tranches de cake, feuilletés et chaussons sur une table nappée de blanc et de bleu",
+        position: "50% 60%",
+      },
     },
     {
       name: "Location de présentoirs",
