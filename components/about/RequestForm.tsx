@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Product } from "@/components/InfiniteProductCarousel";
 import { DELIVERY, GATEAUX_TERMS, PRESENTOIRS } from "@/lib/commerce";
+import { AVAILABILITY_NOTICE, CLOSED_REQUEST_DATES } from "@/lib/availability";
 import { CREPES, MIGNARDISES, PATISSERIES } from "@/lib/creations";
 import { formatFcfa, priceSummary } from "@/lib/pricing";
 import {
@@ -12,6 +13,7 @@ import {
   checkDate,
   daysUntil,
   formatDate,
+  firstRequestDate,
   isoDate,
   isRequestType,
   REQUEST_TYPES,
@@ -144,6 +146,7 @@ export default function RequestForm() {
       leadDays,
       leadLabel,
       urgent,
+      type === "gateaux" ? GATEAUX_TERMS.cutoffHour : undefined,
     );
     if (dateError) e["rq-date"] = dateError;
     return e;
@@ -648,7 +651,7 @@ export default function RequestForm() {
                 >
                   {input(
                     "rq-date",
-                    { type: "date", min: isoDate(new Date()) },
+                    { type: "date", min: urgent ? isoDate(new Date()) : firstRequestDate(leadDays, type === "gateaux" ? GATEAUX_TERMS.cutoffHour : undefined) },
                     type === "gateaux" || leadLabel || type === "buffet"
                       ? "hint"
                       : undefined,
@@ -669,6 +672,11 @@ export default function RequestForm() {
                   </Field>
                 )}
               </div>
+
+              <p className="text-[0.8125rem] leading-relaxed text-muted" role="status">
+                {AVAILABILITY_NOTICE}
+                {CLOSED_REQUEST_DATES.length > 0 && " Certaines dates peuvent être fermées aux nouvelles demandes."}
+              </p>
 
               {lateForTomorrow && (
                 <p
