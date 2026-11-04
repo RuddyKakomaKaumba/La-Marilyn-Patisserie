@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ECRIN_TERMS } from "@/lib/commerce";
 import { PRECOMPOSED_ECRINS } from "@/lib/ecrin";
+import { FESTIVE } from "@/lib/seasonal";
 import EcrinOptions from "./EcrinOptions";
 
 /** Le coffret réel : fermé (le concept) et ouvert (à composer). */
@@ -64,6 +65,12 @@ export default function EcrinGourmand() {
             >
               {ECRIN_TERMS.signature}
             </p>
+            {FESTIVE && (
+              <p data-reveal className="season-ecrin-note">
+                <span aria-hidden="true">✦ </span>
+                Une idée cadeau à composer pour les fêtes.
+              </p>
+            )}
             <div
               data-reveal="image"
               className="mt-7 grid grid-cols-2 gap-2.5 md:mt-9 md:gap-4"
