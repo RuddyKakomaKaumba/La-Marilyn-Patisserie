@@ -1,3 +1,4 @@
+import { CLOSED_REQUEST_DATES } from "./availability";
 import { formatFcfa } from "./pricing";
 import { whatsappUrl } from "./site";
 
@@ -72,6 +73,17 @@ export function isoDate(d: Date) {
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 }
 
+/** Première date indicative selon le délai minimum et l'heure limite. */
+export function firstRequestDate(
+  leadDays: number | undefined,
+  cutoffHour?: number,
+  now = new Date(),
+) {
+  const extra = cutoffHour !== undefined && now.getHours() >= cutoffHour && leadDays === 1 ? 1 : 0;
+  const date = new Date(now.getFullYear(), now.getMonth(), now.getDate() + (leadDays ?? 0) + extra);
+  return isoDate(date);
+}
+
 /** Nombre de jours entre aujourd'hui et la date choisie (AAAA-MM-JJ). */
 export function daysUntil(value: string, now = new Date()) {
   const [y, m, d] = value.split("-").map(Number);
@@ -99,12 +111,14 @@ export function checkDate(
   leadDays: number | undefined,
   leadLabel: string | undefined,
   urgent: boolean,
+  cutoffHour?: number,
 ): string | undefined {
   if (!value) return "Indiquez la date souhaitée.";
   const days = daysUntil(value);
   if (Number.isNaN(days)) return "Indiquez une date valide.";
   if (days < 0) return "Cette date est déjà passée.";
-  if (leadDays && days < leadDays && !urgent) {
+  if (CLOSED_REQUEST_DATES.includes(value)) return "La Marilyn ne prend pas de nouvelles demandes pour cette date. Merci d’en choisir une autre.";
+  if (leadDays && value < firstRequestDate(leadDays, cutoffHour) && !urgent) {
     return `Le délai minimum est de ${leadLabel}. Pour une date plus proche, cochez « Demande urgente » : La Marilyn vous dira si c’est possible.`;
   }
   return undefined;
