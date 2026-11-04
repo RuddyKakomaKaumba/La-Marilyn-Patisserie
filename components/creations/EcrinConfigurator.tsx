@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { ECRIN_TERMS, PAYMENT } from "@/lib/commerce";
+import { AVAILABILITY_NOTICE } from "@/lib/availability";
 import { ECRIN_GOURMANDISES, ECRIN_OCCASIONS } from "@/lib/ecrin";
 import {
   budgetText,
   buildRequestMessage,
   checkDate,
   formatDate,
+  firstRequestDate,
   isoDate,
   REQUEST_TYPES,
 } from "@/lib/requests";
@@ -125,7 +127,7 @@ export default function EcrinConfigurator() {
     openWhatsApp(url);
   };
 
-  const minDate = isoDate(new Date());
+  const minDate = urgent ? isoDate(new Date()) : firstRequestDate(TYPE.leadDays);
 
   return (
     <form
@@ -343,6 +345,8 @@ export default function EcrinConfigurator() {
             />
           </Field>
         </div>
+
+        <p className="text-[0.8125rem] leading-relaxed text-muted" role="status">{AVAILABILITY_NOTICE}</p>
 
         <label className="flex min-h-11 cursor-pointer items-start gap-2.5 text-[0.875rem] text-ink">
           <input
