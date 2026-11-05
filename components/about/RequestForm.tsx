@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import DateNotice from "@/components/forms/DateNotice";
 import { useEffect, useState } from "react";
 import type { Product } from "@/components/InfiniteProductCarousel";
 import { DELIVERY, GATEAUX_TERMS, PRESENTOIRS } from "@/lib/commerce";
-import { AVAILABILITY_NOTICE, CLOSED_REQUEST_DATES } from "@/lib/availability";
 import { CREPES, MIGNARDISES, PATISSERIES } from "@/lib/creations";
 import { formatFcfa, priceSummary } from "@/lib/pricing";
 import {
@@ -14,7 +14,7 @@ import {
   daysUntil,
   formatDate,
   firstRequestDate,
-  isoDate,
+  nowInDouala,
   isRequestType,
   REQUEST_TYPES,
   type MessageField,
@@ -61,7 +61,7 @@ export default function RequestForm() {
   const [v, setV] = useState<Values>({});
   const [picks, setPicks] = useState<Record<string, string>>({});
   const [urgent, setUrgent] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitErrors, setErrors] = useState<Record<string, string>>({});
   const [sentUrl, setSentUrl] = useState<string | null>(null);
 
   // Type prérempli depuis un lien « Préparer ma demande » (?demande=…).
@@ -146,7 +146,6 @@ export default function RequestForm() {
       leadDays,
       leadLabel,
       urgent,
-      type === "gateaux" ? GATEAUX_TERMS.cutoffHour : undefined,
     );
     if (dateError) e["rq-date"] = dateError;
     return e;
@@ -250,12 +249,22 @@ export default function RequestForm() {
     openWhatsApp(url);
   };
 
-  // Gâteaux : après 18 h, le lendemain n'est plus garanti.
+  // Gâteaux : après 18 h (heure de Douala), le lendemain n'est plus garanti.
   const lateForTomorrow =
     type === "gateaux" &&
     !!v["rq-date"] &&
     daysUntil(v["rq-date"]) === 1 &&
-    new Date().getHours() >= GATEAUX_TERMS.cutoffHour;
+    nowInDouala().hour >= GATEAUX_TERMS.cutoffHour;
+
+  // Date déjà saisie : contrôlée tout de suite (changement de prestation,
+  // case « urgente » décochée, date fermée…), sans attendre l'envoi.
+  const liveDateError = v["rq-date"]
+    ? checkDate(v["rq-date"], leadDays, leadLabel, urgent)
+    : undefined;
+  const errors =
+    liveDateError && !submitErrors["rq-date"]
+      ? { ...submitErrors, "rq-date": liveDateError }
+      : submitErrors;
 
   const input = (
     id: string,
@@ -346,7 +355,7 @@ export default function RequestForm() {
             </div>
           ) : (
             <div className="mt-6 space-y-5">
-              <ErrorSummary errors={errors} />
+              <ErrorSummary errors={submitErrors} />
 
               {type === "cake-design" && (
                 <>
@@ -651,7 +660,12 @@ export default function RequestForm() {
                 >
                   {input(
                     "rq-date",
-                    { type: "date", min: urgent ? isoDate(new Date()) : firstRequestDate(leadDays, type === "gateaux" ? GATEAUX_TERMS.cutoffHour : undefined) },
+                    {
+                      type: "date",
+                      min: urgent
+                        ? nowInDouala().today
+                        : firstRequestDate(leadDays),
+                    },
                     type === "gateaux" || leadLabel || type === "buffet"
                       ? "hint"
                       : undefined,
@@ -673,10 +687,7 @@ export default function RequestForm() {
                 )}
               </div>
 
-              <p className="text-[0.8125rem] leading-relaxed text-muted" role="status">
-                {AVAILABILITY_NOTICE}
-                {CLOSED_REQUEST_DATES.length > 0 && " Certaines dates peuvent être fermées aux nouvelles demandes."}
-              </p>
+              <DateNotice />
 
               {lateForTomorrow && (
                 <p
