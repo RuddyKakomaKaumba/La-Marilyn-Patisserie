@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import DateNotice from "@/components/forms/DateNotice";
 import { useEffect, useState } from "react";
 import type { Product } from "@/components/InfiniteProductCarousel";
 import { DELIVERY, GATEAUX_TERMS, PRESENTOIRS } from "@/lib/commerce";
@@ -12,7 +13,8 @@ import {
   checkDate,
   daysUntil,
   formatDate,
-  isoDate,
+  firstRequestDate,
+  nowInDouala,
   isRequestType,
   REQUEST_TYPES,
   type MessageField,
@@ -59,7 +61,7 @@ export default function RequestForm() {
   const [v, setV] = useState<Values>({});
   const [picks, setPicks] = useState<Record<string, string>>({});
   const [urgent, setUrgent] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitErrors, setErrors] = useState<Record<string, string>>({});
   const [sentUrl, setSentUrl] = useState<string | null>(null);
 
   // Type prérempli depuis un lien « Préparer ma demande » (?demande=…).
@@ -247,12 +249,22 @@ export default function RequestForm() {
     openWhatsApp(url);
   };
 
-  // Gâteaux : après 18 h, le lendemain n'est plus garanti.
+  // Gâteaux : après 18 h (heure de Douala), le lendemain n'est plus garanti.
   const lateForTomorrow =
     type === "gateaux" &&
     !!v["rq-date"] &&
     daysUntil(v["rq-date"]) === 1 &&
-    new Date().getHours() >= GATEAUX_TERMS.cutoffHour;
+    nowInDouala().hour >= GATEAUX_TERMS.cutoffHour;
+
+  // Date déjà saisie : contrôlée tout de suite (changement de prestation,
+  // case « urgente » décochée, date fermée…), sans attendre l'envoi.
+  const liveDateError = v["rq-date"]
+    ? checkDate(v["rq-date"], leadDays, leadLabel, urgent)
+    : undefined;
+  const errors =
+    liveDateError && !submitErrors["rq-date"]
+      ? { ...submitErrors, "rq-date": liveDateError }
+      : submitErrors;
 
   const input = (
     id: string,
@@ -343,7 +355,7 @@ export default function RequestForm() {
             </div>
           ) : (
             <div className="mt-6 space-y-5">
-              <ErrorSummary errors={errors} />
+              <ErrorSummary errors={submitErrors} />
 
               {type === "cake-design" && (
                 <>
@@ -648,7 +660,12 @@ export default function RequestForm() {
                 >
                   {input(
                     "rq-date",
-                    { type: "date", min: isoDate(new Date()) },
+                    {
+                      type: "date",
+                      min: urgent
+                        ? nowInDouala().today
+                        : firstRequestDate(leadDays),
+                    },
                     type === "gateaux" || leadLabel || type === "buffet"
                       ? "hint"
                       : undefined,
@@ -669,6 +686,8 @@ export default function RequestForm() {
                   </Field>
                 )}
               </div>
+
+              <DateNotice />
 
               {lateForTomorrow && (
                 <p
