@@ -1,0 +1,27 @@
+{
+  "name": "la-marilyn-video",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Film de lancement du site La Marilyn (Remotion)",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render:vertical": "remotion render src/index.ts LancementVertical exports/la-marilyn-lancement-vertical.mp4",
+    "render:horizontal": "remotion render src/index.ts LancementHorizontal exports/la-marilyn-lancement-horizontal.mp4",
+    "render:cover": "remotion still src/index.ts CouvertureReels exports/la-marilyn-couverture-reels.png",
+    "render": "npm run render:vertical && npm run render:horizontal && npm run render:cover",
+    "captures": "node scripts/capture-site.mjs",
+    "audio": "python3 scripts/audio/build_audio.py",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.542",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "remotion": "^4.0.542"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^7.0.2"
+  }
+}

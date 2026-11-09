@@ -1,0 +1,124 @@
+{
+  "photos": {
+    "hero": {
+      "file": "hero.webp",
+      "width": 941,
+      "height": 1672
+    },
+    "cake-noir-or": {
+      "file": "cake-noir-or.webp",
+      "width": 1014,
+      "height": 1200
+    },
+    "cake-turquoise": {
+      "file": "cake-turquoise.webp",
+      "width": 798,
+      "height": 997
+    },
+    "cake-licorne": {
+      "file": "cake-licorne.webp",
+      "width": 838,
+      "height": 1047
+    },
+    "cake-blanc-or": {
+      "file": "cake-blanc-or.webp",
+      "width": 720,
+      "height": 900
+    },
+    "cake-floral": {
+      "file": "cake-floral.webp",
+      "width": 660,
+      "height": 825
+    },
+    "moelleux": {
+      "file": "moelleux.webp",
+      "width": 789,
+      "height": 1200
+    },
+    "velvet": {
+      "file": "velvet.webp",
+      "width": 960,
+      "height": 1200
+    },
+    "renverse-ananas": {
+      "file": "renverse-ananas.webp",
+      "width": 960,
+      "height": 1200
+    },
+    "praline": {
+      "file": "praline.webp",
+      "width": 1000,
+      "height": 776
+    },
+    "mini-burgers": {
+      "file": "mini-burgers.webp",
+      "width": 1000,
+      "height": 1175
+    },
+    "mini-cupcakes": {
+      "file": "mini-cupcakes.webp",
+      "width": 1095,
+      "height": 1200
+    },
+    "crepes-suzette": {
+      "file": "crepes-suzette.webp",
+      "width": 960,
+      "height": 1200
+    },
+    "crepes-nature": {
+      "file": "crepes-nature.webp",
+      "width": 960,
+      "height": 1200
+    },
+    "ecrin-ferme": {
+      "file": "ecrin-ferme.webp",
+      "width": 810,
+      "height": 780
+    },
+    "ecrin-ouvert": {
+      "file": "ecrin-ouvert.webp",
+      "width": 902,
+      "height": 1080
+    },
+    "ecrin-garni": {
+      "file": "ecrin-garni.webp",
+      "width": 800,
+      "height": 1067
+    },
+    "buffet-reception": {
+      "file": "buffet-reception.webp",
+      "width": 1060,
+      "height": 1484
+    },
+    "buffet-table": {
+      "file": "buffet-table.webp",
+      "width": 960,
+      "height": 1200
+    },
+    "buffet-fleurs": {
+      "file": "buffet-fleurs.webp",
+      "width": 1024,
+      "height": 1536
+    }
+  },
+  "pages": {
+    "m-accueil-page": {
+      "count": 4,
+      "tile": 1000,
+      "width": 390,
+      "height": 3684.0
+    },
+    "m-apropos-page": {
+      "count": 8,
+      "tile": 1000,
+      "width": 390,
+      "height": 7568.0
+    },
+    "d-accueil-page": {
+      "count": 5,
+      "tile": 1000,
+      "width": 1440,
+      "height": 4526.0
+    }
+  }
+}

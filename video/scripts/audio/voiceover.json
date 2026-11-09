@@ -1,0 +1,12 @@
+{
+  "voice": "ff_siwis",
+  "lang": "fr-fr",
+  "speed": 0.94,
+  "lines": [
+    { "id": "vo-1", "text": "Vos envies gourmandes méritent toute notre attention." },
+    { "id": "vo-2", "text": "La Marilyn vous ouvre les portes de son nouvel univers en ligne." },
+    { "id": "vo-3", "text": "Explorez nos créations, trouvez l’inspiration et imaginez les gourmandises de votre prochain événement." },
+    { "id": "vo-4", "text": "Préparez votre demande directement sur notre site. Nous échangeons ensuite avec vous pour finaliser votre commande." },
+    { "id": "vo-5", "text": "Le nouveau site La Marilyn est en ligne. Découvrez-le dès maintenant." }
+  ]
+}
