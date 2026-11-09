@@ -28,6 +28,12 @@ const SWEET_EXTRAS = [
   "Mini-cupcakes",
   "Mini-crêpes sucrées nature",
   "Mini-crêpes au chocolat",
+  // Ajoutés à la demande de La Marilyn ; chacun n'apparaît qu'une fois
+  // son tarif confirmé (voir `confirmed`).
+  "Mini moelleux",
+  "Pilis-pilis",
+  "Crêpes au fromage",
+  "Crêpes Suzette à l’orange",
 ];
 
 const confirmed = (p: Product) =>
