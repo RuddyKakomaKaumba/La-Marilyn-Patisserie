@@ -151,5 +151,12 @@ export const PRESENTOIRS = {
   price: 25_000,
   deposit: 10_000,
   depositNote: "Caution remboursée au retour du matériel en bon état.",
+  /** Durée couverte par le prix du set, et jour supplémentaire. */
+  duration: "La location couvre une période de 24 heures.",
+  extraDay: 5_000,
+  conditions: [
+    "Le matériel doit être restitué propre et en bon état.",
+    "Toute casse ou perte est à la charge du client.",
+  ],
   transport: "Transport à la charge du client.",
 };

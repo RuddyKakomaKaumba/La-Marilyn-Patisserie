@@ -106,13 +106,21 @@ export default function Presentoirs() {
               <p className="mt-2 font-sans text-[1.125rem] font-semibold text-gold-deep">
                 {formatFcfa(PRESENTOIRS.price)}
               </p>
-              <p className="text-[0.8125rem] text-muted">le set complet</p>
+              <p className="text-[0.8125rem] text-muted">
+                le set complet, pour 24 heures
+              </p>
               <ul className="mt-3 space-y-1 text-[0.8125rem] leading-relaxed text-ink">
                 <li>
                   Caution&nbsp;: {formatFcfa(PRESENTOIRS.deposit)}.{" "}
                   {PRESENTOIRS.depositNote}
                 </li>
+                <li>
+                  Jour supplémentaire&nbsp;: {formatFcfa(PRESENTOIRS.extraDay)}.
+                </li>
                 <li>{PRESENTOIRS.transport}</li>
+                {PRESENTOIRS.conditions.map((c) => (
+                  <li key={c}>{c}</li>
+                ))}
               </ul>
             </li>
             <li

@@ -208,7 +208,7 @@ export default function RequestForm() {
           [
             "Formule",
             v["rq-formula"] === "seule"
-              ? `Location seule du set de cubes (${formatFcfa(PRESENTOIRS.price)}, caution ${formatFcfa(PRESENTOIRS.deposit)})`
+              ? `Location seule du set de cubes (${formatFcfa(PRESENTOIRS.price)} pour 24 h, caution ${formatFcfa(PRESENTOIRS.deposit)})`
               : v["rq-formula"] === "prestation"
                 ? "Location avec une prestation La Marilyn"
                 : undefined,
@@ -592,7 +592,7 @@ export default function RequestForm() {
                       {
                         value: "seule",
                         label: "Location seule",
-                        text: `${formatFcfa(PRESENTOIRS.price)} le set · caution ${formatFcfa(PRESENTOIRS.deposit)} · ${PRESENTOIRS.transport.toLowerCase()}`,
+                        text: `${formatFcfa(PRESENTOIRS.price)} le set pour 24 h · jour supplémentaire ${formatFcfa(PRESENTOIRS.extraDay)} · caution ${formatFcfa(PRESENTOIRS.deposit)} · ${PRESENTOIRS.transport.toLowerCase()}`,
                       },
                       {
                         value: "prestation",
