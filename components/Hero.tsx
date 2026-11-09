@@ -4,6 +4,7 @@ import { WHATSAPP_CTAS, WHATSAPP_URL } from "@/lib/site";
 import { btnArrow, btnGold, btnOutlineLightQuiet } from "./buttons";
 import CurveDivider from "./CurveDivider";
 import { ArrowRight, PlusIcon } from "./icons";
+import HeroFestive from "./seasonal/HeroFestive";
 
 export default function Hero() {
   return (
@@ -11,6 +12,9 @@ export default function Hero() {
       aria-labelledby="hero-title"
       className="relative isolate flex hero-mobile flex-col overflow-hidden bg-ink text-ivory md:h-[100svh] md:max-h-[72rem] md:min-h-[44rem] lg:max-h-[980px] lg:min-h-[700px] lg:flex-row lg:items-center"
     >
+      {/* Décor des fêtes (rendu seulement si le thème saisonnier est actif) */}
+      <HeroFestive />
+
       {/* Photographie */}
       {/*
         Mobile / tablette : la photo remplit le hero sous le haut de page, de

@@ -120,7 +120,7 @@ export const PATISSERIES: Product[] = [
       position: "42% 50%",
     },
   }),
-  gateau("Renversé à l’ananas", 4_500, {
+  gateau("Renversé à l’ananas", 5_000, {
     description: "Ananas caramélisé sur un gâteau moelleux et doré.",
     tone: TONES.sand,
     badge: "best-seller",
@@ -140,7 +140,7 @@ export const PATISSERIES: Product[] = [
     },
   }),
   // Absent de la grille tarifaire transmise : prix à confirmer.
-  gateau("Cake nature", null, {
+  gateau("Cake nature", 4_000, {
     description:
       "Le cake nature tout simple, doré et moelleux, parfait pour le goûter.",
     tone: TONES.linen,
@@ -258,14 +258,20 @@ export const MIGNARDISES: Product[] = (
         alt: "Mini-cupcakes surmontés d’une rosace de crème rose ou blanche",
         position: "60% 60%",
       },
-      pricing: { kind: "from", amount: 10_000, unit: "les 9 pièces" },
+      pricing: {
+        kind: "variants",
+        items: [
+          { label: "9 pièces, décor simple", amount: 10_000 },
+          { label: "9 pièces, décor personnalisé", amount: 15_000 },
+        ],
+      },
       options: ["Crème au beurre", "Chantilly"],
       minQuantity: "9 pièces",
       leadTime: "24 h",
       leadDays: 1,
       ...MIGNARDISE,
       notes: [
-        "Le prix varie selon la décoration et la personnalisation.",
+        "Au-delà de 9 pièces, la commande se fait par lots de 9.",
         ...MIGNARDISE.notes,
       ],
     },
@@ -275,7 +281,10 @@ export const MIGNARDISES: Product[] = (
       description:
         "Des chaussons dorés et croustillants, faciles à servir à l’apéritif ou sur un buffet.",
       tone: TONES.linen,
-      pricing: { kind: "confirm" },
+      pricing: { kind: "fixed", amount: 500, unit: "unité" },
+      minQuantity: "10 pièces",
+      leadTime: "48 h",
+      leadDays: 2,
       ...MIGNARDISE,
       image: {
         src: "/images/mignardises/pilis-pilis-la-marilyn.webp",
@@ -289,7 +298,10 @@ export const MIGNARDISES: Product[] = (
       description:
         "De petits moelleux au chocolat, à servir en dessert ou sur un buffet.",
       tone: TONES.cream,
-      pricing: { kind: "confirm" },
+      pricing: { kind: "fixed", amount: 400, unit: "unité" },
+      minQuantity: "15 pièces",
+      leadTime: "24 h",
+      leadDays: 1,
       ...MIGNARDISE,
       image: {
         src: "/images/mignardises/mini-moelleux-au-chocolat-la-marilyn.webp",
@@ -389,7 +401,10 @@ export const CREPES: Product[] = [
       alt: "Crêpes pliées au fromage fondant, une part soulevée en filant",
       position: "58% 55%",
     },
-    pricing: { kind: "confirm" },
+    pricing: { kind: "fixed", amount: 1_000, unit: "les 10 pièces" },
+    minQuantity: "10 pièces",
+    leadTime: "24 h",
+    leadDays: 1,
     ...MIGNARDISE,
   },
   {
@@ -402,7 +417,10 @@ export const CREPES: Product[] = [
       alt: "Crêpes Suzette nappées de sauce à l’orange, quartiers d’orange, zestes et cheveux de caramel",
       position: "50% 50%",
     },
-    pricing: { kind: "confirm" },
+    pricing: { kind: "fixed", amount: 5_000, unit: "les 10 pièces" },
+    minQuantity: "10 pièces",
+    leadTime: "24 h",
+    leadDays: 1,
     ...MIGNARDISE,
   },
 ];
@@ -445,7 +463,11 @@ export const TRAITEUR: Product[] = (
       description:
         "Un set de cubes blancs pour mettre vos gourmandises en valeur.",
       tone: TONES.cream,
-      pricing: { kind: "fixed", amount: PRESENTOIRS.price, unit: "le set" },
+      pricing: {
+        kind: "fixed",
+        amount: PRESENTOIRS.price,
+        unit: "le set, 24 h",
+      },
       request: "presentoirs",
       link: { label: "Voir l’offre de location", href: "#presentoirs" },
       image: {

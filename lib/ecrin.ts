@@ -2,10 +2,10 @@ import type { Product } from "@/components/InfiniteProductCarousel";
 import { CREPES, MIGNARDISES, PATISSERIES } from "./creations";
 
 /**
- * Écrins pré-composés. Collection vide tant que La Marilyn n'a pas
- * confirmé de composition : la section affiche alors « Bientôt
- * disponible ». Pour en ajouter un, compléter ce tableau (le prix et la
- * composition doivent être confirmés).
+ * Écrins pré-composés. La Marilyn n'en propose pas (choix du
+ * 9 novembre 2026) : la collection reste vide et l'option n'est pas
+ * affichée. Pour en ajouter un plus tard, compléter ce tableau avec une
+ * composition et un prix confirmés ; l'option réapparaît alors.
  */
 export type PrecomposedEcrin = {
   name: string;
@@ -28,6 +28,12 @@ const SWEET_EXTRAS = [
   "Mini-cupcakes",
   "Mini-crêpes sucrées nature",
   "Mini-crêpes au chocolat",
+  // Ajoutés à la demande de La Marilyn ; chacun n'apparaît qu'une fois
+  // son tarif confirmé (voir `confirmed`).
+  "Mini moelleux",
+  "Pilis-pilis",
+  "Crêpes au fromage",
+  "Crêpes Suzette à l’orange",
 ];
 
 const confirmed = (p: Product) =>
