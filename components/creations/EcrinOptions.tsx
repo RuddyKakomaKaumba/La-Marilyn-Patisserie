@@ -11,9 +11,9 @@ import { ArrowRight } from "../icons";
 import EcrinConfigurator from "./EcrinConfigurator";
 
 /**
- * Les deux façons de demander un écrin : le composer (configurateur
- * déplié à la demande) ou choisir un écrin pré-composé — mention
- * « bientôt disponible » tant que la collection est vide.
+ * Demander un écrin : le composer (configurateur déplié à la demande).
+ * L'option « écrin pré-composé » n'apparaît que si La Marilyn en propose
+ * (lib/ecrin.ts) ; sans écrin pré-composé, seule la composition s'affiche.
  */
 export default function EcrinOptions({
   precomposed,
@@ -25,12 +25,14 @@ export default function EcrinOptions({
 
   return (
     <div className="mt-10 md:mt-14">
-      <ul className="grid gap-3 md:grid-cols-2 md:gap-5">
+      <ul
+        className={`grid gap-3 md:gap-5 ${available ? "md:grid-cols-2" : ""}`}
+      >
         <li
           data-reveal
           className="flex flex-col rounded-[12px] border border-gold/40 p-5 md:p-7"
         >
-          <p className="eyebrow text-gold-light/90">Option 1</p>
+          {available && <p className="eyebrow text-gold-light/90">Option 1</p>}
           <h3 className="display mt-3 text-[1.625rem] text-ivory md:text-[2rem]">
             Composer mon écrin
           </h3>
@@ -54,30 +56,22 @@ export default function EcrinOptions({
           </div>
         </li>
 
-        <li
-          data-reveal
-          style={{ "--reveal-delay": "80ms" } as React.CSSProperties}
-          className="flex flex-col rounded-[12px] border border-ivory/15 p-5 md:p-7"
-        >
-          <p className="eyebrow text-ivory/55">Option 2</p>
-          <h3 className="display mt-3 text-[1.625rem] text-ivory md:text-[2rem]">
-            Choisir un écrin pré-composé
-          </h3>
-          {available ? (
+        {available && (
+          <li
+            data-reveal
+            style={{ "--reveal-delay": "80ms" } as React.CSSProperties}
+            className="flex flex-col rounded-[12px] border border-ivory/15 p-5 md:p-7"
+          >
+            <p className="eyebrow text-ivory/55">Option 2</p>
+            <h3 className="display mt-3 text-[1.625rem] text-ivory md:text-[2rem]">
+              Choisir un écrin pré-composé
+            </h3>
             <p className="mt-2 text-[0.875rem] leading-relaxed text-ivory/70">
               Des écrins déjà imaginés par La Marilyn&nbsp;: choisissez le vôtre
               et envoyez votre demande en un message.
             </p>
-          ) : (
-            <p className="mt-2 text-[0.875rem] leading-relaxed text-ivory/70">
-              <span className="mr-2 inline-block rounded-full border border-gold/50 px-2.5 py-0.5 text-[0.6875rem] uppercase tracking-[0.12em] text-gold-light">
-                Bientôt disponible
-              </span>
-              Des écrins déjà imaginés par La Marilyn, à choisir et à demander
-              en un message.
-            </p>
-          )}
-        </li>
+          </li>
+        )}
       </ul>
 
       {available && (
