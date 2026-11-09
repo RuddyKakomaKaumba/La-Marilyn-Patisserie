@@ -281,7 +281,10 @@ export const MIGNARDISES: Product[] = (
       description:
         "Des chaussons dorés et croustillants, faciles à servir à l’apéritif ou sur un buffet.",
       tone: TONES.linen,
-      pricing: { kind: "confirm" },
+      pricing: { kind: "fixed", amount: 500, unit: "unité" },
+      minQuantity: "10 pièces",
+      leadTime: "48 h",
+      leadDays: 2,
       ...MIGNARDISE,
       image: {
         src: "/images/mignardises/pilis-pilis-la-marilyn.webp",
@@ -398,7 +401,10 @@ export const CREPES: Product[] = [
       alt: "Crêpes pliées au fromage fondant, une part soulevée en filant",
       position: "58% 55%",
     },
-    pricing: { kind: "confirm" },
+    pricing: { kind: "fixed", amount: 1_000, unit: "les 10 pièces" },
+    minQuantity: "10 pièces",
+    leadTime: "24 h",
+    leadDays: 1,
     ...MIGNARDISE,
   },
   {

@@ -29,7 +29,7 @@ const ECRIN_PHOTOS = [
 
 /**
  * L'Écrin gourmand by La Marilyn : coffret cadeau entièrement composé par
- * le visiteur (option 1) ou, plus tard, écrins pré-composés (option 2).
+ * le visiteur ; écrins pré-composés seulement si La Marilyn en ajoute.
  */
 export default function EcrinGourmand() {
   return (

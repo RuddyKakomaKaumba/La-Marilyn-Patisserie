@@ -120,7 +120,7 @@ export const CAKE_DESIGN_TERMS = {
 
 export const ECRIN_TERMS = {
   signature: "Un cadeau gourmand, à votre image.",
-  price: "À partir de 30 000 FCFA.",
+  price: "À partir de 25 000 FCFA.",
   priceDetail:
     "Le prix final dépend de la composition, des quantités, des gourmandises et des personnalisations choisies.",
   leadTime: "7 jours minimum.",
