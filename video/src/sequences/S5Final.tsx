@@ -3,12 +3,12 @@ import { AbsoluteFill, useCurrentFrame } from "remotion";
 import { GoldDust, Glow, LightSweep } from "../components/Atmosphere";
 import { Logo } from "../components/Logo";
 import { Photo, PhotoKey } from "../components/Photo";
-import { Tap } from "../components/Devices";
+import { QrCode } from "../components/QrCode";
 import { Eyebrow, GoldRule, RevealLine, display } from "../components/Type";
 import { EASE, tween } from "../lib/anim";
 import { useFormat } from "../lib/format";
-import { SANS, SERIF } from "../fonts";
-import { COLORS, SITE_URL_LABEL } from "../theme";
+import { SERIF } from "../fonts";
+import { COLORS } from "../theme";
 
 export const S5_LEAD = 12;
 
@@ -55,18 +55,18 @@ export const S5Final: React.FC = () => {
   const { W, H, pick } = useFormat();
 
   const nameSpacing = tween(f, 26, 70, 0.62, 0.3, EASE.out);
-  const urlIn = tween(f, 72, 96, 0, 1, EASE.out);
-  // Appel à l'action : la ligne arrive avec la voix, puis un toucher sur l'adresse.
-  const CTA_AT = 92;
-  const TAP_AT = 152;
-  const press = 1 - 0.035 * tween(f, TAP_AT - 4, TAP_AT, 0, 1) * tween(f, TAP_AT, TAP_AT + 10, 1, 0);
-  const pulse = 0.5 + 0.5 * Math.sin((f - 98) / 14);
+  // Appel à l'action, puis le QR code qui se dessine depuis son centre.
+  const CTA_AT = 106;
+  const QR_AT = 78;
+  const qrIn = tween(f, QR_AT, QR_AT + 16, 0, 1, EASE.out);
+  const qrDraw = tween(f, QR_AT + 2, QR_AT + 34, 0, 1, EASE.inOut);
+  const pulse = 0.5 + 0.5 * Math.sin((f - QR_AT) / 14);
 
   return (
     <AbsoluteFill style={{ backgroundColor: COLORS.ink, opacity: tween(frame, 0, S5_LEAD + 6, 0, 1) }}>
       <Glow x={W / 2} y={pick(700, 430)} size={pick(1700, 1900)} opacity={0.2 + 0.06 * tween(f, 0, 40, 1, 0)} color="202,165,108" />
       <Glow x={W / 2} y={pick(700, 430)} size={pick(820, 760)} opacity={0.16} />
-      <Ribbon f={f} y={pick(1560, 846)} size={pick(290, 190)} opacity={tween(f, 40, 90, 0, pick(0.5, 0.42))} />
+      <Ribbon f={f} y={pick(1590, 900)} size={pick(270, 160)} opacity={tween(f, 40, 90, 0, pick(0.5, 0.42))} />
       <GoldDust count={pick(40, 44)} seed="final" opacity={0.9} />
       {/* Éclat d'ouverture, sur le premier temps */}
       <LightSweep progress={tween(f, -6, 34, 0, 1, EASE.out)} opacity={0.32 * tween(f, 18, 36, 1, 0)} />
@@ -75,20 +75,20 @@ export const S5Final: React.FC = () => {
         style={{
           position: "absolute",
           left: 0,
-          top: pick(322, 70),
+          top: pick(268, 34),
           width: W,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}
       >
-        <Logo size={pick(300, 196)} frame={f} at={4} />
-        <div style={{ height: pick(54, 30) }} />
+        <Logo size={pick(232, 150)} frame={f} at={4} />
+        <div style={{ height: pick(34, 16) }} />
         <div
           style={{
             fontFamily: SERIF,
             fontWeight: 300,
-            fontSize: pick(104, 88),
+            fontSize: pick(96, 74),
             letterSpacing: `${nameSpacing}em`,
             marginRight: `${-nameSpacing}em`,
             color: COLORS.ivory,
@@ -99,58 +99,38 @@ export const S5Final: React.FC = () => {
         >
           LA MARILYN
         </div>
-        <div style={{ height: pick(30, 20) }} />
+        <div style={{ height: pick(24, 12) }} />
         <Eyebrow at={S5_LEAD + 40} size={pick(34, 28)} color={COLORS.goldLight} style={{ marginRight: "-0.2em" }}>
           L’art du gâteau
         </Eyebrow>
-        <div style={{ height: pick(56, 34) }} />
+        <div style={{ height: pick(36, 18) }} />
         <GoldRule at={S5_LEAD + 52} width={pick(170, 150)} origin="center" />
-        <div style={{ height: pick(56, 34) }} />
+        <div style={{ height: pick(36, 18) }} />
         <Eyebrow at={S5_LEAD + 62} size={pick(35, 30)} color={COLORS.ivory} style={{ marginRight: "-0.2em" }}>
           Notre nouveau site est en ligne
         </Eyebrow>
-        <div style={{ height: pick(44, 26) }} />
+        <div style={{ height: pick(40, 22) }} />
         <RevealLine
           text="Commandez dès maintenant"
           at={S5_LEAD + CTA_AT}
           italic
           stagger={3}
-          style={{ ...display(pick(76, 58), COLORS.goldLight), justifyContent: "center" }}
+          style={{ ...display(pick(76, 56), COLORS.goldLight), justifyContent: "center" }}
         />
-        <div style={{ height: pick(36, 22) }} />
-        {/* Adresse du site : bouton doré du site, large et lisible */}
-        <div style={{ position: "relative", transform: `scale(${press})` }}>
+        <div style={{ height: pick(40, 22) }} />
+        {/* QR code vers le site, à la place de l'adresse */}
         <div
           style={{
-            position: "relative",
-            padding: pick("30px 54px", "24px 52px"),
-            borderRadius: 999,
-            backgroundColor: COLORS.gold,
-            color: COLORS.ink,
-            fontFamily: SANS,
-            fontWeight: 500,
-            fontSize: pick(49, 44),
-            letterSpacing: "0.005em",
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            opacity: urlIn,
-            transform: `translateY(${(1 - urlIn) * 40}px) scale(${0.94 + urlIn * 0.06})`,
-            boxShadow: `0 0 ${50 + pulse * 40}px rgba(226,180,110,${0.28 + pulse * 0.16}), 0 20px 50px rgba(0,0,0,0.4)`,
+            opacity: qrIn,
+            transform: `translateY(${(1 - qrIn) * 36}px) scale(${0.92 + qrIn * 0.08 + pulse * 0.008})`,
           }}
         >
-          {SITE_URL_LABEL}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background: `linear-gradient(110deg, rgba(255,255,255,0) ${tween(f, 104, 140, -40, 120, EASE.inOut)}%, rgba(255,250,235,0.6) ${tween(f, 104, 140, -25, 135, EASE.inOut)}%, rgba(255,255,255,0) ${tween(f, 104, 140, -10, 150, EASE.inOut)}%)`,
-            }}
-          />
+          <QrCode size={pick(330, 250)} reveal={qrDraw} />
         </div>
-          <div style={{ position: "absolute", left: "91%", top: "62%", transform: "scale(1.9)" }}>
-            <Tap x={0} y={0} frame={f} at={TAP_AT} />
-          </div>
-        </div>
+        <div style={{ height: pick(26, 16) }} />
+        <Eyebrow at={S5_LEAD + QR_AT + 26} size={pick(26, 22)} color={COLORS.goldLight} style={{ marginRight: "-0.2em" }}>
+          Scannez pour commander
+        </Eyebrow>
       </div>
       <AbsoluteFill style={{ backgroundColor: COLORS.ink, opacity: tween(f, 232, 240, 0, 0.25), height: H }} />
     </AbsoluteFill>

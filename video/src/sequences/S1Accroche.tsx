@@ -98,7 +98,7 @@ export const S1Accroche: React.FC = () => {
         <Logo size={pick(196, 150)} frame={frame} at={12} />
         <div style={{ height: pick(36, 40) }} />
         <RevealLine
-          text="Vos envies gourmandes"
+          text="Les plus beaux moments"
           at={40}
           out={textOut}
           italic
@@ -106,7 +106,7 @@ export const S1Accroche: React.FC = () => {
         />
         <div style={{ height: pick(14, 12) }} />
         <RevealLine
-          text="méritent toute notre attention."
+          text="ont toujours un goût de fête."
           at={66}
           out={textOut + 3}
           style={{ ...display(pick(66, 58)), justifyContent: vertical ? "center" : "flex-start" }}

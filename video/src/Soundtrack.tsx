@@ -1,5 +1,6 @@
 import React from "react";
 import { Audio, Sequence, interpolate, staticFile } from "remotion";
+import { S3_CUTS } from "./sequences/S3Creations";
 import { ORDER } from "./sequences/S4Commande";
 import { DURATION, FPS, SEQ, VOICE } from "./timeline";
 
@@ -33,7 +34,9 @@ const musicVolume = (frame: number) => {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  return base + (MIX.musicUnderVoice - base) * duck;
+  // Le final est plus dense : la musique s'efface davantage sous la dernière réplique.
+  const under = frame >= SEQ.final.from ? MIX.musicUnderVoice * 0.7 : MIX.musicUnderVoice;
+  return base + (under - base) * duck;
 };
 
 type Cue = { at: number; file: string; volume?: number };
@@ -42,24 +45,23 @@ type Cue = { at: number; file: string; volume?: number };
 const CUES: Cue[] = [
   { at: 12, file: "sfx-shimmer", volume: 0.5 },
   { at: SEQ.revelation.from - 14, file: "sfx-whoosh", volume: 0.8 },
-  { at: SEQ.creations.from - 18, file: "sfx-whoosh", volume: 0.9 },
-  { at: SEQ.creations.from + 60 - 8, file: "sfx-whoosh-down", volume: 0.7 },
-  { at: SEQ.creations.from + 120 - 8, file: "sfx-whoosh", volume: 0.7 },
-  { at: SEQ.creations.from + 180 - 8, file: "sfx-whoosh-down", volume: 0.7 },
-  { at: SEQ.creations.from + 180 + 15, file: "sfx-shimmer", volume: 0.45 },
-  { at: SEQ.creations.from + 240 - 8, file: "sfx-whoosh", volume: 0.7 },
+  // Séquence 3 : un souffle à chaque changement d'univers
+  ...S3_CUTS.slice(0, 4).map((cut, i): Cue => ({
+    at: SEQ.creations.from + cut - (i === 0 ? 16 : 10),
+    file: i % 2 ? "sfx-whoosh-down" : "sfx-whoosh",
+    volume: i === 0 ? 0.9 : 0.65,
+  })),
+  { at: SEQ.creations.from + S3_CUTS[2] + 14, file: "sfx-shimmer", volume: 0.4 },
   { at: SEQ.commande.from - 10, file: "sfx-whoosh-down", volume: 0.7 },
   { at: SEQ.commande.from + ORDER.tapCard, file: "sfx-tap" },
   { at: SEQ.commande.from + ORDER.toForm, file: "sfx-whoosh-down", volume: 0.45 },
-  { at: SEQ.commande.from + ORDER.tapGateau, file: "sfx-tap" },
-  { at: SEQ.commande.from + ORDER.tapGateau + 5, file: "sfx-type", volume: 0.8 },
+  { at: SEQ.commande.from + ORDER.tapPick, file: "sfx-tap" },
   { at: SEQ.commande.from + ORDER.tapDate, file: "sfx-tap" },
   { at: SEQ.commande.from + ORDER.tapDate + 5, file: "sfx-type", volume: 0.8 },
   { at: SEQ.commande.from + ORDER.tapSend, file: "sfx-tap" },
   { at: SEQ.commande.from + ORDER.message, file: "sfx-pop", volume: 1.1 },
   { at: SEQ.final.from + 4, file: "sfx-shimmer", volume: 0.6 },
-  { at: SEQ.final.from + 84, file: "sfx-pop", volume: 0.5 },
-  { at: SEQ.final.from + 152, file: "sfx-tap", volume: 1.1 },
+  { at: SEQ.final.from + 80, file: "sfx-shimmer", volume: 0.45 },
 ];
 
 export const Soundtrack: React.FC = () => (

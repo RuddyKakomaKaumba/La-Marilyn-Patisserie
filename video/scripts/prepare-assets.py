@@ -39,6 +39,8 @@ SELECTION = {
     "buffet-reception": "buffet/evenements-professionnels.webp",
     "buffet-table": "buffet/buffet-gourmand-la-marilyn.webp",
     "buffet-fleurs": "evenements-buffet.webp",
+    "tarte-framboise": "occasions-tarte-framboise.webp",
+    "mini-moelleux": "mignardises/mini-moelleux-au-chocolat-la-marilyn.webp",
 }
 # Pages réellement défilées dans le film
 PAGES = ["m-accueil-page", "m-apropos-page", "d-accueil-page"]
@@ -57,9 +59,12 @@ for key, rel in SELECTION.items():
     small.filter(ImageFilter.GaussianBlur(7)).save(os.path.join(PHOTOS, key + "-flou.jpg"), quality=80)
 shutil.copyfile(os.path.join(SITE_IMAGES, "logo-la-marilyn.png"), os.path.join(BRAND, "logo-la-marilyn.png"))
 
-tiles = {}
+data_path = os.path.join(ROOT, "src", "data", "assets.json")
+tiles = json.load(open(data_path))["pages"] if os.path.exists(data_path) else {}
 os.makedirs(os.path.join(CAPTURES, "tuiles"), exist_ok=True)
 for page in PAGES:
+    if not os.path.exists(os.path.join(CAPTURES, page + ".jpg")):
+        continue  # capture absente : on garde les tuiles existantes
     im = Image.open(os.path.join(CAPTURES, page + ".jpg"))
     scale = 3 if page.startswith("m-") else 2
     step = TILE_CSS * scale
@@ -71,5 +76,5 @@ for page in PAGES:
     tiles[page] = {"count": count, "tile": TILE_CSS, "width": im.width // scale, "height": im.height / scale}
 
 os.makedirs(os.path.join(ROOT, "src", "data"), exist_ok=True)
-json.dump({"photos": sizes, "pages": tiles}, open(os.path.join(ROOT, "src", "data", "assets.json"), "w"), indent=2)
+json.dump({"photos": sizes, "pages": tiles}, open(data_path, "w"), indent=2)
 print(len(sizes), "photos ;", {k: v["count"] for k, v in tiles.items()})

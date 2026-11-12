@@ -147,19 +147,19 @@ export const S2Revelation: React.FC = () => {
           transform: `translateY(${-exit * 300}px)`,
         }}
       >
-        <Eyebrow at={frame < 0 ? 0 : S2_LEAD + 40} out={S2_LEAD + titleOut} size={pick(38, 34)}>
+        <Eyebrow at={frame < 0 ? 0 : S2_LEAD + 56} out={S2_LEAD + titleOut} size={pick(38, 34)}>
           Notre nouveau site
         </Eyebrow>
         <div style={{ height: pick(20, 18) }} />
         <RevealLine
           text="EST EN LIGNE"
-          at={S2_LEAD + 46}
+          at={S2_LEAD + 62}
           out={S2_LEAD + titleOut}
           stagger={4}
           style={{ ...display(pick(124, 84)), letterSpacing: "0.02em", fontWeight: 300, flexWrap: "nowrap" }}
         />
         <div style={{ height: pick(26, 24) }} />
-        <GoldRule at={S2_LEAD + 60} out={S2_LEAD + titleOut} width={pick(150, 130)} origin={vertical ? "center" : "left"} />
+        <GoldRule at={S2_LEAD + 76} out={S2_LEAD + titleOut} width={pick(150, 130)} origin={vertical ? "center" : "left"} />
       </div>
     </AbsoluteFill>
   );

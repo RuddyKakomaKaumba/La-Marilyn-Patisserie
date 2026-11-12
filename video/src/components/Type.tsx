@@ -5,22 +5,33 @@ import { SANS, SERIF } from "../fonts";
 import { EASE, tween } from "../lib/anim";
 
 /**
- * Ligne de texte révélée mot à mot : chaque mot monte derrière un masque,
- * comme les apparitions du site, avec un léger décalage entre les mots.
+ * Ligne de texte qui se pose mot à mot : chaque mot apparaît en fondu, en
+ * montant légèrement et en se mettant au net. Aucun masque : on ne voit
+ * jamais un mot coupé ou à moitié sorti.
  */
 export const RevealLine: React.FC<{
   text: string;
   at: number;
-  /** Image de sortie (facultatif) : les mots repartent vers le haut. */
+  /** Image de sortie (facultatif) : la ligne s'efface d'un bloc. */
   out?: number;
   stagger?: number;
   duration?: number;
   style?: React.CSSProperties;
-  /** Mots en italique (indices). */
   italic?: boolean;
-}> = ({ text, at, out, stagger = 3, duration = 22, style, italic }) => {
+}> = ({ text, at, out, stagger = 3, duration = 18, style, italic }) => {
   const frame = useCurrentFrame();
   const words = text.split(" ");
+  const leave = out === undefined ? 1 : tween(frame, out, out + 9, 1, 0, EASE.inOut);
+  if (frame < at || leave <= 0) {
+    // Ligne réservée (mise en page stable) mais invisible.
+    return (
+      <div style={{ display: "flex", flexWrap: "wrap", columnGap: "0.26em", fontStyle: italic ? "italic" : "normal", ...style, visibility: "hidden" }}>
+        {words.map((w, i) => (
+          <span key={i}>{w}</span>
+        ))}
+      </div>
+    );
+  }
   return (
     <div
       style={{
@@ -29,26 +40,25 @@ export const RevealLine: React.FC<{
         columnGap: "0.26em",
         fontStyle: italic ? "italic" : "normal",
         ...style,
+        opacity: leave,
+        transform: `translateY(${(1 - leave) * -0.12}em)`,
       }}
     >
       {words.map((w, i) => {
         const start = at + i * stagger;
-        const inY = tween(frame, start, start + duration, 108, 0, EASE.out);
-        const outY = out === undefined ? 0 : tween(frame, out + i * 2, out + i * 2 + 14, 0, -108, EASE.in);
+        const p = tween(frame, start, start + duration, 0, 1, EASE.out);
         return (
           <span
             key={i}
             style={{
               display: "inline-block",
-              overflow: "hidden",
-              // Marge pour les jambages et les accents, hors du masque
-              padding: "0.14em 0.06em 0.2em",
-              margin: "-0.14em -0.06em -0.2em",
+              whiteSpace: "pre",
+              opacity: p,
+              transform: `translateY(${(1 - p) * 0.32}em)`,
+              filter: p < 0.98 ? `blur(${(1 - p) * 7}px)` : undefined,
             }}
           >
-            <span style={{ display: "inline-block", transform: `translateY(${inY + outY}%)`, whiteSpace: "pre" }}>
-              {w}
-            </span>
+            {w}
           </span>
         );
       })}

@@ -62,16 +62,16 @@
     "w": 326,
     "h": 44
   },
-  "ficheScrollY": 534,
+  "ficheScrollY": 2675,
   "ficheCard": {
-    "x": 0,
-    "y": 701.09375,
-    "w": 168,
-    "h": 401.875
+    "x": 79,
+    "y": 2788.703125,
+    "w": 232,
+    "h": 510.625
   },
   "ficheSheet": {
     "x": 0,
-    "y": 618.40625,
+    "y": 2759.40625,
     "w": 390,
     "h": 759.59375
   },
@@ -79,7 +79,7 @@
     "patisseries": [
       {
         "file": "ui-patisseries-1.png",
-        "w": 168,
+        "w": 168.00000081774374,
         "h": 401.875,
         "title": "Moelleux au chocolat"
       },
@@ -158,31 +158,37 @@
     ]
   },
   "form": {
-    "sectionY": 4414.390625,
-    "formY": 4597,
-    "gateau": {
+    "pickY": 4768,
+    "pick": {
       "x": 36,
-      "y": 4930.984375,
-      "w": 318,
-      "h": 45
+      "y": 5110.484375,
+      "w": 18,
+      "h": 18
     },
+    "pickRow": {
+      "x": 36,
+      "y": 5098.484375,
+      "w": 318,
+      "h": 131
+    },
+    "dateY": 5463,
     "date": {
       "x": 36,
-      "y": 5121.984375,
+      "y": 5793.484375,
       "w": 318,
       "h": 46
     },
     "submit": {
       "x": 36,
-      "y": 5948.984375,
+      "y": 6561.984375,
       "w": 254.359375,
       "h": 44
     },
-    "submitY": 5479,
-    "message": "Bonjour La Marilyn 👋\nJe vous écris depuis votre site.\nJ’aimerais commander des gâteaux gourmands.\n\n• Gâteau : Moelleux au chocolat\n• Date souhaitée : samedi 19 décembre 2026\n\nJ’ai bien noté que cette demande ne vaut pas réservation : la commande sera confirmée après validation du projet, accord sur le prix et réception de l’acompte.\n\nMerci !",
+    "submitY": 6092,
+    "message": "Bonjour La Marilyn 👋\nJe vous écris depuis votre site.\nJ’aimerais commander des mignardises ou des crêpes.\n\n• Commande :\n   ◦ Mini-cupcakes × 9\n• Date souhaitée : samedi 19 décembre 2026\n\nJ’ai bien noté que cette demande ne vaut pas réservation : la commande sera confirmée après validation du projet, accord sur le prix et réception de l’acompte.\n\nMerci !",
     "demoDate": "2026-12-19"
   },
-  "aproposHeight": 7568,
+  "aproposHeight": 8181,
   "desktop": {
     "width": 1440,
     "height": 900,
@@ -228,6 +234,6 @@
       "h": 901.4375
     }
   },
-  "capturedAt": "2026-11-09T23:20:14.848Z",
+  "capturedAt": "2026-11-12T04:13:04.067Z",
   "source": "https://la-marilyn-patisserie.vercel.app"
 }

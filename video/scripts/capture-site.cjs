@@ -16,7 +16,7 @@ const OUT = path.join(__dirname, "..", "public", "captures");
 const META = path.join(__dirname, "..", "src", "data", "captures.json");
 /** Date souhaitée saisie dans le formulaire de démonstration. */
 const DEMO_DATE = "2026-12-19";
-const DEMO_GATEAU = "Moelleux au chocolat";
+const DEMO_PRODUCT = "Mini-cupcakes";
 
 const meta = {};
 const shot = (p, name, opts = {}) =>
@@ -93,21 +93,23 @@ const box = async (p, sel) => {
   meta.devisButton = await box(m, m.locator("#cake-design a", { hasText: "Demander un devis" }));
   await shot(m, "m-creations-page.jpg", { fullPage: true, type: "jpeg", quality: 88 });
 
-  // Fiche d'une création (bouton « + » de la carte Moelleux au chocolat)
-  const card = m.locator("#patisseries article", { hasText: "Moelleux au chocolat" }).first();
+  // Fiche d'une création : la carte « Mini-cupcakes » du carrousel des mignardises
+  const card = m.locator("#mignardises article", { hasText: DEMO_PRODUCT }).first();
   await m.evaluate(() => {
-    const s = document.querySelector("#patisseries");
+    const s = document.querySelector("#mignardises");
     window.scrollTo(0, s.getBoundingClientRect().top + window.scrollY - 24);
   });
-  await m.waitForTimeout(500);
+  await card.evaluate((el) => el.scrollIntoView({ inline: "center", block: "nearest" }));
+  await m.waitForTimeout(600);
   meta.ficheScrollY = await m.evaluate(() => window.scrollY);
   // Toute la carte ouvre la fiche de la création.
   meta.ficheCard = await box(m, card);
-  await shot(m, "m-creations-gateaux-ecran.png");
-  await card.locator("button[aria-haspopup=dialog]").click({ force: true });
+  await shot(m, "m-creations-mignardises-ecran.png");
+  await m.waitForTimeout(800);
+  await card.locator("button[aria-haspopup=dialog]").evaluate((el) => el.click());
   await m.waitForTimeout(1200);
   meta.ficheSheet = await box(m, "dialog[open]");
-  await shot(m, "m-fiche-moelleux.png");
+  await shot(m, "m-fiche-produit.png");
 
   // Cartes produit du site, capturées une à une (mises en scène dans la séquence 3)
   meta.ui = {};
@@ -128,8 +130,8 @@ const box = async (p, sel) => {
     }
   }
 
-  // Formulaire de demande, type « Gâteaux gourmands » (lien « Préparer ma demande »)
-  await m.goto(BASE + "/a-propos?demande=gateaux#demande", { waitUntil: "networkidle" });
+  // Formulaire de demande, type « Mignardises et crêpes »
+  await m.goto(BASE + "/a-propos?demande=mignardises#demande", { waitUntil: "networkidle" });
   await settle(m);
   await hideFloat(m);
   const scrollTo = async (sel, offset) => {
@@ -144,32 +146,35 @@ const box = async (p, sel) => {
     return m.evaluate(() => window.scrollY);
   };
   const blur = () => m.evaluate(() => document.activeElement && document.activeElement.blur());
+  const pick = m.locator("#demande li", { hasText: DEMO_PRODUCT }).first();
+  const pickSel = "#demande li:has(#" + (await pick.locator("input[type=checkbox]").getAttribute("id")) + ")";
   meta.form = {};
-  meta.form.sectionY = (await box(m, "#demande")).y;
-  meta.form.formY = await scrollTo("#demande form", 96);
-  meta.form.gateau = await box(m, "#rq-gateau");
-  meta.form.date = await box(m, "#rq-date");
-  meta.form.submit = await box(m, "#demande button[type=submit]");
-  await shot(m, "m-form-1-vide.png");
-  await m.locator("#rq-gateau").selectOption(DEMO_GATEAU);
+  // 1. Liste des mignardises, avant le choix
+  meta.form.pickY = await scrollTo(pickSel, 330);
+  meta.form.pick = await box(m, pick.locator("input[type=checkbox]"));
+  await shot(m, "m-form-1-liste.png");
+  await pick.locator("input[type=checkbox]").check();
   await blur();
-  await scrollTo("#demande form", 96);
-  await shot(m, "m-form-2-gateau.png");
+  // 2. Date souhaitée, avant la saisie (le produit est coché : la page s'allonge)
+  meta.form.pickRow = await box(m, pick);
+  meta.form.dateY = await scrollTo("#rq-date", 330);
+  meta.form.date = await box(m, "#rq-date");
+  await shot(m, "m-form-2-date-vide.png");
   await m.locator("#rq-date").fill(DEMO_DATE);
   await blur();
-  await scrollTo("#demande form", 96);
-  await shot(m, "m-form-3-date.png");
+  meta.form.submit = await box(m, "#demande button[type=submit]");
+  // Page complète, produit coché et date saisie (défilement dans le film)
   meta.aproposHeight = await m.evaluate(() => document.documentElement.scrollHeight);
   await m.evaluate(() => window.scrollTo(0, 0));
   await m.waitForTimeout(300);
   await shot(m, "m-apropos-page.jpg", { fullPage: true, type: "jpeg", quality: 88 });
+  // 3. Envoi
   meta.form.submitY = await scrollTo("#demande button[type=submit]", 470);
-  await shot(m, "m-form-4-envoi.png");
   await m.locator("#demande button[type=submit]").click();
   await m.waitForTimeout(700);
   await blur();
   await scrollTo("#demande button[type=submit]", 470);
-  await shot(m, "m-form-5-envoye.png");
+  await shot(m, "m-form-3-envoye.png");
   // Message réellement préparé par le site (lien wa.me généré par le formulaire)
   meta.form.message = await m.evaluate(() => {
     const a = document.querySelector("#demande p[role=status] a");

@@ -19,18 +19,19 @@ export const S4_LEAD = 10;
 export const ORDER = {
   tapCard: 28,
   toForm: 62,
-  tapGateau: 84,
-  tapDate: 108,
-  scroll: 132,
-  tapSend: 160,
-  message: 166,
+  tapPick: 84,
+  toDate: 98,
+  tapDate: 122,
+  scroll: 138,
+  tapSend: 162,
+  message: 168,
   exit: 222,
 };
 
 const STEPS = [
-  { at: 0, text: "Choisissez votre création." },
+  { at: 0, text: "Choisissez vos gourmandises." },
   { at: ORDER.toForm, text: "Précisez votre demande." },
-  { at: ORDER.tapDate - 6, text: "Indiquez la date souhaitée." },
+  { at: ORDER.toDate + 4, text: "Indiquez la date souhaitée." },
   { at: ORDER.tapSend - 6, text: "Envoyez-la sur WhatsApp." },
 ];
 
@@ -109,14 +110,16 @@ const MessageCard: React.FC<{ t: number; width: number }> = ({ t, width }) => {
           {lines.map((line, i) => {
             const at = 8 + i * 5;
             const fine = line.startsWith("J’ai bien noté");
+            const sub = line.trim().startsWith("◦");
             return (
               <div
                 key={i}
                 style={{
                   opacity: tween(t, at, at + 10, 0, 1),
                   transform: `translateY(${tween(t, at, at + 12, 12, 0, EASE.out)}px)`,
-                  marginTop: i === 0 ? 0 : line.startsWith("•") ? 6 * k : 12 * k,
-                  fontWeight: line.startsWith("•") ? 500 : 400,
+                  marginTop: i === 0 ? 0 : sub ? 2 * k : line.startsWith("•") ? 6 * k : 12 * k,
+                  marginLeft: sub ? 26 * k : 0,
+                  fontWeight: line.startsWith("•") || sub ? 500 : 400,
                   fontSize: fine ? 24 * k : undefined,
                   color: fine ? COLORS.muted : undefined,
                 }}
@@ -132,9 +135,10 @@ const MessageCard: React.FC<{ t: number; width: number }> = ({ t, width }) => {
 };
 
 /**
- * Séquence 4. L'expérience de commande, telle qu'elle existe sur le site :
- * fiche d'une création, formulaire de demande, date souhaitée, puis envoi
- * du message sur WhatsApp. Aucun paiement, aucune confirmation automatique.
+ * Séquence 4. La commande, telle qu'elle existe sur le site : fiche des
+ * Mini-cupcakes, formulaire de demande (produit coché), date souhaitée, puis
+ * envoi du message sur WhatsApp. Aucun paiement, aucune confirmation
+ * automatique.
  */
 export const S4Commande: React.FC = () => {
   const frame = useCurrentFrame();
@@ -149,7 +153,7 @@ export const S4Commande: React.FC = () => {
   /* --------------------------- Téléphone --------------------------- */
   const base = pick(1.5, 1.0);
   // La caméra se rapproche des champs pendant la saisie, puis recule.
-  const push = keys(f, [ORDER.toForm + 8, ORDER.tapGateau, ORDER.scroll - 6, ORDER.scroll + 16], [0, 1, 1, 0]);
+  const push = keys(f, [ORDER.toForm + 8, ORDER.tapPick, ORDER.scroll - 4, ORDER.scroll + 16], [0, 1, 1, 0]);
   const scale = base * (1 + push * pick(0.1, 0.1)) * (1 - sent * 0.1);
   const px = pick(W / 2, 960) - sent * pick(0, 120);
   const py = pick(1200, 546) + push * pick(66, 0) + (1 - enter) * H * 0.9 + Math.sin(f / 30) * 5;
@@ -159,7 +163,11 @@ export const S4Commande: React.FC = () => {
   const sheetUp = tween(f, ORDER.tapCard + 5, ORDER.tapCard + 23, 1, 0, EASE.out);
   const sheetTop = captures.ficheSheet.y - captures.ficheScrollY;
   const swap = tween(f, ORDER.toForm, ORDER.toForm + 16, 0, 1, EASE.inOut);
-  const scrollY = tween(f, ORDER.scroll, ORDER.scroll + 22, form.formY, form.submitY, EASE.inOut);
+  const scrollY = keys(
+    f,
+    [ORDER.toDate, ORDER.toDate + 20, ORDER.scroll, ORDER.scroll + 20],
+    [form.pickY, form.dateY, form.dateY, form.submitY],
+  );
   const tapY = (y: number, scroll: number, h: number) => y - scroll + h / 2;
 
   const step = STEPS.reduce((acc, s, i) => (f >= s.at ? i : acc), 0);
@@ -167,7 +175,7 @@ export const S4Commande: React.FC = () => {
   return (
     <AbsoluteFill style={{ opacity: tween(frame, 0, S4_LEAD + 4, 0, 1) }}>
       <InkBackdrop glow={0.14}>
-        <Photo photo="moelleux" blur zoom={1.3} style={{ inset: 0, opacity: 0.22 }} />
+        <Photo photo="mini-cupcakes" blur zoom={1.3} style={{ inset: 0, opacity: 0.22 }} />
         <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 60%, rgba(18,12,9,0.2) 0%, rgba(18,12,9,0.9) 80%)" }} />
         <Glow x={px} y={pick(1200, 560)} size={pick(1500, 1300)} opacity={0.2} />
       </InkBackdrop>
@@ -212,8 +220,8 @@ export const S4Commande: React.FC = () => {
               <div key={i} style={{ position: "absolute", inset: 0 }}>
                 <RevealLine
                   text={s.text}
-                  at={S4_LEAD + s.at + (i === 0 ? 6 : 8)}
-                  out={next === undefined ? undefined : S4_LEAD + next - 14}
+                  at={S4_LEAD + s.at + (i === 0 ? 6 : 3)}
+                  out={next === undefined ? undefined : S4_LEAD + next - 8}
                   duration={18}
                   stagger={2}
                   style={display(pick(74, 66))}
@@ -234,10 +242,10 @@ export const S4Commande: React.FC = () => {
             filter: sent > 0.02 ? `brightness(${1 - sent * 0.42})` : undefined,
           }}
         >
-          {/* Page « Nos créations » puis fiche du Moelleux au chocolat */}
+          {/* Page « Nos créations » puis fiche des Mini-cupcakes */}
           {swap < 1 && (
             <div style={{ position: "absolute", inset: 0, transform: `translateX(${-swap * 110}px)`, opacity: 1 - swap }}>
-              <Screen name="m-creations-gateaux-ecran" />
+              <Screen name="m-creations-mignardises-ecran" />
               {sheetUp < 1 && (
                 <>
                   <AbsoluteFill style={{ backgroundColor: COLORS.ink, opacity: 0.6 * (1 - sheetUp) }} />
@@ -253,11 +261,16 @@ export const S4Commande: React.FC = () => {
                       transform: `translateY(${sheetUp * (PHONE_VIEWPORT - sheetTop)}px)`,
                     }}
                   >
-                    <Screen name="m-fiche-moelleux" style={{ top: -sheetTop }} />
+                    <Screen name="m-fiche-produit" style={{ top: -sheetTop }} />
                   </div>
                 </>
               )}
-              <Tap x={captures.ficheCard.x + 84} y={captures.ficheCard.y - captures.ficheScrollY + 110} frame={f} at={ORDER.tapCard} />
+              <Tap
+                x={captures.ficheCard.x + captures.ficheCard.w / 2}
+                y={captures.ficheCard.y - captures.ficheScrollY + 130}
+                frame={f}
+                at={ORDER.tapCard}
+              />
             </div>
           )}
 
@@ -265,31 +278,32 @@ export const S4Commande: React.FC = () => {
           {swap > 0 && (
             <div style={{ position: "absolute", inset: 0, transform: `translateX(${(1 - swap) * PHONE.width}px)` }}>
               <PageScroll page="m-apropos-page" scrollY={scrollY} viewportHeight={PHONE_VIEWPORT} />
-              {f < ORDER.tapDate + 12 && (
-                <>
-                  <Screen name="m-form-2-gateau" style={{ opacity: tween(f, ORDER.tapDate + 4, ORDER.tapDate + 10, 1, 0) }} />
-                  <Screen name="m-form-1-vide" style={{ opacity: tween(f, ORDER.tapGateau + 4, ORDER.tapGateau + 10, 1, 0) }} />
-                </>
+              {/* États « avant » : liste non cochée, puis date encore vide */}
+              {f < ORDER.tapPick + 12 && (
+                <Screen name="m-form-1-liste" style={{ opacity: tween(f, ORDER.tapPick + 4, ORDER.tapPick + 10, 1, 0) }} />
+              )}
+              {f >= ORDER.toDate + 20 && f < ORDER.tapDate + 12 && (
+                <Screen name="m-form-2-date-vide" style={{ opacity: tween(f, ORDER.tapDate + 4, ORDER.tapDate + 10, 1, 0) }} />
               )}
               {f > ORDER.tapSend && (
-                <Screen name="m-form-5-envoye" style={{ opacity: tween(f, ORDER.tapSend + 3, ORDER.tapSend + 9, 0, 1) }} />
+                <Screen name="m-form-3-envoye" style={{ opacity: tween(f, ORDER.tapSend + 3, ORDER.tapSend + 9, 0, 1) }} />
               )}
-              <Tap x={195} y={tapY(form.gateau.y, form.formY, form.gateau.h)} frame={f} at={ORDER.tapGateau} />
-              <Tap x={250} y={tapY(form.date.y, form.formY, form.date.h)} frame={f} at={ORDER.tapDate} />
+              <Tap x={form.pick.x + 9} y={form.pick.y - form.pickY + 9} frame={f} at={ORDER.tapPick} />
+              <Tap x={250} y={tapY(form.date.y, form.dateY, form.date.h)} frame={f} at={ORDER.tapDate} />
               <Tap x={form.submit.x + form.submit.w / 2} y={tapY(form.submit.y, form.submitY, form.submit.h)} frame={f} at={ORDER.tapSend} />
-              {/* Halo autour du champ en cours de saisie */}
+              {/* Halo autour de l'élément en cours de saisie */}
               {[
-                { box: form.gateau, from: ORDER.tapGateau + 4, to: ORDER.tapDate - 2 },
-                { box: form.date, from: ORDER.tapDate + 4, to: ORDER.scroll },
+                { box: form.pickRow, scroll: form.pickY, from: ORDER.tapPick + 4, to: ORDER.toDate },
+                { box: form.date, scroll: form.dateY, from: ORDER.tapDate + 4, to: ORDER.scroll },
               ].map((h, i) => (
                 <div
                   key={i}
                   style={{
                     position: "absolute",
-                    left: h.box.x - 4,
-                    top: h.box.y - form.formY - 4,
-                    width: h.box.w + 8,
-                    height: h.box.h + 8,
+                    left: h.box.x - 6,
+                    top: h.box.y - h.scroll - 5,
+                    width: h.box.w + 12,
+                    height: h.box.h + 10,
                     borderRadius: 12,
                     border: `2px solid ${COLORS.gold}`,
                     boxShadow: "0 0 0 5px rgba(202,165,108,0.22)",
@@ -338,9 +352,9 @@ export const S4Commande: React.FC = () => {
           color: COLORS.goldLight,
         }}
       >
-        Nous finalisons ensuite
+        Nous finalisons le reste avec vous,
         <br />
-        votre commande avec vous.
+        avec le plus grand soin.
       </div>
     </AbsoluteFill>
   );

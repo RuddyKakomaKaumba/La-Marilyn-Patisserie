@@ -99,6 +99,16 @@
       "file": "buffet-fleurs.webp",
       "width": 1024,
       "height": 1536
+    },
+    "tarte-framboise": {
+      "file": "tarte-framboise.webp",
+      "width": 1024,
+      "height": 1536
+    },
+    "mini-moelleux": {
+      "file": "mini-moelleux.webp",
+      "width": 1200,
+      "height": 1138
     }
   },
   "pages": {
@@ -109,10 +119,10 @@
       "height": 3684.0
     },
     "m-apropos-page": {
-      "count": 8,
+      "count": 9,
       "tile": 1000,
       "width": 390,
-      "height": 7568.0
+      "height": 8181.0
     },
     "d-accueil-page": {
       "count": 5,

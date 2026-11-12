@@ -21,18 +21,17 @@ export const SEQ = {
 
 /**
  * Voix off : image de départ et durée (secondes) de chaque réplique.
- * La phrase des services est découpée en cinq : chaque service est dit au
- * moment où son univers apparaît (séquence 3, un univers toutes les 2 s).
+ * La phrase des services est découpée en quatre : chaque service est dit
+ * au moment où son univers apparaît (séquence 3, voir S3_CUTS).
  */
 const S3 = SEQ.creations.from;
 export const VOICE = [
-  { id: "vo-1", from: 39, seconds: 2.88, text: "Vos envies gourmandes méritent toute notre attention." },
-  { id: "vo-2", from: 196, seconds: 3.82, text: "La Marilyn vous ouvre les portes de son nouvel univers en ligne." },
-  { id: "vo-3a", from: S3 + 6, seconds: 1.37, text: "Du cake design," },
-  { id: "vo-3b", from: S3 + 3 * BEAT + 6, seconds: 1.38, text: "des gâteaux gourmands," },
-  { id: "vo-3c", from: S3 + 6 * BEAT + 5, seconds: 1.69, text: "des mignardises et des crêpes," },
-  { id: "vo-3d", from: S3 + 9 * BEAT + 8, seconds: 1.26, text: "des coffrets cadeaux," },
-  { id: "vo-3e", from: S3 + 12 * BEAT + 8, seconds: 1.81, text: "et des buffets pour tous vos événements." },
-  { id: "vo-4", from: 729, seconds: 5.93, text: "Commandez directement depuis notre site, en quelques instants. Nous finalisons ensuite votre commande avec vous." },
-  { id: "vo-5", from: 990, seconds: 3.9, text: "Le nouveau site La Marilyn est en ligne. Commandez dès maintenant." },
+  { id: "vo-1", from: 39, seconds: 3.08, text: "Les plus beaux moments ont toujours un goût de fête." },
+  { id: "vo-2", from: 192, seconds: 4.996, text: "Pour les célébrer, La Marilyn vous ouvre les portes de son nouvel univers en ligne." },
+  { id: "vo-3a", from: S3 + 8, seconds: 2.083, text: "Des gâteaux pour vos plus belles occasions," },
+  { id: "vo-3b", from: S3 + 84, seconds: 2.408, text: "des pâtisseries pour célébrer vos moments précieux," },
+  { id: "vo-3c", from: S3 + 169, seconds: 2.689, text: "des mignardises à partager, des coffrets à offrir," },
+  { id: "vo-3d", from: S3 + 256, seconds: 2.034, text: "et des buffets pour sublimer vos événements." },
+  { id: "vo-4", from: 728, seconds: 7.047, text: "Désormais, commandez directement en ligne, en quelques instants. Nous finalisons le reste avec vous, avec le plus grand soin." },
+  { id: "vo-5", from: 988, seconds: 4.451, text: "La Marilyn. L’art du gâteau, à portée de main. Commandez dès maintenant." },
 ] as const;
