@@ -19,11 +19,20 @@ export const SEQ = {
   final: { from: bar(13), to: DURATION }, //   32,00 → 40,00 s
 } as const;
 
-/** Voix off : image de départ et durée (secondes) de chaque réplique. */
+/**
+ * Voix off : image de départ et durée (secondes) de chaque réplique.
+ * La phrase des services est découpée en cinq : chaque service est dit au
+ * moment où son univers apparaît (séquence 3, un univers toutes les 2 s).
+ */
+const S3 = SEQ.creations.from;
 export const VOICE = [
-  { id: "vo-1", from: 39, seconds: 2.75, text: "Vos envies gourmandes méritent toute notre attention." },
-  { id: "vo-2", from: 196, seconds: 3.65, text: "La Marilyn vous ouvre les portes de son nouvel univers en ligne." },
-  { id: "vo-3", from: 418, seconds: 5.89, text: "Explorez nos créations, trouvez l’inspiration et imaginez les gourmandises de votre prochain événement." },
-  { id: "vo-4", from: 729, seconds: 6.96, text: "Préparez votre demande directement sur notre site. Nous échangeons ensuite avec vous pour finaliser votre commande." },
-  { id: "vo-5", from: 992, seconds: 3.69, text: "Le nouveau site La Marilyn est en ligne. Découvrez-le dès maintenant." },
+  { id: "vo-1", from: 39, seconds: 2.88, text: "Vos envies gourmandes méritent toute notre attention." },
+  { id: "vo-2", from: 196, seconds: 3.82, text: "La Marilyn vous ouvre les portes de son nouvel univers en ligne." },
+  { id: "vo-3a", from: S3 + 6, seconds: 1.37, text: "Du cake design," },
+  { id: "vo-3b", from: S3 + 3 * BEAT + 6, seconds: 1.38, text: "des gâteaux gourmands," },
+  { id: "vo-3c", from: S3 + 6 * BEAT + 5, seconds: 1.69, text: "des mignardises et des crêpes," },
+  { id: "vo-3d", from: S3 + 9 * BEAT + 8, seconds: 1.26, text: "des coffrets cadeaux," },
+  { id: "vo-3e", from: S3 + 12 * BEAT + 8, seconds: 1.81, text: "et des buffets pour tous vos événements." },
+  { id: "vo-4", from: 729, seconds: 5.93, text: "Commandez directement depuis notre site, en quelques instants. Nous finalisons ensuite votre commande avec vous." },
+  { id: "vo-5", from: 990, seconds: 3.9, text: "Le nouveau site La Marilyn est en ligne. Commandez dès maintenant." },
 ] as const;

@@ -1,12 +1,50 @@
 {
-  "voice": "ff_siwis",
-  "lang": "fr-fr",
-  "speed": 0.94,
+  "engine": "chatterbox-multilingual",
+  "reference": "reference-timbre.wav",
+  "language": "fr",
+  "exaggeration": 0.5,
+  "cfg_weight": 0.5,
+  "seeds": [
+    3,
+    11,
+    27
+  ],
+  "note": "« say » est le texte envoyé à la synthèse : Marilyn s'y écrit « Mariline », comme on le prononce.",
   "lines": [
-    { "id": "vo-1", "text": "Vos envies gourmandes méritent toute notre attention." },
-    { "id": "vo-2", "text": "La Marilyn vous ouvre les portes de son nouvel univers en ligne." },
-    { "id": "vo-3", "text": "Explorez nos créations, trouvez l’inspiration et imaginez les gourmandises de votre prochain événement." },
-    { "id": "vo-4", "text": "Préparez votre demande directement sur notre site. Nous échangeons ensuite avec vous pour finaliser votre commande." },
-    { "id": "vo-5", "text": "Le nouveau site La Marilyn est en ligne. Découvrez-le dès maintenant." }
+    {
+      "id": "vo-1",
+      "text": "Vos envies gourmandes méritent toute notre attention."
+    },
+    {
+      "id": "vo-2",
+      "text": "La Marilyn vous ouvre les portes de son nouvel univers en ligne.",
+      "say": "La Mariline vous ouvre les portes de son nouvel univers en ligne."
+    },
+    {
+      "id": "vo-3",
+      "text": "Du cake design, des gâteaux gourmands, des mignardises et des crêpes, des coffrets cadeaux, et des buffets pour tous vos événements.",
+      "split": [
+        "design",
+        "gourmands",
+        "crêpes",
+        "cadeaux"
+      ]
+    },
+    {
+      "id": "vo-4",
+      "text": "Commandez directement depuis notre site, en quelques instants. Nous finalisons ensuite votre commande avec vous."
+    },
+    {
+      "id": "vo-5",
+      "text": "Le nouveau site La Marilyn est en ligne. Commandez dès maintenant.",
+      "say": "Le nouveau site La Mariline est en ligne. Commandez dès maintenant.",
+      "seeds": [
+        5,
+        8,
+        19,
+        42,
+        61
+      ]
+    }
   ]
 }

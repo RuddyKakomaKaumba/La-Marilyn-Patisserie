@@ -3,7 +3,8 @@ import { AbsoluteFill, useCurrentFrame } from "remotion";
 import { GoldDust, Glow, LightSweep } from "../components/Atmosphere";
 import { Logo } from "../components/Logo";
 import { Photo, PhotoKey } from "../components/Photo";
-import { Eyebrow, GoldRule } from "../components/Type";
+import { Tap } from "../components/Devices";
+import { Eyebrow, GoldRule, RevealLine, display } from "../components/Type";
 import { EASE, tween } from "../lib/anim";
 import { useFormat } from "../lib/format";
 import { SANS, SERIF } from "../fonts";
@@ -54,7 +55,11 @@ export const S5Final: React.FC = () => {
   const { W, H, pick } = useFormat();
 
   const nameSpacing = tween(f, 26, 70, 0.62, 0.3, EASE.out);
-  const urlIn = tween(f, 74, 98, 0, 1, EASE.out);
+  const urlIn = tween(f, 72, 96, 0, 1, EASE.out);
+  // Appel à l'action : la ligne arrive avec la voix, puis un toucher sur l'adresse.
+  const CTA_AT = 92;
+  const TAP_AT = 152;
+  const press = 1 - 0.035 * tween(f, TAP_AT - 4, TAP_AT, 0, 1) * tween(f, TAP_AT, TAP_AT + 10, 1, 0);
   const pulse = 0.5 + 0.5 * Math.sin((f - 98) / 14);
 
   return (
@@ -70,14 +75,14 @@ export const S5Final: React.FC = () => {
         style={{
           position: "absolute",
           left: 0,
-          top: pick(350, 96),
+          top: pick(322, 70),
           width: W,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}
       >
-        <Logo size={pick(350, 236)} frame={f} at={4} />
+        <Logo size={pick(300, 196)} frame={f} at={4} />
         <div style={{ height: pick(54, 30) }} />
         <div
           style={{
@@ -104,8 +109,17 @@ export const S5Final: React.FC = () => {
         <Eyebrow at={S5_LEAD + 62} size={pick(35, 30)} color={COLORS.ivory} style={{ marginRight: "-0.2em" }}>
           Notre nouveau site est en ligne
         </Eyebrow>
-        <div style={{ height: pick(54, 34) }} />
+        <div style={{ height: pick(44, 26) }} />
+        <RevealLine
+          text="Commandez dès maintenant"
+          at={S5_LEAD + CTA_AT}
+          italic
+          stagger={3}
+          style={{ ...display(pick(76, 58), COLORS.goldLight), justifyContent: "center" }}
+        />
+        <div style={{ height: pick(36, 22) }} />
         {/* Adresse du site : bouton doré du site, large et lisible */}
+        <div style={{ position: "relative", transform: `scale(${press})` }}>
         <div
           style={{
             position: "relative",
@@ -132,6 +146,10 @@ export const S5Final: React.FC = () => {
               background: `linear-gradient(110deg, rgba(255,255,255,0) ${tween(f, 104, 140, -40, 120, EASE.inOut)}%, rgba(255,250,235,0.6) ${tween(f, 104, 140, -25, 135, EASE.inOut)}%, rgba(255,255,255,0) ${tween(f, 104, 140, -10, 150, EASE.inOut)}%)`,
             }}
           />
+        </div>
+          <div style={{ position: "absolute", left: "91%", top: "62%", transform: "scale(1.9)" }}>
+            <Tap x={0} y={0} frame={f} at={TAP_AT} />
+          </div>
         </div>
       </div>
       <AbsoluteFill style={{ backgroundColor: COLORS.ink, opacity: tween(f, 232, 240, 0, 0.25), height: H }} />

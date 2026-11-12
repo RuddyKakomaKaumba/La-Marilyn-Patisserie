@@ -51,7 +51,7 @@ video/
 ├─ scripts/
 │  ├─ capture-site.cjs    captures du site en production (lecture seule)
 │  ├─ prepare-assets.py   copie des photos du site, tuiles de défilement
-│  ├─ audio/              voix off (generate_voice.py) et musique + effets (build_audio.py)
+│  ├─ audio/              voix off (voiceover.json, generate_voice.py) et musique + effets (build_audio.py)
 │  ├─ preview.mjs, sheet.py, qc.sh   planches de contrôle
 └─ exports/               vidéos et couverture
 ```
@@ -65,9 +65,9 @@ video/
 | --- | --- | --- |
 | 1. L'accroche | 0 à 5,3 s | Gros plan sur le médaillon de l'entremets, la caméra recule, logo et promesse |
 | 2. La révélation | 5,3 à 13,3 s | La photo se pose exactement à sa place dans la page d'accueil : c'était déjà le site. Recul, écran, défilement réel |
-| 3. Les créations | 13,3 à 24 s | Cake Design, Gâteaux gourmands, Mignardises et crêpes, L'Écrin gourmand, Buffets gourmands |
-| 4. La commande | 24 à 32 s | Fiche d'une création, formulaire, date souhaitée, envoi du message sur WhatsApp |
-| 5. Le final | 32 à 40 s | Logo, signature, adresse du site lisible pendant plus de cinq secondes |
+| 3. Les créations | 13,3 à 24 s | Cake Design, Gâteaux gourmands, Mignardises et crêpes, L'Écrin gourmand, Buffets gourmands. La voix nomme chaque service quand il apparaît |
+| 4. La commande | 24 à 32 s | « Commandez directement en ligne » : fiche d'une création, formulaire, date souhaitée, envoi du message sur WhatsApp |
+| 5. Le final | 32 à 40 s | Logo, signature, appel « Commandez dès maintenant » et adresse du site lisible pendant plus de cinq secondes |
 
 Le format horizontal réutilise le même montage avec une mise en page propre
 (`useFormat().pick(vertical, horizontal)` dans chaque séquence) : capture du
@@ -106,14 +106,21 @@ paiement ni confirmation automatique n'est représenté.
 | Captures d'interface | Site en production, la-marilyn-patisserie.vercel.app | Propriété de La Marilyn |
 | Typographies | Newsreader, DM Sans (Google Fonts) | SIL Open Font License |
 | Musique et effets sonores | Composés et synthétisés par `scripts/audio/build_audio.py`, sans aucun échantillon tiers | Œuvre du projet, exploitation libre |
-| Voix off | Synthèse neuronale locale : modèle Kokoro-82M (licence Apache 2.0), voix française `ff_siwis` entraînée sur le corpus SIWIS (CC BY 4.0) | Usage commercial autorisé. Attribution du corpus : SIWIS French Speech Synthesis Database, Université d'Édimbourg |
+| Voix off | Synthèse neuronale locale : Chatterbox Multilingual (Resemble AI, licence MIT). Timbre donné par `scripts/audio/reference-timbre.wav`, extrait de la voix libre « jessica » (Piper, corpus UPMC, CC BY-SA 4.0) | Usage commercial autorisé. Attribution du corpus : UPMC / MaryTTS (github.com/marytts/upmc-pierre-data). Chatterbox ajoute au son un filigrane inaudible signalant une voix de synthèse |
 | Remotion | Moteur de rendu | Gratuit pour les particuliers et les structures de trois personnes au plus ; au-delà, une licence entreprise est requise (remotion.dev/license) |
 
 ### Régénérer la voix
 
 ```bash
-python3 -m venv .venv && .venv/bin/pip install kokoro-onnx soundfile scipy numpy
-# model.onnx et voices/ff_siwis.bin : huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX
-# (ff_siwis.bin est à convertir en archive numpy « voices.bin », clé ff_siwis)
-.venv/bin/python scripts/audio/generate_voice.py --model-dir /chemin/vers/kokoro
+# Moteur de synthèse (Python 3.11) et contrôle par transcription
+uv venv -p 3.11 .venv-voix && uv pip install --python .venv-voix/bin/python chatterbox-tts "setuptools<81" \
+  --extra-index-url https://download.pytorch.org/whl/cpu --index-strategy unsafe-best-match
+python3 -m venv .venv-qc && .venv-qc/bin/pip install faster-whisper soundfile scipy numpy
+
+# 1. Plusieurs prises par réplique  2. Choix de la plus fidèle, découpe, finition
+.venv-voix/bin/python scripts/audio/generate_voice.py takes --out /tmp/prises
+.venv-qc/bin/python scripts/audio/generate_voice.py select --takes /tmp/prises
 ```
+
+Les durées obtenues sont écrites dans `scripts/audio/voiceover-durations.json` ;
+les reporter dans `src/timeline.ts`.

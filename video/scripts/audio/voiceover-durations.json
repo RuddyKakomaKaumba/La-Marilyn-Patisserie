@@ -1,7 +1,38 @@
 {
-  "vo-1": 2.753,
-  "vo-2": 3.645,
-  "vo-3": 5.888,
-  "vo-4": 6.956,
-  "vo-5": 3.691
+  "vo-1": {
+    "seconds": 2.88,
+    "seed": 11
+  },
+  "vo-2": {
+    "seconds": 3.82,
+    "seed": 11
+  },
+  "vo-3a": {
+    "seconds": 1.374,
+    "seed": 11
+  },
+  "vo-3b": {
+    "seconds": 1.382,
+    "seed": 11
+  },
+  "vo-3c": {
+    "seconds": 1.685,
+    "seed": 11
+  },
+  "vo-3d": {
+    "seconds": 1.26,
+    "seed": 11
+  },
+  "vo-3e": {
+    "seconds": 1.813,
+    "seed": 11
+  },
+  "vo-4": {
+    "seconds": 5.929,
+    "seed": 11
+  },
+  "vo-5": {
+    "seconds": 3.895,
+    "seed": 19
+  }
 }

@@ -22,7 +22,7 @@ const musicVolume = (frame: number) => {
     const end = v.from + v.seconds * FPS;
     duck = Math.max(
       duck,
-      interpolate(frame, [v.from - 8, v.from + 2, end - 2, end + 14], [0, 1, 1, 0], {
+      interpolate(frame, [v.from - 8, v.from + 2, end - 2, end + 22], [0, 1, 1, 0], {
         extrapolateLeft: "clamp",
         extrapolateRight: "clamp",
       }),
@@ -58,7 +58,8 @@ const CUES: Cue[] = [
   { at: SEQ.commande.from + ORDER.tapSend, file: "sfx-tap" },
   { at: SEQ.commande.from + ORDER.message, file: "sfx-pop", volume: 1.1 },
   { at: SEQ.final.from + 4, file: "sfx-shimmer", volume: 0.6 },
-  { at: SEQ.final.from + 86, file: "sfx-pop", volume: 0.5 },
+  { at: SEQ.final.from + 84, file: "sfx-pop", volume: 0.5 },
+  { at: SEQ.final.from + 152, file: "sfx-tap", volume: 1.1 },
 ];
 
 export const Soundtrack: React.FC = () => (

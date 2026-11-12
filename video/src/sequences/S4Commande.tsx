@@ -185,8 +185,8 @@ export const S4Commande: React.FC = () => {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <Eyebrow at={S4_LEAD + 4} size={pick(26, 24)}>
-            Préparer ma demande
+          <Eyebrow at={S4_LEAD + 4} size={pick(29, 25)}>
+            Commandez directement en ligne
           </Eyebrow>
           <div style={{ display: "flex", gap: 9 }}>
             {STEPS.map((s, i) => (
@@ -338,9 +338,9 @@ export const S4Commande: React.FC = () => {
           color: COLORS.goldLight,
         }}
       >
-        Nous échangeons ensuite avec vous
+        Nous finalisons ensuite
         <br />
-        pour finaliser votre commande.
+        votre commande avec vous.
       </div>
     </AbsoluteFill>
   );
