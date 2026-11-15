@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import DateNotice from "@/components/forms/DateNotice";
 import { ECRIN_TERMS, PAYMENT } from "@/lib/commerce";
 import { ECRIN_GOURMANDISES, ECRIN_OCCASIONS } from "@/lib/ecrin";
 import {
@@ -8,7 +9,8 @@ import {
   buildRequestMessage,
   checkDate,
   formatDate,
-  isoDate,
+  firstRequestDate,
+  nowInDouala,
   REQUEST_TYPES,
 } from "@/lib/requests";
 import { whatsappUrl } from "@/lib/site";
@@ -44,7 +46,7 @@ export default function EcrinConfigurator() {
   const [urgent, setUrgent] = useState(false);
   const [name, setName] = useState("");
   const [details, setDetails] = useState("");
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitErrors, setErrors] = useState<Record<string, string>>({});
   const [sentUrl, setSentUrl] = useState<string | null>(null);
 
   const clear = (id: string) =>
@@ -125,7 +127,18 @@ export default function EcrinConfigurator() {
     openWhatsApp(url);
   };
 
-  const minDate = isoDate(new Date());
+  const minDate = urgent
+    ? nowInDouala().today
+    : firstRequestDate(TYPE.leadDays);
+
+  // Date déjà saisie : contrôlée tout de suite, sans attendre l'envoi.
+  const liveDateError = date
+    ? checkDate(date, TYPE.leadDays, TYPE.leadLabel, urgent)
+    : undefined;
+  const errors =
+    liveDateError && !submitErrors["ecrin-date"]
+      ? { ...submitErrors, "ecrin-date": liveDateError }
+      : submitErrors;
 
   return (
     <form
@@ -147,7 +160,7 @@ export default function EcrinConfigurator() {
       </p>
 
       <div className="mt-6 space-y-5">
-        <ErrorSummary errors={errors} />
+        <ErrorSummary errors={submitErrors} />
 
         <div className="grid gap-5 sm:grid-cols-2">
           <Field
@@ -343,6 +356,8 @@ export default function EcrinConfigurator() {
             />
           </Field>
         </div>
+
+        <DateNotice />
 
         <label className="flex min-h-11 cursor-pointer items-start gap-2.5 text-[0.875rem] text-ink">
           <input

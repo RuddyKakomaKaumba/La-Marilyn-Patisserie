@@ -1,3 +1,4 @@
+import { isClosedDate } from "./availability";
 import { formatFcfa } from "./pricing";
 import { whatsappUrl } from "./site";
 
@@ -72,12 +73,53 @@ export function isoDate(d: Date) {
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 }
 
-/** Nombre de jours entre aujourd'hui et la date choisie (AAAA-MM-JJ). */
+/** Fuseau de La Marilyn : délais et heure limite suivent l'heure de Douala. */
+const TIME_ZONE = "Africa/Douala";
+
+/** Date (AAAA-MM-JJ) et heure du moment à Douala, quel que soit le visiteur. */
+export function nowInDouala(now = new Date()) {
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat("en-CA", {
+      timeZone: TIME_ZONE,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      hourCycle: "h23",
+    })
+      .formatToParts(now)
+      .map((p) => [p.type, p.value]),
+  );
+  return {
+    today: `${parts.year}-${parts.month}-${parts.day}`,
+    hour: Number(parts.hour),
+  };
+}
+
+/** Ajoute des jours à une date AAAA-MM-JJ. */
+export function addDays(value: string, days: number) {
+  const [y, m, d] = value.split("-").map(Number);
+  return isoDate(new Date(y, m - 1, d + days));
+}
+
+/**
+ * Première date proposée sans urgence : aujourd'hui (heure de Douala) plus
+ * le délai minimum confirmé. Sans délai connu : aujourd'hui.
+ */
+export function firstRequestDate(
+  leadDays: number | undefined,
+  now = new Date(),
+) {
+  return addDays(nowInDouala(now).today, leadDays ?? 0);
+}
+
+/** Nombre de jours entre aujourd'hui (Douala) et la date choisie (AAAA-MM-JJ). */
 export function daysUntil(value: string, now = new Date()) {
   const [y, m, d] = value.split("-").map(Number);
-  const target = new Date(y, m - 1, d);
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  return Math.round((target.getTime() - today.getTime()) / 86_400_000);
+  const [ty, tm, td] = nowInDouala(now).today.split("-").map(Number);
+  return Math.round(
+    (Date.UTC(y, m - 1, d) - Date.UTC(ty, tm - 1, td)) / 86_400_000,
+  );
 }
 
 export function formatDate(value: string) {
@@ -90,20 +132,37 @@ export function formatDate(value: string) {
   });
 }
 
+/** « 24 décembre » ou « du 31 décembre au 2 janvier » (dates fermées). */
+export function formatRange(from: string, to: string) {
+  const short = (v: string) => {
+    const [y, m, d] = v.split("-").map(Number);
+    return new Date(y, m - 1, d).toLocaleDateString("fr-FR", {
+      day: "numeric",
+      month: "long",
+    });
+  };
+  return from === to ? short(from) : `du ${short(from)} au ${short(to)}`;
+}
+
 /**
- * Contrôle du délai minimum. Renvoie un message d'erreur si la date est
- * passée, ou trop proche sans que la demande soit marquée urgente.
+ * Contrôle de la date : passée, fermée aux demandes, ou trop proche sans
+ * que la demande soit marquée urgente. L'urgence ne rouvre pas une date
+ * fermée et reste soumise à la validation de La Marilyn.
  */
 export function checkDate(
   value: string,
   leadDays: number | undefined,
   leadLabel: string | undefined,
   urgent: boolean,
+  now = new Date(),
 ): string | undefined {
   if (!value) return "Indiquez la date souhaitée.";
-  const days = daysUntil(value);
+  const days = daysUntil(value, now);
   if (Number.isNaN(days)) return "Indiquez une date valide.";
   if (days < 0) return "Cette date est déjà passée.";
+  if (isClosedDate(value)) {
+    return "La Marilyn ne prend pas de nouvelles demandes pour cette date. Choisissez-en une autre, ou écrivez-lui sur WhatsApp pour en parler.";
+  }
   if (leadDays && days < leadDays && !urgent) {
     return `Le délai minimum est de ${leadLabel}. Pour une date plus proche, cochez « Demande urgente » : La Marilyn vous dira si c’est possible.`;
   }
