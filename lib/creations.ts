@@ -298,7 +298,6 @@ export const MIGNARDISES: Product[] = (
         "De petits moelleux au chocolat, à servir en dessert ou sur un buffet.",
       tone: TONES.cream,
       pricing: { kind: "fixed", amount: 400, unit: "unité" },
-      ,
       leadTime: "24 h",
       leadDays: 1,
       minQuantity: "10 pièces",
