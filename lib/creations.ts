@@ -120,7 +120,7 @@ export const PATISSERIES: Product[] = [
       position: "42% 50%",
     },
   }),
-  gateau("Renversé à l’ananas", 4_500, {
+  gateau("Renversé à l’ananas", 5_000, {
     description: "Ananas caramélisé sur un gâteau moelleux et doré.",
     tone: TONES.sand,
     badge: "best-seller",
@@ -139,8 +139,7 @@ export const PATISSERIES: Product[] = [
       position: "45% 55%",
     },
   }),
-  // Absent de la grille tarifaire transmise : prix à confirmer.
-  gateau("Cake nature", null, {
+  gateau("Cake nature", 3_500, {
     description:
       "Le cake nature tout simple, doré et moelleux, parfait pour le goûter.",
     tone: TONES.linen,
@@ -289,7 +288,8 @@ export const MIGNARDISES: Product[] = (
       description:
         "De petits moelleux au chocolat, à servir en dessert ou sur un buffet.",
       tone: TONES.cream,
-      pricing: { kind: "confirm" },
+      pricing: { kind: "fixed", amount: 400, unit: "unité" },
+      minQuantity: "10 pièces",
       ...MIGNARDISE,
       image: {
         src: "/images/mignardises/mini-moelleux-au-chocolat-la-marilyn.webp",
@@ -402,7 +402,8 @@ export const CREPES: Product[] = [
       alt: "Crêpes Suzette nappées de sauce à l’orange, quartiers d’orange, zestes et cheveux de caramel",
       position: "50% 50%",
     },
-    pricing: { kind: "confirm" },
+    pricing: { kind: "fixed", amount: 3_500, unit: "les 10 pièces" },
+    minQuantity: "10 pièces",
     ...MIGNARDISE,
   },
 ];
