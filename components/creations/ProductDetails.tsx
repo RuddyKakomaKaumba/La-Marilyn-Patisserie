@@ -18,11 +18,14 @@ export default function ProductDetails({
   product,
   titleId,
   onNavigate,
+  focusCart,
 }: {
   product: Product;
   titleId: string;
   /** Appelé avant de suivre un lien interne (pour fermer la fenêtre). */
   onNavigate?: () => void;
+  /** Ouverte depuis « Ajouter au panier » : affiche le choix du format. */
+  focusCart?: boolean;
 }) {
   const cta = product.cta?.key ?? "general";
   const follow = (href: string) => (e: React.MouseEvent) => {
@@ -124,7 +127,13 @@ export default function ProductDetails({
           </ul>
         ) : null}
 
-        {cartEntry && <AddToCart entry={cartEntry} onContinue={onNavigate} />}
+        {cartEntry && (
+          <AddToCart
+            entry={cartEntry}
+            onContinue={onNavigate}
+            autoFocus={focusCart}
+          />
+        )}
 
         <div
           className={`flex flex-col gap-2.5 sm:flex-row sm:flex-wrap ${
