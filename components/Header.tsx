@@ -10,6 +10,7 @@ import {
   WHATSAPP_CTAS,
   WHATSAPP_URL,
 } from "@/lib/site";
+import CartButton from "./cart/CartButton";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -44,58 +45,62 @@ export default function Header() {
           />
         </Link>
 
-        <nav aria-label="Navigation principale" className="hidden lg:block">
-          <ul className="flex items-center gap-10">
-            {NAV.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  aria-current={pathname === item.href ? "page" : undefined}
-                  className="relative font-sans text-[0.8125rem] tracking-[0.04em] text-ivory/80 transition-colors duration-300 after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-gold-light/80 after:transition-transform after:duration-500 after:ease-soft hover:text-gold-light hover:after:scale-x-100 aria-[current=page]:text-gold-light"
+        <div className="flex items-center gap-1 lg:gap-8">
+          <nav aria-label="Navigation principale" className="hidden lg:block">
+            <ul className="flex items-center gap-10">
+              {NAV.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    aria-current={pathname === item.href ? "page" : undefined}
+                    className="relative font-sans text-[0.8125rem] tracking-[0.04em] text-ivory/80 transition-colors duration-300 after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-gold-light/80 after:transition-transform after:duration-500 after:ease-soft hover:text-gold-light hover:after:scale-x-100 aria-[current=page]:text-gold-light"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-10 items-center rounded-full border border-gold/60 px-5 font-sans text-[0.8125rem] text-ivory transition-colors duration-300 hover:border-gold-light hover:bg-gold/10"
                 >
-                  {item.label}
-                </Link>
+                  {WHATSAPP_CTAS.general.label}
+                </a>
               </li>
-            ))}
-            <li>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-10 items-center rounded-full border border-gold/60 px-5 font-sans text-[0.8125rem] text-ivory transition-colors duration-300 hover:border-gold-light hover:bg-gold/10"
-              >
-                {WHATSAPP_CTAS.general.label}
-              </a>
-            </li>
-          </ul>
-        </nav>
+            </ul>
+          </nav>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-controls="menu-mobile"
-          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
-          className="relative -mr-2 flex h-11 w-11 items-center justify-center text-ivory/90 lg:hidden"
-        >
-          <span className="relative block h-3 w-[22px]">
-            <span
-              className={`absolute left-0 h-px w-full bg-current transition-transform duration-300 ease-soft ${
-                open ? "top-1.5 rotate-45" : "top-0"
-              }`}
-            />
-            <span
-              className={`absolute left-0 top-1.5 h-px w-full bg-current transition-opacity duration-300 ${
-                open ? "opacity-0" : "opacity-100"
-              }`}
-            />
-            <span
-              className={`absolute left-0 h-px w-full bg-current transition-transform duration-300 ease-soft ${
-                open ? "top-1.5 -rotate-45" : "top-3"
-              }`}
-            />
-          </span>
-        </button>
+          <CartButton />
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="menu-mobile"
+            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+            className="relative -mr-2 flex h-11 w-11 items-center justify-center text-ivory/90 lg:hidden"
+          >
+            <span className="relative block h-3 w-[22px]">
+              <span
+                className={`absolute left-0 h-px w-full bg-current transition-transform duration-300 ease-soft ${
+                  open ? "top-1.5 rotate-45" : "top-0"
+                }`}
+              />
+              <span
+                className={`absolute left-0 top-1.5 h-px w-full bg-current transition-opacity duration-300 ${
+                  open ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <span
+                className={`absolute left-0 h-px w-full bg-current transition-transform duration-300 ease-soft ${
+                  open ? "top-1.5 -rotate-45" : "top-3"
+                }`}
+              />
+            </span>
+          </button>
+        </div>
       </div>
 
       <div

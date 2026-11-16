@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import { cartProduct } from "@/lib/cart";
 import { REQUEST_IS_NOT_BOOKING } from "@/lib/commerce";
 import { priceLines } from "@/lib/pricing";
 import { requestHref } from "@/lib/requests";
 import { ctaUrl, WHATSAPP_CTAS } from "@/lib/site";
 import type { Product } from "../InfiniteProductCarousel";
 import { btnArrow, btnGold, btnOutlineDark } from "../buttons";
+import AddToCart from "../cart/AddToCart";
 import { ArrowRight, WhatsAppIcon } from "../icons";
 
 /**
@@ -37,6 +39,8 @@ export default function ProductDetails({
     }, 40);
   };
   const prices = priceLines(product.pricing);
+  // Gâteaux gourmands, mignardises et crêpes : commande via le panier.
+  const cartEntry = cartProduct(product);
   const facts: [string, string][] = [];
   if (product.composition) facts.push(["Composition", product.composition]);
   if (product.options?.length)
@@ -120,12 +124,18 @@ export default function ProductDetails({
           </ul>
         ) : null}
 
-        <div className="mt-6 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
+        {cartEntry && <AddToCart entry={cartEntry} onContinue={onNavigate} />}
+
+        <div
+          className={`flex flex-col gap-2.5 sm:flex-row sm:flex-wrap ${
+            cartEntry ? "mt-3" : "mt-6"
+          }`}
+        >
           <a
             href={ctaUrl(cta, product.cta?.detail)}
             target="_blank"
             rel="noopener noreferrer"
-            className={btnGold}
+            className={cartEntry ? btnOutlineDark : btnGold}
           >
             <WhatsAppIcon className="h-[18px] w-[18px]" />
             {WHATSAPP_CTAS[cta].label}

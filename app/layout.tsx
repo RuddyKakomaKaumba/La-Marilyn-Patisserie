@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Sans, Newsreader } from "next/font/google";
 import "./globals.css";
+import CartProvider from "@/components/cart/CartProvider";
 import { bakeryJsonLd, OG_IMAGE, SITE_URL } from "@/lib/seo";
 
 const newsreader = Newsreader({
@@ -54,7 +55,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${newsreader.variable} ${dmSans.variable}`}>
       <body>
-        {children}
+        <CartProvider>{children}</CartProvider>
         <script
           type="application/ld+json"
           // Contenu statique (constantes du site), sérialisé côté serveur.

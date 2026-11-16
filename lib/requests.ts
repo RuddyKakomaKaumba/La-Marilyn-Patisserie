@@ -172,7 +172,7 @@ export function checkDate(
 /* ---- Message ---------------------------------------------------------- */
 
 /** Rappel, à la première personne, ajouté à la fin de chaque demande. */
-const NOT_BOOKING_NOTE =
+export const NOT_BOOKING_NOTE =
   "J’ai bien noté que cette demande ne vaut pas réservation : la commande sera confirmée après validation du projet, accord sur le prix et réception de l’acompte.";
 
 export type MessageField = [

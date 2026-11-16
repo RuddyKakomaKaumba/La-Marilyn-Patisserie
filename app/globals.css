@@ -379,6 +379,31 @@ body {
   }
 }
 
+/* Panier : apparition du bouton flottant, petit rebond de la pastille. */
+.cart-float {
+  animation: wa-in 450ms var(--ease-soft) both;
+}
+
+.cart-badge {
+  animation: cart-pop 380ms var(--ease-soft) both;
+}
+
+@keyframes cart-pop {
+  0% {
+    transform: scale(0.6);
+  }
+  60% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.cart-added {
+  animation: enter-up 320ms var(--ease-soft) both;
+}
+
 /* Menu mobile : fondu + léger glissement, liens en cascade. */
 .mobile-menu {
   opacity: 0;
@@ -441,7 +466,10 @@ body {
   [data-enter],
   .wa-float,
   .wa-float--pulse::after,
-  .page-enter {
+  .page-enter,
+  .cart-float,
+  .cart-badge,
+  .cart-added {
     animation: none;
   }
 
