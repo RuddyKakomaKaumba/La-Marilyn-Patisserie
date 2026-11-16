@@ -3,10 +3,10 @@
 import Image from "next/image";
 import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { priceSummary } from "@/lib/pricing";
-import { ctaUrl, WHATSAPP_CTAS, type WhatsAppCta } from "@/lib/site";
+import type { WhatsAppCta } from "@/lib/site";
 import type { RequestType } from "@/lib/requests";
 import ProductDetails from "./creations/ProductDetails";
-import { PlusIcon } from "./icons";
+import CardCartButton from "./cart/CardCartButton";
 import Sheet, { SheetClose } from "./ui/Sheet";
 
 export type Product = {
@@ -97,14 +97,15 @@ type Props = {
   /** Nom accessible du carrousel. */
   label: string;
   /**
-   * "compact" : cartes étroites avec bouton « + ».
+   * "compact" : cartes étroites avec bouton d'action.
    * "showcase" : cartes plus larges (≈ 1,6 carte visible sur mobile),
    * ombre très légère.
    */
   variant?: CardVariant;
   /**
-   * Affiche le bouton « + » (demande WhatsApp). Par défaut : oui pour
-   * "compact", non pour "showcase".
+   * Affiche le bouton d'action de la carte (« Ajouter au panier », ou
+   * « Voir le détail » pour les prestations sur devis). Par défaut : oui
+   * pour "compact", non pour "showcase".
    */
   showAction?: boolean;
   /**
@@ -153,6 +154,8 @@ export default function InfiniteProductCarousel({
   const [copies, setCopies] = useState(2);
   // Fiche produit ouverte (le carrousel reste en pause tant qu'elle l'est).
   const [selected, setSelected] = useState<Product | null>(null);
+  // Fiche ouverte depuis « Ajouter au panier » : directement sur le choix.
+  const [configure, setConfigure] = useState(false);
   const sheetOpen = useRef(false);
   sheetOpen.current = selected !== null;
   const titleId = useId();
@@ -424,7 +427,14 @@ export default function InfiniteProductCarousel({
                     product={p}
                     variant={variant}
                     showAction={showAction}
-                    onOpen={() => setSelected(p)}
+                    onOpen={() => {
+                      setConfigure(false);
+                      setSelected(p);
+                    }}
+                    onConfigure={() => {
+                      setConfigure(true);
+                      setSelected(p);
+                    }}
                     clone={copy > 0}
                     priority={copy === 0 && i < priorityCount}
                   />
@@ -446,6 +456,7 @@ export default function InfiniteProductCarousel({
               product={selected}
               titleId={titleId}
               onNavigate={() => setSelected(null)}
+              focusCart={configure}
             />
           </>
         )}
@@ -459,6 +470,7 @@ function ProductCard({
   variant,
   showAction,
   onOpen,
+  onConfigure,
   clone,
   priority,
 }: {
@@ -466,6 +478,8 @@ function ProductCard({
   variant: CardVariant;
   showAction: boolean;
   onOpen: () => void;
+  /** Ouvre la fiche sur le choix du format / de l'option (panier). */
+  onConfigure: () => void;
   /**
    * Copie décorative (masquée aux lecteurs d'écran) : cliquable à la
    * souris ou au doigt, mais hors de l'ordre de tabulation.
@@ -535,7 +549,7 @@ function ProductCard({
               : "text-[0.8125rem] md:text-[0.875rem]"
           }`}
         >
-          {/* Toute la carte ouvre la fiche (le « + » reste au-dessus). */}
+          {/* Toute la carte ouvre la fiche (le bouton d’action reste au-dessus). */}
           <button
             type="button"
             onClick={onOpen}
@@ -569,20 +583,14 @@ function ProductCard({
           </p>
         )}
         {showAction && (
-          <div
-            className={`relative z-[1] mt-auto ${showcase ? "pt-4" : "pt-3"}`}
-          >
-            <a
-              href={ctaUrl(product.cta?.key ?? "general", product.cta?.detail)}
-              target="_blank"
-              rel="noopener noreferrer"
-              draggable={false}
+          <div className={`mt-auto ${showcase ? "pt-4" : "pt-3"}`}>
+            <CardCartButton
+              product={product}
+              compact={!showcase}
               tabIndex={tabIndex}
-              aria-label={`${WHATSAPP_CTAS[product.cta?.key ?? "general"].label} : ${product.name} (WhatsApp)`}
-              className="group/plus flex h-7 w-7 items-center justify-center rounded-full border border-gold/60 text-gold-deep transition-colors duration-300 ease-soft hover:border-gold hover:bg-gold hover:text-ink active:bg-gold active:text-ink"
-            >
-              <PlusIcon className="h-3.5 w-3.5 transition-transform duration-300 ease-soft group-hover/plus:rotate-45" />
-            </a>
+              onConfigure={onConfigure}
+              onOpen={onOpen}
+            />
           </div>
         )}
       </div>

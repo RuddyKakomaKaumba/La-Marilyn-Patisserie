@@ -22,7 +22,7 @@ type Props = {
   notes?: string[];
   /** Format des cartes (voir InfiniteProductCarousel). */
   variant?: CarouselVariant;
-  /** Bouton « + » sur les cartes (voir InfiniteProductCarousel). */
+  /** Bouton d’action sur les cartes (voir InfiniteProductCarousel). */
   showAction?: boolean;
   /** Images chargées en priorité (première rangée de la page). */
   priorityCount?: number;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   qtyBounds,
   qtyLabel,
@@ -26,10 +26,13 @@ const chip =
 export default function AddToCart({
   entry,
   onContinue,
+  autoFocus,
 }: {
   entry: CartProduct;
   /** Ferme la fiche produit (pour continuer ses achats ou voir le panier). */
   onContinue?: () => void;
+  /** Fait défiler la fiche jusqu'au choix et y place le focus. */
+  autoFocus?: boolean;
 }) {
   const { add, open } = useCart();
   const { product } = entry;
@@ -45,6 +48,21 @@ export default function AddToCart({
   const [added, setAdded] = useState<string | null>(null);
 
   const amount = unitPrice(product, variant);
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!autoFocus) return;
+    // Après l'ouverture de la fenêtre (qui remet son défilement à zéro).
+    const t = window.setTimeout(() => {
+      const section = ref.current;
+      if (!section) return;
+      section.scrollIntoView({ block: "start", behavior: "smooth" });
+      section
+        .querySelector<HTMLInputElement>("input:checked, input, button")
+        ?.focus({ preventScroll: true });
+    }, 80);
+    return () => window.clearTimeout(t);
+  }, [autoFocus]);
   const uid = `atc-${entry.id}`;
 
   const changeVariant = (label: string) => {
@@ -66,6 +84,7 @@ export default function AddToCart({
 
   return (
     <section
+      ref={ref}
       aria-labelledby={`${uid}-title`}
       className="mt-6 rounded-[14px] border border-sand bg-cream p-4 md:p-5"
     >
