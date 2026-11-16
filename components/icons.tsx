@@ -140,3 +140,54 @@ export function PipingBagIcon({ className }: IconProps) {
     </svg>
   );
 }
+
+export function BagIcon({ className }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M5.5 8.5h13l-1 11.5a1 1 0 0 1-1 .9H7.5a1 1 0 0 1-1-.9Z" />
+      <path d="M9 10.5V7a3 3 0 0 1 6 0v3.5" />
+    </svg>
+  );
+}
+
+export function MinusIcon({ className }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.3"
+      strokeLinecap="round"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M4.5 10h11" />
+    </svg>
+  );
+}
+
+export function CheckIcon({ className }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="m4.5 10.5 3.5 3.5 7.5-8" />
+    </svg>
+  );
+}

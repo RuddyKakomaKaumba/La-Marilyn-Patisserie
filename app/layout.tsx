@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { DM_Sans, Newsreader } from "next/font/google";
 import "./globals.css";
 import "./seasonal.css";
+import CartProvider from "@/components/cart/CartProvider";
 import SeasonalBanner from "@/components/seasonal/SeasonalBanner";
 import Snowfall from "@/components/seasonal/Snowfall";
 import { FESTIVE, SEASON_ATTR } from "@/lib/seasonal";
@@ -63,7 +64,7 @@ export default function RootLayout({
     >
       <body>
         <SeasonalBanner />
-        {children}
+        <CartProvider>{children}</CartProvider>
         {FESTIVE && <Snowfall />}
         <script
           type="application/ld+json"
