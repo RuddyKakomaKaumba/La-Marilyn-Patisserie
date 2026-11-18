@@ -3,6 +3,7 @@ import Craftsmanship from "@/components/Craftsmanship";
 import GourmetUniverses from "@/components/GourmetUniverses";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import HolidayEdition from "@/components/HolidayEdition";
 import Occasions from "@/components/Occasions";
 import Reveal from "@/components/Reveal";
 import SiteFooter from "@/components/SiteFooter";
@@ -14,6 +15,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <HolidayEdition />
         <GourmetUniverses />
         <Craftsmanship />
         <Occasions />
