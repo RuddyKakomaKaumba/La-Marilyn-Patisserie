@@ -139,8 +139,7 @@ export const PATISSERIES: Product[] = [
       position: "45% 55%",
     },
   }),
-  // Absent de la grille tarifaire transmise : prix à confirmer.
-  gateau("Cake nature", 4_000, {
+  gateau("Cake nature", 3_500, {
     description:
       "Le cake nature tout simple, doré et moelleux, parfait pour le goûter.",
     tone: TONES.linen,
@@ -299,9 +298,9 @@ export const MIGNARDISES: Product[] = (
         "De petits moelleux au chocolat, à servir en dessert ou sur un buffet.",
       tone: TONES.cream,
       pricing: { kind: "fixed", amount: 400, unit: "unité" },
-      minQuantity: "15 pièces",
       leadTime: "24 h",
       leadDays: 1,
+      minQuantity: "10 pièces",
       ...MIGNARDISE,
       image: {
         src: "/images/mignardises/mini-moelleux-au-chocolat-la-marilyn.webp",
@@ -417,7 +416,7 @@ export const CREPES: Product[] = [
       alt: "Crêpes Suzette nappées de sauce à l’orange, quartiers d’orange, zestes et cheveux de caramel",
       position: "50% 50%",
     },
-    pricing: { kind: "fixed", amount: 5_000, unit: "les 10 pièces" },
+    pricing: { kind: "fixed", amount: 3_500, unit: "les 10 pièces" },
     minQuantity: "10 pièces",
     leadTime: "24 h",
     leadDays: 1,
