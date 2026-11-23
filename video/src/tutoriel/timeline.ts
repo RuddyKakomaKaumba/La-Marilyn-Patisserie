@@ -1,9 +1,10 @@
 /**
  * Tutoriel « Votre commande, en quelques clics » : découpage du film.
  *
- * Tout est calé sur la musique (90 BPM à 30 i/s) : un temps = 20 images,
- * une mesure = 80 images. Le film dure 22 mesures (58,7 s) et chaque
- * séquence commence sur un premier temps (voir scripts/tutoriel/build_music.py).
+ * Tout est calé sur la musique (afro-house, 120 BPM à 30 i/s) : un temps =
+ * 15 images, une mesure = 60 images. Le film dure 25 mesures (50 s) ; chaque
+ * étape commence sur un premier temps et chaque geste tombe sur un temps
+ * (voir scripts/tutoriel/build_music.py).
  *
  * Pour ajuster le rythme : modifier SEQ, puis les repères d'action (CUE),
  * qui pilotent à la fois l'image (gestes, caméra) et les effets sonores.
@@ -11,73 +12,78 @@
 import voix from "./data/voix.json";
 
 export const FPS = 30;
-export const BEAT = 20;
+export const BEAT = 15;
 export const BAR = 4 * BEAT;
-export const DURATION = 22 * BAR; // 1760 images = 58,7 s
+export const DURATION = 25 * BAR; // 1500 images = 50 s
 
-/** Image de début d'une mesure (numérotée à partir de 1). */
+/** Image de début d'une mesure (numérotée à partir de 1), et d'un temps. */
 export const bar = (n: number, beat = 0) => (n - 1) * BAR + beat * BEAT;
 
 export const SEQ = {
-  accroche: { from: bar(1), to: bar(3) }, //     0,0 →  5,3 s
-  decouvrir: { from: bar(3), to: bar(7) }, //    5,3 → 16,0 s
-  panier: { from: bar(7), to: bar(12) }, //     16,0 → 29,3 s
-  consulter: { from: bar(12), to: bar(16) }, // 29,3 → 40,0 s
-  whatsapp: { from: bar(16), to: bar(20) }, //  40,0 → 50,7 s
-  final: { from: bar(20), to: DURATION }, //    50,7 → 58,7 s
+  accroche: { from: bar(1), to: bar(4) }, //    0 →  6 s (drop à 4 s)
+  decouvrir: { from: bar(4), to: bar(8) }, //   6 → 14 s
+  panier: { from: bar(8), to: bar(13) }, //    14 → 24 s
+  consulter: { from: bar(13), to: bar(17) }, // 24 → 32 s
+  whatsapp: { from: bar(17), to: bar(22) }, //  32 → 42 s
+  final: { from: bar(22), to: DURATION }, //    42 → 50 s
 } as const;
 
+/** Titres d'étape plein cadre, sur le premier temps de chaque étape. */
+export const STEP_CARDS = [SEQ.decouvrir.from, SEQ.panier.from, SEQ.consulter.from, SEQ.whatsapp.from];
+
 /**
- * Repères d'action, en images absolues. Chaque geste à l'écran (toucher,
- * défilement, ouverture) et son effet sonore partent de ces valeurs.
+ * Repères d'action, en images absolues (presque tous sur un temps). Chaque
+ * geste à l'écran (toucher, défilement, ouverture) et son effet sonore
+ * partent de ces valeurs.
  */
 export const CUE = {
-  // 1. Accroche : la photo devient le site, puis le téléphone apparaît
-  photoToSite: 96,
-  phoneIn: 112,
+  // 1. Accroche : montage des créations sur le temps, puis la photo devient le site
+  montage: 0,
+  photoToSite: 100,
+  phoneIn: bar(3),
   // 2. Découvrir les créations
-  tapDecouvrir: 196,
-  navCreations: 204,
-  chips: 232,
-  fastScroll: 300,
-  rewind: 352,
-  onCard: 386,
-  tapCard: 440,
-  ficheOpen: 446,
+  tapDecouvrir: bar(4, 2),
+  navCreations: bar(4, 2) + 5,
+  chips: bar(5),
+  fastScroll: bar(5, 3),
+  rewind: bar(6, 1) + 3,
+  onCard: bar(6, 3),
+  tapCard: bar(7, 1),
+  ficheOpen: bar(7, 1) + 4,
   // 3. Ajouter au panier
-  ficheScroll: 486,
-  tapAdd: 528,
-  added: 532,
-  ficheScroll2: 548,
-  tapContinue: 586,
-  sheetClose: 590,
-  float1: 612,
-  toMignardises: 626,
-  tapBurger: 690,
-  burgerAdded: 694,
-  multi: 720,
-  tapFloat: 862,
+  ficheScroll: bar(8) + 10,
+  tapAdd: bar(8, 3),
+  added: bar(8, 3) + 2,
+  ficheScroll2: bar(9),
+  tapContinue: bar(9, 2),
+  sheetClose: bar(9, 2) + 2,
+  float1: bar(9, 3) + 4,
+  toMignardises: bar(10) - 8,
+  tapBurger: bar(10, 2) + 3,
+  burgerAdded: bar(10, 2) + 5,
+  multi: bar(11, 2),
+  tapFloat: bar(12, 3) + 2,
   // 4. Consulter le panier
-  drawerOpen: 868,
-  rows: 900,
-  tapPlus: 996,
-  plusDone: 1000,
-  total: 1012,
-  tapFinaliser: 1160,
+  drawerOpen: bar(12, 3) + 6,
+  rows: bar(13, 1),
+  tapPlus: bar(14, 2),
+  plusDone: bar(14, 2) + 3,
+  total: bar(14, 3),
+  tapFinaliser: bar(16, 2) + 10,
   // 5. Finaliser sur WhatsApp
-  navCommande: 1166,
-  toInfos: 1192,
-  typeName: 1222,
-  tapDate: 1256,
-  dateShown: 1262,
-  toMode: 1270,
-  tapLivraison: 1296,
-  typePlace: 1304,
-  toSubmit: 1332,
-  tapSend: 1364,
-  message: 1372,
+  navCommande: bar(16, 3),
+  toInfos: bar(17) + 10,
+  typeName: bar(17, 2) + 6,
+  tapDate: bar(18) + 3,
+  dateShown: bar(18) + 8,
+  toMode: bar(18, 1) + 5,
+  tapLivraison: bar(18, 3),
+  typePlace: bar(18, 3) + 6,
+  toSubmit: bar(19, 1),
+  tapSend: bar(19, 3),
+  message: bar(19, 3) + 6,
   // 6. Conclusion
-  finalIn: 1520,
+  finalIn: bar(22),
 } as const;
 
 type VoiceKey = keyof typeof voix;
@@ -89,14 +95,14 @@ type Word = [string, number, number];
  * (VOIX-OFF-TUTORIEL.md), qui sert aussi aux sous-titres.
  */
 const LINES: { id: VoiceKey; from: number; text: string }[] = [
-  { id: "vo-1", from: 14, text: "Commander vos gourmandises chez La Marilyn, c’est désormais plus simple." },
-  { id: "vo-2", from: 178, text: "Rendez-vous sur notre site, parcourez nos créations et choisissez ce qui vous fait plaisir." },
-  { id: "vo-3", from: 492, text: "Ajoutez vos produits au panier." },
-  { id: "vo-4", from: 608, text: "Vous pouvez choisir plusieurs gourmandises et ajuster les quantités selon vos besoins." },
-  { id: "vo-5", from: 890, text: "Retrouvez tous vos choix au même endroit, ajustez les quantités et consultez le montant de votre panier." },
-  { id: "vo-6", from: 1206, text: "Une fois votre panier prêt, envoyez votre demande sur WhatsApp." },
-  { id: "vo-7", from: 1382, text: "La Marilyn vérifie les détails avec vous et confirme votre commande." },
-  { id: "vo-8", from: 1536, text: "La Marilyn, l’art du gâteau. Retrouvez toutes nos créations en ligne." },
+  { id: "vo-1", from: 8, text: "Commander vos gourmandises chez La Marilyn, c’est désormais plus simple." },
+  { id: "vo-2", from: 190, text: "Rendez-vous sur notre site, parcourez nos créations et choisissez ce qui vous fait plaisir." },
+  { id: "vo-3", from: 432, text: "Ajoutez vos produits au panier." },
+  { id: "vo-4", from: 528, text: "Vous pouvez choisir plusieurs gourmandises et ajuster les quantités selon vos besoins." },
+  { id: "vo-5", from: 735, text: "Retrouvez tous vos choix au même endroit, ajustez les quantités et consultez le montant de votre panier." },
+  { id: "vo-6", from: 970, text: "Une fois votre panier prêt, envoyez votre demande sur WhatsApp." },
+  { id: "vo-7", from: 1140, text: "La Marilyn vérifie les détails avec vous et confirme votre commande." },
+  { id: "vo-8", from: 1278, text: "La Marilyn, l’art du gâteau. Retrouvez toutes nos créations en ligne." },
 ];
 
 export const VOICE = LINES.map((l) => {

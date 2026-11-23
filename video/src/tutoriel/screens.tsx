@@ -18,6 +18,9 @@ import { Ring, Touch } from "./components/Marks";
 import { SCREEN } from "./components/Phone";
 import { CUE } from "./timeline";
 
+/** Courbe nerveuse : départ et arrivée francs (transitions de l'interface). */
+const SNAP = (t: number) => (t < 0.5 ? 16 * t ** 5 : 1 - (-2 * t + 2) ** 5 / 2);
+
 const C = CUE;
 const W = SCREEN.width;
 const H = SCREEN.height;
@@ -66,14 +69,14 @@ export const MARKS = {
 export const creationsScroll = (f: number) =>
   f < C.toMignardises
     ? keys(f, [C.fastScroll, C.rewind - 4, C.rewind, C.onCard], [0, FAST_END, FAST_END, SCROLL_GATEAUX], EASE.inOut)
-    : tween(f, C.toMignardises, C.toMignardises + 36, SCROLL_GATEAUX, SCROLL_MIGNARDISES, EASE.inOut);
+    : tween(f, C.toMignardises, C.toMignardises + 34, SCROLL_GATEAUX, SCROLL_MIGNARDISES, SNAP);
 
 const commandeScroll = (f: number) =>
   keys(
     f,
     [C.toInfos, C.toInfos + 26, C.toMode, C.toMode + 24, C.toSubmit, C.toSubmit + 26],
     [0, SCROLL_INFOS, SCROLL_INFOS, SCROLL_MODE, SCROLL_MODE, SCROLL_SUBMIT],
-    EASE.inOut,
+    SNAP,
   );
 
 /** Vitesse de défilement (px CSS par image), pour le flou de bougé. */
@@ -118,7 +121,7 @@ const Home: React.FC<{ f: number }> = ({ f }) => {
       )}
       <Shot name="t-accueil.png" opacity={site} />
       {f > C.photoToSite && <Touch x={MARKS.cta.x} y={MARKS.cta.y} frame={f} at={C.tapDecouvrir} />}
-      <Ring box={P.accueil.cta} frame={f} from={C.tapDecouvrir - 18} to={C.tapDecouvrir + 4} radius={24} pad={5} />
+      <Ring box={P.accueil.cta} frame={f} from={C.tapDecouvrir - 12} to={C.tapDecouvrir + 4} radius={24} pad={5} />
     </AbsoluteFill>
   );
 };
@@ -149,7 +152,7 @@ const Creations: React.FC<{ f: number; children?: React.ReactNode; floats?: bool
 /** Formulaire de commande : état de la page selon l'avancée de la saisie. */
 const Commande: React.FC<{ f: number }> = ({ f }) => {
   const scroll = commandeScroll(f);
-  const state = f >= C.tapSend + 3 ? 3 : f >= C.typePlace + 26 ? 2 : f >= C.tapLivraison + 2 ? 1 : 0;
+  const state = f >= C.tapSend + 3 ? 3 : f >= C.typePlace + 22 ? 2 : f >= C.tapLivraison + 2 ? 1 : 0;
   const page = (["t-commande-0", "t-commande-1", "t-commande-2", "t-commande-3"] as const)[state];
   const s0 = CMD[0];
   const s1 = CMD[1];
@@ -159,8 +162,8 @@ const Commande: React.FC<{ f: number }> = ({ f }) => {
     const k = Math.floor(tween(f, from, from + frames, 0, list.length, EASE.linear));
     return k <= 0 ? null : list[Math.min(list.length, k) - 1].file;
   };
-  const nameFile = typed(nameCrops, C.typeName, 26);
-  const placeFile = typed(placeCrops, C.typePlace, 24);
+  const nameFile = typed(nameCrops, C.typeName, 22);
+  const placeFile = typed(placeCrops, C.typePlace, 20);
   return (
     <AbsoluteFill style={{ backgroundColor: COLORS.cream }}>
       <TiledPage page={page} scroll={scroll}>
@@ -177,8 +180,8 @@ const Commande: React.FC<{ f: number }> = ({ f }) => {
 export const screenAt = (f: number): React.ReactNode => {
   // 1. Accueil, puis passage à « Nos créations »
   if (f < C.navCreations) return <Home f={f} />;
-  if (f < C.navCreations + 20) {
-    const p = tween(f, C.navCreations, C.navCreations + 18, 0, 1, EASE.inOut);
+  if (f < C.navCreations + 14) {
+    const p = tween(f, C.navCreations, C.navCreations + 12, 0, 1, SNAP);
     return (
       <AbsoluteFill>
         <div style={{ position: "absolute", inset: 0, transform: `translateX(${-p * W * 0.35}px)`, opacity: 1 - p * 0.6 }}>
@@ -191,10 +194,10 @@ export const screenAt = (f: number): React.ReactNode => {
     );
   }
   // 2. Fiche du Moelleux au chocolat
-  if (f >= C.ficheOpen && f < C.sheetClose + 20) {
-    const open = Math.min(tween(f, C.ficheOpen, C.ficheOpen + 20, 0, 1, EASE.out), tween(f, C.sheetClose, C.sheetClose + 18, 1, 0, EASE.inOut));
-    const scroll = keys(f, [C.ficheScroll, C.ficheScroll + 30, C.ficheScroll2, C.ficheScroll2 + 18], [0, 360, 360, 470], EASE.inOut);
-    const mix = tween(f, C.added, C.added + 5, 0, 1);
+  if (f >= C.ficheOpen && f < C.sheetClose + 12) {
+    const open = Math.min(tween(f, C.ficheOpen, C.ficheOpen + 13, 0, 1, EASE.out), tween(f, C.sheetClose, C.sheetClose + 11, 1, 0, SNAP));
+    const scroll = keys(f, [C.ficheScroll, C.ficheScroll + 22, C.ficheScroll2, C.ficheScroll2 + 14], [0, 360, 360, 470], SNAP);
+    const mix = tween(f, C.added, C.added + 2, 0, 1);
     return (
       <Creations f={f} floats={false}>
         <WaFloat />
@@ -209,15 +212,15 @@ export const screenAt = (f: number): React.ReactNode => {
         <Touch x={W / 2} y={MARKS.card.y + 120} frame={f} at={C.tapCard} />
         <Touch {...center(MARKS.ficheAdd)} frame={f} at={C.tapAdd} />
         <Touch {...center(MARKS.ficheContinue)} frame={f} at={C.tapContinue} />
-        <Ring box={MARKS.ficheAdd} frame={f} from={C.tapAdd - 22} to={C.tapAdd + 2} radius={24} />
-        <Ring box={MARKS.ficheAdded} frame={f} from={C.added + 8} to={C.ficheScroll2 + 30} radius={14} />
+        <Ring box={MARKS.ficheAdd} frame={f} from={C.tapAdd - 12} to={C.tapAdd + 2} radius={24} />
+        <Ring box={MARKS.ficheAdded} frame={f} from={C.ficheScroll2 + 14} to={C.tapContinue - 2} radius={14} />
       </Creations>
     );
   }
   // 3. Panier ouvert
   if (f >= C.drawerOpen && f < C.navCommande) {
-    const open = tween(f, C.drawerOpen, C.drawerOpen + 20, 0, 1, EASE.out);
-    const mix = tween(f, C.plusDone, C.plusDone + 6, 0, 1);
+    const open = tween(f, C.drawerOpen, C.drawerOpen + 13, 0, 1, EASE.out);
+    const mix = tween(f, C.plusDone, C.plusDone + 2, 0, 1);
     const rows = MARKS.rows;
     return (
       <Creations f={f}>
@@ -228,18 +231,18 @@ export const screenAt = (f: number): React.ReactNode => {
           open={open}
           next={{ name: "t-panier-2.png", contentHeight: P.panier.height2, top: DRAWER2_TOP, mix }}
         />
-        <Ring box={rows[0]} frame={f} from={C.rows} to={C.rows + 44} radius={12} pad={2} />
-        <Ring box={rows[1]} frame={f} from={C.rows + 44} to={C.rows + 90} radius={12} pad={2} />
-        <Ring box={MARKS.plus} frame={f} from={C.tapPlus - 16} to={C.tapPlus + 6} radius={20} pad={3} />
+        <Ring box={rows[0]} frame={f} from={C.rows} to={C.rows + 30} radius={12} pad={2} />
+        <Ring box={rows[1]} frame={f} from={C.rows + 30} to={C.rows + 60} radius={12} pad={2} />
+        <Ring box={MARKS.plus} frame={f} from={C.tapPlus - 12} to={C.tapPlus + 6} radius={20} pad={3} />
         <Touch {...center(MARKS.plus)} frame={f} at={C.tapPlus} />
-        <Ring box={MARKS.finaliser2} frame={f} from={C.tapFinaliser - 22} to={C.tapFinaliser + 4} radius={24} />
+        <Ring box={MARKS.finaliser2} frame={f} from={C.tapFinaliser - 12} to={C.tapFinaliser + 4} radius={24} />
         <Touch {...center(MARKS.finaliser2)} frame={f} at={C.tapFinaliser} />
       </Creations>
     );
   }
   // 4. Passage à la page de commande
-  if (f >= C.navCommande && f < C.navCommande + 20) {
-    const p = tween(f, C.navCommande, C.navCommande + 18, 0, 1, EASE.inOut);
+  if (f >= C.navCommande && f < C.navCommande + 14) {
+    const p = tween(f, C.navCommande, C.navCommande + 12, 0, 1, SNAP);
     return (
       <AbsoluteFill>
         <div style={{ position: "absolute", inset: 0, transform: `translateX(${-p * W * 0.35}px)`, opacity: 1 - p * 0.6 }}>
@@ -257,14 +260,14 @@ export const screenAt = (f: number): React.ReactNode => {
     return (
       <AbsoluteFill>
         <Commande f={f} />
-        <Ring box={MARKS.name} frame={f} from={C.typeName - 6} to={C.typeName + 30} radius={10} pad={3} />
+        <Ring box={MARKS.name} frame={f} from={C.typeName - 4} to={C.typeName + 24} radius={10} pad={3} />
         <Touch {...center(MARKS.name)} frame={f} at={C.typeName - 4} />
-        <Ring box={MARKS.date} frame={f} from={C.tapDate - 4} to={C.dateShown + 14} radius={10} pad={3} />
+        <Ring box={MARKS.date} frame={f} from={C.tapDate - 4} to={C.toMode} radius={10} pad={3} />
         <Touch {...center(MARKS.date)} frame={f} at={C.tapDate} />
-        <Ring box={MARKS.livraison} frame={f} from={C.tapLivraison - 4} to={C.tapLivraison + 18} radius={14} pad={3} />
+        <Ring box={MARKS.livraison} frame={f} from={C.tapLivraison - 4} to={C.tapLivraison + 6} radius={14} pad={3} />
         <Touch {...center(MARKS.livraison)} frame={f} at={C.tapLivraison} />
-        <Ring box={MARKS.place} frame={f} from={C.typePlace - 2} to={C.typePlace + 28} radius={10} pad={3} />
-        <Ring box={MARKS.submit} frame={f} from={C.tapSend - 22} to={C.tapSend + 6} radius={26} pad={4} />
+        <Ring box={MARKS.place} frame={f} from={C.typePlace - 2} to={C.toSubmit} radius={10} pad={3} />
+        <Ring box={MARKS.submit} frame={f} from={C.tapSend - 12} to={C.tapSend + 6} radius={26} pad={4} />
         <Touch {...center(MARKS.submit)} frame={f} at={C.tapSend} />
       </AbsoluteFill>
     );
@@ -277,19 +280,19 @@ export const screenAt = (f: number): React.ReactNode => {
           key={c.label}
           box={{ ...c, y: c.y - creationsScroll(f) }}
           frame={f}
-          from={C.chips + i * 7}
-          to={C.chips + i * 7 + 26}
+          from={C.chips + i * 5}
+          to={C.chips + i * 5 + 20}
           radius={20}
           pad={2}
         />
       ))}
       <Ring box={MARKS.card} frame={f} from={C.onCard + 4} to={C.tapCard + 2} radius={12} pad={3} />
       <Touch x={W / 2 - 110} y={MARKS.card.y + 120} frame={f} at={C.tapCard} />
-      <Ring box={MARKS.burgerAdd} frame={f} from={C.tapBurger - 22} to={C.tapBurger + 26} radius={22} pad={3} />
+      <Ring box={MARKS.burgerAdd} frame={f} from={C.tapBurger - 5} to={C.tapBurger + 24} radius={22} pad={3} />
       <Touch {...center(MARKS.burgerAdd)} frame={f} at={C.tapBurger} />
-      <Ring box={MARKS.float} frame={f} from={C.float1 + 2} to={C.float1 + 34} radius={40} pad={-6} />
-      <Ring box={MARKS.float} frame={f} from={C.burgerAdded + 4} to={C.burgerAdded + 34} radius={40} pad={-6} />
-      <Ring box={MARKS.float} frame={f} from={C.tapFloat - 18} to={C.tapFloat + 4} radius={40} pad={-6} />
+      <Ring box={MARKS.float} frame={f} from={C.float1 + 2} to={C.float1 + 26} radius={40} pad={-6} />
+      <Ring box={MARKS.float} frame={f} from={C.burgerAdded + 4} to={C.burgerAdded + 28} radius={40} pad={-6} />
+      <Ring box={MARKS.float} frame={f} from={C.tapFloat - 12} to={C.tapFloat + 4} radius={40} pad={-6} />
       <Touch {...center(MARKS.float)} frame={f} at={C.tapFloat} />
     </Creations>
   );

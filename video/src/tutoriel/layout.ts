@@ -16,6 +16,6 @@ export const LAYOUT = {
   anchor: { x: 540, y: 880 },
   title: { top: 252, left: 72, width: 936 },
   captionY: 1396,
-  captionWidth: 900,
+  captionWidth: 960,
   safeBottom: 1500,
 } as const;

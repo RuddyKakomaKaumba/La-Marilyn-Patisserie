@@ -112,7 +112,9 @@ def select(takes_dir):
         # Prises les plus fidèles, puis celle au débit médian (ni pressée ni traînante).
         top = max(c[0] for c in cands)
         keep = sorted((c for c in cands if c[0] == top), key=lambda c: c[1])
-        _, _, seed, x, sr, words = keep[len(keep) // 2]
+        # « prefer: fast » : la prise la plus vive ; sinon le débit médian.
+        pick = keep[0] if CFG.get("prefer") == "fast" else keep[len(keep) // 2]
+        _, _, seed, x, sr, words = pick
         # On coupe tout ce qui suit le dernier mot (souffles, bruits de fin).
         x = x[max(0, int((words[0].start - 0.2) * sr)): int((words[-1].end + 0.4) * sr)]
         words = None if "split" not in line else words

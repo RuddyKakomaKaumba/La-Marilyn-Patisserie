@@ -137,7 +137,9 @@ les reporter dans `src/timeline.ts`.
 # Tutoriel « Votre commande, en quelques clics »
 
 Second film du projet : un tutoriel pédagogique du panier multi-produits,
-réalisé à partir du parcours réel sur le site public. Il partage le moteur
+réalisé à partir du parcours réel sur le site public. Montage calé sur une
+musique afro-house à 120 BPM : chaque geste, chaque coupe et chaque titre
+d'étape tombe sur un temps (15 images). Il partage le moteur
 Remotion, les typographies et les composants de ce dossier, mais vit dans
 ses propres sous-dossiers (`tutoriel`).
 
@@ -145,7 +147,7 @@ ses propres sous-dossiers (`tutoriel`).
 
 | Fichier | Contenu |
 | --- | --- |
-| `la-marilyn-tutoriel-vertical.mp4` | 1080 × 1920, 30 i/s, 58,7 s, H.264 + AAC : voix, musique, effets et sous-titres intégrés |
+| `la-marilyn-tutoriel-vertical.mp4` | 1080 × 1920, 30 i/s, 50 s, H.264 + AAC (−14 LUFS) : voix, musique, effets et sous-titres intégrés |
 | `la-marilyn-tutoriel-voix-off.flac` | Voix off seule, calée sur la vidéo (sans perte ; `npm run tutoriel:voix` produit le WAV) |
 | `la-marilyn-tutoriel-couverture.jpg` | Couverture Instagram, 1080 × 1920 |
 
@@ -156,7 +158,7 @@ Script et textes : [`VOIX-OFF-TUTORIEL.md`](./VOIX-OFF-TUTORIEL.md).
 ```bash
 npm run studio               # prévisualisation interactive (composition TutorielVertical)
 npm run tutoriel:apercu      # planche de six images, sans rendu complet
-npm run tutoriel:render      # vidéo finale
+npm run tutoriel:render      # vidéo finale (rendu, puis niveau sonore réseaux sociaux, −14 LUFS)
 npm run tutoriel:voix        # piste de voix seule
 npm run tutoriel:couverture  # couverture Instagram
 npm run tutoriel:captures    # recapture du parcours sur le site public
@@ -168,6 +170,7 @@ npm run tutoriel:musique     # musique et effets
 ```
 src/tutoriel/
 ├─ Tutoriel.tsx        composition : fond, plan-séquence, conclusion, sous-titres, son
+├─ components/Kinetic.tsx  accroche sur le temps, titres d'étape plein cadre, éclats dorés
 ├─ timeline.ts         séquences, repères d'action (CUE) et départs de la voix
 ├─ layout.ts           zones du format vertical (titre, écran, sous-titres)
 ├─ screens.tsx         l'écran du site, image par image, reconstitué depuis les captures
@@ -215,6 +218,6 @@ Ajuster le film :
 | Photographies, logo | Site La Marilyn (`public/images`) | Propriété de La Marilyn |
 | Typographies | Newsreader, DM Sans | SIL Open Font License |
 | Voix off | Chatterbox Multilingual (Resemble AI, MIT), timbre de référence issu de la voix libre « jessica » (corpus UPMC, CC BY-SA 4.0) ; meilleure prise choisie par transcription faster-whisper | Usage commercial autorisé ; filigrane inaudible de voix de synthèse |
-| Musique et effets | Synthétisés par `scripts/tutoriel/build_music.py` (numpy, scipy), aucun échantillon tiers | Œuvre du projet |
+| Musique et effets | Afro-house à 120 BPM (grosse caisse, basse « log drum », congas, shakers, accords plaqués, marimba, compression au rythme de la grosse caisse), synthétisée par `scripts/tutoriel/build_music.py` (numpy, scipy), sans aucun échantillon tiers | Œuvre du projet |
 | Sous-titres | Texte du script, minutage par alignement sur les mots de la voix | |
 | QR code | segno | |

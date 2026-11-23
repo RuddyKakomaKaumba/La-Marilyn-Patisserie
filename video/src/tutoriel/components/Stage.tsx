@@ -6,6 +6,7 @@ import { COLORS } from "../../theme";
 import { SANS, SERIF } from "../../fonts";
 import { EASE, tween } from "../../lib/anim";
 import { LAYOUT } from "../layout";
+import { BEAT } from "../timeline";
 
 /** Fond du film : encre, photographie floutée, halo et poussière d'or. */
 export const Backdrop: React.FC<{ photo?: PhotoKey; glowY?: number; photoOpacity?: number }> = ({
@@ -18,7 +19,7 @@ export const Backdrop: React.FC<{ photo?: PhotoKey; glowY?: number; photoOpacity
     <AbsoluteFill style={{ backgroundColor: COLORS.ink }}>
       <Photo photo={photo} blur zoom={1.3 + frame * 0.0002} style={{ inset: 0, opacity: photoOpacity }} />
       <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 46%, rgba(18,12,9,0.2) 0%, rgba(18,12,9,0.92) 80%)" }} />
-      <Glow x={LAYOUT.width / 2} y={glowY} size={1700} opacity={0.2} />
+      <Glow x={LAYOUT.width / 2} y={glowY} size={1700} opacity={0.18 + 0.1 * Math.exp(-(frame % BEAT) / 4)} />
       <GoldDust count={22} seed="tuto" opacity={0.55} />
     </AbsoluteFill>
   );

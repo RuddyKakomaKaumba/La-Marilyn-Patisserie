@@ -16,7 +16,7 @@ const norm = (w: string) =>
     .replace(/[^a-z0-9]/g, "");
 
 /** Longueur maximale d'un sous-titre (une ou deux lignes à l'écran). */
-const MAX_CHARS = 46;
+const MAX_CHARS = 32;
 
 /**
  * Découpe une réplique en sous-titres : texte exact du script, rythme pris
@@ -102,22 +102,22 @@ function chunksOf(text: string, words: [string, number, number][], from: number,
 export const CAPTIONS: Chunk[] = VOICE.flatMap((v) => chunksOf(v.text, v.words, v.from, v.seconds));
 
 /**
- * Sous-titres intégrés : texte du script, synchronisé sur la voix. Le mot
- * prononcé s'éclaire en or ; le bloc apparaît et disparaît en fondu.
+ * Sous-titres intégrés, style Reels : gros caractères blancs, le mot
+ * prononcé s'allume en or. Chaque groupe de mots apparaît d'un coup sec.
  */
 export const Captions: React.FC = () => {
   const frame = useCurrentFrame();
   const i = CAPTIONS.findIndex((c, k) => {
     const next = CAPTIONS[k + 1];
-    const end = Math.min(c.end + 14, next ? next.start - 1 : Infinity);
-    return frame >= c.start - 4 && frame <= end;
+    const end = Math.min(c.end + 10, next ? next.start - 1 : Infinity);
+    return frame >= c.start - 3 && frame <= end;
   });
   if (i < 0) return null;
   const c = CAPTIONS[i];
   const next = CAPTIONS[i + 1];
-  const end = Math.min(c.end + 14, next ? next.start - 1 : Infinity);
-  const o = Math.min(tween(frame, c.start - 4, c.start + 3, 0, 1), tween(frame, end - 5, end, 1, 0));
-  const lift = tween(frame, c.start - 4, c.start + 6, 14, 0, EASE.out);
+  const end = Math.min(c.end + 10, next ? next.start - 1 : Infinity);
+  const o = Math.min(tween(frame, c.start - 3, c.start, 0, 1), tween(frame, end - 3, end, 1, 0));
+  const pop = tween(frame, c.start - 3, c.start + 4, 0.86, 1, EASE.out);
   return (
     <div
       style={{
@@ -127,32 +127,37 @@ export const Captions: React.FC = () => {
         top: LAYOUT.captionY,
         display: "flex",
         justifyContent: "center",
-        transform: `translateY(-50%) translateY(${lift}px)`,
+        transform: `translateY(-50%) scale(${pop})`,
         opacity: o,
       }}
     >
       <div
         style={{
-          padding: "16px 30px 18px",
-          borderRadius: 26,
-          backgroundColor: "rgba(18,12,9,0.78)",
-          boxShadow: "0 0 0 1px rgba(226,199,150,0.28), 0 18px 50px rgba(0,0,0,0.4)",
           fontFamily: SANS,
-          fontWeight: 600,
-          fontSize: 44,
-          lineHeight: 1.28,
+          fontWeight: 800,
+          fontSize: 52,
+          lineHeight: 1.18,
           textAlign: "center",
-          color: COLORS.ivory,
-          letterSpacing: "-0.005em",
+          letterSpacing: "-0.01em",
           maxWidth: LAYOUT.captionWidth,
+          // Contour sombre : lisible sur n'importe quel fond
+          textShadow: "0 0 3px rgba(18,12,9,0.95), 0 0 3px rgba(18,12,9,0.95), 0 4px 18px rgba(0,0,0,0.85)",
         }}
       >
         {c.words.map((w, k) => {
-          const lit = frame >= w.s - 2;
+          const active = frame >= w.s - 2 && frame < (c.words[k + 1]?.s ?? c.end + 6) - 2;
+          const said = frame >= w.s - 2;
           return (
-            <span key={k} style={{ color: lit ? COLORS.ivory : "rgba(251,247,241,0.68)", transition: "none" }}>
+            <span
+              key={k}
+              style={{
+                display: "inline-block",
+                color: active ? COLORS.goldLight : said ? COLORS.ivory : "rgba(251,247,241,0.82)",
+                transform: `scale(${active ? 1.07 : 1})`,
+                margin: "0 0.12em",
+              }}
+            >
               {w.w}
-              {k < c.words.length - 1 ? " " : ""}
             </span>
           );
         })}

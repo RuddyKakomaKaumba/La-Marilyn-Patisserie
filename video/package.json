@@ -14,7 +14,7 @@
     "typecheck": "tsc --noEmit",
     "tutoriel:captures": "node scripts/tutoriel/capture-parcours.cjs && python3 scripts/tutoriel/prepare.py",
     "tutoriel:musique": "python3 scripts/tutoriel/build_music.py",
-    "tutoriel:render": "remotion render src/index.ts TutorielVertical exports/tutoriel/la-marilyn-tutoriel-vertical.mp4",
+    "tutoriel:render": "remotion render src/index.ts TutorielVertical out/tutoriel-brut.mp4 && ffmpeg -y -i out/tutoriel-brut.mp4 -c:v copy -af \"volume=2.8dB,alimiter=limit=0.89:level=disabled\" -c:a aac -b:a 256k -movflags +faststart exports/tutoriel/la-marilyn-tutoriel-vertical.mp4",
     "tutoriel:voix": "remotion render src/index.ts TutorielVoix exports/tutoriel/la-marilyn-tutoriel-voix-off.wav --codec=wav --audio-codec=pcm-16",
     "tutoriel:couverture": "remotion still src/index.ts CouvertureTutoriel exports/tutoriel/la-marilyn-tutoriel-couverture.jpg --image-format=jpeg --jpeg-quality=92",
     "tutoriel:apercu": "node scripts/preview.mjs TutorielVertical 0,200,520,900,1230,1600 0.35 && python3 scripts/sheet.py TutorielVertical out/apercu-tutoriel.jpg 6"

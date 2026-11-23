@@ -1,26 +1,31 @@
 # Tutoriel « Votre commande, en quelques clics » : script final
 
-Vidéo verticale de 58,7 secondes (1080 × 1920, 30 i/s). Voix féminine,
-française, chaleureuse. « Marilyn » se prononce « Mariline ».
+Vidéo verticale de 50 secondes (1080 × 1920, 30 i/s), montée sur une
+musique afro-house à 120 BPM. Voix féminine, française, chaleureuse et
+enjouée. « Marilyn » se prononce « Mariline ».
 
 ## Narration
 
 | Séquence | Début | Voix off |
 | --- | --- | --- |
-| 1. Accroche | 0,5 s | Commander vos gourmandises chez La Marilyn, c’est désormais plus simple. |
-| 2. Découvrir les créations | 5,9 s | Rendez-vous sur notre site, parcourez nos créations et choisissez ce qui vous fait plaisir. |
-| 3. Ajouter au panier | 16,4 s | Ajoutez vos produits au panier. |
-| | 20,3 s | Vous pouvez choisir plusieurs gourmandises et ajuster les quantités selon vos besoins. |
-| 4. Consulter le panier | 29,7 s | Retrouvez tous vos choix au même endroit, ajustez les quantités et consultez le montant de votre panier. |
-| 5. Finaliser sur WhatsApp | 40,2 s | Une fois votre panier prêt, envoyez votre demande sur WhatsApp. |
-| | 46,1 s | La Marilyn vérifie les détails avec vous et confirme votre commande. |
-| 6. Conclusion | 51,2 s | La Marilyn, l’art du gâteau. Retrouvez toutes nos créations en ligne. |
+| 1. Accroche | 0,3 s | Commander vos gourmandises chez La Marilyn, c’est désormais plus simple. |
+| 2. Découvrir les créations | 6,3 s | Rendez-vous sur notre site, parcourez nos créations et choisissez ce qui vous fait plaisir. |
+| 3. Ajouter au panier | 14,4 s | Ajoutez vos produits au panier. |
+| | 17,6 s | Vous pouvez choisir plusieurs gourmandises et ajuster les quantités selon vos besoins. |
+| 4. Consulter le panier | 24,5 s | Retrouvez tous vos choix au même endroit, ajustez les quantités et consultez le montant de votre panier. |
+| 5. Finaliser sur WhatsApp | 32,3 s | Une fois votre panier prêt, envoyez votre demande sur WhatsApp. |
+| | 38,0 s | La Marilyn vérifie les détails avec vous et confirme votre commande. |
+| 6. Conclusion | 42,6 s | La Marilyn, l’art du gâteau. Retrouvez toutes nos créations en ligne. |
 
 Les sous-titres reprennent ce texte mot pour mot, synchronisés sur la voix.
 
 ## Textes à l’écran
 
-- Accroche : VOS GOURMANDISES · en quelques clics
+- Accroche (un mot par temps, sur quatre créations) : VOS · GOURMANDISES ·
+  EN QUELQUES · CLICS
+- Titres d’étape plein cadre : ÉTAPE 1 / 4 CHOISISSEZ · ÉTAPE 2 / 4 AJOUTEZ
+  AU PANIER · ÉTAPE 3 / 4 VÉRIFIEZ VOTRE PANIER · ÉTAPE 4 / 4 ENVOYEZ SUR
+  WHATSAPP
 - Étapes : Étape 1 sur 4 Choisissez · Étape 2 sur 4 Ajoutez au panier ·
   Étape 3 sur 4 Vérifiez votre panier · Étape 4 sur 4 Envoyez sur WhatsApp
 - Défilement : noms des sections du site (Gâteaux gourmands, Cake Design,

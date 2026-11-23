@@ -20,10 +20,10 @@ const WhatsAppGlyph: React.FC<{ size: number; color: string }> = ({ size, color 
  */
 export const MessageCard: React.FC<{ f: number; from: number; burgerPt?: { x: number; y: number } }> = ({ f, from }) => {
   const lines = (P.commande.message ?? "").split("\n");
-  const inn = tween(f, from, from + 22, 0, 1, EASE.out);
+  const inn = tween(f, from, from + 12, 0, 1, EASE.out);
   const out = tween(f, SEQ.final.from - 14, SEQ.final.from + 4, 1, 0);
   // Le message défile lentement, du premier article aux informations client.
-  const scroll = tween(f, from + 34, CUE.message + 120, 0, 540, EASE.inOut);
+  const scroll = tween(f, from + 24, CUE.message + 100, 0, 540, EASE.inOut);
   const W = 860;
   return (
     <div
@@ -62,7 +62,7 @@ export const MessageCard: React.FC<{ f: number; from: number; burgerPt?: { x: nu
             }}
           >
             {lines.map((line, i) => {
-              const at = from + 10 + Math.min(i, 14) * 2;
+              const at = from + 6 + Math.min(i, 14) * 1.5;
               const head = /^(ARTICLE|TOTAL|SOUS-TOTAL|INFORMATIONS)/.test(line);
               const note = /^(J’ai bien noté|Montant indicatif|Merci de me confirmer)/.test(line);
               return (
@@ -91,7 +91,7 @@ export const MessageCard: React.FC<{ f: number; from: number; burgerPt?: { x: nu
           marginTop: 30,
           display: "flex",
           justifyContent: "center",
-          opacity: tween(f, CUE.message + 22, CUE.message + 36, 0, 1),
+          opacity: tween(f, CUE.message + 30, CUE.message + 40, 0, 1),
         }}
       >
         <div

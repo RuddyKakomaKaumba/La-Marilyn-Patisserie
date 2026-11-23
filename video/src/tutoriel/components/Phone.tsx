@@ -1,6 +1,5 @@
 import React from "react";
 import { interpolate } from "remotion";
-import { EASE } from "../../lib/anim";
 import { COLORS } from "../../theme";
 import { LAYOUT } from "../layout";
 
@@ -35,7 +34,9 @@ export function camAt(frame: number, keys: CamKey[]): Cam {
   while (keys[i + 1].f <= frame) i++;
   const a = keys[i];
   const b = keys[i + 1];
-  const t = EASE.inOut(interpolate(frame, [a.f, b.f], [0, 1]));
+  const u = interpolate(frame, [a.f, b.f], [0, 1]);
+  // Courbe quintique : départ et arrivée francs, mouvement nerveux.
+  const t = u < 0.5 ? 16 * u ** 5 : 1 - (-2 * u + 2) ** 5 / 2;
   const lerp = (p: number, q: number) => p + (q - p) * t;
   return {
     s: Math.exp(lerp(Math.log(a.s), Math.log(b.s))),

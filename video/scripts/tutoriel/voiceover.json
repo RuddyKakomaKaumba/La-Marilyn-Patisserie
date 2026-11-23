@@ -2,9 +2,14 @@
   "engine": "chatterbox-multilingual",
   "reference": "reference-timbre.wav",
   "language": "fr",
-  "exaggeration": 0.55,
-  "cfg_weight": 0.5,
-  "seeds": [3, 11, 19, 42],
+  "exaggeration": 0.72,
+  "cfg_weight": 0.32,
+  "seeds": [
+    3,
+    11,
+    19,
+    42
+  ],
   "out_dir": "public/tutoriel/audio",
   "durations_file": "../../src/tutoriel/data/voix.json",
   "word_timings": true,
@@ -15,20 +20,39 @@
       "text": "Commander vos gourmandises chez La Marilyn, c’est désormais plus simple.",
       "say": "Commander vos gourmandises chez La Mariline, c’est désormais plus simple."
     },
-    { "id": "vo-2", "text": "Rendez-vous sur notre site, parcourez nos créations et choisissez ce qui vous fait plaisir." },
-    { "id": "vo-3", "text": "Ajoutez vos produits au panier." },
-    { "id": "vo-4", "text": "Vous pouvez choisir plusieurs gourmandises et ajuster les quantités selon vos besoins." },
-    { "id": "vo-5", "text": "Retrouvez tous vos choix au même endroit, ajustez les quantités et consultez le montant de votre panier." },
-    { "id": "vo-6", "text": "Une fois votre panier prêt, envoyez votre demande sur WhatsApp." },
+    {
+      "id": "vo-2",
+      "text": "Rendez-vous sur notre site, parcourez nos créations et choisissez ce qui vous fait plaisir."
+    },
+    {
+      "id": "vo-3",
+      "text": "Ajoutez vos produits au panier."
+    },
+    {
+      "id": "vo-4",
+      "text": "Vous pouvez choisir plusieurs gourmandises et ajuster les quantités selon vos besoins."
+    },
+    {
+      "id": "vo-5",
+      "text": "Retrouvez tous vos choix au même endroit, ajustez les quantités et consultez le montant de votre panier."
+    },
+    {
+      "id": "vo-6",
+      "text": "Une fois votre panier prêt, envoyez votre demande sur WhatsApp."
+    },
     {
       "id": "vo-7",
       "text": "La Marilyn vérifie les détails avec vous et confirme votre commande.",
-      "say": "La Mariline vérifie les détails avec vous et confirme votre commande."
+      "say": "La Mariline vérifie les détails avec vous et confirme votre commande.",
+      "seeds": [
+        3
+      ]
     },
     {
       "id": "vo-8",
       "text": "La Marilyn, l’art du gâteau. Retrouvez toutes nos créations en ligne.",
       "say": "La Mariline, l’art du gâteau. Retrouvez toutes nos créations en ligne."
     }
-  ]
+  ],
+  "prefer": "fast"
 }
