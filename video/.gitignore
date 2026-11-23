@@ -4,3 +4,5 @@ out
 *.log
 __pycache__
 .venv-*
+exports/tutoriel/*.wav
+exports/tutoriel/*.png

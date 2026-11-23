@@ -1,0 +1,38 @@
+{
+  "t-creations-page": {
+    "count": 9,
+    "tile": 1000,
+    "width": 390,
+    "height": 8941.0
+  },
+  "t-commande-0": {
+    "count": 3,
+    "tile": 1000,
+    "width": 390,
+    "height": 2739.0
+  },
+  "t-commande-1": {
+    "count": 3,
+    "tile": 1000,
+    "width": 390,
+    "height": 2835.0
+  },
+  "t-commande-2": {
+    "count": 3,
+    "tile": 1000,
+    "width": 390,
+    "height": 2835.0
+  },
+  "t-commande-3": {
+    "count": 3,
+    "tile": 1000,
+    "width": 390,
+    "height": 2929.0
+  },
+  "heroInHome": {
+    "score": 0.965,
+    "scale": 0.4175,
+    "x": -1,
+    "y": 147
+  }
+}

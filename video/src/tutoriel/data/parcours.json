@@ -1,0 +1,753 @@
+{
+  "source": "https://la-marilyn-patisserie.vercel.app",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "scale": 3
+  },
+  "demo": {
+    "gateau": "Moelleux au chocolat",
+    "mignardise": "Mini burgers",
+    "name": "Aminata",
+    "date": "2026-12-05",
+    "place": "Bonapriso, Douala"
+  },
+  "accueil": {
+    "cta": {
+      "x": 24,
+      "y": 353.9,
+      "w": 234.5,
+      "h": 44
+    },
+    "floats": [
+      {
+        "cart": true,
+        "fixed": false,
+        "x": 290,
+        "y": 8,
+        "w": 44,
+        "h": 44,
+        "label": "Ouvrir le panier, vide"
+      },
+      {
+        "cart": false,
+        "fixed": true,
+        "x": 326,
+        "y": 780,
+        "w": 48,
+        "h": 48,
+        "label": "Écrire à La Marilyn sur WhatsApp"
+      }
+    ]
+  },
+  "waFloat": {
+    "x": 314,
+    "y": 768,
+    "w": 72,
+    "h": 72,
+    "label": "Écrire à La Marilyn sur WhatsApp"
+  },
+  "creations": {
+    "height": 8941,
+    "sections": {
+      "patisseries": {
+        "x": 0,
+        "y": 557.6,
+        "w": 390,
+        "h": 699.9
+      },
+      "cake-design": {
+        "x": 0,
+        "y": 1257.5,
+        "w": 390,
+        "h": 1449.2
+      },
+      "mignardises": {
+        "x": 0,
+        "y": 2706.7,
+        "w": 390,
+        "h": 782.6
+      },
+      "crepes": {
+        "x": 0,
+        "y": 3489.3,
+        "w": 390,
+        "h": 597
+      },
+      "ecrin": {
+        "x": 0,
+        "y": 4142.3,
+        "w": 390,
+        "h": 1519.7
+      },
+      "traiteur": {
+        "x": 0,
+        "y": 5662,
+        "w": 390,
+        "h": 758.5
+      },
+      "presentoirs": {
+        "x": 0,
+        "y": 6420.5,
+        "w": 390,
+        "h": 1533.6
+      }
+    },
+    "chips": [
+      {
+        "label": "Gâteaux gourmands",
+        "x": 24,
+        "y": 314.6,
+        "w": 141.9,
+        "h": 36
+      },
+      {
+        "label": "Cake Design",
+        "x": 173.9,
+        "y": 314.6,
+        "w": 98.3,
+        "h": 36
+      },
+      {
+        "label": "Mignardises",
+        "x": 24,
+        "y": 358.6,
+        "w": 96.6,
+        "h": 36
+      },
+      {
+        "label": "Crêpes",
+        "x": 128.6,
+        "y": 358.6,
+        "w": 70,
+        "h": 36
+      },
+      {
+        "label": "L’Écrin gourmand",
+        "x": 206.6,
+        "y": 358.6,
+        "w": 126.4,
+        "h": 36
+      },
+      {
+        "label": "Buffets",
+        "x": 24,
+        "y": 402.6,
+        "w": 69.4,
+        "h": 36
+      },
+      {
+        "label": "Présentoirs",
+        "x": 101.4,
+        "y": 402.6,
+        "w": 92.7,
+        "h": 36
+      },
+      {
+        "label": "Préparer ma demande",
+        "x": 24,
+        "y": 450.6,
+        "w": 134.2,
+        "h": 27.5
+      },
+      {
+        "label": "Comment commander, délais et conditions",
+        "x": 24,
+        "y": 482.1,
+        "w": 260.3,
+        "h": 27.5
+      }
+    ],
+    "gateauCard": {
+      "x": 0,
+      "y": 701.1,
+      "w": 168,
+      "h": 409.9
+    },
+    "gateauPrice": {
+      "x": 12,
+      "y": 1031,
+      "w": 144,
+      "h": 18
+    },
+    "gateauAdd": {
+      "x": 12,
+      "y": 1061,
+      "w": 144,
+      "h": 36
+    },
+    "burgerCard": {
+      "x": 0,
+      "y": 2796.7,
+      "w": 232,
+      "h": 522.6
+    },
+    "burgerPrice": {
+      "x": 16,
+      "y": 3223.8,
+      "w": 200,
+      "h": 19.5
+    },
+    "burgerAdd": {
+      "x": 16,
+      "y": 3259.3,
+      "w": 200,
+      "h": 40
+    }
+  },
+  "fiche": {
+    "scrollY": 538,
+    "sheetTop": 84.40625,
+    "sheetHeight844": 759.59375,
+    "height": 1235.171875,
+    "price": {
+      "x": 20,
+      "y": 365,
+      "w": 350,
+      "h": 24
+    },
+    "title": {
+      "x": 20,
+      "y": 263.8,
+      "w": 350,
+      "h": 28.5
+    },
+    "addSection": {
+      "x": 20,
+      "y": 779.7,
+      "w": 350,
+      "h": 247
+    },
+    "addButton": {
+      "x": 37,
+      "y": 965.7,
+      "w": 316,
+      "h": 44
+    },
+    "stepper": {
+      "x": 37,
+      "y": 853.7,
+      "w": 191,
+      "h": 50
+    },
+    "heightAdded": 1411.671875,
+    "added": {
+      "x": 37,
+      "y": 1021.7,
+      "w": 316,
+      "h": 164.5
+    },
+    "continue": {
+      "x": 51,
+      "y": 1134.2,
+      "w": 288,
+      "h": 40
+    }
+  },
+  "cartFloat1": {
+    "x": 314,
+    "y": 712,
+    "w": 72,
+    "h": 72,
+    "label": "Ouvrir le panier, 1 article"
+  },
+  "burger": {
+    "scrollY": 2597
+  },
+  "cartFloat2": {
+    "x": 314,
+    "y": 712,
+    "w": 72,
+    "h": 72,
+    "label": "Ouvrir le panier, 2 articles"
+  },
+  "header": {
+    "badge": "Ouvrir le panier, 2 articles"
+  },
+  "panier": {
+    "top844": 228.203125,
+    "height844": 615.796875,
+    "height": 615.796875,
+    "rows": [
+      {
+        "box": {
+          "x": 20,
+          "y": 98,
+          "w": 350,
+          "h": 127.1
+        },
+        "text": "Moelleux au chocolat 5 000 FCFA le gâteau gâteau 5 000 FCFA",
+        "buttons": [
+          {
+            "label": "Retirer Moelleux au chocolat du panier",
+            "box": {
+              "x": 340,
+              "y": 110,
+              "w": 36,
+              "h": 36
+            }
+          },
+          {
+            "label": "Diminuer la quantité",
+            "box": {
+              "x": 101,
+              "y": 169.2,
+              "w": 36,
+              "h": 36
+            }
+          },
+          {
+            "label": "Augmenter la quantité",
+            "box": {
+              "x": 177,
+              "y": 169.2,
+              "w": 36,
+              "h": 36
+            }
+          }
+        ]
+      },
+      {
+        "box": {
+          "x": 20,
+          "y": 225.2,
+          "w": 350,
+          "h": 126.1
+        },
+        "text": "Mini burgers 650 FCFA la pièce pièces 6 500 FCFA",
+        "buttons": [
+          {
+            "label": "Retirer Mini burgers du panier",
+            "box": {
+              "x": 340,
+              "y": 237.2,
+              "w": 36,
+              "h": 36
+            }
+          },
+          {
+            "label": "Diminuer la quantité",
+            "box": {
+              "x": 101,
+              "y": 296.3,
+              "w": 36,
+              "h": 36
+            }
+          },
+          {
+            "label": "Augmenter la quantité",
+            "box": {
+              "x": 177,
+              "y": 296.3,
+              "w": 36,
+              "h": 36
+            }
+          }
+        ]
+      }
+    ],
+    "total": {
+      "x": 20,
+      "y": 372.3,
+      "w": 350,
+      "h": 30
+    },
+    "totalText": "Total des produits 11 500 FCFA",
+    "finaliser": {
+      "x": 20,
+      "y": 449.8,
+      "w": 350,
+      "h": 44
+    },
+    "plusLabel": "Augmenter la quantité",
+    "plus": {
+      "x": 177,
+      "y": 169.2,
+      "w": 36,
+      "h": 36
+    },
+    "rows2": [
+      {
+        "box": {
+          "x": 20,
+          "y": 98,
+          "w": 350,
+          "h": 157.6
+        },
+        "text": "Moelleux au chocolat 5 000 FCFA le gâteau gâteaux 10 000 FCFA",
+        "buttons": [
+          {
+            "label": "Retirer Moelleux au chocolat du panier",
+            "box": {
+              "x": 340,
+              "y": 110,
+              "w": 36,
+              "h": 36
+            }
+          },
+          {
+            "label": "Diminuer la quantité",
+            "box": {
+              "x": 101,
+              "y": 169.2,
+              "w": 36,
+              "h": 36
+            }
+          },
+          {
+            "label": "Augmenter la quantité",
+            "box": {
+              "x": 177,
+              "y": 169.2,
+              "w": 36,
+              "h": 36
+            }
+          }
+        ]
+      },
+      {
+        "box": {
+          "x": 20,
+          "y": 255.7,
+          "w": 350,
+          "h": 126.1
+        },
+        "text": "Mini burgers 650 FCFA la pièce pièces 6 500 FCFA",
+        "buttons": [
+          {
+            "label": "Retirer Mini burgers du panier",
+            "box": {
+              "x": 340,
+              "y": 267.7,
+              "w": 36,
+              "h": 36
+            }
+          },
+          {
+            "label": "Diminuer la quantité",
+            "box": {
+              "x": 101,
+              "y": 326.8,
+              "w": 36,
+              "h": 36
+            }
+          },
+          {
+            "label": "Augmenter la quantité",
+            "box": {
+              "x": 177,
+              "y": 326.8,
+              "w": 36,
+              "h": 36
+            }
+          }
+        ]
+      }
+    ],
+    "totalText2": "Total des produits 16 500 FCFA",
+    "height2": 646.296875
+  },
+  "commande": {
+    "states": [
+      {
+        "file": "t-commande-0.jpg",
+        "height": 2739,
+        "recap": {
+          "x": 16,
+          "y": 416.8,
+          "w": 358,
+          "h": 402.5
+        },
+        "total": {
+          "x": 36,
+          "y": 640.3,
+          "w": 318,
+          "h": 30
+        },
+        "infos": {
+          "x": 36,
+          "y": 863.3,
+          "w": 318,
+          "h": 24.5
+        },
+        "name": {
+          "x": 36,
+          "y": 987.8,
+          "w": 318,
+          "h": 46
+        },
+        "date": {
+          "x": 36,
+          "y": 1203.3,
+          "w": 318,
+          "h": 46
+        },
+        "mode": {
+          "x": 36,
+          "y": 1493.8,
+          "w": 318,
+          "h": 209.5
+        },
+        "livraison": {
+          "x": 36,
+          "y": 1521.3,
+          "w": 318,
+          "h": 87
+        },
+        "place": null,
+        "submit": {
+          "x": 36,
+          "y": 2207.8,
+          "w": 318,
+          "h": 44
+        }
+      },
+      {
+        "file": "t-commande-1.jpg",
+        "height": 2835,
+        "recap": {
+          "x": 16,
+          "y": 416.8,
+          "w": 358,
+          "h": 402.5
+        },
+        "total": {
+          "x": 36,
+          "y": 640.3,
+          "w": 318,
+          "h": 30
+        },
+        "infos": {
+          "x": 36,
+          "y": 863.3,
+          "w": 318,
+          "h": 24.5
+        },
+        "name": {
+          "x": 36,
+          "y": 987.8,
+          "w": 318,
+          "h": 46
+        },
+        "date": {
+          "x": 36,
+          "y": 1203.3,
+          "w": 318,
+          "h": 46
+        },
+        "mode": {
+          "x": 36,
+          "y": 1493.8,
+          "w": 318,
+          "h": 209.5
+        },
+        "livraison": {
+          "x": 36,
+          "y": 1521.3,
+          "w": 318,
+          "h": 87
+        },
+        "place": {
+          "x": 36,
+          "y": 1753.3,
+          "w": 318,
+          "h": 46
+        },
+        "submit": {
+          "x": 36,
+          "y": 2303.8,
+          "w": 318,
+          "h": 44
+        }
+      },
+      {
+        "file": "t-commande-2.jpg",
+        "height": 2835,
+        "recap": {
+          "x": 16,
+          "y": 416.8,
+          "w": 358,
+          "h": 402.5
+        },
+        "total": {
+          "x": 36,
+          "y": 640.3,
+          "w": 318,
+          "h": 30
+        },
+        "infos": {
+          "x": 36,
+          "y": 863.3,
+          "w": 318,
+          "h": 24.5
+        },
+        "name": {
+          "x": 36,
+          "y": 987.8,
+          "w": 318,
+          "h": 46
+        },
+        "date": {
+          "x": 36,
+          "y": 1203.3,
+          "w": 318,
+          "h": 46
+        },
+        "mode": {
+          "x": 36,
+          "y": 1493.8,
+          "w": 318,
+          "h": 209.5
+        },
+        "livraison": {
+          "x": 36,
+          "y": 1521.3,
+          "w": 318,
+          "h": 87
+        },
+        "place": {
+          "x": 36,
+          "y": 1753.3,
+          "w": 318,
+          "h": 46
+        },
+        "submit": {
+          "x": 36,
+          "y": 2303.8,
+          "w": 318,
+          "h": 44
+        }
+      },
+      {
+        "file": "t-commande-3.jpg",
+        "height": 2929,
+        "recap": {
+          "x": 16,
+          "y": 416.8,
+          "w": 358,
+          "h": 402.5
+        },
+        "total": {
+          "x": 36,
+          "y": 640.3,
+          "w": 318,
+          "h": 30
+        },
+        "infos": {
+          "x": 36,
+          "y": 863.3,
+          "w": 318,
+          "h": 24.5
+        },
+        "name": {
+          "x": 36,
+          "y": 987.8,
+          "w": 318,
+          "h": 46
+        },
+        "date": {
+          "x": 36,
+          "y": 1203.3,
+          "w": 318,
+          "h": 46
+        },
+        "mode": {
+          "x": 36,
+          "y": 1493.8,
+          "w": 318,
+          "h": 209.5
+        },
+        "livraison": {
+          "x": 36,
+          "y": 1521.3,
+          "w": 318,
+          "h": 87
+        },
+        "place": {
+          "x": 36,
+          "y": 1753.3,
+          "w": 318,
+          "h": 46
+        },
+        "submit": {
+          "x": 36,
+          "y": 2303.8,
+          "w": 318,
+          "h": 44
+        }
+      }
+    ],
+    "nameCrops": [
+      {
+        "chars": 1,
+        "file": "t-nom-01.png"
+      },
+      {
+        "chars": 2,
+        "file": "t-nom-02.png"
+      },
+      {
+        "chars": 3,
+        "file": "t-nom-03.png"
+      },
+      {
+        "chars": 4,
+        "file": "t-nom-04.png"
+      },
+      {
+        "chars": 5,
+        "file": "t-nom-05.png"
+      },
+      {
+        "chars": 6,
+        "file": "t-nom-06.png"
+      },
+      {
+        "chars": 7,
+        "file": "t-nom-07.png"
+      }
+    ],
+    "placeCrops": [
+      {
+        "chars": 2,
+        "file": "t-lieu-02.png"
+      },
+      {
+        "chars": 4,
+        "file": "t-lieu-04.png"
+      },
+      {
+        "chars": 6,
+        "file": "t-lieu-06.png"
+      },
+      {
+        "chars": 8,
+        "file": "t-lieu-08.png"
+      },
+      {
+        "chars": 10,
+        "file": "t-lieu-10.png"
+      },
+      {
+        "chars": 12,
+        "file": "t-lieu-12.png"
+      },
+      {
+        "chars": 14,
+        "file": "t-lieu-14.png"
+      },
+      {
+        "chars": 16,
+        "file": "t-lieu-16.png"
+      },
+      {
+        "chars": 17,
+        "file": "t-lieu-17.png"
+      }
+    ],
+    "errors": [],
+    "whatsappUrl": "https://wa.me/237694768972",
+    "message": "Bonjour La Marilyn,\n\nJe souhaite passer la commande suivante :\n\nARTICLE 1\nProduit : Moelleux au chocolat\nQuantité : 2 gâteaux\nTarif : 5 000 FCFA le gâteau\nSous-total : 10 000 FCFA\n\nARTICLE 2\nProduit : Mini burgers\nQuantité : 10 pièces\nTarif : 650 FCFA la pièce\nSous-total : 6 500 FCFA\n\nTOTAL DES PRODUITS TARIFÉS : 16 500 FCFA\nMontant indicatif, hors frais de livraison (à la charge du client).\n\nINFORMATIONS CLIENT\nNom : Aminata\nDate souhaitée : samedi 5 décembre 2026\nMode de récupération : livraison, Bonapriso, Douala\n\nJ’ai bien noté que cette demande ne vaut pas réservation : la commande sera confirmée après validation du projet, accord sur le prix et réception de l’acompte.\n\nMerci de me confirmer la disponibilité et le montant définitif de ma commande."
+  },
+  "capturedAt": "2026-11-23T13:57:10.906Z"
+}

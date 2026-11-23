@@ -18,9 +18,20 @@ import argparse, difflib, json, os, re, unicodedata
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(HERE, "..", "..", "public", "audio")
-CFG = json.load(open(os.path.join(HERE, "voiceover.json"), encoding="utf-8"))
+ROOT = os.path.join(HERE, "..", "..")
 SR = 48000
+CFG = {}
+OUT = ""
+DURATIONS = ""
+
+
+def load(config):
+    """Charge une configuration de voix off (texte, moteur, dossier de sortie)."""
+    global CFG, OUT, DURATIONS
+    path = config if os.path.isabs(config) else os.path.join(HERE, config)
+    CFG = json.load(open(path, encoding="utf-8"))
+    OUT = os.path.join(ROOT, CFG.get("out_dir", "public/audio"))
+    DURATIONS = os.path.join(os.path.dirname(path), CFG.get("durations_file", "voiceover-durations.json"))
 
 
 def takes(out, only=None):
@@ -29,7 +40,7 @@ def takes(out, only=None):
 
     os.makedirs(out, exist_ok=True)
     model = ChatterboxMultilingualTTS.from_pretrained(device="cpu")
-    ref = os.path.join(HERE, CFG["reference"])
+    ref = os.path.join(HERE, CFG["reference"]) if not os.path.isabs(CFG["reference"]) else CFG["reference"]
     for line in CFG["lines"]:
         if only and line["id"] != only:
             continue
@@ -125,14 +136,23 @@ def select(takes_dir):
             part = trim(part)
             sf.write(os.path.join(OUT, name + ".wav"), part, SR, subtype="PCM_16")
             report[name] = {"seconds": round(len(part) / SR, 3), "seed": seed}
-            print("  →", name, report[name])
-    json.dump(report, open(os.path.join(HERE, "voiceover-durations.json"), "w"), indent=2)
+            if CFG.get("word_timings"):
+                # Horodatage des mots sur le fichier final (pour les sous-titres).
+                y16 = signal.resample_poly(part, 16000, SR).astype(np.float32)
+                segs, _ = asr.transcribe(y16, language="fr", word_timestamps=True)
+                report[name]["words"] = [
+                    [w.word.strip(), round(w.start, 3), round(w.end, 3)] for s in segs for w in s.words
+                ]
+            print("  →", name, {k: v for k, v in report[name].items() if k != "words"})
+    json.dump(report, open(DURATIONS, "w"), indent=2, ensure_ascii=False)
 
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
+    ap.add_argument("--config", default="voiceover.json", help="fichier de configuration (relatif à scripts/audio)")
     sub = ap.add_subparsers(dest="cmd", required=True)
     a = sub.add_parser("takes"); a.add_argument("--out", required=True); a.add_argument("--only")
     b = sub.add_parser("select"); b.add_argument("--takes", required=True)
     args = ap.parse_args()
+    load(args.config)
     takes(args.out, args.only) if args.cmd == "takes" else select(args.takes)

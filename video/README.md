@@ -131,3 +131,90 @@ python3 -m venv .venv-qc && .venv-qc/bin/pip install faster-whisper soundfile sc
 
 Les durées obtenues sont écrites dans `scripts/audio/voiceover-durations.json` ;
 les reporter dans `src/timeline.ts`.
+
+---
+
+# Tutoriel « Votre commande, en quelques clics »
+
+Second film du projet : un tutoriel pédagogique du panier multi-produits,
+réalisé à partir du parcours réel sur le site public. Il partage le moteur
+Remotion, les typographies et les composants de ce dossier, mais vit dans
+ses propres sous-dossiers (`tutoriel`).
+
+## Livrables (`exports/tutoriel/`)
+
+| Fichier | Contenu |
+| --- | --- |
+| `la-marilyn-tutoriel-vertical.mp4` | 1080 × 1920, 30 i/s, 58,7 s, H.264 + AAC : voix, musique, effets et sous-titres intégrés |
+| `la-marilyn-tutoriel-voix-off.flac` | Voix off seule, calée sur la vidéo (sans perte ; `npm run tutoriel:voix` produit le WAV) |
+| `la-marilyn-tutoriel-couverture.jpg` | Couverture Instagram, 1080 × 1920 |
+
+Script et textes : [`VOIX-OFF-TUTORIEL.md`](./VOIX-OFF-TUTORIEL.md).
+
+## Commandes
+
+```bash
+npm run studio               # prévisualisation interactive (composition TutorielVertical)
+npm run tutoriel:apercu      # planche de six images, sans rendu complet
+npm run tutoriel:render      # vidéo finale
+npm run tutoriel:voix        # piste de voix seule
+npm run tutoriel:couverture  # couverture Instagram
+npm run tutoriel:captures    # recapture du parcours sur le site public
+npm run tutoriel:musique     # musique et effets
+```
+
+## Organisation
+
+```
+src/tutoriel/
+├─ Tutoriel.tsx        composition : fond, plan-séquence, conclusion, sous-titres, son
+├─ timeline.ts         séquences, repères d'action (CUE) et départs de la voix
+├─ layout.ts           zones du format vertical (titre, écran, sous-titres)
+├─ screens.tsx         l'écran du site, image par image, reconstitué depuis les captures
+├─ Soundtrack.tsx      voix, musique atténuée sous la voix, effets synchronisés
+├─ Cover.tsx           couverture Instagram
+├─ sequences/          Parcours (caméra du plan-séquence, loupes, cartes) et Final
+├─ components/         téléphone et caméra, pages en tuiles, fenêtres, surbrillances,
+│                      toucher, loupe, en-tête d'étapes, sous-titres, carte du message
+└─ data/               mesures du site (parcours.json, pages.json) et voix (voix.json)
+public/tutoriel/       captures du site (tuiles comprises) et audio
+scripts/tutoriel/      capture-parcours.cjs, prepare.py, build_music.py, voiceover.json
+```
+
+Ajuster le film :
+- **durées et rythme** : `SEQ` et `CUE` dans `src/tutoriel/timeline.ts` ;
+  les gestes, la caméra et les effets sonores suivent ces repères ;
+- **voix et sous-titres** : `scripts/tutoriel/voiceover.json`, puis les
+  départs dans `timeline.ts` ; les sous-titres se recalculent seuls ;
+- **caméra** : tableau `CAM` dans `sequences/Parcours.tsx` (point visé, zoom,
+  inclinaison) ;
+- **déclinaison horizontale** : ajouter un jeu de valeurs dans `layout.ts`
+  et une composition 1920 × 1080 ; l'écran du site et la caméra sont
+  indépendants du format.
+
+## Fidélité au site
+
+- Captures prises sur https://la-marilyn-patisserie.vercel.app (version
+  classique, panier multi-produits en ligne), en lecture seule. Le panier
+  vit dans le navigateur de capture ; l'ouverture de WhatsApp est
+  interceptée : aucun message n'est envoyé.
+- Le message affiché est le texte exact préparé par le site
+  (`src/tutoriel/data/parcours.json`).
+- Les interfaces ne sont pas redessinées : loupes et surbrillances
+  agrandissent ou soulignent les captures réelles.
+- Produits choisis pour leurs prix stables : Moelleux au chocolat
+  (5 000 FCFA) et Mini burgers (650 FCFA la pièce, minimum 10), identiques
+  en ligne et dans les tarifs confirmés le 15 novembre.
+
+## Technologies et ressources
+
+| Élément | Outil ou origine | Droits |
+| --- | --- | --- |
+| Montage, animation, rendu | Remotion 4 (React), Chrome sans interface, FFmpeg | Licence Remotion (gratuite jusqu'à trois personnes) |
+| Captures du parcours | Playwright, mobile 390 × 844 à 3× | Interface La Marilyn |
+| Photographies, logo | Site La Marilyn (`public/images`) | Propriété de La Marilyn |
+| Typographies | Newsreader, DM Sans | SIL Open Font License |
+| Voix off | Chatterbox Multilingual (Resemble AI, MIT), timbre de référence issu de la voix libre « jessica » (corpus UPMC, CC BY-SA 4.0) ; meilleure prise choisie par transcription faster-whisper | Usage commercial autorisé ; filigrane inaudible de voix de synthèse |
+| Musique et effets | Synthétisés par `scripts/tutoriel/build_music.py` (numpy, scipy), aucun échantillon tiers | Œuvre du projet |
+| Sous-titres | Texte du script, minutage par alignement sur les mots de la voix | |
+| QR code | segno | |
